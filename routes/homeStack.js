@@ -4,6 +4,8 @@ import Home from "../screens/home";
 import ReviewDetails from "../screens/reviewDetails";
 
 const screens = {
+  // every screen automatically gets navigation property on the
+  // props assigned to it
   Home: {
     screen: Home,
   },
