@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 
-// ({destructuring-taking in only what we need})
+// ({destructuring - extracting only what we need})
 export default function Home({ navigation }) {
   const [reviews, setReviews] = useState([
     { title: "Sandra x Aleko", rating: 5, body: "lorem ipsum", key: "1" },
