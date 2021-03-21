@@ -8,12 +8,32 @@ const screens = {
   // props assigned to it
   Home: {
     screen: Home,
+    navigationOptions: {
+      title: "ReviewMee",
+      // uncommenting the style below will overide the default style
+      // headerStyle: {
+      //   backgroundColor: "#eee",
+      // },
+    },
   },
   ReviewDetails: {
     screen: ReviewDetails,
+    navigationOptions: {
+      title: "Review Details",
+      // headerStyle: {
+      //   backgroundColor: "#eee",
+      // },
+    },
   },
 };
 
-const Homestack = createStackNavigator(screens);
+const Homestack = createStackNavigator(screens, {
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: "#eee",
+      height: 60,
+    },
+  },
+});
 
 export default createAppContainer(Homestack);
