@@ -11,7 +11,7 @@ import { globalStyles } from "../styles/global";
 // ({destructuring - extracting only what we need})
 export default function Home({ navigation }) {
   const [reviews, setReviews] = useState([
-    { title: "? x Aleko", rating: 5, body: "lorem ipsum", key: "1" },
+    { title: "Sandra x Aleko", rating: 5, body: "lorem ipsum", key: "1" },
     { title: "Road to a milli", rating: 5, body: "lorem ipsum", key: "2" },
     { title: "Love is on the way", rating: 4, body: "lorem ipsum", key: "3" },
   ]);
