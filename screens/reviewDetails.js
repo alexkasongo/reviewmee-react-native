@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { globalStyles } from "../styles/global";
 
-// ({destructuring - only using what's needed})
+// ({destructuring - extracting only what we need})
 export default function ReviewDetails({ navigation }) {
   return (
     <View style={globalStyles.container}>
