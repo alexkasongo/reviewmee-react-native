@@ -1,25 +1,14 @@
 import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
-import Home from "../screens/home";
-import ReviewDetails from "../screens/reviewDetails";
+import About from "../screens/about";
 
 const screens = {
   // every screen automatically gets navigation property on the
   // props assigned to it
-  Home: {
-    screen: Home,
+  About: {
+    screen: About,
     navigationOptions: {
-      title: "ReviewMee",
+      title: "About",
       // uncommenting the style below will overide the default style
-      // headerStyle: {
-      //   backgroundColor: "#eee",
-      // },
-    },
-  },
-  ReviewDetails: {
-    screen: ReviewDetails,
-    navigationOptions: {
-      title: "Review Details",
       // headerStyle: {
       //   backgroundColor: "#eee",
       // },
@@ -27,7 +16,7 @@ const screens = {
   },
 };
 
-const Homestack = createStackNavigator(screens, {
+const AboutStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: "#444",
     headerStyle: {
@@ -37,4 +26,4 @@ const Homestack = createStackNavigator(screens, {
   },
 });
 
-export default Homestack;
+export default AboutStack;
