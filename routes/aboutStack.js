@@ -1,5 +1,7 @@
 import { createStackNavigator } from "react-navigation-stack";
 import About from "../screens/about";
+import Header from "../shared/header";
+import React from "react";
 
 const screens = {
   // every screen automatically gets navigation property on the
@@ -7,7 +9,8 @@ const screens = {
   About: {
     screen: About,
     navigationOptions: {
-      title: "About",
+      // headerTitle can take a function a value which returns a component
+      headerTitle: () => <Header />,
       // uncommenting the style below will overide the default style
       // headerStyle: {
       //   backgroundColor: "#eee",
@@ -21,7 +24,7 @@ const AboutStack = createStackNavigator(screens, {
     headerTintColor: "#444",
     headerStyle: {
       backgroundColor: "#eee",
-      //   height: 60,
+      //   height: 80,
     },
   },
 });
