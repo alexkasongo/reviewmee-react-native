@@ -23,7 +23,8 @@ const screens = {
   ReviewDetails: {
     screen: ReviewDetails,
     navigationOptions: {
-      title: "Review Details",
+      // title: "Review Details",
+      // headerLeft: 20,
       headerBackTitleVisible: false,
       // headerStyle: {
       //   backgroundColor: "red",

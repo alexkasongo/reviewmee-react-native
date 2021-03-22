@@ -5,17 +5,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
 
 export default function Header({ navigation, title }) {
-  const openMenu = () => {
-    navigation.openDrawer();
-  };
-
   return (
     <View style={styles.header}>
       {/* icon for the menu */}
       <MaterialIcons
         name="menu"
         size={28}
-        onPress={openMenu}
+        onPress={() => navigation.goBack()}
         style={styles.icon}
       />
       <Text style={styles.headerText}>{title}</Text>
