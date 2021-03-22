@@ -24,8 +24,9 @@ const screens = {
     screen: ReviewDetails,
     navigationOptions: {
       title: "Review Details",
+      headerBackTitleVisible: false,
       // headerStyle: {
-      //   backgroundColor: "#eee",
+      //   backgroundColor: "red",
       // },
     },
   },
