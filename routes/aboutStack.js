@@ -8,10 +8,10 @@ const screens = {
   // props assigned to it
   About: {
     screen: About,
-    navigationOptions: {
-      // headerTitle can take a function a value which returns a component
-      headerTitle: () => <Header />,
-      // uncommenting the style below will overide the default style
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: () => <Header navigation={navigation} />,
+      };
       // headerStyle: {
       //   backgroundColor: "#eee",
       // },
