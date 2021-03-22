@@ -14,10 +14,10 @@ const screens = {
         headerTitle: () => (
           <Header navigation={navigation} title="ConsentMee" />
         ),
+        // headerStyle: {
+        //   backgroundColor: "red",
+        // },
       };
-      // headerStyle: {
-      //   backgroundColor: "#eee",
-      // },
     },
   },
   ReviewDetails: {
@@ -38,6 +38,8 @@ const Homestack = createStackNavigator(screens, {
       backgroundColor: "#eee",
       // height: 80,
     },
+    headerTitleAlign: "center",
+    height: "100%",
   },
 });
 

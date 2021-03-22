@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+// fix
+import { Dimensions } from "react-native";
 
 export default function Header({ navigation, title }) {
   const openMenu = () => {
@@ -23,7 +25,7 @@ export default function Header({ navigation, title }) {
 
 const styles = StyleSheet.create({
   header: {
-    width: "100%",
+    width: Dimensions.get("screen").width,
     height: "100%",
     flexDirection: "row",
     alignItems: "center",
