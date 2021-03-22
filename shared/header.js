@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-export default function Header({ navigation }) {
+export default function Header({ navigation, title }) {
   const openMenu = () => {
     navigation.openDrawer();
   };
@@ -16,7 +16,7 @@ export default function Header({ navigation }) {
         onPress={openMenu}
         style={styles.icon}
       />
-      <Text style={styles.headerText}>ConsentMee</Text>
+      <Text style={styles.headerText}>{title}</Text>
     </View>
   );
 }
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "green",
+    // backgroundColor: "green",
   },
   headerText: {
     fontWeight: "bold",
