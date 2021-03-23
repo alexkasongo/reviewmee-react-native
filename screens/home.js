@@ -10,6 +10,7 @@ import {
 import { globalStyles } from "../styles/global";
 import Card from "../shared/card";
 import { MaterialIcons } from "@expo/vector-icons";
+import ReviewForm from "./reviewForm";
 
 // ({destructuring - extracting only what we need})
 export default function Home({ navigation }) {
@@ -28,13 +29,19 @@ export default function Home({ navigation }) {
           <MaterialIcons
             name="close"
             size={24}
+            style={{ ...styles.modalToggle, ...styles.modalClose }}
             onPress={() => setModalOpen(false)}
           />
-          <Text>Hello from the modal!</Text>
+          <ReviewForm />
         </View>
       </Modal>
 
-      <MaterialIcons name="add" size={24} onPress={() => setModalOpen(true)} />
+      <MaterialIcons
+        name="add"
+        size={24}
+        style={styles.modalToggle}
+        onPress={() => setModalOpen(true)}
+      />
 
       <FlatList
         data={reviews}
@@ -53,5 +60,19 @@ export default function Home({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  modalContent: {},
+  modalToggle: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#f2f2f2",
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  modalClose: {
+    marginTop: 40,
+    marginBottom: 0,
+  },
+  modalContent: {
+    flex: 1,
+  },
 });
