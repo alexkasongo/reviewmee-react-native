@@ -9,6 +9,19 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 import { Form, Formik } from "formik";
+import * as yup from "yup";
+
+// a schema is a set of rules defined in an object
+const ReviewSchema = yup.object({
+  title: yup.string().required().min(4),
+  body: yup.string().required().min(8),
+  rating: yup
+    .string()
+    .required()
+    .test("is-num-1-5", "Rating must be a number 1 - 5", (val) => {
+      return parseInt(val) < 6 && parseInt(val) > 0;
+    }),
+});
 
 export default function ReviewForm({ addReview }) {
   return (
@@ -19,6 +32,7 @@ export default function ReviewForm({ addReview }) {
           body: "",
           rating: "",
         }}
+        validationSchema={ReviewSchema}
         onSubmit={(values, actions) => {
           // add the review here using the addReview() prop
           actions.resetForm();
@@ -26,6 +40,7 @@ export default function ReviewForm({ addReview }) {
           // console.log(`reviewForm.js - 23 - 🍎`, values);
         }}
       >
+        {/* if validation fails, yup passes errors in props below */}
         {(props) => (
           <View>
             <TextInput
