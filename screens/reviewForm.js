@@ -10,6 +10,7 @@ import {
 import { globalStyles } from "../styles/global";
 import { Form, Formik } from "formik";
 import * as yup from "yup";
+import FlatButton from "../shared/button";
 
 // a schema is a set of rules defined in an object
 const ReviewSchema = yup.object({
@@ -53,9 +54,9 @@ export default function ReviewForm({ addReview }) {
             <Text style={globalStyles.errorText}>
               {props.touched.title && props.errors.title}
             </Text>
-
             <TextInput
               multiline
+              minHeight={60}
               style={globalStyles.input}
               placeholder="Review body"
               onChangeText={props.handleChange("body")}
@@ -65,7 +66,6 @@ export default function ReviewForm({ addReview }) {
             <Text style={globalStyles.errorText}>
               {props.touched.body && props.errors.body}
             </Text>
-
             <TextInput
               style={globalStyles.input}
               placeholder="Rating (1-5)"
@@ -77,8 +77,8 @@ export default function ReviewForm({ addReview }) {
             <Text style={globalStyles.errorText}>
               {props.touched.rating && props.errors.rating}
             </Text>
-
-            <Button title="submit" onPress={props.handleSubmit} />
+            {/* <Button title="submit" onPress={props.handleSubmit} /> */}
+            <FlatButton text="submit" onPress={props.handleSubmit} />
           </View>
         )}
       </Formik>
