@@ -16,10 +16,10 @@ import ReviewForm from "./reviewForm";
 export default function Home({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [reviews, setReviews] = useState([
-    { title: "Sandra x Aleko", rating: 2, body: "lorem ipsum", key: "1" },
-    { title: "Road to a milli", rating: 5, body: "lorem ipsum", key: "2" },
-    { title: "Love is on the way", rating: 4, body: "lorem ipsum", key: "3" },
-    { title: "Owe me", rating: 3, body: "lorem ipsum", key: "4" },
+    { title: "Consent Contracts", rating: 2, body: "lorem ipsum", key: "1" },
+    { title: "Roommate Contracts", rating: 5, body: "lorem ipsum", key: "2" },
+    { title: "Custom Contracts", rating: 4, body: "lorem ipsum", key: "3" },
+    { title: "Friendship Contracts", rating: 3, body: "lorem ipsum", key: "4" },
   ]);
 
   return (
