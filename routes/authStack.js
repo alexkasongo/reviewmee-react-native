@@ -22,21 +22,8 @@ const screens = {
       };
     },
   },
-  Home: {
-    screen: Home,
-    navigationOptions: ({ navigation }) => {
-      return {
-        headerTitle: () => (
-          <Header navigation={navigation} title="ConsentMee" />
-        ),
-        // headerStyle: {
-        //   backgroundColor: "red",
-        // },
-      };
-    },
-  },
-  ReviewDetails: {
-    screen: ReviewDetails,
+  Login: {
+    screen: Login,
     navigationOptions: {
       // title: "Review Details",
       // headerLeft: 20,
@@ -48,7 +35,7 @@ const screens = {
   },
 };
 
-const Homestack = createStackNavigator(screens, {
+const Authstack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: "#444",
     headerStyle: {
@@ -60,4 +47,4 @@ const Homestack = createStackNavigator(screens, {
   },
 });
 
-export default Homestack;
+export default Authstack;
