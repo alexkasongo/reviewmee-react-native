@@ -12,10 +12,10 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 
-import { connect } from "react-redux";
-import { onUserLogin } from "../redux/actions/UserActions";
+// import { connect } from "react-redux";
+// import { onUserLogin } from "../redux/actions/UserActions";
 
-class Login extends Component {
+export default class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -175,12 +175,12 @@ const styles = StyleSheet.create({
 
 // store
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signIn: (payload) => {
-      dispatch({ type: "DO_LOGIN", payload });
-    },
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     signIn: (payload) => {
+//       dispatch({ type: "DO_LOGIN", payload });
+//     },
+//   };
+// };
 
-export default connect(null, mapDispatchToProps)(Login);
+// export default connect(null, mapDispatchToProps)(Login);

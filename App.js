@@ -4,7 +4,7 @@ import AppLoading from "expo-app-loading";
 import Navigator from "./routes/drawer";
 // we use the provider to get acces to the redux store
 // wrap everything that needs access to the store inside the provider
-import store from "./app/store";
+import store from "./redux/store";
 import { Provider } from "react-redux";
 
 export default function App() {
