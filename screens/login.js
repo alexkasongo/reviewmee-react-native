@@ -19,6 +19,7 @@ export default class Login extends Component {
       email: "",
       password: "",
       isLoading: false,
+      errorMessage: null,
     };
   }
 
@@ -48,7 +49,11 @@ export default class Login extends Component {
           });
           this.props.navigation.navigate("Home");
         })
-        .catch((error) => this.setState({ errorMessage: error.message }));
+        .catch((error) => {
+          this.setState({ isLoading: false });
+          console.log(`login.js - 54 - 🍎`, error.message);
+          this.setState({ errorMessage: error.message });
+        });
     }
   };
 
@@ -77,6 +82,8 @@ export default class Login extends Component {
             maxLength={15}
             secureTextEntry={true}
           />
+
+          {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
           <Button
             color="#3740FE"
             title="Signin"
