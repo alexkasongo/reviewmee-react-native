@@ -12,7 +12,10 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 
-export default class Login extends Component {
+import { connect } from "react-redux";
+import { signIn } from "../redux";
+
+class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -57,7 +60,13 @@ export default class Login extends Component {
     }
   };
 
+  handlePress = () => {
+    this.props.signIn();
+  };
+
   render() {
+    console.log(`login.js - 68 - ✅`, this.props);
+
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>
@@ -89,6 +98,18 @@ export default class Login extends Component {
             title="Signin"
             onPress={() => this.userLogin()}
           />
+
+          {/* <View style={styles.test}>
+            <Button
+              color="#3740FE"
+              title="Test"
+              onPress={() => this.handlePress()}
+            />
+          </View> */}
+
+          <View style={styles.test}>
+            <Button color="#3740FE" title="Test" onPress={() => signIn()} />
+          </View>
 
           <Text
             style={styles.loginText}
@@ -134,4 +155,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#fff",
   },
+  test: {
+    marginTop: 10,
+  },
 });
+
+// store
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    test: () => {
+      dispatch({ type: "FETCH_PRODUCTS " });
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Login);
