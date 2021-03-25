@@ -1,10 +1,21 @@
 import { DO_LOGIN } from "../actions/UserActions";
 
+// export const userReducer = (state = null, action) => {
+//   console.log("🏝 action received", action);
+//   switch (action.type) {
+//     case DO_LOGIN:
+//       return [action.payload];
+//   }
+//   return state;
+// };
+
 // reducers - similar to mutations in vuex, used for storing the data in state
 export const userReducer = (state = null, action) => {
-  console.log("🏝 action received", action);
+  if (action.type === "DO_LOGIN") {
+    console.log("🏝 action received", action);
+  }
   switch (action.payload) {
-    case "DO_LOGIN":
+    case DO_LOGIN:
       return {
         ...state,
         user: action.payload,

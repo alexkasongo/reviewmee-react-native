@@ -69,7 +69,7 @@ class Login extends Component {
   };
 
   render() {
-    // console.log(`login.js - 68 - ✅`, this.props);
+    console.log(`login.js - 68 - ✅`, this.props);
 
     if (this.state.isLoading) {
       return (
@@ -103,15 +103,15 @@ class Login extends Component {
             onPress={() => this.userLogin()}
           />
 
-          {/* <View style={styles.test}>
+          <View style={styles.test}>
             <Button
               color="#3740FE"
-              title="Test"
+              title="on props"
               onPress={() => this.handlePress()}
             />
-          </View> */}
+          </View>
 
-          <View style={styles.test}>
+          {/* <View style={styles.test}>
             <Button
               color="#3740FE"
               title="Action"
@@ -122,7 +122,7 @@ class Login extends Component {
                 })
               }
             />
-          </View>
+          </View> */}
 
           <Text
             style={styles.loginText}
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) => {
   return {
     signIn: (payload) => {
-      dispatch({ type: "DO_SIGNIN", payload });
+      dispatch({ type: "DO_LOGIN", payload });
     },
   };
 };
