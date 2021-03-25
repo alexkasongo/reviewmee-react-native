@@ -13,7 +13,7 @@ import {
 import firebase from "../database/firebase";
 
 import { connect } from "react-redux";
-import { onUserLogin } from "../redux";
+import { onUserLogin } from "../redux/actions/UserActions";
 
 class Login extends Component {
   constructor() {
@@ -114,7 +114,7 @@ class Login extends Component {
           <View style={styles.test}>
             <Button
               color="#3740FE"
-              title="Test"
+              title="Action"
               onPress={() =>
                 onUserLogin({
                   email: this.state.email,
