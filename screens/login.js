@@ -75,12 +75,13 @@ export default function Login({ navigation }) {
                   onChangeText={props.handleChange("password")}
                   value={props.values.password}
                   onBlur={props.handleBlur("password")}
+                  secureTextEntryzvxv
                 />
                 <Text style={globalStyles.errorText}>
                   {props.touched.password && props.errors.password}
                 </Text>
-                <Button title="submit" onPress={props.handleSubmit} />
-                {/* <FlatButton text="submit" onPress={props.handleSubmit} /> */}
+                {/* <Button title="submit" onPress={props.handleSubmit} /> */}
+                <FlatButton text="submit" onPress={props.handleSubmit} />
                 <Text
                   style={styles.loginText}
                   onPress={() => navigation.navigate("Signup")}

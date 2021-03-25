@@ -9,13 +9,13 @@ export const signinSlice = createSlice({
     signinErrors: null,
   },
   reducers: {
-    signin: (state, action) => {
+    signin: async (state, action) => {
       //   do something here: we have access to action.payload
       const payload = action.payload;
       console.log(`userReducer.js - 11 - 🍎 you clicked me`, payload);
 
       state.isLoading = true;
-      firebase
+      await firebase
         .auth()
         .signInWithEmailAndPassword(payload.email, payload.password)
         .then((res) => {
