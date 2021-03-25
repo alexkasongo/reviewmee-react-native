@@ -6,6 +6,14 @@ export const globalStyles = StyleSheet.create({
     padding: 20,
     backgroundColor: "#fff",
   },
+  containerCenter: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    padding: 20,
+    backgroundColor: "#fff",
+  },
   titleText: {
     fontFamily: "nunito-bold",
     fontSize: 18,
@@ -26,7 +34,7 @@ export const globalStyles = StyleSheet.create({
   errorText: {
     color: "crimson",
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 0,
     marginTop: 6,
     textAlign: "center",
   },

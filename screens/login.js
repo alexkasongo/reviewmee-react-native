@@ -10,141 +10,113 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import firebase from "../database/firebase";
 
-// import { connect } from "react-redux";
-// import { onUserLogin } from "../redux/actions/UserActions";
+// form stuff
+import { globalStyles } from "../styles/global";
+import { Form, Formik } from "formik";
+import * as yup from "yup";
+import FlatButton from "../shared/button";
+// form stuff end
 
-export default class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-      isLoading: false,
-      errorMessage: null,
-    };
-  }
+// redux stuff
+import { useSelector, useDispatch } from "react-redux";
+import { signin } from "../redux/reducers/userReducer";
+// redux stuff end
 
-  updateInputVal = (val, prop) => {
-    const state = this.state;
-    state[prop] = val;
-    this.setState(state);
-  };
+// a schema is a set of rules defined in an object
+const ReviewSchema = yup.object({
+  name: yup.string().required().min(4),
+  email: yup.string().required().min(4),
+  pasword: yup.string().required().min(4), // to be updated later
+  // rating: yup
+  //   .string()
+  //   .required()
+  //   .test("is-num-1-5", "Rating must be a number 1 - 5", (val) => {
+  //     return parseInt(val) < 6 && parseInt(val) > 0;
+  //   }),
+});
+// schema end
 
-  userLogin = () => {
-    if (this.state.email === "" && this.state.password === "") {
-      Alert.alert("Enter details to signin!");
-    } else {
-      this.setState({
-        isLoading: true,
-      });
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then((res) => {
-          console.log(res);
-          console.log("User logged-in successfully!");
-          this.setState({
-            isLoading: false,
-            email: "",
-            password: "",
-          });
-          this.props.navigation.navigate("Home");
-        })
-        .catch((error) => {
-          this.setState({ isLoading: false });
-          console.log(`login.js - 54 - 🍎`, error.message);
-          this.setState({ errorMessage: error.message });
-        });
-    }
-  };
+export default function Login({ navigation }) {
+  const isLoading = useSelector((state) => state.user.isLoading);
+  const dispatch = useDispatch();
 
-  handlePress = () => {
-    const data = {
-      email: this.state.email,
-      password: this.state.password,
-    };
-    this.props.signIn(data);
-  };
-
-  render() {
-    // console.log(`login.js - 68 - ✅`, this.props);
-
-    if (this.state.isLoading) {
-      return (
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E" />
-        </View>
-      );
-    }
+  if (isLoading) {
+    return (
+      <View style={styles.preloader}>
+        <ActivityIndicator size="large" color="#9E9E9E" />
+      </View>
+    );
+  } else {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Email"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputVal(val, "email")}
-          />
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Password"
-            value={this.state.password}
-            onChangeText={(val) => this.updateInputVal(val, "password")}
-            maxLength={15}
-            secureTextEntry={true}
-          />
-
-          {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
-          {/* <Button
-            color="#3740FE"
-            title="Signin"
-            onPress={() => this.userLogin()}
-          /> */}
-
-          <View style={styles.test}>
-            <Button
-              color="#3740FE"
-              title="on props"
-              onPress={() => this.handlePress()}
-            />
-          </View>
-
-          {/* <View style={styles.test}>
-            <Button
-              color="#3740FE"
-              title="Action"
-              onPress={() =>
-                onUserLogin({
-                  email: this.state.email,
-                  password: this.state.password,
-                })
-              }
-            />
-          </View> */}
-
-          <Text
-            style={styles.loginText}
-            onPress={() => this.props.navigation.navigate("Signup")}
+        <View style={globalStyles.containerCenter}>
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              password: "",
+            }}
+            validationSchema={ReviewSchema}
+            onSubmit={(values, actions) => {
+              // add the review here using the addReview() prop
+              actions.resetForm();
+              // dispatch(signin(values));
+              console.log(`login.js - 65 - 🔥`);
+            }}
           >
-            Don't have account? Click here to signup
-          </Text>
+            {/* if validation fails, yup passes errors in props.errors below */}
+            {(props) => (
+              <View>
+                <TextInput
+                  style={globalStyles.input}
+                  placeholder="Name"
+                  onChangeText={props.handleChange("name")}
+                  value={props.values.name}
+                  onBlur={props.handleBlur("name")}
+                />
+                <Text style={globalStyles.errorText}>
+                  {props.touched.name && props.errors.name}
+                </Text>
+                <TextInput
+                  style={globalStyles.input}
+                  placeholder="Email"
+                  onChangeText={props.handleChange("email")}
+                  value={props.values.email}
+                  onBlur={props.handleBlur("email")}
+                />
+                <Text style={globalStyles.errorText}>
+                  {props.touched.email && props.errors.email}
+                </Text>
+                <TextInput
+                  style={globalStyles.input}
+                  placeholder="Password"
+                  onChangeText={props.handleChange("password")}
+                  value={props.values.password}
+                  onBlur={props.handleBlur("password")}
+                />
+                <Text style={globalStyles.errorText}>
+                  {props.touched.password && props.errors.password}
+                </Text>
+                <Button title="submit" onPress={props.handleSubmit} />
+                {/* <FlatButton text="submit" onPress={props.handleSubmit} /> */}
+                <Text
+                  style={styles.loginText}
+                  onPress={() => navigation.navigate("Signup")}
+                >
+                  Don't have account? Click here to signup
+                </Text>
+              </View>
+            )}
+          </Formik>
         </View>
       </TouchableWithoutFeedback>
     );
   }
+  // }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 35,
-    backgroundColor: "#fff",
-  },
   inputStyle: {
     width: "100%",
     marginBottom: 15,
@@ -168,19 +140,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#fff",
   },
-  test: {
-    marginTop: 10,
-  },
 });
-
-// store
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     signIn: (payload) => {
-//       dispatch({ type: "DO_LOGIN", payload });
-//     },
-//   };
-// };
-
-// export default connect(null, mapDispatchToProps)(Login);

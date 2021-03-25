@@ -1,12 +1,5 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Button,
-  TextInput,
-  View,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import React from "react";
+import { TextInput, View, Text } from "react-native";
 import { globalStyles } from "../styles/global";
 import { Form, Formik } from "formik";
 import * as yup from "yup";
