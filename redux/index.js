@@ -45,14 +45,6 @@ export const onUserLogin = ({ email, password }) => {
 export const signIn = ({ email, password }) => {
   return async (dispatch) => {
     try {
-      //   const data = {
-      //     data: [
-      //       { name: "Macbook Pro", price: "$1500" },
-      //       { name: "iPhone", price: "$999" },
-      //       { name: "Nexus Pro", price: "$50" },
-      //     ],
-      //   };
-
       dispatch({ type: "FETCH_PRODUCTS", payload: Response.data });
     } catch (error) {
       dispatch({ type: "ON_ERROR", payload: error });
