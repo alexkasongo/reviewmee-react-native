@@ -6,16 +6,44 @@ import firebase from "../database/firebase";
 //  actions - dispatches/commits object
 export const onUserLogin = ({ email, password }) => {
   console.log(`index.js - 1 👀 ✅ 🔥`, { email, password });
-  //   return async (dispatch) => {
-  //     try {
-  //       // firebase
-  //       //   const response = axios.post("URL", { email, password });
+  return async (dispatch) => {
+    //   try {
+    // firebase
+    if (this.state.email === "" && this.state.password === "") {
+      Alert.alert("Enter details to signin!");
+    } else {
+      //   this.setState({
+      //     isLoading: true,
+      //   });
 
-  //       dispatch({ type: "DO_LOGIN", payload: Response.data });
-  //     } catch (error) {
-  //       dispatch({ type: "ON_ERROR", payload: error });
-  //     }
-  //   };
+      dispatch({ type: "IS_LOADING", payload: false });
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then((res) => {
+          console.log(res);
+          console.log("🌎 User logged-in successfully!");
+          //   this.setState({
+          //     isLoading: false,
+          //     email: "",
+          //     password: "",
+          //   });
+          dispatch({ type: "IS_LOADING", payload: false });
+          this.props.navigation.navigate("Home");
+        })
+        .catch((error) => {
+          this.setState({ isLoading: false });
+          console.log(`login.js - 54 - 🍎`, error.message);
+          //   this.setState({ errorMessage: error.message });
+          dispatch({ type: "ON_ERROR", payload: error });
+        });
+    }
+
+    dispatch({ type: "DO_LOGIN", payload: Response.data });
+    //   } catch (error) {
+    //     dispatch({ type: "ON_ERROR", payload: error });
+    //   }
+  };
 };
 
 export const signIn = ({ email, password }) => {
@@ -49,6 +77,11 @@ const userReducer = (state = {}, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+    case "IS_LOADING":
+      return {
+        ...state,
+        isLoading: action.payload,
       };
     case "ON_ERROR":
       return {

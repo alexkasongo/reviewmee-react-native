@@ -116,7 +116,10 @@ class Login extends Component {
               color="#3740FE"
               title="Test"
               onPress={() =>
-                onUserLogin({ email: "aleko@yahoo.com", password: "qwerty" })
+                onUserLogin({
+                  email: this.state.email,
+                  password: this.state.password,
+                })
               }
             />
           </View>
