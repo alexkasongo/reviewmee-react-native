@@ -8,11 +8,13 @@ import {
   Modal,
   TouchableWithoutFeedback,
   Keyboard,
+  Button,
 } from "react-native";
 import { globalStyles } from "../styles/global";
 import Card from "../shared/card";
 import { MaterialIcons } from "@expo/vector-icons";
 import ReviewForm from "./reviewForm";
+import firebase from "../database/firebase";
 
 // ({destructuring - extracting only what we need})
 export default function Home({ navigation }) {
@@ -33,6 +35,16 @@ export default function Home({ navigation }) {
     });
     // close modal
     setModalOpen(false);
+  };
+
+  const signOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        navigation.navigate("Login");
+      })
+      .catch((error) => this.setState({ errorMessage: error.message }));
   };
 
   return (
@@ -71,6 +83,8 @@ export default function Home({ navigation }) {
           </TouchableOpacity>
         )}
       />
+
+      <Button color="#3740FE" title="Logout" onPress={signOut} />
     </View>
   );
 }
