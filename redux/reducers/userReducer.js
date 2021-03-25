@@ -3,16 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 export const signinSlice = createSlice({
   name: "user",
   initialState: {
-    user: {},
+    value: null,
   },
   reducers: {
     signin: (state, action) => {
       //   do something here: we have access to ction.payload
       console.log(`userReducer.js - 11 - 🍎 you clicked me`);
+      state.value = "aleko kasongo";
     },
     signout: (state, action) => {
       //   do something here: we have access to ction.payload
       console.log(`userReducer.js - 11 - 🏝 you clicked me`);
+      state.value = "";
     },
   },
 });

@@ -16,8 +16,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import ReviewForm from "./reviewForm";
 import firebase from "../database/firebase";
 
+import { useSelector, useDispatch } from "react-redux";
+import { signin, signout } from "../redux/reducers/userReducer";
+
 // ({destructuring - extracting only what we need})
 export default function Home({ navigation }) {
+  const userDetails = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [reviews, setReviews] = useState([
     { title: "Consent Contracts", rating: 2, body: "lorem ipsum", key: "1" },
@@ -84,6 +90,25 @@ export default function Home({ navigation }) {
         )}
       />
 
+      <View style={styles.test}>
+        <Text>{userDetails}</Text>
+      </View>
+
+      <View style={styles.test}>
+        <Button
+          color="#3740FE"
+          title="Signin"
+          onPress={() => dispatch(signin())}
+        />
+      </View>
+      <View style={styles.test}>
+        <Button
+          color="#3740FE"
+          title="Signout"
+          onPress={() => dispatch(signout())}
+        />
+      </View>
+
       <Button color="#3740FE" title="Logout" onPress={signOut} />
     </View>
   );
@@ -104,5 +129,8 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     flex: 1,
+  },
+  test: {
+    marginBottom: 20,
   },
 });
