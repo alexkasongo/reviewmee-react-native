@@ -7,7 +7,6 @@ import firebase from "../database/firebase";
 export const onUserLogin = ({ email, password }) => {
   console.log(`index.js - 1 👀 ✅ 🔥`, { email, password });
   return async (dispatch) => {
-    //   try {
     // firebase
     if (this.state.email === "" && this.state.password === "") {
       Alert.alert("Enter details to signin!");
@@ -17,6 +16,7 @@ export const onUserLogin = ({ email, password }) => {
       //   });
 
       dispatch({ type: "IS_LOADING", payload: false });
+
       firebase
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -34,15 +34,11 @@ export const onUserLogin = ({ email, password }) => {
         .catch((error) => {
           this.setState({ isLoading: false });
           console.log(`login.js - 54 - 🍎`, error.message);
-          //   this.setState({ errorMessage: error.message });
           dispatch({ type: "ON_ERROR", payload: error });
         });
     }
 
     dispatch({ type: "DO_LOGIN", payload: Response.data });
-    //   } catch (error) {
-    //     dispatch({ type: "ON_ERROR", payload: error });
-    //   }
   };
 };
 
