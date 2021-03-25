@@ -4,8 +4,8 @@ import AppLoading from "expo-app-loading";
 import Navigator from "./routes/drawer";
 // we use the provider to get acces to the redux store
 // wrap everything that needs access to the store inside the provider
+import store from "./app/store";
 import { Provider } from "react-redux";
-import { store } from "./redux";
 
 export default function App() {
   // Load fonts before rendering running the rest of the code below
