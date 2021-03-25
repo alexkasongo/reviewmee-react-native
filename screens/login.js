@@ -13,7 +13,6 @@ import {
 import firebase from "../database/firebase";
 
 import { connect } from "react-redux";
-import { signIn } from "../redux";
 
 class Login extends Component {
   constructor() {
@@ -61,7 +60,11 @@ class Login extends Component {
   };
 
   handlePress = () => {
-    this.props.signIn();
+    const data = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    this.props.signIn(data);
   };
 
   render() {
@@ -108,7 +111,11 @@ class Login extends Component {
           </View> */}
 
           <View style={styles.test}>
-            <Button color="#3740FE" title="Test" onPress={() => signIn()} />
+            <Button
+              color="#3740FE"
+              title="Test"
+              onPress={() => this.handlePress()}
+            />
           </View>
 
           <Text
@@ -164,8 +171,8 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    test: () => {
-      dispatch({ type: "FETCH_PRODUCTS " });
+    signIn: (payload) => {
+      dispatch({ type: "DO_SIGNIN", payload });
     },
   };
 };
