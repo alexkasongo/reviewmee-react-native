@@ -13,27 +13,27 @@ import { DO_LOGIN } from "../actions/UserActions";
 export const userReducer = (state = null, action) => {
   if (action.type === "DO_LOGIN") {
     console.log("🏝 action received", action);
-  }
-  switch (action.payload) {
-    case DO_LOGIN:
-      return {
-        ...state,
-        user: action.payload,
-      };
-    case "IS_LOADING":
-      return {
-        ...state,
-        isLoading: action.payload,
-      };
-    case "ON_ERROR":
-      return {
-        ...state,
-        appError: action.payload,
-      };
-    default:
-      return {
-        state,
-      };
+    switch (action.payload) {
+      case DO_LOGIN:
+        return {
+          ...state,
+          user: action.payload,
+        };
+      case "IS_LOADING":
+        return {
+          ...state,
+          isLoading: action.payload,
+        };
+      case "ON_ERROR":
+        return {
+          ...state,
+          appError: action.payload,
+        };
+      default:
+        return {
+          state,
+        };
+    }
   }
 
   //   if (action.type === "DO_SIGNIN") {

@@ -69,7 +69,7 @@ class Login extends Component {
   };
 
   render() {
-    console.log(`login.js - 68 - ✅`, this.props);
+    // console.log(`login.js - 68 - ✅`, this.props);
 
     if (this.state.isLoading) {
       return (
@@ -97,11 +97,11 @@ class Login extends Component {
           />
 
           {this.state.errorMessage && <Text>{this.state.errorMessage}</Text>}
-          <Button
+          {/* <Button
             color="#3740FE"
             title="Signin"
             onPress={() => this.userLogin()}
-          />
+          /> */}
 
           <View style={styles.test}>
             <Button
