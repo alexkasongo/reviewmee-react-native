@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -24,16 +24,9 @@ import { signin } from "../redux/reducers/userReducer";
 // redux stuff end
 
 // a schema is a set of rules defined in an object
-const ReviewSchema = yup.object({
-  name: yup.string().required().min(4),
+const loginSchema = yup.object({
   email: yup.string().required().min(4),
-  pasword: yup.string().required().min(4), // to be updated later
-  // rating: yup
-  //   .string()
-  //   .required()
-  //   .test("is-num-1-5", "Rating must be a number 1 - 5", (val) => {
-  //     return parseInt(val) < 6 && parseInt(val) > 0;
-  //   }),
+  password: yup.string().required().min(4),
 });
 // schema end
 
@@ -53,31 +46,19 @@ export default function Login({ navigation }) {
         <View style={globalStyles.containerCenter}>
           <Formik
             initialValues={{
-              name: "",
               email: "",
               password: "",
             }}
-            validationSchema={ReviewSchema}
+            validationSchema={loginSchema}
             onSubmit={(values, actions) => {
               // add the review here using the addReview() prop
               actions.resetForm();
-              // dispatch(signin(values));
-              console.log(`login.js - 65 - 🔥`);
+              dispatch(signin(values));
             }}
           >
             {/* if validation fails, yup passes errors in props.errors below */}
             {(props) => (
               <View>
-                <TextInput
-                  style={globalStyles.input}
-                  placeholder="Name"
-                  onChangeText={props.handleChange("name")}
-                  value={props.values.name}
-                  onBlur={props.handleBlur("name")}
-                />
-                <Text style={globalStyles.errorText}>
-                  {props.touched.name && props.errors.name}
-                </Text>
                 <TextInput
                   style={globalStyles.input}
                   placeholder="Email"

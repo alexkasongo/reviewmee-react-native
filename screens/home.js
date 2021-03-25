@@ -94,21 +94,6 @@ export default function Home({ navigation }) {
         <Text>{userDetails}</Text>
       </View>
 
-      <View style={styles.test}>
-        <Button
-          color="#3740FE"
-          title="Signin"
-          onPress={() => dispatch(signin())}
-        />
-      </View>
-      <View style={styles.test}>
-        <Button
-          color="#3740FE"
-          title="Signout"
-          onPress={() => dispatch(signout())}
-        />
-      </View>
-
       <Button color="#3740FE" title="Logout" onPress={signOut} />
     </View>
   );
