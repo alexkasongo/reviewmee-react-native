@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -32,8 +32,27 @@ const loginSchema = yup.object({
 
 export default function Login({ navigation }) {
   const isLoading = useSelector((state) => state.user.isLoading);
+  const isSuccess = useSelector((state) => state.user.isSuccess);
+  const isError = useSelector((state) => state.user.isError);
   const dispatch = useDispatch();
 
+  // you can think of useEffect Hook as componentDidMount,
+  // componentDidUpdate, and componentWillUnmount combined.
+  useEffect(() => {
+    console.log(`login.js - 42 - 👀 Hopefully this works`);
+    if (isSuccess) {
+      // dispatch(clearState());
+      navigation.navigate("Home");
+    }
+
+    if (isError) {
+      // do something with the error message
+      // toast.error(errorMessage);
+      // dispatch(clearState());
+    }
+  }); //[isSuccess, isError]
+
+  // component
   if (isLoading) {
     return (
       <View style={styles.preloader}>
@@ -52,7 +71,7 @@ export default function Login({ navigation }) {
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
               // add the review here using the addReview() prop
-              actions.resetForm();
+              // actions.resetForm();
               dispatch(signin(values));
             }}
           >
@@ -75,7 +94,7 @@ export default function Login({ navigation }) {
                   onChangeText={props.handleChange("password")}
                   value={props.values.password}
                   onBlur={props.handleBlur("password")}
-                  secureTextEntryzvxv
+                  secureTextEntry
                 />
                 <Text style={globalStyles.errorText}>
                   {props.touched.password && props.errors.password}
