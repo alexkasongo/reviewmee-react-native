@@ -37,55 +37,50 @@ const loginSchema = yup.object({
 // schema end
 
 export default function Login({ navigation }) {
-  const isLoading = useSelector((state) => state.user.isLoading);
-  const isSuccess = useSelector((state) => state.user.isSuccess);
-  const isError = useSelector((state) => state.user.isError);
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const { isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   // you can think of useEffect Hook as componentDidMount,
   // componentDidUpdate, and componentWillUnmount combined.
   useEffect(() => {
     console.log(`login.js - 42 - 👀 Hopefully this works`);
-    if (isSuccess) {
-      // dispatch(clearState());
-      navigation.navigate("Home");
-    }
-
-    if (isError) {
-      // do something with the error message
-      // toast.error(errorMessage);
-      // dispatch(clearState());
-    }
   }); //[isSuccess, isError]
 
   // login function
   const login = (payload) => {
-    // dispatch(loading(true));
+    // start loading
+    dispatch(loading(true));
     console.log(`login.js - 58 - 🌱`, payload.email, payload.password);
     firebase
       .auth()
       .signInWithEmailAndPassword(payload.email, payload.password)
       .then((res) => {
         console.log("User logged-in successfully!");
-        // store user info
-        // const map = res.user;
-        // const result = Object.values(map);
+        const obj = {
+          displayName: res.user.displayName,
+          email: res.user.email,
+          emailVerified: res.user.emailVerified,
+          phoneNumber: res.user.phoneNumber,
+          photoURL: res.user.photoURL,
+          uid: res.user.uid,
+        };
 
-        // console.log("✅", res.user.providerData);
+        // console.log("✅", obj);
 
-        dispatch(signinUser(res.user));
+        dispatch(signinUser(obj));
 
         // stop loading
-        // dispatch(loading(false));
+        dispatch(loading(false));
 
         // navigate to home and clear form
         // dispatch(success(true));
-        // navigation.navigate("Signup");
+      })
+      .then(() => {
+        navigation.navigate("Home");
       })
       .catch((error) => {
         // stop loading
-        // dispatch(loading(false));
+        dispatch(loading(false));
 
         console.log(`login.js - 54 - 🍎`, error.message);
         // if error
@@ -114,6 +109,21 @@ export default function Login({ navigation }) {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={globalStyles.containerCenter}>
+          {/* <View> */}
+          {/* how to display object */}
+          {/* {userInfo !== null &&
+              Object.keys(userInfo).map((itemKey) => {
+                return (
+                  <Text key={itemKey}>
+                    {itemKey === "Link" ? (
+                      <Text>{userInfo[itemKey]}</Text>
+                    ) : (
+                      obj[itemKey]
+                    )}
+                  </Text>
+                );
+              })} */}
+          {/* </View> */}
           <Formik
             initialValues={{
               email: "",
@@ -132,23 +142,6 @@ export default function Login({ navigation }) {
               <View>
                 {/* Conditional rendering */}
                 {/* {userInfo !== null && userInfo.map((res) => <Text>{res}</Text>)} */}
-
-                {userInfo !== null &&
-                  Object.keys(userInfo).map((itemKey) => {
-                    return (
-                      // <View key={itemKey}>
-                      //   <Text>{itemKey}</Text>
-                      //   <Text>
-                      //     {itemKey === "Link" ? (
-                      //       <Text href={obj[itemKey]}>{obj[itemKey]}</Text>
-                      //     ) : (
-                      //       obj[itemKey]
-                      //     )}
-                      //   </Text>
-                      // </View>
-                      <Text>{itemKey}</Text>
-                    );
-                  })}
 
                 <TextInput
                   style={globalStyles.input}

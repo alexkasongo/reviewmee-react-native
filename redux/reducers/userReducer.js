@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userReducer = createSlice({
   name: "user",
   initialState: {
-    userInfo: null,
+    userInfo: null, // object are not valid as React child
     isLoading: false,
     isError: false,
     errorMessage: null,
