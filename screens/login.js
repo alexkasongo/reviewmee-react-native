@@ -131,10 +131,8 @@ export default function Login({ navigation }) {
             }}
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
-              // add the review here using the addReview() prop
-              // actions.resetForm();
+              actions.resetForm();
               login(values);
-              // dispatch(signinUser(values));
             }}
           >
             {/* if validation fails, yup passes errors in props.errors below */}
@@ -165,7 +163,7 @@ export default function Login({ navigation }) {
                   {props.touched.password && props.errors.password}
                 </Text>
                 <FlatButton text="submit" onPress={props.handleSubmit} />
-                <Button title="logout" onPress={() => dispatch(signout())} />
+                {/* <Button title="logout" onPress={() => dispatch(signout())} /> */}
                 <Text
                   style={styles.loginText}
                   onPress={() => navigation.navigate("Signup")}
