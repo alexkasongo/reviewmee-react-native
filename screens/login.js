@@ -10,6 +10,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import firebase from "../database/firebase";
 
 // form stuff
 import { globalStyles } from "../styles/global";
@@ -20,7 +21,12 @@ import FlatButton from "../shared/button";
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
-import { signin } from "../redux/reducers/userReducer";
+import {
+  signinUser,
+  loading,
+  success,
+  signout,
+} from "../redux/reducers/userReducer";
 // redux stuff end
 
 // a schema is a set of rules defined in an object
@@ -34,6 +40,7 @@ export default function Login({ navigation }) {
   const isLoading = useSelector((state) => state.user.isLoading);
   const isSuccess = useSelector((state) => state.user.isSuccess);
   const isError = useSelector((state) => state.user.isError);
+  const userInfo = useSelector((state) => state.user.userInfo);
   const dispatch = useDispatch();
 
   // you can think of useEffect Hook as componentDidMount,
@@ -51,6 +58,50 @@ export default function Login({ navigation }) {
       // dispatch(clearState());
     }
   }); //[isSuccess, isError]
+
+  // login function
+  const login = (payload) => {
+    // dispatch(loading(true));
+    console.log(`login.js - 58 - 🌱`, payload.email, payload.password);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(payload.email, payload.password)
+      .then((res) => {
+        console.log("User logged-in successfully!");
+        // store user info
+        // const map = res.user;
+        // const result = Object.values(map);
+
+        // console.log("✅", res.user.providerData);
+
+        dispatch(signinUser(res.user));
+
+        // stop loading
+        // dispatch(loading(false));
+
+        // navigate to home and clear form
+        // dispatch(success(true));
+        // navigation.navigate("Signup");
+      })
+      .catch((error) => {
+        // stop loading
+        // dispatch(loading(false));
+
+        console.log(`login.js - 54 - 🍎`, error.message);
+        // if error
+        // dispatch(isError(true));
+        // error message
+        // dispatch(errorMessage(error));
+      });
+  };
+  // login function end
+
+  const obj = {
+    Name: "Akash Mittal",
+    Startup: "StudyWise",
+    Description: "Kids Education App",
+    Link: "https://play.google.com/store/apps/details?id=com.studywise",
+  };
 
   // component
   if (isLoading) {
@@ -72,12 +123,33 @@ export default function Login({ navigation }) {
             onSubmit={(values, actions) => {
               // add the review here using the addReview() prop
               // actions.resetForm();
-              dispatch(signin(values));
+              login(values);
+              // dispatch(signinUser(values));
             }}
           >
             {/* if validation fails, yup passes errors in props.errors below */}
             {(props) => (
               <View>
+                {/* Conditional rendering */}
+                {/* {userInfo !== null && userInfo.map((res) => <Text>{res}</Text>)} */}
+
+                {userInfo !== null &&
+                  Object.keys(userInfo).map((itemKey) => {
+                    return (
+                      // <View key={itemKey}>
+                      //   <Text>{itemKey}</Text>
+                      //   <Text>
+                      //     {itemKey === "Link" ? (
+                      //       <Text href={obj[itemKey]}>{obj[itemKey]}</Text>
+                      //     ) : (
+                      //       obj[itemKey]
+                      //     )}
+                      //   </Text>
+                      // </View>
+                      <Text>{itemKey}</Text>
+                    );
+                  })}
+
                 <TextInput
                   style={globalStyles.input}
                   placeholder="Email"
@@ -99,8 +171,8 @@ export default function Login({ navigation }) {
                 <Text style={globalStyles.errorText}>
                   {props.touched.password && props.errors.password}
                 </Text>
-                {/* <Button title="submit" onPress={props.handleSubmit} /> */}
                 <FlatButton text="submit" onPress={props.handleSubmit} />
+                <Button title="logout" onPress={() => dispatch(signout())} />
                 <Text
                   style={styles.loginText}
                   onPress={() => navigation.navigate("Signup")}

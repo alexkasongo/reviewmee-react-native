@@ -1,5 +1,6 @@
 // database/firebaseDb.js
 
+// import firebase from "firebase/app";
 import * as firebase from "firebase";
 
 const firebaseConfig = {
