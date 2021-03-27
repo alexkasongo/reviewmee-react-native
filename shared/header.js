@@ -10,7 +10,7 @@ export default function Header({ navigation, title }) {
   };
 
   return (
-    <View source={require("../assets/game_bg.png")} style={styles.header}>
+    <View style={styles.header}>
       {/* icon for the menu */}
       <MaterialIcons
         name="menu"
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: "absolute",
-    // left: 20,
+    left: 20,
   },
   headerTitle: {
     flexDirection: "row",

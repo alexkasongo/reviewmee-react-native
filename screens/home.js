@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -23,6 +23,20 @@ import { signout } from "../redux/reducers/userReducer";
 
 // ({destructuring - extracting only what we need})
 export default function Home({ navigation }) {
+  // run on component mount
+  useEffect(() => {
+    console.log(`login.js - 42 - 👀 check if user is logged in`);
+
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   // this.user = user;
+
+    //   // if there's no user navigate to login
+    //   if (!this.user) {
+    //     navigation.navigate('Login')
+    //   }
+    // });
+  });
+
   const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = useState(false);

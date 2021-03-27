@@ -6,6 +6,7 @@ export default function HeaderImage() {
     <Image
       style={{ height: "100%", flex: 1 }}
       source={require("../assets/game_bg.png")}
+      //   source={{uri: 'https://reactjs.org/logo-og.png'}
     />
   );
 }
