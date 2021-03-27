@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,108 +12,149 @@ import {
 } from "react-native";
 import firebase from "../database/firebase";
 
-export default class Signup extends Component {
-  constructor() {
-    super();
-    this.state = {
-      displayName: "",
-      email: "",
-      password: "",
-      isLoading: false,
-    };
-  }
+// form stuff
+import { globalStyles } from "../styles/global";
+import { Formik } from "formik";
+import * as yup from "yup";
+import FlatButton from "../shared/button";
+// form stuff end
 
-  updateInputVal = (val, prop) => {
-    const state = this.state;
-    state[prop] = val;
-    this.setState(state);
-  };
+// redux stuff
+import { useSelector, useDispatch } from "react-redux";
+import { signinUser, loading, success } from "../redux/reducers/userReducer";
+// redux stuff end
 
-  registerUser = () => {
-    if (this.state.email === "" && this.state.password === "") {
-      Alert.alert("Enter details to signup!");
-    } else {
-      this.setState({
-        isLoading: true,
+// a schema is a set of rules defined in an object
+const loginSchema = yup.object({
+  name: yup.string().required().min(3),
+  email: yup.string().required().min(4),
+  password: yup.string().required().min(4),
+});
+// schema end
+
+export default function Login({ navigation }) {
+  const { isLoading } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  // you can think of useEffect Hook as componentDidMount,
+  // componentDidUpdate, and componentWillUnmount combined.
+  useEffect(() => {
+    console.log(`login.js - 42 - 👀 Hopefully this works`);
+  }); //[isSuccess, isError]
+
+  // login function
+  const signup = (payload) => {
+    // start loading
+    dispatch(loading(true));
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(payload.email, payload.password)
+      .then((res) => {
+        res.user.updateProfile({
+          displayName: payload.name,
+        });
+        console.log("User registered successfully!");
+        const obj = {
+          displayName: payload.displayName,
+          email: res.user.email,
+          emailVerified: res.user.emailVerified,
+          phoneNumber: res.user.phoneNumber,
+          photoURL: res.user.photoURL,
+          uid: res.user.uid,
+        };
+        console.log("✅", obj);
+        dispatch(signinUser(obj));
+        // stop loading
+        dispatch(loading(false));
+        navigation.navigate("Home");
+      })
+      .catch((error) => {
+        // stop loading
+        dispatch(loading(false));
+        console.log(`login.js - 54 - 🍎`, error.message);
       });
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((res) => {
-          res.user.updateProfile({
-            displayName: this.state.displayName,
-          });
-          console.log("User registered successfully!");
-          this.setState({
-            isLoading: false,
-            displayName: "",
-            email: "",
-            password: "",
-          });
-          this.props.navigation.navigate("Login");
-        })
-        .catch((error) => this.setState({ errorMessage: error.message }));
-    }
   };
+  // login function end
 
-  render() {
-    if (this.state.isLoading) {
-      return (
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E" />
-        </View>
-      );
-    }
+  // component
+  if (isLoading) {
+    return (
+      <View style={styles.preloader}>
+        <ActivityIndicator size="large" color="#9E9E9E" />
+      </View>
+    );
+  } else {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Name"
-            value={this.state.displayName}
-            onChangeText={(val) => this.updateInputVal(val, "displayName")}
-          />
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Email"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputVal(val, "email")}
-          />
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Password"
-            value={this.state.password}
-            onChangeText={(val) => this.updateInputVal(val, "password")}
-            maxLength={15}
-            secureTextEntry={true}
-          />
-          <Button
-            color="#3740FE"
-            title="Signup"
-            onPress={() => this.registerUser()}
-          />
-
-          <Text
-            style={styles.loginText}
-            onPress={() => this.props.navigation.navigate("Login")}
+        <View style={globalStyles.containerCenter}>
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              password: "",
+            }}
+            validationSchema={loginSchema}
+            onSubmit={(values, actions) => {
+              actions.resetForm();
+              signup(values);
+            }}
           >
-            Already Registered? Click here to login
-          </Text>
+            {/* if validation fails, yup passes errors in props.errors below */}
+            {(props) => (
+              <View>
+                {/* Conditional rendering */}
+                {/* {userInfo !== null && userInfo.map((res) => <Text>{res}</Text>)} */}
+
+                <TextInput
+                  style={globalStyles.input}
+                  placeholder="name"
+                  onChangeText={props.handleChange("name")}
+                  value={props.values.name}
+                  onBlur={props.handleBlur("name")}
+                />
+                <Text style={globalStyles.errorText}>
+                  {props.touched.name && props.errors.name}
+                </Text>
+                <TextInput
+                  style={globalStyles.input}
+                  placeholder="Email"
+                  onChangeText={props.handleChange("email")}
+                  value={props.values.email}
+                  onBlur={props.handleBlur("email")}
+                />
+                <Text style={globalStyles.errorText}>
+                  {props.touched.email && props.errors.email}
+                </Text>
+                <TextInput
+                  style={globalStyles.input}
+                  placeholder="Password"
+                  onChangeText={props.handleChange("password")}
+                  value={props.values.password}
+                  onBlur={props.handleBlur("password")}
+                  secureTextEntry
+                />
+                <Text style={globalStyles.errorText}>
+                  {props.touched.password && props.errors.password}
+                </Text>
+                <FlatButton text="submit" onPress={props.handleSubmit} />
+                {/* <Button title="logout" onPress={() => dispatch(signout())} /> */}
+                <Text
+                  style={styles.loginText}
+                  onPress={() => navigation.navigate("Login")}
+                >
+                  Already Registered? Click here to login
+                </Text>
+              </View>
+            )}
+          </Formik>
         </View>
       </TouchableWithoutFeedback>
     );
   }
+  // }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 35,
-    backgroundColor: "#fff",
-  },
   inputStyle: {
     width: "100%",
     marginBottom: 15,

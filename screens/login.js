@@ -14,7 +14,7 @@ import firebase from "../database/firebase";
 
 // form stuff
 import { globalStyles } from "../styles/global";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import FlatButton from "../shared/button";
 // form stuff end
