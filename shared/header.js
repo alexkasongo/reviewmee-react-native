@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 // fix
-// import { Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 
 export default function Header({ navigation, title }) {
   const openMenu = () => {
@@ -31,16 +31,14 @@ export default function Header({ navigation, title }) {
 
 const styles = StyleSheet.create({
   header: {
-    // width: Dimensions.get("screen").width,
-    flex: 1,
+    width: Dimensions.get("screen").width,
     height: "100%",
-    width: "100%",
+    // width: "100%",
+
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "green",
-    alignItems: "center",
-    justifyContent: "center",
+    // backgroundColor: "green",
   },
   headerText: {
     fontWeight: "bold",
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: "absolute",
-    left: 0,
+    // left: 20,
   },
   headerTitle: {
     flexDirection: "row",
