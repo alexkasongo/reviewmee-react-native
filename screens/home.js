@@ -16,12 +16,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import ReviewForm from "./reviewForm";
 import firebase from "../database/firebase";
 
+// redux stuff
 import { useSelector, useDispatch } from "react-redux";
-import { signin, signout } from "../redux/reducers/userReducer";
+import { signout } from "../redux/reducers/userReducer";
+// redux stuff end
 
 // ({destructuring - extracting only what we need})
 export default function Home({ navigation }) {
-  const userDetails = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -48,6 +49,7 @@ export default function Home({ navigation }) {
       .auth()
       .signOut()
       .then(() => {
+        dispatch(signout());
         navigation.navigate("Login");
       })
       .catch((error) => this.setState({ errorMessage: error.message }));
@@ -89,10 +91,6 @@ export default function Home({ navigation }) {
           </TouchableOpacity>
         )}
       />
-
-      <View style={styles.test}>
-        <Text>{userDetails}</Text>
-      </View>
 
       <Button color="#3740FE" title="Logout" onPress={signOut} />
     </View>

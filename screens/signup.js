@@ -19,7 +19,7 @@ import FlatButton from "../shared/button";
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
-import { signinUser, loading, success } from "../redux/reducers/userReducer";
+import { signinUser, loading } from "../redux/reducers/userReducer";
 // redux stuff end
 
 // a schema is a set of rules defined in an object
@@ -127,7 +127,7 @@ export default function Login({ navigation }) {
                 <Text style={globalStyles.errorText}>
                   {props.touched.password && props.errors.password}
                 </Text>
-                <FlatButton text="submit" onPress={props.handleSubmit} />
+                <FlatButton text="Signup" onPress={props.handleSubmit} />
                 <Text
                   style={styles.loginText}
                   onPress={() => navigation.navigate("Login")}

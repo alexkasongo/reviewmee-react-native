@@ -162,7 +162,7 @@ export default function Login({ navigation }) {
                 <Text style={globalStyles.errorText}>
                   {props.touched.password && props.errors.password}
                 </Text>
-                <FlatButton text="submit" onPress={props.handleSubmit} />
+                <FlatButton text="Signin" onPress={props.handleSubmit} />
                 {/* <Button title="logout" onPress={() => dispatch(signout())} /> */}
                 <Text
                   style={styles.loginText}
