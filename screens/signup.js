@@ -4,8 +4,6 @@ import {
   Text,
   View,
   TextInput,
-  Button,
-  Alert,
   ActivityIndicator,
   TouchableWithoutFeedback,
   Keyboard,
@@ -33,14 +31,10 @@ const loginSchema = yup.object({
 // schema end
 
 export default function Login({ navigation }) {
+  // talk to redux
   const { isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
-  // you can think of useEffect Hook as componentDidMount,
-  // componentDidUpdate, and componentWillUnmount combined.
-  useEffect(() => {
-    console.log(`login.js - 42 - 👀 Hopefully this works`);
-  }); //[isSuccess, isError]
+  // talk to redux end
 
   // login function
   const signup = (payload) => {
@@ -55,7 +49,7 @@ export default function Login({ navigation }) {
         });
         console.log("User registered successfully!");
         const obj = {
-          displayName: payload.displayName,
+          displayName: payload.name,
           email: res.user.email,
           emailVerified: res.user.emailVerified,
           phoneNumber: res.user.phoneNumber,
@@ -102,9 +96,6 @@ export default function Login({ navigation }) {
             {/* if validation fails, yup passes errors in props.errors below */}
             {(props) => (
               <View>
-                {/* Conditional rendering */}
-                {/* {userInfo !== null && userInfo.map((res) => <Text>{res}</Text>)} */}
-
                 <TextInput
                   style={globalStyles.input}
                   placeholder="name"
@@ -137,7 +128,6 @@ export default function Login({ navigation }) {
                   {props.touched.password && props.errors.password}
                 </Text>
                 <FlatButton text="submit" onPress={props.handleSubmit} />
-                {/* <Button title="logout" onPress={() => dispatch(signout())} /> */}
                 <Text
                   style={styles.loginText}
                   onPress={() => navigation.navigate("Login")}
@@ -151,7 +141,6 @@ export default function Login({ navigation }) {
       </TouchableWithoutFeedback>
     );
   }
-  // }
 }
 
 const styles = StyleSheet.create({
