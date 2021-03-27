@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
-import Navigator from "./routes/drawer";
+import Navigator from "./routes/drawerNavigator";
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";

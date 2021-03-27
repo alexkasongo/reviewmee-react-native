@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 // fix
-import { Dimensions } from "react-native";
+// import { Dimensions } from "react-native";
 
 export default function Header({ navigation, title }) {
   const openMenu = () => {
@@ -10,10 +10,7 @@ export default function Header({ navigation, title }) {
   };
 
   return (
-    <ImageBackground
-      source={require("../assets/game_bg.png")}
-      style={styles.header}
-    >
+    <View source={require("../assets/game_bg.png")} style={styles.header}>
       {/* icon for the menu */}
       <MaterialIcons
         name="menu"
@@ -28,18 +25,22 @@ export default function Header({ navigation, title }) {
         />
         <Text style={styles.headerText}>{title}</Text>
       </View>
-    </ImageBackground>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    width: Dimensions.get("screen").width,
+    // width: Dimensions.get("screen").width,
+    flex: 1,
     height: "100%",
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "green",
+    backgroundColor: "green",
+    alignItems: "center",
+    justifyContent: "center",
   },
   headerText: {
     fontWeight: "bold",
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: "absolute",
-    left: 20,
+    left: 0,
   },
   headerTitle: {
     flexDirection: "row",

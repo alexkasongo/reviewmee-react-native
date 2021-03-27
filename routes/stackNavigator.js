@@ -2,6 +2,8 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "../screens/home";
+import Header from "../shared/header";
+import HeaderImage from "../shared/headerImage";
 import ReviewDetails from "../screens/reviewDetails";
 import About from "../screens/about";
 
@@ -12,10 +14,10 @@ const screenOptionStyle = {
     backgroundColor: "#9AC4F8",
   },
   headerTintColor: "white",
-  headerBackTitle: "Back",
+  headerBackTitle: " ",
 };
 
-const MainStackNavigator = () => {
+const MainStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -23,10 +25,19 @@ const MainStackNavigator = () => {
           backgroundColor: "#9AC4F8",
         },
         headerTintColor: "white",
-        headerBackTitle: "Back",
+        headerBackTitle: " ",
       }}
     >
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{
+          headerTitle: (props) => (
+            <Header navigation={navigation} title="ConsentMee" />
+          ),
+          // headerBackground: () => <HeaderImage />,
+        }}
+      />
       <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
     </Stack.Navigator>
   );
