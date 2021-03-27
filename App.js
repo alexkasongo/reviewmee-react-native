@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import { NavigationContainer } from "@react-navigation/native";
 import Navigator from "./routes/drawer";
 // we use the provider to get acces to the redux store
 // wrap everything that needs access to the store inside the provider
@@ -22,7 +23,9 @@ export default function App() {
     // return <Home />;
     return (
       <Provider store={store}>
-        <Navigator />
+        <NavigationContainer>
+          <Navigator />
+        </NavigationContainer>
       </Provider>
     );
   }

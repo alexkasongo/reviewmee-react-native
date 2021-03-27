@@ -1,140 +1,47 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  Alert,
-  ActivityIndicator,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from "react-native";
-import firebase from "../database/firebase";
+import React, { useState } from "react";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import Navigator from "./routes/drawer";
 
-export default class Signup extends Component {
-  constructor() {
-    super();
-    this.state = {
-      displayName: "",
-      email: "",
-      password: "",
-      isLoading: false,
-    };
-  }
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
 
-  updateInputVal = (val, prop) => {
-    const state = this.state;
-    state[prop] = val;
-    this.setState(state);
-  };
+// we use the provider to get acces to the redux store
+// wrap everything that needs access to the store inside the provider
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
-  registerUser = () => {
-    if (this.state.email === "" && this.state.password === "") {
-      Alert.alert("Enter details to signup!");
-    } else {
-      this.setState({
-        isLoading: true,
-      });
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((res) => {
-          res.user.updateProfile({
-            displayName: this.state.displayName,
-          });
-          console.log("User registered successfully!");
-          this.setState({
-            isLoading: false,
-            displayName: "",
-            email: "",
-            password: "",
-          });
-          this.props.navigation.navigate("Login");
-        })
-        .catch((error) => this.setState({ errorMessage: error.message }));
-    }
-  };
+import Login from "./screens/login";
+import Signup from "./screens/signup";
+import Home from "./screens/home";
+import About from "./screens/about";
 
-  render() {
-    if (this.state.isLoading) {
-      return (
-        <View style={styles.preloader}>
-          <ActivityIndicator size="large" color="#9E9E9E" />
-        </View>
-      );
-    }
+const Drawer = createDrawerNavigator();
+
+export default function App() {
+  // Load fonts before rendering running the rest of the code below
+  const [fontsLoaded] = useFonts({
+    "nunito-regular": require("./assets/fonts/Nunito-Regular.ttf"),
+    "nunito-bold": require("./assets/fonts/Nunito-Bold.ttf"),
+  });
+
+  // if fonts are not loaded
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    // if fonts are loaded
+    // return <Home />;
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Name"
-            value={this.state.displayName}
-            onChangeText={(val) => this.updateInputVal(val, "displayName")}
-          />
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Email"
-            value={this.state.email}
-            onChangeText={(val) => this.updateInputVal(val, "email")}
-          />
-          <TextInput
-            style={styles.inputStyle}
-            placeholder="Password"
-            value={this.state.password}
-            onChangeText={(val) => this.updateInputVal(val, "password")}
-            maxLength={15}
-            secureTextEntry={true}
-          />
-          <Button
-            color="#3740FE"
-            title="Signup"
-            onPress={() => this.registerUser()}
-          />
-
-          <Text
-            style={styles.loginText}
-            onPress={() => this.props.navigation.navigate("Login")}
-          >
-            Already Registered? Click here to login
-          </Text>
-        </View>
-      </TouchableWithoutFeedback>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Drawer.Navigator>
+            <Drawer.Screen name="Login" component={Login} />
+            <Drawer.Screen name="Signup" component={Signup} />
+            <Drawer.Screen name="Home" component={Home} />
+            <Drawer.Screen name="About" component={About} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    padding: 35,
-    backgroundColor: "#fff",
-  },
-  inputStyle: {
-    width: "100%",
-    marginBottom: 15,
-    paddingBottom: 15,
-    alignSelf: "center",
-    borderColor: "#ccc",
-    borderBottomWidth: 1,
-  },
-  loginText: {
-    color: "#3740FE",
-    marginTop: 25,
-    textAlign: "center",
-  },
-  preloader: {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-  },
-});
