@@ -41,7 +41,7 @@ class Profile extends Component {
         imageWidth: PropTypes.number,
         postWidth: PropTypes.number,
       })
-    ).isRequired,
+    ),
   };
 
   static defaultProps = {

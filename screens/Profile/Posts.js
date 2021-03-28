@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Dimensions, FlatList, StyleSheet } from 'react-native'
-import PropTypes from 'prop-types'
+import React, { Component } from "react";
+import { Dimensions, FlatList, StyleSheet } from "react-native";
+import PropTypes from "prop-types";
 
-import Post from './Post'
+import Post from "./Post";
 
-const space = 1
-const postContainerWidth = (Dimensions.get('window').width - space * 2) / 2
+const space = 1;
+const postContainerWidth = (Dimensions.get("window").width - space * 2) / 2;
 
 const styles = StyleSheet.create({
   container: {},
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     padding: 0,
     borderWidth: 0,
   },
-})
+});
 
 class Posts extends Component {
   static propTypes = {
@@ -26,11 +26,11 @@ class Posts extends Component {
         imageWidth: PropTypes.number,
       })
     ).isRequired,
-  }
+  };
 
   static defaultProps = {
     containerStyle: {},
-  }
+  };
 
   render() {
     return (
@@ -39,7 +39,7 @@ class Posts extends Component {
         removeClippedSubviews={false}
         contentContainerStyle={[styles.container, this.props.containerStyle]}
         data={this.props.posts}
-        renderItem={list => {
+        renderItem={(list) => {
           return (
             <Post
               key={`post-${list.item.id} `}
@@ -47,11 +47,11 @@ class Posts extends Component {
               postWidth={postContainerWidth}
               {...list.item}
             />
-          )
+          );
         }}
       />
-    )
+    );
   }
 }
 
-export default Posts
+export default Posts;
