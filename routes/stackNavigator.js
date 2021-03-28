@@ -17,6 +17,7 @@ const screenOptionStyle = {
   },
   headerTintColor: "white",
   headerBackTitle: " ",
+  headerShown: false,
 };
 
 const MainStackNavigator = ({ navigation }) => {
@@ -45,7 +46,7 @@ const MainStackNavigator = ({ navigation }) => {
   );
 };
 
-const ContactStackNavigator = () => {
+const ProfileStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen name="Profile" component={Profile} />
@@ -53,4 +54,4 @@ const ContactStackNavigator = () => {
   );
 };
 
-export { MainStackNavigator, ContactStackNavigator };
+export { MainStackNavigator, ProfileStackNavigator };
