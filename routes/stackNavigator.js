@@ -6,8 +6,8 @@ import Header from "../shared/header";
 import HeaderImage from "../shared/headerImage";
 import ReviewDetails from "../screens/reviewDetails";
 import About from "../screens/about";
-import Profile from "../screens/user/profile";
-import Profile3 from "../screens/Profile3";
+// import Profile from "../screens/user/profile";
+import Profile3 from "../screens/profile";
 
 const Stack = createStackNavigator();
 
