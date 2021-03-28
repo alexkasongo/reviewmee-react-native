@@ -112,18 +112,18 @@ class Profile extends Component {
     );
   };
 
-  // renderScene = ({ route: { key } }) => {
-  //   switch (key) {
-  //     case "1":
-  //       return this.renderMansonry2Col();
-  //     case "2":
-  //       return this.renderMansonry2Col();
-  //     case "3":
-  //       return this.renderMansonry2Col();
-  //     default:
-  //       return <View />;
-  //   }
-  // };
+  renderScene = ({ route: { key } }) => {
+    switch (key) {
+      case "1":
+        return this.renderMansonry2Col();
+      case "2":
+        return this.renderMansonry2Col();
+      case "3":
+        return this.renderMansonry2Col();
+      default:
+        return <View />;
+    }
+  };
 
   renderContactHeader = () => {
     const { avatar, avatarBackground, name, bio } = this.props;
@@ -146,49 +146,49 @@ class Profile extends Component {
         </View>
         <View style={styles.profileImageContainer}>
           <Image source={{ uri: avatar }} style={styles.profileImage} />
-          <View style={styles.profileSettings}>
+          {/* <View style={styles.profileSettings}>
             <Text>Edit profile</Text>
-          </View>
+          </View> */}
         </View>
       </View>
     );
   };
 
-  // renderMansonry2Col = () => {
-  //   return (
-  //     <View style={styles.masonryContainer}>
-  //       <View>
-  //         <Posts
-  //           containerStyle={styles.sceneContainer}
-  //           posts={this.state.postsMasonry.leftCol}
-  //         />
-  //       </View>
-  //       <View>
-  //         <Posts
-  //           containerStyle={styles.sceneContainer}
-  //           posts={this.state.postsMasonry.rightCol}
-  //         />
-  //       </View>
-  //     </View>
-  //   );
-  // };
+  renderMansonry2Col = () => {
+    return (
+      <View style={styles.masonryContainer}>
+        <View>
+          <Posts
+            containerStyle={styles.sceneContainer}
+            posts={this.state.postsMasonry.leftCol}
+          />
+        </View>
+        <View>
+          <Posts
+            containerStyle={styles.sceneContainer}
+            posts={this.state.postsMasonry.rightCol}
+          />
+        </View>
+      </View>
+    );
+  };
 
   render() {
     return (
-      <ScrollView style={styles.scroll}>
-        <View style={[styles.container, this.props.containerStyle]}>
-          <View style={styles.cardContainer}>
-            {this.renderContactHeader()}
-            {/* <TabView
-              style={[styles.tabContainer, this.props.tabContainerStyle]}
-              navigationState={this.state.tabs}
-              renderScene={this.renderScene}
-              renderTabBar={this.renderTabBar}
-              onIndexChange={this.handleIndexChange}
-            /> */}
-          </View>
+      // <ScrollView style={styles.scroll}>
+      <View style={[styles.container, this.props.containerStyle]}>
+        <View style={styles.cardContainer}>
+          {this.renderContactHeader()}
+          <TabView
+            style={[styles.tabContainer, this.props.tabContainerStyle]}
+            navigationState={this.state.tabs}
+            renderScene={this.renderScene}
+            renderTabBar={this.renderTabBar}
+            onIndexChange={this.handleIndexChange}
+          />
         </View>
-      </ScrollView>
+      </View>
+      // </ScrollView>
     );
   }
 }
