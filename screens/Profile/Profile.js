@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Text,
   View,
+  SafeAreaView,
 } from "react-native";
 import {
   TabView,
@@ -53,9 +54,9 @@ class Profile extends Component {
     tabs: {
       index: 0,
       routes: [
-        { key: "1", title: "PHOTOS", count: 333 },
-        { key: "2", title: "FOLLOWING", count: 10 },
-        { key: "3", title: "FOLLOWERS", count: "3 M" },
+        { key: "1", title: "Consents", count: 12 },
+        { key: "2", title: "Signed", count: 10 },
+        { key: "3", title: "Pending", count: 2 },
       ],
     },
     postsMasonry: {},
@@ -175,20 +176,22 @@ class Profile extends Component {
 
   render() {
     return (
-      // <ScrollView style={styles.scroll}>
-      <View style={[styles.container, this.props.containerStyle]}>
-        <View style={styles.cardContainer}>
-          {this.renderContactHeader()}
-          <TabView
-            style={[styles.tabContainer, this.props.tabContainerStyle]}
-            navigationState={this.state.tabs}
-            renderScene={this.renderScene}
-            renderTabBar={this.renderTabBar}
-            onIndexChange={this.handleIndexChange}
-          />
+      <SafeAreaView style={[{ flex: 1 }, styles.scroll]}>
+        {/* <ScrollView style={styles.scroll}> */}
+        <View style={[styles.container, this.props.containerStyle]}>
+          <View style={styles.cardContainer}>
+            {this.renderContactHeader()}
+            <TabView
+              style={[styles.tabContainer, this.props.tabContainerStyle]}
+              navigationState={this.state.tabs}
+              renderScene={this.renderScene}
+              renderTabBar={this.renderTabBar}
+              onIndexChange={this.handleIndexChange}
+            />
+          </View>
         </View>
-      </View>
-      // </ScrollView>
+        {/* </ScrollView> */}
+      </SafeAreaView>
     );
   }
 }

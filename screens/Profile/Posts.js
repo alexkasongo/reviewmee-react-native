@@ -25,7 +25,7 @@ class Posts extends Component {
         imageHeight: PropTypes.number,
         imageWidth: PropTypes.number,
       })
-    ).isRequired,
+    ),
   };
 
   static defaultProps = {
