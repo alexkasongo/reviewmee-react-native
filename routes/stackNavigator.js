@@ -7,7 +7,7 @@ import HeaderImage from "../shared/headerImage";
 import ReviewDetails from "../screens/reviewDetails";
 import About from "../screens/about";
 import Profile from "../screens/user/profile";
-import Profile3 from "../screens/Profile3/";
+import Profile3 from "../screens/Profile3";
 
 const Stack = createStackNavigator();
 
@@ -48,7 +48,7 @@ const MainStackNavigator = ({ navigation }) => {
 const ContactStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Profile" component={Profile3} />
     </Stack.Navigator>
   );
 };
