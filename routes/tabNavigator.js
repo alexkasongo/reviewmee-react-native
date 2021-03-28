@@ -1,8 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { MainStackNavigator, ContactStackNavigator } from "./stackNavigator";
-import Profile3 from "../screens/Profile3";
+import { MainStackNavigator } from "./stackNavigator";
+import Profile3 from "../screens/Profile";
 
 const Tab = createBottomTabNavigator();
 
