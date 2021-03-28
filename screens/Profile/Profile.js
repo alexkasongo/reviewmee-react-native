@@ -173,8 +173,8 @@ class Profile extends Component {
 
   render() {
     return (
-      // <SafeAreaView style={[{ flex: 1 }, styles.scroll]}>
-      <ScrollView style={styles.scroll}>
+      <SafeAreaView style={[{ flex: 1 }, styles.scroll]}>
+        {/* // <ScrollView style={styles.scroll}> */}
         <View style={[styles.container, this.props.containerStyle]}>
           <View style={styles.cardContainer}>
             {this.renderContactHeader()}
@@ -187,8 +187,8 @@ class Profile extends Component {
             />
           </View>
         </View>
-      </ScrollView>
-      // </SafeAreaView>
+        {/* // </ScrollView> */}
+      </SafeAreaView>
     );
   }
 }
