@@ -53,18 +53,19 @@ class Profile extends Component {
     tabs: {
       index: 0,
       routes: [
-        { key: "1", title: "PHOTOS", count: 687 },
-        { key: "2", title: "FOLLOWING", count: 1224 },
+        { key: "1", title: "PHOTOS", count: 333 },
+        { key: "2", title: "FOLLOWING", count: 10 },
         { key: "3", title: "FOLLOWERS", count: "3 M" },
       ],
     },
     postsMasonry: {},
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({
       postsMasonry: image.mansonry(this.props.posts, "imageHeight"),
     });
+    console.log(`Profile.js - 68 - 🌎`, this.state.postsMasonry);
   }
 
   handleIndexChange = (index) => {
@@ -111,18 +112,18 @@ class Profile extends Component {
     );
   };
 
-  renderScene = ({ route: { key } }) => {
-    switch (key) {
-      case "1":
-        return this.renderMansonry2Col();
-      case "2":
-        return this.renderMansonry2Col();
-      case "3":
-        return this.renderMansonry2Col();
-      default:
-        return <View />;
-    }
-  };
+  // renderScene = ({ route: { key } }) => {
+  //   switch (key) {
+  //     case "1":
+  //       return this.renderMansonry2Col();
+  //     case "2":
+  //       return this.renderMansonry2Col();
+  //     case "3":
+  //       return this.renderMansonry2Col();
+  //     default:
+  //       return <View />;
+  //   }
+  // };
 
   renderContactHeader = () => {
     const { avatar, avatarBackground, name, bio } = this.props;
@@ -145,29 +146,32 @@ class Profile extends Component {
         </View>
         <View style={styles.profileImageContainer}>
           <Image source={{ uri: avatar }} style={styles.profileImage} />
+          <View style={styles.profileSettings}>
+            <Text>Edit profile</Text>
+          </View>
         </View>
       </View>
     );
   };
 
-  renderMansonry2Col = () => {
-    return (
-      <View style={styles.masonryContainer}>
-        <View>
-          <Posts
-            containerStyle={styles.sceneContainer}
-            posts={this.state.postsMasonry.leftCol}
-          />
-        </View>
-        <View>
-          <Posts
-            containerStyle={styles.sceneContainer}
-            posts={this.state.postsMasonry.rightCol}
-          />
-        </View>
-      </View>
-    );
-  };
+  // renderMansonry2Col = () => {
+  //   return (
+  //     <View style={styles.masonryContainer}>
+  //       <View>
+  //         <Posts
+  //           containerStyle={styles.sceneContainer}
+  //           posts={this.state.postsMasonry.leftCol}
+  //         />
+  //       </View>
+  //       <View>
+  //         <Posts
+  //           containerStyle={styles.sceneContainer}
+  //           posts={this.state.postsMasonry.rightCol}
+  //         />
+  //       </View>
+  //     </View>
+  //   );
+  // };
 
   render() {
     return (
@@ -175,13 +179,13 @@ class Profile extends Component {
         <View style={[styles.container, this.props.containerStyle]}>
           <View style={styles.cardContainer}>
             {this.renderContactHeader()}
-            <TabView
+            {/* <TabView
               style={[styles.tabContainer, this.props.tabContainerStyle]}
               navigationState={this.state.tabs}
               renderScene={this.renderScene}
               renderTabBar={this.renderTabBar}
               onIndexChange={this.handleIndexChange}
-            />
+            /> */}
           </View>
         </View>
       </ScrollView>

@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native'
+import { Dimensions } from "react-native";
 
 export default {
   cardContainer: {
@@ -8,57 +8,57 @@ export default {
     flex: 1,
   },
   coverBio: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 15,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   coverContainer: {
     marginBottom: 55,
-    position: 'relative',
+    position: "relative",
   },
   coverImage: {
-    height: Dimensions.get('window').width * (3.5 / 4),
-    width: Dimensions.get('window').width,
+    height: Dimensions.get("window").width * (3.5 / 4),
+    width: Dimensions.get("window").width,
   },
   coverMetaContainer: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     paddingBottom: 10,
     paddingLeft: 135,
   },
   coverName: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingBottom: 2,
   },
   coverTitle: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
   coverTitleContainer: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     paddingTop: 45,
   },
   headerContainer: {
-    alignItems: 'center',
-    backgroundColor: '#FFF',
+    alignItems: "center",
+    backgroundColor: "#FFF",
   },
   indicatorTab: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
   masonryContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
     marginLeft: 0,
     marginRight: 0,
   },
   profileImage: {
-    borderColor: '#FFF',
+    borderColor: "#FFF",
     borderRadius: 55,
     borderWidth: 3,
     height: 110,
@@ -67,16 +67,26 @@ export default {
   profileImageContainer: {
     bottom: 0,
     left: 10,
-    position: 'absolute',
+    position: "absolute",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "flex-end",
+    flex: 1,
+    // backgroundColor: "red",
+  },
+  profileSettings: {
+    // backgroundColor: "green",
+    paddingBottom: 20,
+    paddingLeft: 15,
   },
   sceneContainer: {
     marginTop: 15,
   },
   scroll: {
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
   },
   tabBar: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     marginBottom: -10,
     marginLeft: 120,
     marginRight: 5,
@@ -85,25 +95,25 @@ export default {
     flex: 1,
     marginBottom: 12,
     marginTop: -55,
-    position: 'relative',
+    position: "relative",
     zIndex: 10,
   },
   tabRow: {
-    flexWrap: 'wrap',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    flexWrap: "wrap",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     flex: 1,
   },
   tabLabelNumber: {
-    color: 'black',
+    color: "black",
     fontSize: 22,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 2,
   },
   tabLabelText: {
-    color: 'black',
+    color: "black",
     fontSize: 10,
-    textAlign: 'left',
+    textAlign: "left",
   },
-}
+};
