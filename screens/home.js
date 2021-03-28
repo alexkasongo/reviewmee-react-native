@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -15,6 +15,7 @@ import Card from "../shared/card";
 import { MaterialIcons } from "@expo/vector-icons";
 import ReviewForm from "./reviewForm";
 import firebase from "../database/firebase";
+import { Modalize } from "react-native-modalize";
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
@@ -36,6 +37,16 @@ export default function Home({ navigation }) {
     //   }
     // });
   });
+
+  // modalize
+  const modalizeRef = useRef(null);
+
+  const onOpen = () => {
+    if (modalizeRef.current) {
+      modalizeRef.current.open();
+    }
+  };
+  // modalize end
 
   const dispatch = useDispatch();
 
@@ -71,8 +82,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={globalStyles.container}>
-      <Modal visible={modalOpen} animationType="slide">
-        {/* close keyboard when we press outside of the keyboard */}
+      {/* <Modal visible={modalOpen} animationType="slide">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.modalContent}>
             <MaterialIcons
@@ -84,7 +94,11 @@ export default function Home({ navigation }) {
             <ReviewForm addReview={addReview} />
           </View>
         </TouchableWithoutFeedback>
-      </Modal>
+      </Modal> */}
+
+      <TouchableOpacity onPress={onOpen}>
+        <Text>Open the modal</Text>
+      </TouchableOpacity>
 
       <MaterialIcons
         name="add"
@@ -106,7 +120,11 @@ export default function Home({ navigation }) {
         )}
       />
 
-      <Button color="#3740FE" title="Logout" onPress={signOut} />
+      {/* <Button color="#3740FE" title="Logout" onPress={signOut} /> */}
+
+      <Modalize ref={modalizeRef}>
+        <Text>Aleko look at you!!!</Text>
+      </Modalize>
     </View>
   );
 }
