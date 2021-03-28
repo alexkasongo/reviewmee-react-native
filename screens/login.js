@@ -50,12 +50,12 @@ export default function Login({ navigation }) {
   const login = (payload) => {
     // start loading
     dispatch(loading(true));
-    console.log(`login.js - 58 - 🌱`, payload.email, payload.password);
+    // console.log(`login.js - 58 - 🌱`, payload.email, payload.password);
     firebase
       .auth()
       .signInWithEmailAndPassword(payload.email, payload.password)
       .then((res) => {
-        console.log("User logged-in successfully!");
+        console.log("✅  User logged-in successfully!");
         const obj = {
           displayName: res.user.displayName,
           email: res.user.email,
@@ -64,8 +64,6 @@ export default function Login({ navigation }) {
           photoURL: res.user.photoURL,
           uid: res.user.uid,
         };
-
-        // console.log("✅", obj);
 
         dispatch(signinUser(obj));
 

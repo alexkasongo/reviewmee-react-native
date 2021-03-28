@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { Dimensions, FlatList, StyleSheet } from "react-native";
+import {
+  Dimensions,
+  FlatList,
+  StyleSheet,
+  Virtualizedlist,
+} from "react-native";
 import PropTypes from "prop-types";
 
 import Post from "./Post";

@@ -11,7 +11,7 @@ export const userReducer = createSlice({
   },
   reducers: {
     signinUser: (state, action) => {
-      console.log(`userReducer.js - 14 - 🍎`, action.payload);
+      // console.log(`userReducer.js - 14 - 🍎`, action.payload);
       //   do something here: we have access to action.payload
       state.userInfo = action.payload;
     },
@@ -25,7 +25,7 @@ export const userReducer = createSlice({
     },
     signout: (state, action) => {
       //   do something here: we have access to ction.payload
-      console.log(`userReducer.js - 11 - 🏝 LOGOUT`);
+      // console.log(`userReducer.js - 11 - 🏝 LOGOUT`);
       state.userInfo = null;
     },
   },

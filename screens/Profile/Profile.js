@@ -66,7 +66,7 @@ class Profile extends Component {
     this.setState({
       postsMasonry: image.mansonry(this.props.posts, "imageHeight"),
     });
-    console.log(`Profile.js - 68 - 🌎`, this.state.postsMasonry);
+    console.log(`Profile.js - 68 - 🌎`, this.props.posts);
   }
 
   handleIndexChange = (index) => {
@@ -147,9 +147,6 @@ class Profile extends Component {
         </View>
         <View style={styles.profileImageContainer}>
           <Image source={{ uri: avatar }} style={styles.profileImage} />
-          {/* <View style={styles.profileSettings}>
-            <Text>Edit profile</Text>
-          </View> */}
         </View>
       </View>
     );
@@ -176,8 +173,8 @@ class Profile extends Component {
 
   render() {
     return (
-      <SafeAreaView style={[{ flex: 1 }, styles.scroll]}>
-        {/* <ScrollView style={styles.scroll}> */}
+      // <SafeAreaView style={[{ flex: 1 }, styles.scroll]}>
+      <ScrollView style={styles.scroll}>
         <View style={[styles.container, this.props.containerStyle]}>
           <View style={styles.cardContainer}>
             {this.renderContactHeader()}
@@ -190,8 +187,8 @@ class Profile extends Component {
             />
           </View>
         </View>
-        {/* </ScrollView> */}
-      </SafeAreaView>
+      </ScrollView>
+      // </SafeAreaView>
     );
   }
 }

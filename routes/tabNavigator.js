@@ -12,7 +12,6 @@ const BottomTabNavigator = () => {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={MainStackNavigator} />
       <Tab.Screen name="Profile" component={Profile} />
-      {/* <Tab.Screen name="Profile" component={ProfileStackNavigator} /> */}
     </Tab.Navigator>
   );
 };

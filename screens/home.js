@@ -120,7 +120,7 @@ export default function Home({ navigation }) {
         )}
       />
 
-      {/* <Button color="#3740FE" title="Logout" onPress={signOut} /> */}
+      <Button color="#3740FE" title="Logout" onPress={signOut} />
 
       <Modalize ref={modalizeRef}>
         <Text>Aleko look at you!!!</Text>
