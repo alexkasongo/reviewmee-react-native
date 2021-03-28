@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   Animated,
   Image,
@@ -8,22 +8,22 @@ import {
   StyleSheet,
   Text,
   View,
-} from 'react-native'
+} from "react-native";
 import {
   TabView,
   TabBar,
   TabViewPagerScroll,
   TabViewPagerPan,
-} from 'react-native-tab-view'
-import PropTypes from 'prop-types'
-import { image } from '../../utils'
+} from "react-native-tab-view";
+import PropTypes from "prop-types";
+import { image } from "../../utils";
 
-import profileStyles from './ProfileStyle'
-import Posts from './Posts'
+import profileStyles from "./ProfileStyle";
+import Posts from "./Posts";
 
-const styles = StyleSheet.create({ ...profileStyles })
+const styles = StyleSheet.create({ ...profileStyles });
 
-class Profile3 extends Component {
+class Profile extends Component {
   static propTypes = {
     avatar: PropTypes.string.isRequired,
     avatarBackground: PropTypes.string.isRequired,
@@ -42,60 +42,62 @@ class Profile3 extends Component {
         postWidth: PropTypes.number,
       })
     ).isRequired,
-  }
+  };
 
   static defaultProps = {
     containerStyle: {},
     tabContainerStyle: {},
-  }
+  };
 
   state = {
     tabs: {
       index: 0,
       routes: [
-        { key: '1', title: 'PHOTOS', count: 687 },
-        { key: '2', title: 'FOLLOWING', count: 1224 },
-        { key: '3', title: 'FOLLOWERS', count: '3 M' },
+        { key: "1", title: "PHOTOS", count: 687 },
+        { key: "2", title: "FOLLOWING", count: 1224 },
+        { key: "3", title: "FOLLOWERS", count: "3 M" },
       ],
     },
     postsMasonry: {},
-  }
+  };
 
   componentWillMount() {
     this.setState({
-      postsMasonry: image.mansonry(this.props.posts, 'imageHeight'),
-    })
+      postsMasonry: image.mansonry(this.props.posts, "imageHeight"),
+    });
   }
 
-  handleIndexChange = index => {
+  handleIndexChange = (index) => {
     this.setState({
       tabs: {
         ...this.state.tabs,
         index,
       },
-    })
-  }
-
-  renderTabBar = props => {
-    return <TabBar
-      indicatorStyle={styles.indicatorTab}
-      renderLabel={this.renderLabel(props)}
-      pressOpacity={0.8}
-      style={styles.tabBar}
-      {...props}
-    />
+    });
   };
 
-  renderLabel = props => ({ route }) => {
-    const routes = props.navigationState.routes
+  renderTabBar = (props) => {
+    return (
+      <TabBar
+        indicatorStyle={styles.indicatorTab}
+        renderLabel={this.renderLabel(props)}
+        pressOpacity={0.8}
+        style={styles.tabBar}
+        {...props}
+      />
+    );
+  };
 
-    let labels = []
+  renderLabel = (props) => ({ route }) => {
+    const routes = props.navigationState.routes;
+
+    let labels = [];
     routes.forEach((e, index) => {
-      labels.push(index === props.navigationState.index ? 'black' : 'gray')
-    })
+      labels.push(index === props.navigationState.index ? "black" : "gray");
+    });
 
-    const currentIndex = parseInt(route.key) - 1
-    const color = labels[currentIndex]
+    const currentIndex = parseInt(route.key) - 1;
+    const color = labels[currentIndex];
 
     return (
       <View style={styles.tabRow}>
@@ -106,30 +108,30 @@ class Profile3 extends Component {
           {route.title}
         </Animated.Text>
       </View>
-    )
-  }
+    );
+  };
 
   renderScene = ({ route: { key } }) => {
     switch (key) {
-      case '1':
-        return this.renderMansonry2Col()
-      case '2':
-        return this.renderMansonry2Col()
-      case '3':
-        return this.renderMansonry2Col()
+      case "1":
+        return this.renderMansonry2Col();
+      case "2":
+        return this.renderMansonry2Col();
+      case "3":
+        return this.renderMansonry2Col();
       default:
-        return <View />
+        return <View />;
     }
-  }
+  };
 
   renderContactHeader = () => {
-    const { avatar, avatarBackground, name, bio } = this.props
+    const { avatar, avatarBackground, name, bio } = this.props;
 
     return (
       <View style={styles.headerContainer}>
         <View style={styles.coverContainer}>
           <ImageBackground
-            source={{uri: avatarBackground}}
+            source={{ uri: avatarBackground }}
             style={styles.coverImage}
           >
             <View style={styles.coverTitleContainer}>
@@ -142,14 +144,11 @@ class Profile3 extends Component {
           </ImageBackground>
         </View>
         <View style={styles.profileImageContainer}>
-          <Image
-            source={{uri: avatar}}
-            style={styles.profileImage}
-          />
+          <Image source={{ uri: avatar }} style={styles.profileImage} />
         </View>
       </View>
-    )
-  }
+    );
+  };
 
   renderMansonry2Col = () => {
     return (
@@ -167,8 +166,8 @@ class Profile3 extends Component {
           />
         </View>
       </View>
-    )
-  }
+    );
+  };
 
   render() {
     return (
@@ -186,8 +185,8 @@ class Profile3 extends Component {
           </View>
         </View>
       </ScrollView>
-    )
+    );
   }
 }
 
-export default Profile3
+export default Profile;

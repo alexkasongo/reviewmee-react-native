@@ -2,21 +2,16 @@
   "name": "Cherprang BNK48",
   "username": "cherprang_BNK48",
   "bio": "Singer",
-  "avatar":
-    "https://i.imgur.com/FmeKYGe.jpg",
-  "avatarBackground":
-    "https://i.imgur.com/k2XhDRw.jpg",
+  "avatar": "https://images.prismic.io/alexkasongo-com/a093772f-4cb2-45f5-a655-e18180997671_FullSizeRender.jpg?auto=compress,format",
+  "avatarBackground": "https://images.unsplash.com/photo-1616868153513-5fffdcb2b070?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
   "posts": [
     {
       "id": 1,
       "words": "cupiditate qui cum",
       "sentence": "Ipsum laborum quasi debitis dolores veniam.",
-      "sentences":
-        "Impedit veritatis harum nihil dolores dolorem optio assumenda. Laborum saepe voluptas officia odit. Ut voluptas mollitia mollitia eum autem quisquam qui aut. Et ipsa hic harum molestias et quam qui cum. Sint sit soluta.",
-      "paragraph":
-        "Beatae voluptas ea magni quibusdam dolorem sit aut qui. Dolorem rerum et consequuntur inventore officia excepturi dolore architecto fuga. Quia consequatur asperiores rerum qui corporis dolorum. At harum velit adipisci iste odit modi veniam ut. Deserunt quibusdam velit non ea.",
-      "image":
-        "https://i.imgur.com/9JWV4yR.jpg",
+      "sentences": "Impedit veritatis harum nihil dolores dolorem optio assumenda. Laborum saepe voluptas officia odit. Ut voluptas mollitia mollitia eum autem quisquam qui aut. Et ipsa hic harum molestias et quam qui cum. Sint sit soluta.",
+      "paragraph": "Beatae voluptas ea magni quibusdam dolorem sit aut qui. Dolorem rerum et consequuntur inventore officia excepturi dolore architecto fuga. Quia consequatur asperiores rerum qui corporis dolorum. At harum velit adipisci iste odit modi veniam ut. Deserunt quibusdam velit non ea.",
+      "image": "https://i.imgur.com/9JWV4yR.jpg",
       "imageHeight": 1080,
       "imageWidth": 1350,
       "createdDate": "2017-11-21T02:33:53.770Z",
@@ -31,12 +26,9 @@
       "id": 2,
       "words": "est voluptatum aut",
       "sentence": "Omnis omnis aut dolor quaerat sunt et optio.",
-      "sentences":
-        "Nam numquam magni saepe. Deserunt aspernatur dolorem libero soluta sint molestias et sint sed. Maiores id quis assumenda voluptates quos ut saepe officia voluptatem. Ea placeat sed ut. Modi sed earum voluptas cumque unde eum doloribus ipsam.",
-      "paragraph":
-        "Quam aut reprehenderit asperiores aut. Sunt quis aspernatur incidunt. Illo et perferendis ex incidunt eos ut maxime dolorem voluptatem. Qui rem nihil quos cumque eum doloribus. Quae beatae tempore commodi.",
-      "image":
-        "https://i.pinimg.com/564x/20/60/f7/2060f7703b82b54bc3fee157589044a2.jpg",
+      "sentences": "Nam numquam magni saepe. Deserunt aspernatur dolorem libero soluta sint molestias et sint sed. Maiores id quis assumenda voluptates quos ut saepe officia voluptatem. Ea placeat sed ut. Modi sed earum voluptas cumque unde eum doloribus ipsam.",
+      "paragraph": "Quam aut reprehenderit asperiores aut. Sunt quis aspernatur incidunt. Illo et perferendis ex incidunt eos ut maxime dolorem voluptatem. Qui rem nihil quos cumque eum doloribus. Quae beatae tempore commodi.",
+      "image": "https://i.pinimg.com/564x/20/60/f7/2060f7703b82b54bc3fee157589044a2.jpg",
       "imageHeight": 1350,
       "imageWidth": 1080,
       "createdDate": "2017-11-20T18:04:58.858Z",
@@ -54,8 +46,7 @@
       "sentences": "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
       "paragraph": "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
       "createdDate": "2017-03-24T10:56:15.461Z",
-      "image":
-        "https://i.pinimg.com/564x/1d/d8/87/1dd887fb10b2805e1023a6d27dc1f0ec.jpg",
+      "image": "https://i.pinimg.com/564x/1d/d8/87/1dd887fb10b2805e1023a6d27dc1f0ec.jpg",
       "imageHeight": 1235,
       "imageWidth": 1080,
       "user": {
@@ -72,8 +63,7 @@
       "sentences": "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
       "paragraph": "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
       "createdDate": "2017-03-24T10:56:15.461Z",
-      "image":
-        "https://i.imgur.com/SClIy2m.jpg",
+      "image": "https://i.imgur.com/SClIy2m.jpg",
       "imageHeight": 826,
       "imageWidth": 1080,
       "user": {
@@ -90,8 +80,7 @@
       "sentences": "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
       "paragraph": "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
       "createdDate": "2017-03-24T10:56:15.461Z",
-      "image":
-      "https://i.pinimg.com/564x/a2/ab/be/a2abbe14490fdda55aba52326474a4c7.jpg",
+      "image": "https://i.pinimg.com/564x/a2/ab/be/a2abbe14490fdda55aba52326474a4c7.jpg",
       "imageHeight": 634,
       "imageWidth": 960,
       "user": {
@@ -108,8 +97,7 @@
       "sentences": "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
       "paragraph": "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
       "createdDate": "2017-03-24T10:56:15.461Z",
-      "image":
-        "https://i.pinimg.com/564x/c3/bc/66/c3bc666fe2cb6407580ef494637eea8e.jpg",
+      "image": "https://i.pinimg.com/564x/c3/bc/66/c3bc666fe2cb6407580ef494637eea8e.jpg",
       "imageHeight": 720,
       "imageWidth": 960,
       "user": {
@@ -126,15 +114,13 @@
       "sentences": "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
       "paragraph": "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
       "createdDate": "2017-03-24T10:56:15.461Z",
-      "image":
-        "https://i.imgur.com/hRC0U2s.jpg",
+      "image": "https://i.imgur.com/hRC0U2s.jpg",
       "imageHeight": 525,
       "imageWidth": 680,
       "user": {
         "name": "Magali",
         "username": "Magali16",
-        "avatar":
-          "https://s3.amazonaws.com/uifaces/faces/twitter/mastermindesign/128.jpg",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mastermindesign/128.jpg",
         "email": "Magali1664@gmail.com"
       }
     },
@@ -142,20 +128,16 @@
       "id": 8,
       "words": "vitae voluptas quia",
       "sentence": "Voluptates dolor ad rem amet voluptas.",
-      "sentences":
-        "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
-      "paragraph":
-        "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
+      "sentences": "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
+      "paragraph": "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
       "createdDate": "2017-03-24T10:56:15.461Z",
-      "image":
-        "https://i.imgur.com/ZWiVaKl.jpg",
+      "image": "https://i.imgur.com/ZWiVaKl.jpg",
       "imageHeight": 480,
       "imageWidth": 480,
       "user": {
         "name": "Magali",
         "username": "Magali16",
-        "avatar":
-          "https://s3.amazonaws.com/uifaces/faces/twitter/mastermindesign/128.jpg",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mastermindesign/128.jpg",
         "email": "Magali1664@gmail.com"
       }
     },
@@ -163,20 +145,16 @@
       "id": 9,
       "words": "vitae voluptas quia",
       "sentence": "Voluptates dolor ad rem amet voluptas.",
-      "sentences":
-        "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
-      "paragraph":
-        "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
+      "sentences": "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
+      "paragraph": "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
       "createdDate": "2017-03-24T10:56:15.461Z",
-      "image":
-        "https://i.imgur.com/1iDsg9Q.jpg",
+      "image": "https://i.imgur.com/1iDsg9Q.jpg",
       "imageHeight": 600,
       "imageWidth": 600,
       "user": {
         "name": "Magali",
         "username": "Magali16",
-        "avatar":
-          "https://s3.amazonaws.com/uifaces/faces/twitter/mastermindesign/128.jpg",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mastermindesign/128.jpg",
         "email": "Magali1664@gmail.com"
       }
     },
@@ -184,20 +162,16 @@
       "id": 10,
       "words": "vitae voluptas quia",
       "sentence": "Voluptates dolor ad rem amet voluptas.",
-      "sentences":
-        "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
-      "paragraph":
-        "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
+      "sentences": "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
+      "paragraph": "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
       "createdDate": "2017-03-24T10:56:15.461Z",
-      "image":
-        "https://i.imgur.com/tjHSIUK.jpg",
+      "image": "https://i.imgur.com/tjHSIUK.jpg",
       "imageHeight": 600,
       "imageWidth": 600,
       "user": {
         "name": "Magali",
         "username": "Magali16",
-        "avatar":
-          "https://s3.amazonaws.com/uifaces/faces/twitter/mastermindesign/128.jpg",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/mastermindesign/128.jpg",
         "email": "Magali1664@gmail.com"
       }
     },
@@ -205,13 +179,10 @@
       "id": 11,
       "words": "vitae voluptas quia",
       "sentence": "Voluptates dolor ad rem amet voluptas.",
-      "sentences":
-        "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
-      "paragraph":
-        "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
+      "sentences": "Rem ipsum quis. Animi ipsum ut at possimus. Beatae molestiae non odio soluta quidem ut suscipit.",
+      "paragraph": "Veniam veritatis nihil illum rerum et. Temporibus facere sed delectus corporis alias. Et odio aliquid est. Quas sit et quia tempora sit eveniet quam.",
       "createdDate": "2017-03-24T10:56:15.461Z",
-      "image":
-        "https://i.imgur.com/BxQO3ac.jpg",
+      "image": "https://i.imgur.com/BxQO3ac.jpg",
       "imageHeight": 600,
       "imageWidth": 600,
       "user": {
