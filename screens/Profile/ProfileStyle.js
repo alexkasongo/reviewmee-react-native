@@ -69,10 +69,6 @@ export default {
     left: 10,
     position: "absolute",
   },
-  profileSettings: {
-    paddingBottom: 20,
-    paddingLeft: 15,
-  },
   sceneContainer: {
     marginTop: 15,
   },
