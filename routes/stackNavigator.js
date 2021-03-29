@@ -6,7 +6,6 @@ import Header from "../shared/header";
 import HeaderImage from "../shared/headerImage";
 import ReviewDetails from "../screens/reviewDetails";
 import About from "../screens/about";
-// import Profile from "../screens/user/profile";
 import Profile from "../screens/profile";
 
 const Stack = createStackNavigator();
@@ -17,7 +16,7 @@ const screenOptionStyle = {
   },
   headerTintColor: "white",
   headerBackTitle: " ",
-  // headerShown: false,
+  headerShown: false,
 };
 
 const MainStackNavigator = ({ navigation }) => {

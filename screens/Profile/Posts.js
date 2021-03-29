@@ -26,7 +26,7 @@ class Posts extends Component {
         imageWidth: PropTypes.number,
         postWidth: PropTypes.number, //not sure if it's necessary but keeping it here incase
       })
-    ).isRequired,
+    ),
   };
 
   static defaultProps = {
@@ -50,6 +50,7 @@ class Posts extends Component {
             />
           );
         }}
+        keyExtractor={(item) => item.id}
       />
     );
   }

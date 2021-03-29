@@ -82,7 +82,7 @@ export default function Home({ navigation }) {
 
   return (
     <View style={globalStyles.container}>
-      {/* <Modal visible={modalOpen} animationType="slide">
+      <Modal visible={modalOpen} animationType="slide">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.modalContent}>
             <MaterialIcons
@@ -94,7 +94,7 @@ export default function Home({ navigation }) {
             <ReviewForm addReview={addReview} />
           </View>
         </TouchableWithoutFeedback>
-      </Modal> */}
+      </Modal>
 
       <TouchableOpacity onPress={onOpen}>
         <Text>Open the modal</Text>

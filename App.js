@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
-// import { MainStackNavigator } from "./routes/stackNavigator";
-// import BottomTabNavigator from "./routes/tabNavigator";
 import DrawerNavigator from "./routes/drawerNavigator";
-// import Navigator from "./routes/drawerNavigator";
+
 // we use the provider to get acces to the redux store
 // wrap everything that needs access to the store inside the provider
 import store from "./redux/store";
