@@ -8,7 +8,6 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
 } from "react-native";
 import {
   TabView,
@@ -42,7 +41,7 @@ class Profile extends Component {
         imageWidth: PropTypes.number,
         postWidth: PropTypes.number,
       })
-    ),
+    ).isRequired,
   };
 
   static defaultProps = {
@@ -54,19 +53,18 @@ class Profile extends Component {
     tabs: {
       index: 0,
       routes: [
-        { key: "1", title: "Consents", count: 12 },
-        { key: "2", title: "Signed", count: 10 },
-        { key: "3", title: "Pending", count: 2 },
+        { key: "1", title: "PHOTOS", count: 687 },
+        { key: "2", title: "FOLLOWING", count: 1224 },
+        { key: "3", title: "FOLLOWERS", count: "3 M" },
       ],
     },
     postsMasonry: {},
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.setState({
       postsMasonry: image.mansonry(this.props.posts, "imageHeight"),
     });
-    console.log(`Profile.js - 68 - 🌎`);
   }
 
   handleIndexChange = (index) => {

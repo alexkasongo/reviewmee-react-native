@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, FlatList, StyleSheet, View } from "react-native";
+import { Dimensions, FlatList, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 
 import Post from "./Post";
@@ -16,16 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-// const testPosts = this.props.posts || {};
-
 class Posts extends Component {
-  componentDidMount() {
-    // console.log(`Profile.js - 68 - 🍎`, this.props.posts);
-    // this.props.posts.map((item) => {
-    //   console.log(`Posts.js - 28 - 🥶`, item.id);
-    // });
-  }
-
   static propTypes = {
     containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
     posts: PropTypes.arrayOf(
@@ -34,7 +25,7 @@ class Posts extends Component {
         imageHeight: PropTypes.number,
         imageWidth: PropTypes.number,
       })
-    ),
+    ).isRequired,
   };
 
   static defaultProps = {
@@ -43,24 +34,22 @@ class Posts extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <FlatList
-          scrollEnabled={false}
-          removeClippedSubviews={false}
-          contentContainerStyle={[styles.container, this.props.containerStyle]}
-          data={this.props.posts}
-          renderItem={(list) => {
-            return (
-              <Post
-                key={`post-${list.item.id} `}
-                containerStyle={styles.postContainer}
-                postWidth={postContainerWidth}
-                {...list.item}
-              />
-            );
-          }}
-        />
-      </View>
+      <FlatList
+        scrollEnabled={false}
+        removeClippedSubviews={false}
+        contentContainerStyle={[styles.container, this.props.containerStyle]}
+        data={this.props.posts}
+        renderItem={(list) => {
+          return (
+            <Post
+              key={`post-${list.item.id} `}
+              containerStyle={styles.postContainer}
+              postWidth={postContainerWidth}
+              {...list.item}
+            />
+          );
+        }}
+      />
     );
   }
 }
