@@ -7,6 +7,10 @@ import HeaderImage from "../shared/headerImage";
 import ReviewDetails from "../screens/reviewDetails";
 import About from "../screens/about";
 import Profile from "../screens/profile";
+import Settings from "../screens/Settings";
+import SettingsOptions from "../screens/Settings/Options";
+import Playground from "../screens/playground";
+import PlaygroundOptions from "../screens/playground/Options";
 
 const Stack = createStackNavigator();
 
@@ -53,4 +57,27 @@ const ProfileStackNavigator = () => {
   );
 };
 
-export { MainStackNavigator, ProfileStackNavigator };
+function SettingsStackScreen() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Options" component={SettingsOptions} />
+    </Stack.Navigator>
+  );
+}
+
+function PlaygroundStackScreen() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Settings" component={Playground} />
+      <Stack.Screen name="Options" component={PlaygroundOptions} />
+    </Stack.Navigator>
+  );
+}
+
+export {
+  MainStackNavigator,
+  ProfileStackNavigator,
+  SettingsStackScreen,
+  PlaygroundStackScreen,
+};
