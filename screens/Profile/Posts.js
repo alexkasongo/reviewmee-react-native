@@ -24,6 +24,7 @@ class Posts extends Component {
         image: PropTypes.string,
         imageHeight: PropTypes.number,
         imageWidth: PropTypes.number,
+        postWidth: PropTypes.number, //not sure if it's necessary but keeping it here incase
       })
     ).isRequired,
   };

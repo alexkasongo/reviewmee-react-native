@@ -47,21 +47,25 @@ class Profile extends Component {
   static defaultProps = {
     containerStyle: {},
     tabContainerStyle: {},
+    // posts: {},
   };
 
   state = {
     tabs: {
       index: 0,
       routes: [
-        { key: "1", title: "PHOTOS", count: 687 },
-        { key: "2", title: "FOLLOWING", count: 1224 },
-        { key: "3", title: "FOLLOWERS", count: "3 M" },
+        { key: "1", title: "Consents", count: 12 },
+        { key: "2", title: "Signed", count: 10 },
+        { key: "3", title: "Pending", count: 2 },
       ],
     },
     postsMasonry: {},
   };
 
-  componentWillMount() {
+  componentDidMount() {
+    console.log(
+      `Profile.js - 66 - Yup, this just happened ✅ ########################################################################`
+    );
     this.setState({
       postsMasonry: image.mansonry(this.props.posts, "imageHeight"),
     });
@@ -171,20 +175,20 @@ class Profile extends Component {
 
   render() {
     return (
-      <ScrollView style={styles.scroll}>
-        <View style={[styles.container, this.props.containerStyle]}>
-          <View style={styles.cardContainer}>
-            {this.renderContactHeader()}
-            <TabView
-              style={[styles.tabContainer, this.props.tabContainerStyle]}
-              navigationState={this.state.tabs}
-              renderScene={this.renderScene}
-              renderTabBar={this.renderTabBar}
-              onIndexChange={this.handleIndexChange}
-            />
-          </View>
+      // <ScrollView style={styles.scroll}>
+      <View style={[styles.container, this.props.containerStyle]}>
+        <View style={styles.cardContainer}>
+          {this.renderContactHeader()}
+          <TabView
+            style={[styles.tabContainer, this.props.tabContainerStyle]}
+            navigationState={this.state.tabs}
+            renderScene={this.renderScene}
+            renderTabBar={this.renderTabBar}
+            onIndexChange={this.handleIndexChange}
+          />
         </View>
-      </ScrollView>
+      </View>
+      // </ScrollView>
     );
   }
 }
