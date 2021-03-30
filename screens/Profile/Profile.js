@@ -57,7 +57,7 @@ export default function Profile(props) {
 
   // renderscene fix
   const FirstRoute = () => (
-    <View style={[styles.scene, { backgroundColor: "#e3ff00" }]}>
+    <View style={[styles.scene]}>
       {/* <Text>Hello Aleko 😊</Text> */}
       <FlatList
         vertical

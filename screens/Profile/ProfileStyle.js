@@ -6,6 +6,7 @@ export default {
   },
   container: {
     flex: 1,
+    backgroundColor: "#fff",
   },
   coverBio: {
     color: "#FFF",

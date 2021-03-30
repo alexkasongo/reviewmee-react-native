@@ -74,7 +74,7 @@ export default function Login({ navigation }) {
         // dispatch(success(true));
       })
       .then(() => {
-        navigation.navigate("Home");
+        navigation.navigate("Profile");
       })
       .catch((error) => {
         // stop loading
