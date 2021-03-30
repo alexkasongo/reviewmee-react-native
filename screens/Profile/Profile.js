@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -12,8 +12,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
-import { Modalize } from "react-native-modalize";
-import Settings from "../Settings";
 
 import profileStyles from "./ProfileStyle";
 
@@ -39,16 +37,6 @@ export default function Profile(props) {
     // console.log(`login.js - 42 - 🌎Hopefully this works`, props.posts);
     // setpostsMasonry(props.posts);
   });
-
-  // modalize
-  const modalizeRef = useRef(null);
-
-  const onOpen = () => {
-    if (modalizeRef.current) {
-      modalizeRef.current.open();
-    }
-  };
-  // modalize end
 
   const handleIndexChange = (index) => {
     setTabs({
@@ -171,16 +159,14 @@ export default function Profile(props) {
         {/* <TouchableOpacity onPress={onOpen}>
           <Text>Open the modal</Text>
         </TouchableOpacity> */}
-        <TouchableOpacity onPress={onOpen} style={styles.profileImageContainer}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("Settings")}
+          style={styles.profileImageContainer}
+        >
           <Image source={{ uri: avatar }} style={styles.profileImage} />
         </TouchableOpacity>
       </View>
     );
-  };
-
-  const modalizeScrollOptions = {
-    showsVerticalScrollIndicator: false,
-    showsHorizontalScrollIndicator: false,
   };
 
   return (
@@ -195,16 +181,6 @@ export default function Profile(props) {
           onIndexChange={handleIndexChange}
         />
       </View>
-
-      <Modalize
-        scrollViewProps={modalizeScrollOptions}
-        ref={modalizeRef}
-        modalHeight={halfHeight}
-      >
-        <View style={styles.settingsModal}>
-          <Settings />
-        </View>
-      </Modalize>
     </View>
   );
 }

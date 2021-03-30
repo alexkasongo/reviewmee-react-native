@@ -100,6 +100,10 @@ export default function Home({ navigation }) {
         <Text>Open the modal</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
+        <Text>Open stack Modal</Text>
+      </TouchableOpacity>
+
       <MaterialIcons
         name="add"
         size={24}

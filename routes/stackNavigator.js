@@ -18,14 +18,14 @@ import PlaygroundOptions from "../screens/playground/Options";
 
 const Stack = createStackNavigator();
 
-const screenOptionStyle = {
-  headerStyle: {
-    backgroundColor: "#9AC4F8",
-  },
-  headerTintColor: "white",
-  headerBackTitle: " ",
-  headerShown: false,
-};
+// const screenOptionStyle = {
+//   headerStyle: {
+//     backgroundColor: "#9AC4F8",
+//   },
+//   headerTintColor: "white",
+//   headerBackTitle: " ",
+//   headerShown: false,
+// };
 
 // const MainStackNavigator = ({ navigation }) => {
 //   return (
@@ -92,8 +92,20 @@ const Modal = () => (
 
 const ProfileStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
+    <Stack.Navigator
+      initialRouteName="Profile"
+      screenOptions={({ route }) => {
+        return {
+          gestureEnabled: true,
+          cardOverlayEnabled: true,
+          ...TransitionPresets.ModalPresentationIOS,
+        };
+      }}
+      mode="modal"
+      headerMode="none"
+    >
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 };
