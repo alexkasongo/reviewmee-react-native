@@ -14,16 +14,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
-import { image } from "../../utils";
 
 import profileStyles from "./ProfileStyle";
-// import Posts from "./Posts";
-// import Post from "./Post";
 
 const styles = StyleSheet.create({ ...profileStyles });
-
-const space = 1;
-const postContainerWidth = (Dimensions.get("window").width - space * 2) / 2;
 
 export default function Profile(props) {
   const initialState = {
@@ -38,12 +32,8 @@ export default function Profile(props) {
     postsMasonry: {},
   };
 
-  const [postsMasonry, setpostsMasonry] = useState(initialState.postsMasonry);
-  const [tabs, setTabs] = useState(initialState.tabs);
-
   useEffect(() => {
     // console.log(`login.js - 42 - 🌎Hopefully this works`, props.posts);
-    setpostsMasonry(props.posts);
   });
 
   const handleIndexChange = (index) => {
@@ -72,7 +62,7 @@ export default function Profile(props) {
               <View style={RecipeCard.container}>
                 <Image style={RecipeCard.photo} source={{ uri: item.image }} />
                 <Text style={RecipeCard.title}>{item.user.name}</Text>
-                {/* <Text style={RecipeCard.category}>{item.user.email}</Text> */}
+                <Text style={RecipeCard.category}>{item.user.email}</Text>
               </View>
             </TouchableOpacity>
           </ScrollView>
@@ -141,21 +131,6 @@ export default function Profile(props) {
     third: ThirdRoute,
   });
 
-  // render scene fix end
-
-  // const renderScene = ({ route: { key } }) => {
-  //   switch (key) {
-  //     case "1":
-  //       return renderMansonry2Col();
-  //     case "2":
-  //       return renderMansonry2Col();
-  //     case "3":
-  //       return renderMansonry2Col();
-  //     default:
-  //       return <View />;
-  //   }
-  // };
-
   const renderContactHeader = () => {
     const { avatar, avatarBackground, name, bio } = props;
 
@@ -177,25 +152,6 @@ export default function Profile(props) {
         </View>
         <View style={styles.profileImageContainer}>
           <Image source={{ uri: avatar }} style={styles.profileImage} />
-        </View>
-      </View>
-    );
-  };
-
-  const renderMansonry2Col = () => {
-    return (
-      <View style={styles.masonryContainer}>
-        <View>
-          <Posts
-            containerStyle={styles.sceneContainer}
-            posts={postsMasonry.leftCol}
-          />
-        </View>
-        <View>
-          <Posts
-            containerStyle={styles.sceneContainer}
-            posts={postsMasonry.rightCol}
-          />
         </View>
       </View>
     );
