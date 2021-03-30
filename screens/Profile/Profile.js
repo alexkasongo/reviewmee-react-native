@@ -8,14 +8,10 @@ import {
   StyleSheet,
   Text,
   View,
+  Dimensions,
+  StatusBar,
 } from "react-native";
-import {
-  TabView,
-  TabBar,
-  TabViewPagerScroll,
-  TabViewPagerPan,
-} from "react-native-tab-view";
-import PropTypes from "prop-types";
+import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 import { image } from "../../utils";
 
 import profileStyles from "./ProfileStyle";
@@ -40,7 +36,7 @@ export default function Profile(props) {
   const [tabs, setTabs] = useState(initialState.tabs);
 
   useEffect(() => {
-    console.log(`login.js - 42 - 👀 Hopefully this works`);
+    // console.log(`login.js - 42 - 👀 Hopefully this works`);
     setpostsMasonry(props.posts, "imageHeight");
   });
 
@@ -52,6 +48,21 @@ export default function Profile(props) {
       },
     });
   };
+
+  // renderscene fix
+  const FirstRoute = () => (
+    <View style={[styler.scene, { backgroundColor: "#ff4081" }]} />
+  );
+
+  const SecondRoute = () => (
+    <View style={[styler.scene, { backgroundColor: "#673ab7" }]} />
+  );
+  const ThirdRoute = () => (
+    <View style={[styler.scene, { backgroundColor: "#e3ff00" }]} />
+  );
+
+  const initialLayout = { width: Dimensions.get("window").width };
+  // renderscene fix end
 
   const renderTabBar = (props) => {
     return (
@@ -88,18 +99,34 @@ export default function Profile(props) {
     );
   };
 
-  const renderScene = ({ route: { key } }) => {
-    switch (key) {
-      case "1":
-        return renderMansonry2Col();
-      case "2":
-        return renderMansonry2Col();
-      case "3":
-        return renderMansonry2Col();
-      default:
-        return <View />;
-    }
-  };
+  // render scene fix
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: "first", title: "Consents", count: 12 },
+    { key: "second", title: "Signed", count: 8 },
+    { key: "third", title: "Pending", count: 4 },
+  ]);
+
+  const renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+    third: ThirdRoute,
+  });
+
+  // render scene fix end
+
+  // const renderScene = ({ route: { key } }) => {
+  //   switch (key) {
+  //     case "1":
+  //       return renderMansonry2Col();
+  //     case "2":
+  //       return renderMansonry2Col();
+  //     case "3":
+  //       return renderMansonry2Col();
+  //     default:
+  //       return <View />;
+  //   }
+  // };
 
   const renderContactHeader = () => {
     const { avatar, avatarBackground, name, bio } = props;
@@ -147,19 +174,35 @@ export default function Profile(props) {
   };
 
   return (
-    <ScrollView style={styles.scroll}>
-      <View style={[styles.container]}>
-        <View style={styles.cardContainer}>
-          {renderContactHeader()}
-          {/* <TabView
+    // <ScrollView style={styles.scroll}>
+    <View style={[styles.container]}>
+      <View style={styles.cardContainer}>
+        {renderContactHeader()}
+        <TabView
           style={[styles.tabContainer]}
-          navigationState={tabs}
+          navigationState={{ index, routes }}
           renderScene={renderScene}
           renderTabBar={renderTabBar}
           onIndexChange={handleIndexChange}
+        />
+        {/* <TabView
+          style={[styler.tabContainer]}
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          onIndexChange={setIndex}
+          initialLayout={initialLayout}
         /> */}
-        </View>
       </View>
-    </ScrollView>
+    </View>
+    // </ScrollView>
   );
 }
+
+const styler = StyleSheet.create({
+  container: {
+    marginTop: StatusBar.currentHeight,
+  },
+  scene: {
+    flex: 1,
+  },
+});
