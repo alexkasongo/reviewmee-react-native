@@ -38,16 +38,6 @@ export default function Home({ navigation }) {
     // });
   });
 
-  // modalize
-  const modalizeRef = useRef(null);
-
-  const onOpen = () => {
-    if (modalizeRef.current) {
-      modalizeRef.current.open();
-    }
-  };
-  // modalize end
-
   const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = useState(false);
