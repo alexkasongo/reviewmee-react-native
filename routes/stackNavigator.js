@@ -9,7 +9,7 @@ import About from "../screens/about";
 import Profile from "../screens/profile";
 import Settings from "../screens/Settings";
 import SettingsOptions from "../screens/Settings/Options";
-import Playground from "../screens/playground";
+import Playground from "../screens/playground/Playground";
 import PlaygroundOptions from "../screens/playground/Options";
 
 const Stack = createStackNavigator();

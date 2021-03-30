@@ -1,18 +1,17 @@
 import React from "react";
-import { SafeAreaView, View } from "react-native";
-
-import { Nav } from "../../components";
+import { View, Text } from "react-native";
 
 const Options = (props) => {
-  props.navigation.setOptions({
-    header: ({ navigation }) => (
-      <SafeAreaView>
-        <Nav title="Settings" navigation={navigation} />
-      </SafeAreaView>
-    ),
-  });
+  // get params from props
+  const params = props.route.params;
 
-  return <View {...props} />;
+  return (
+    <View {...props}>
+      <Text>Name: {params.name}</Text>
+      <Text>Age: {params.age}</Text>
+      <Text>Wife: {params.wife}</Text>
+    </View>
+  );
 };
 
 export default Options;

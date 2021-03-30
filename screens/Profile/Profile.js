@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Animated,
   Image,
@@ -23,68 +23,41 @@ import Posts from "./Posts";
 
 const styles = StyleSheet.create({ ...profileStyles });
 
-class Profile extends Component {
-  static propTypes = {
-    avatar: PropTypes.string.isRequired,
-    avatarBackground: PropTypes.string.isRequired,
-    bio: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
-    tabContainerStyle: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.object,
-    ]),
-    posts: PropTypes.arrayOf(
-      PropTypes.shape({
-        image: PropTypes.string,
-        imageHeight: PropTypes.number,
-        imageWidth: PropTypes.number,
-        postWidth: PropTypes.number,
-      })
-    ).isRequired,
-  };
-
-  static defaultProps = {
-    containerStyle: {},
-    tabContainerStyle: {},
-    // posts: {},
-  };
-
-  state = {
+export default function Profile(props) {
+  const initialState = {
     tabs: {
       index: 0,
       routes: [
         { key: "1", title: "Consents", count: 12 },
         { key: "2", title: "Signed", count: 10 },
-        { key: "3", title: "Pending", count: 2 },
+        { key: "3", title: "Pending", count: 4 },
       ],
     },
     postsMasonry: {},
   };
 
-  componentDidMount() {
-    console.log(
-      `Profile.js - 66 - Yup, this just happened ✅ ########################################################################`
-    );
-    this.setState({
-      postsMasonry: image.mansonry(this.props.posts, "imageHeight"),
-    });
-  }
+  const [postsMasonry, setpostsMasonry] = useState(initialState.postsMasonry);
+  const [tabs, setTabs] = useState(initialState.tabs);
 
-  handleIndexChange = (index) => {
-    this.setState({
+  useEffect(() => {
+    console.log(`login.js - 42 - 👀 Hopefully this works`);
+    setpostsMasonry(props.posts, "imageHeight");
+  });
+
+  const handleIndexChange = (index) => {
+    setTabs({
       tabs: {
-        ...this.state.tabs,
+        ...initialState.tabs,
         index,
       },
     });
   };
 
-  renderTabBar = (props) => {
+  const renderTabBar = (props) => {
     return (
       <TabBar
         indicatorStyle={styles.indicatorTab}
-        renderLabel={this.renderLabel(props)}
+        renderLabel={renderLabel(props)}
         pressOpacity={0.8}
         style={styles.tabBar}
         {...props}
@@ -92,7 +65,7 @@ class Profile extends Component {
     );
   };
 
-  renderLabel = (props) => ({ route }) => {
+  const renderLabel = (props) => ({ route }) => {
     const routes = props.navigationState.routes;
 
     let labels = [];
@@ -115,21 +88,21 @@ class Profile extends Component {
     );
   };
 
-  renderScene = ({ route: { key } }) => {
+  const renderScene = ({ route: { key } }) => {
     switch (key) {
       case "1":
-        return this.renderMansonry2Col();
+        return renderMansonry2Col();
       case "2":
-        return this.renderMansonry2Col();
+        return renderMansonry2Col();
       case "3":
-        return this.renderMansonry2Col();
+        return renderMansonry2Col();
       default:
         return <View />;
     }
   };
 
-  renderContactHeader = () => {
-    const { avatar, avatarBackground, name, bio } = this.props;
+  const renderContactHeader = () => {
+    const { avatar, avatarBackground, name, bio } = props;
 
     return (
       <View style={styles.headerContainer}>
@@ -154,43 +127,39 @@ class Profile extends Component {
     );
   };
 
-  renderMansonry2Col = () => {
+  const renderMansonry2Col = () => {
     return (
       <View style={styles.masonryContainer}>
         <View>
           <Posts
             containerStyle={styles.sceneContainer}
-            posts={this.state.postsMasonry.leftCol}
+            posts={postsMasonry.leftCol}
           />
         </View>
         <View>
           <Posts
             containerStyle={styles.sceneContainer}
-            posts={this.state.postsMasonry.rightCol}
+            posts={postsMasonry.rightCol}
           />
         </View>
       </View>
     );
   };
 
-  render() {
-    return (
-      // <ScrollView style={styles.scroll}>
-      <View style={[styles.container, this.props.containerStyle]}>
+  return (
+    <ScrollView style={styles.scroll}>
+      <View style={[styles.container]}>
         <View style={styles.cardContainer}>
-          {this.renderContactHeader()}
-          <TabView
-            style={[styles.tabContainer, this.props.tabContainerStyle]}
-            navigationState={this.state.tabs}
-            renderScene={this.renderScene}
-            renderTabBar={this.renderTabBar}
-            onIndexChange={this.handleIndexChange}
-          />
+          {renderContactHeader()}
+          {/* <TabView
+          style={[styles.tabContainer]}
+          navigationState={tabs}
+          renderScene={renderScene}
+          renderTabBar={renderTabBar}
+          onIndexChange={handleIndexChange}
+        /> */}
         </View>
       </View>
-      // </ScrollView>
-    );
-  }
+    </ScrollView>
+  );
 }
-
-export default Profile;

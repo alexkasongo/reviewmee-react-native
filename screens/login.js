@@ -44,7 +44,7 @@ export default function Login({ navigation }) {
   // componentDidUpdate, and componentWillUnmount combined.
   useEffect(() => {
     console.log(`login.js - 42 - 👀 Hopefully this works`);
-  }); //[isSuccess, isError]
+  });
 
   // login function
   const login = (payload) => {

@@ -1,18 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-import contactData from './contact.json'
+import contactData from "./contact.json";
 
-import Profile from './Profile'
+import Profile from "./Profile";
 
-const ProfileScreen = () => <Profile {...contactData} />
+const ProfileScreen = (props) => <Profile {...contactData} {...props} />;
 
 ProfileScreen.navigationOptions = () => ({
   header: null,
-})
+});
 
 ProfileScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
-}
+};
 
-export default ProfileScreen
+export default ProfileScreen;
