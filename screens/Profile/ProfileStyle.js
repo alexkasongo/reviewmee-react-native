@@ -106,4 +106,9 @@ export default {
     fontSize: 10,
     textAlign: "left",
   },
+  // profile tabs
+  scene: {
+    flex: 1,
+    marginTop: 20,
+  },
 };

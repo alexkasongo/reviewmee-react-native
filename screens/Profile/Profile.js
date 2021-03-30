@@ -10,14 +10,20 @@ import {
   View,
   Dimensions,
   StatusBar,
+  FlatList,
+  TouchableOpacity,
 } from "react-native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 import { image } from "../../utils";
 
 import profileStyles from "./ProfileStyle";
-import Posts from "./Posts";
+// import Posts from "./Posts";
+// import Post from "./Post";
 
 const styles = StyleSheet.create({ ...profileStyles });
+
+const space = 1;
+const postContainerWidth = (Dimensions.get("window").width - space * 2) / 2;
 
 export default function Profile(props) {
   const initialState = {
@@ -36,8 +42,8 @@ export default function Profile(props) {
   const [tabs, setTabs] = useState(initialState.tabs);
 
   useEffect(() => {
-    // console.log(`login.js - 42 - 👀 Hopefully this works`);
-    setpostsMasonry(props.posts, "imageHeight");
+    // console.log(`login.js - 42 - 🌎Hopefully this works`, props.posts);
+    setpostsMasonry(props.posts);
   });
 
   const handleIndexChange = (index) => {
@@ -51,14 +57,36 @@ export default function Profile(props) {
 
   // renderscene fix
   const FirstRoute = () => (
-    <View style={[styler.scene, { backgroundColor: "#ff4081" }]} />
+    <View style={[styles.scene, { backgroundColor: "#e3ff00" }]}>
+      {/* <Text>Hello Aleko 😊</Text> */}
+      <FlatList
+        vertical
+        showsVerticalScrollIndicator={false}
+        numColumns={2}
+        removeClippedSubviews={false}
+        // contentContainerStyle={[styles.container]}
+        data={props.posts}
+        renderItem={({ item }) => (
+          <ScrollView style={styles.scroll}>
+            <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
+              <View style={RecipeCard.container}>
+                <Image style={RecipeCard.photo} source={{ uri: item.image }} />
+                <Text style={RecipeCard.title}>{item.user.name}</Text>
+                {/* <Text style={RecipeCard.category}>{item.user.email}</Text> */}
+              </View>
+            </TouchableOpacity>
+          </ScrollView>
+        )}
+        // keyExtractor={(item) => item.id}
+      />
+    </View>
   );
 
   const SecondRoute = () => (
-    <View style={[styler.scene, { backgroundColor: "#673ab7" }]} />
+    <View style={[styles.scene, { backgroundColor: "#673ab7" }]} />
   );
   const ThirdRoute = () => (
-    <View style={[styler.scene, { backgroundColor: "#e3ff00" }]} />
+    <View style={[styles.scene, { backgroundColor: "#ff4081" }]} />
   );
 
   const initialLayout = { width: Dimensions.get("window").width };
@@ -185,24 +213,59 @@ export default function Profile(props) {
           renderTabBar={renderTabBar}
           onIndexChange={handleIndexChange}
         />
-        {/* <TabView
-          style={[styler.tabContainer]}
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          initialLayout={initialLayout}
-        /> */}
       </View>
     </View>
     // </ScrollView>
   );
 }
 
-const styler = StyleSheet.create({
+// screen sizing
+const { width, height } = Dimensions.get("window");
+// orientation must fixed
+const SCREEN_WIDTH = width < height ? width : height;
+
+const recipeNumColums = 2;
+// item size
+const RECIPE_ITEM_HEIGHT = 150;
+const RECIPE_ITEM_MARGIN = 20;
+
+// 2 photos per width
+const RecipeCard = StyleSheet.create({
   container: {
-    marginTop: StatusBar.currentHeight,
-  },
-  scene: {
     flex: 1,
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginLeft: RECIPE_ITEM_MARGIN,
+    marginTop: 20,
+    width:
+      (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) /
+      recipeNumColums,
+    height: RECIPE_ITEM_HEIGHT + 75,
+    borderColor: "#cccccc",
+    borderWidth: 0.5,
+    borderRadius: 15,
+  },
+  photo: {
+    width:
+      (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) /
+      recipeNumColums,
+    height: RECIPE_ITEM_HEIGHT,
+    borderRadius: 15,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  title: {
+    flex: 1,
+    fontSize: 17,
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#444444",
+    marginTop: 3,
+    marginRight: 5,
+    marginLeft: 5,
+  },
+  category: {
+    marginTop: 5,
+    marginBottom: 5,
   },
 });
