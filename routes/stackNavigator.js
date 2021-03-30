@@ -1,5 +1,9 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { Text, View, Button } from "react-native";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 
 import Home from "../screens/home";
 import Header from "../shared/header";
@@ -23,31 +27,68 @@ const screenOptionStyle = {
   headerShown: false,
 };
 
+// const MainStackNavigator = ({ navigation }) => {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerStyle: {
+//           backgroundColor: "#9AC4F8",
+//         },
+//         headerTintColor: "white",
+//         headerBackTitle: " ",
+//       }}
+//     >
+//       <Stack.Screen
+//         name="Home"
+//         component={Home}
+//         options={{
+//           headerTitle: (props) => (
+//             <Header navigation={navigation} title="ConsentMee" />
+//           ),
+//           // headerBackground: () => <HeaderImage />,
+//         }}
+//       />
+//       <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
+//     </Stack.Navigator>
+//   );
+// };
 const MainStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: "#9AC4F8",
-        },
-        headerTintColor: "white",
-        headerBackTitle: " ",
+      initialRouteName="Home"
+      screenOptions={({ route }) => {
+        return {
+          gestureEnabled: true,
+          cardOverlayEnabled: true,
+          ...TransitionPresets.ModalPresentationIOS,
+        };
       }}
+      mode="modal"
+      headerMode="none"
     >
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{
-          headerTitle: (props) => (
-            <Header navigation={navigation} title="ConsentMee" />
-          ),
-          // headerBackground: () => <HeaderImage />,
-        }}
-      />
-      <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Modal" component={Modal} />
     </Stack.Navigator>
   );
 };
+
+// dummy test screens
+const Modal = () => (
+  <View>
+    <Text>Aleko Modal 🌎</Text>
+  </View>
+);
+
+// const Home = ({ navigation }) => (
+//   <View style={{ padding: 50 }}>
+//     <Button
+//       onPress={() => navigation.navigate("Modal")}
+//       title="Activate Modal!!!"
+//     />
+//   </View>
+// );
+
+// dummy test screens end
 
 const ProfileStackNavigator = () => {
   return (
