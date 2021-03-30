@@ -18,7 +18,7 @@ export default {
     position: "relative",
   },
   coverImage: {
-    height: Dimensions.get("window").width * (3.5 / 4),
+    height: Dimensions.get("window").width * (3.5 / 6),
     width: Dimensions.get("window").width,
   },
   coverMetaContainer: {

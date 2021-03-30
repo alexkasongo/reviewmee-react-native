@@ -202,7 +202,6 @@ export default function Profile(props) {
   };
 
   return (
-    // <ScrollView style={styles.scroll}>
     <View style={[styles.container]}>
       <View style={styles.cardContainer}>
         {renderContactHeader()}
@@ -215,7 +214,6 @@ export default function Profile(props) {
         />
       </View>
     </View>
-    // </ScrollView>
   );
 }
 
