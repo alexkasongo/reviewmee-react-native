@@ -15,7 +15,6 @@ import Card from "../shared/card";
 import { MaterialIcons } from "@expo/vector-icons";
 import ReviewForm from "./reviewForm";
 import firebase from "../database/firebase";
-import { Modalize } from "react-native-modalize";
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
