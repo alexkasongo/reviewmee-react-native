@@ -80,7 +80,7 @@ export default function Profile(props) {
               <View style={RecipeCard.container}>
                 <Image style={RecipeCard.photo} source={{ uri: item.image }} />
                 <Text style={RecipeCard.title}>{item.user.name}</Text>
-                {/* <Text style={RecipeCard.category}>{item.user.email}</Text> */}
+                <Text style={RecipeCard.category}>{item.user.email}</Text>
               </View>
             </TouchableOpacity>
           </ScrollView>
