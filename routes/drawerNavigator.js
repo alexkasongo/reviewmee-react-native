@@ -2,7 +2,6 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 // navigation
 import TabNavigator from "../routes/tabNavigator";
-// import Home from "../screens/home";
 import Login from "../screens/login";
 import Signup from "../screens/signup";
 
