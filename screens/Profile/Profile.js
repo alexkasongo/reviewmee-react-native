@@ -156,9 +156,6 @@ export default function Profile(props) {
             </View>
           </ImageBackground>
         </View>
-        {/* <TouchableOpacity onPress={onOpen}>
-          <Text>Open the modal</Text>
-        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => props.navigation.navigate("Settings")}
           style={styles.profileImageContainer}
