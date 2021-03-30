@@ -107,9 +107,15 @@ export default {
     fontSize: 10,
     textAlign: "left",
   },
-  // profile tabs
+  // profile
   scene: {
     flex: 1,
     marginTop: 20,
+  },
+  // settings modal
+  settingsModal: {
+    margin: 10,
+    backgroundColor: "red",
+    borderRadius: 8,
   },
 };

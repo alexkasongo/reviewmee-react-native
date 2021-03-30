@@ -48,7 +48,11 @@ export default function Settings(props) {
     emails: [firstEmail],
   } = props;
   return (
-    <ScrollView style={styles.scroll}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      style={styles.scroll}
+    >
       <View style={styles.userRow}>
         <View style={styles.userImage}>
           <Avatar rounded size="large" source={{ uri: avatar }} />

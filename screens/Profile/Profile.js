@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
-  Animated,
-  Image,
-  ImageBackground,
-  Platform,
-  ScrollView,
-  StyleSheet,
   Text,
   View,
-  Dimensions,
-  StatusBar,
+  Image,
+  Animated,
   FlatList,
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+  ImageBackground,
   TouchableOpacity,
 } from "react-native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
+import { Modalize } from "react-native-modalize";
+import Settings from "../Settings";
 
 import profileStyles from "./ProfileStyle";
 
@@ -32,9 +32,23 @@ export default function Profile(props) {
     postsMasonry: {},
   };
 
+  // State
+  const [tabs, setTabs] = useState(initialState.tabs);
+
   useEffect(() => {
     // console.log(`login.js - 42 - 🌎Hopefully this works`, props.posts);
+    // setpostsMasonry(props.posts);
   });
+
+  // modalize
+  const modalizeRef = useRef(null);
+
+  const onOpen = () => {
+    if (modalizeRef.current) {
+      modalizeRef.current.open();
+    }
+  };
+  // modalize end
 
   const handleIndexChange = (index) => {
     setTabs({
@@ -57,12 +71,16 @@ export default function Profile(props) {
         // contentContainerStyle={[styles.container]}
         data={props.posts}
         renderItem={({ item }) => (
-          <ScrollView style={styles.scroll}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            style={styles.scroll}
+          >
             <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
               <View style={RecipeCard.container}>
                 <Image style={RecipeCard.photo} source={{ uri: item.image }} />
                 <Text style={RecipeCard.title}>{item.user.name}</Text>
-                <Text style={RecipeCard.category}>{item.user.email}</Text>
+                {/* <Text style={RecipeCard.category}>{item.user.email}</Text> */}
               </View>
             </TouchableOpacity>
           </ScrollView>
@@ -150,11 +168,19 @@ export default function Profile(props) {
             </View>
           </ImageBackground>
         </View>
-        <View style={styles.profileImageContainer}>
+        {/* <TouchableOpacity onPress={onOpen}>
+          <Text>Open the modal</Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity onPress={onOpen} style={styles.profileImageContainer}>
           <Image source={{ uri: avatar }} style={styles.profileImage} />
-        </View>
+        </TouchableOpacity>
       </View>
     );
+  };
+
+  const modalizeScrollOptions = {
+    showsVerticalScrollIndicator: false,
+    showsHorizontalScrollIndicator: false,
   };
 
   return (
@@ -169,12 +195,24 @@ export default function Profile(props) {
           onIndexChange={handleIndexChange}
         />
       </View>
+
+      <Modalize
+        scrollViewProps={modalizeScrollOptions}
+        ref={modalizeRef}
+        modalHeight={halfHeight}
+      >
+        <View style={styles.settingsModal}>
+          <Settings />
+        </View>
+      </Modalize>
     </View>
   );
 }
 
 // screen sizing
 const { width, height } = Dimensions.get("window");
+// screen half height
+const halfHeight = height / 1.4;
 // orientation must fixed
 const SCREEN_WIDTH = width < height ? width : height;
 
