@@ -6,6 +6,10 @@ import BaseIcon from "./Icon";
 import Chevron from "./Chevron";
 import InfoText from "./InfoText";
 
+import { useDispatch } from "react-redux";
+import { signout } from "../../redux/reducers/userReducer";
+import firebase from "../../database/firebase";
+
 const styles = StyleSheet.create({
   scroll: {
     backgroundColor: "white",
@@ -29,7 +33,23 @@ const styles = StyleSheet.create({
 });
 
 export default function Settings(props) {
+  const dispatch = useDispatch();
   const [isEnabled, setIsEnabled] = useState(true);
+
+  // logout user
+  const signOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch(signout());
+        navigation.navigate("Login");
+      })
+      .catch((error) => {
+        console.log(`home.js - 70 - 🥶`, error);
+      });
+  };
+  // logout user end
 
   const onPressSetting = () => {
     const data = {
@@ -239,6 +259,20 @@ export default function Settings(props) {
           </ListItem.Content>
           <Badge status="primary" value="999+" />
           <Chevron />
+        </ListItem>
+        <ListItem onPress={signOut} containerStyle={styles.listItemContainer}>
+          <BaseIcon
+            containerStyle={{
+              backgroundColor: "#808080",
+            }}
+            icon={{
+              type: "materialicon",
+              name: "logout",
+            }}
+          />
+          <ListItem.Content>
+            <ListItem.Title>Logout</ListItem.Title>
+          </ListItem.Content>
         </ListItem>
       </View>
     </ScrollView>

@@ -16,7 +16,7 @@ export default function CategoriesScreen(props) {
   const onPressCategory = (item) => {
     const title = item.name;
     const category = item;
-    props.navigation.navigate("RecipesList", { category, title });
+    props.navigation.navigate("Modal", { category, title });
   };
 
   const renderCategory = ({ item }) => (

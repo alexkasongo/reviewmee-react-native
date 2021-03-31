@@ -5,7 +5,7 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 
-import Home from "../screens/home";
+// import Home from "../screens/home";
 import CategoriesScreen from "../screens/Categories/CategoriesScreen";
 import Header from "../shared/header";
 import HeaderImage from "../shared/headerImage";
@@ -18,6 +18,8 @@ import Playground from "../screens/playground/Playground";
 import PlaygroundOptions from "../screens/playground/Options";
 
 const Stack = createStackNavigator();
+
+// const Home = CategoriesScreen
 
 // const screenOptionStyle = {
 //   headerStyle: {
@@ -65,12 +67,27 @@ const MainStackNavigator = ({ navigation }) => {
         };
       }}
       mode="modal"
-      headerMode="none"
+      // headerMode="none"
     >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="CategoriesScreen" component={CategoriesScreen} />
+      {/* <Stack.Screen name="Home" component={Home} /> */}
+      <Stack.Screen
+        name="CategoriesScreen"
+        component={CategoriesScreen}
+        options={{
+          headerTitle: (props) => (
+            <Header navigation={navigation} title="ConsentMee" />
+          ),
+          // headerBackground: () => <HeaderImage />,
+        }}
+      />
       <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
-      <Stack.Screen name="Modal" component={Modal} />
+      <Stack.Screen
+        name="Modal"
+        component={Modal}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };

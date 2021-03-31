@@ -67,7 +67,10 @@ export default function Home({ navigation }) {
         dispatch(signout());
         navigation.navigate("Login");
       })
-      .catch((error) => this.setState({ errorMessage: error.message }));
+      .catch((error) => {
+        console.log(`home.js - 70 - 🥶`, error);
+      });
+    // .catch((error) => setState({ errorMessage: error.message }));
   };
 
   return (
