@@ -28,7 +28,7 @@ export default function CategoriesScreen(props) {
         />
         <Text style={styles.categoriesName}>{item.name}</Text>
         <Text style={styles.categoriesInfo}>
-          {getNumberOfRecipes(item.id)} recipes
+          {getNumberOfRecipes(item.id)} contracts
         </Text>
       </View>
     </TouchableOpacity>
