@@ -1,11 +1,12 @@
 import React from "react";
-import { Text, View, Button } from "react-native";
+import { Text, View } from "react-native";
 import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
 
 import Home from "../screens/home";
+import CategoriesScreen from "../screens/Categories/CategoriesScreen";
 import Header from "../shared/header";
 import HeaderImage from "../shared/headerImage";
 import ReviewDetails from "../screens/reviewDetails";
@@ -55,7 +56,7 @@ const Stack = createStackNavigator();
 const MainStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="CategoriesScreen"
       screenOptions={({ route }) => {
         return {
           gestureEnabled: true,
@@ -67,6 +68,8 @@ const MainStackNavigator = ({ navigation }) => {
       headerMode="none"
     >
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="CategoriesScreen" component={CategoriesScreen} />
+      <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
       <Stack.Screen name="Modal" component={Modal} />
     </Stack.Navigator>
   );

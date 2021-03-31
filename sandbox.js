@@ -1,203 +1,144 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
-  Animated,
-  Image,
-  ImageBackground,
-  Platform,
-  ScrollView,
   StyleSheet,
   Text,
   View,
+  FlatList,
+  TouchableOpacity,
+  Modal,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Button,
+  SafeAreaView,
 } from "react-native";
-import {
-  TabView,
-  TabBar,
-  TabViewPagerScroll,
-  TabViewPagerPan,
-} from "react-native-tab-view";
-import PropTypes from "prop-types";
-import { image } from "../../utils";
+import { globalStyles } from "../styles/global";
+import Card from "../shared/card";
+import { MaterialIcons } from "@expo/vector-icons";
+import ReviewForm from "./reviewForm";
+import firebase from "../database/firebase";
 
-import profileStyles from "./ProfileStyle";
-import Posts from "./Posts";
+// redux stuff
+import { useSelector, useDispatch } from "react-redux";
+import { signout } from "../redux/reducers/userReducer";
+// redux stuff end
 
-const styles = StyleSheet.create({ ...profileStyles });
-
-export default function Profile(props) {
-
-  const initialState = {
-    tabs: {
-      index: 0,
-      routes: [
-        { key: "1", title: "Consents", count: 12 },
-        { key: "2", title: "Signed", count: 10 },
-        { key: "3", title: "Pending", count: 2 },
-      ],
-    },
-    postsMasonry: {},
-  };
-  
-  const [postsMasonry, setpostsMasonry] = useState({});
-
-  // static propTypes = {
-  //   avatar: PropTypes.string.isRequired,
-  //   avatarBackground: PropTypes.string.isRequired,
-  //   bio: PropTypes.string.isRequired,
-  //   name: PropTypes.string.isRequired,
-  //   containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
-  //   tabContainerStyle: PropTypes.oneOfType([
-  //     PropTypes.number,
-  //     PropTypes.object,
-  //   ]),
-  //   posts: PropTypes.arrayOf(
-  //     PropTypes.shape({
-  //       image: PropTypes.string,
-  //       imageHeight: PropTypes.number,
-  //       imageWidth: PropTypes.number,
-  //       postWidth: PropTypes.number,
-  //     })
-  //   ).isRequired,
-  // };
-
-  // static defaultProps = {
-  //   containerStyle: {},
-  //   tabContainerStyle: {},
-  //   // posts: {},
-  // };
-
+// ({destructuring - extracting only what we need})
+export default function Home({ navigation }) {
+  // run on component mount
   useEffect(() => {
-    console.log(`login.js - 42 - 👀 Hopefully this works`);
-    setpostsMasonry(props.posts, "imageHeight")
+    console.log(`login.js - 42 - 👀 check if user is logged in`);
+
+    // firebase.auth().onAuthStateChanged((user) => {
+    //   // this.user = user;
+
+    //   // if there's no user navigate to login
+    //   if (!this.user) {
+    //     navigation.navigate('Login')
+    //   }
+    // });
   });
 
-  // componentDidMount() {
-  //   console.log(
-  //     `Profile.js - 66 - Yup, this just happened ✅ ########################################################################`
-  //   );
-  //   this.setState({
-  //     postsMasonry: image.mansonry(this.props.posts, "imageHeight"),
-  //   });
-  // }
+  const dispatch = useDispatch();
 
-  handleIndexChange = (index) => {
-    this.setState({
-      tabs: {
-        ...this.state.tabs,
-        index,
-      },
+  const [modalOpen, setModalOpen] = useState(false);
+  const [reviews, setReviews] = useState([
+    { title: "Consent Contracts", rating: 2, body: "lorem ipsum", key: "1" },
+    { title: "Roommate Contracts", rating: 5, body: "lorem ipsum", key: "2" },
+    { title: "Custom Contracts", rating: 4, body: "lorem ipsum", key: "3" },
+    { title: "Friendship Contracts", rating: 3, body: "lorem ipsum", key: "4" },
+  ]);
+
+  // this function is passed as a prop in the review form
+  const addReview = (review) => {
+    // generate unique key
+    review.key = Math.random().toString();
+    setReviews((currentReviews) => {
+      return [review, ...currentReviews];
     });
+    // close modal
+    setModalOpen(false);
   };
 
-  renderTabBar = (props) => {
-    return (
-      <TabBar
-        indicatorStyle={styles.indicatorTab}
-        renderLabel={this.renderLabel(props)}
-        pressOpacity={0.8}
-        style={styles.tabBar}
-        {...props}
-      />
-    );
+  const signOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch(signout());
+        navigation.navigate("Login");
+      })
+      .catch((error) => this.setState({ errorMessage: error.message }));
   };
 
-  renderLabel = (props) => ({ route }) => {
-    const routes = props.navigationState.routes;
+  return (
+    <View style={globalStyles.container}>
+      <Modal visible={modalOpen} animationType="slide">
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.modalContent}>
+            <MaterialIcons
+              name="close"
+              size={24}
+              style={{ ...styles.modalToggle, ...styles.modalClose }}
+              onPress={() => setModalOpen(false)}
+            />
+            <ReviewForm addReview={addReview} />
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
 
-    let labels = [];
-    routes.forEach((e, index) => {
-      labels.push(index === props.navigationState.index ? "black" : "gray");
-    });
+      {/* <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
+        <Text>Open stack Modal</Text>
+      </TouchableOpacity> */}
 
-    const currentIndex = parseInt(route.key) - 1;
-    const color = labels[currentIndex];
+      {/* <MaterialIcons
+        name="add"
+        size={24}
+        style={styles.modalToggle}
+        onPress={() => setModalOpen(true)}
+      /> */}
 
-    return (
-      <View style={styles.tabRow}>
-        <Animated.Text style={[styles.tabLabelNumber, { color }]}>
-          {route.count}
-        </Animated.Text>
-        <Animated.Text style={[styles.tabLabelText, { color }]}>
-          {route.title}
-        </Animated.Text>
-      </View>
-    );
-  };
-
-  renderScene = ({ route: { key } }) => {
-    switch (key) {
-      case "1":
-        return this.renderMansonry2Col();
-      case "2":
-        return this.renderMansonry2Col();
-      case "3":
-        return this.renderMansonry2Col();
-      default:
-        return <View />;
-    }
-  };
-
-  renderContactHeader = () => {
-    const { avatar, avatarBackground, name, bio } = this.props;
-
-    return (
-      <View style={styles.headerContainer}>
-        <View style={styles.coverContainer}>
-          <ImageBackground
-            source={{ uri: avatarBackground }}
-            style={styles.coverImage}
+      <FlatList
+        data={reviews}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ReviewDetails", item)}
           >
-            <View style={styles.coverTitleContainer}>
-              <Text style={styles.coverTitle} />
-            </View>
-            <View style={styles.coverMetaContainer}>
-              <Text style={styles.coverName}>{name}</Text>
-              <Text style={styles.coverBio}>{bio}</Text>
-            </View>
-          </ImageBackground>
-        </View>
-        <View style={styles.profileImageContainer}>
-          <Image source={{ uri: avatar }} style={styles.profileImage} />
-        </View>
-      </View>
-    );
-  };
+            <Card>
+              <Text style={globalStyles.titleText}>{item.title}</Text>
+            </Card>
+          </TouchableOpacity>
+        )}
+      />
 
-  renderMansonry2Col = () => {
-    return (
-      <View style={styles.masonryContainer}>
-        <View>
-          <Posts
-            containerStyle={styles.sceneContainer}
-            posts={this.state.postsMasonry.leftCol}
-          />
-        </View>
-        <View>
-          <Posts
-            containerStyle={styles.sceneContainer}
-            posts={this.state.postsMasonry.rightCol}
-          />
-        </View>
-      </View>
-    );
-  };
+      <MaterialIcons
+        name="add"
+        size={24}
+        style={styles.modalToggle}
+        onPress={() => navigation.navigate("Modal")}
+      />
 
-  render() {
-    return (
-      // <ScrollView style={styles.scroll}>
-      <View style={[styles.container, this.props.containerStyle]}>
-        <View style={styles.cardContainer}>
-          {this.renderContactHeader()}
-          <TabView
-            style={[styles.tabContainer, this.props.tabContainerStyle]}
-            navigationState={this.state.tabs}
-            renderScene={this.renderScene}
-            renderTabBar={this.renderTabBar}
-            onIndexChange={this.handleIndexChange}
-          />
-        </View>
-      </View>
-      // </ScrollView>
-    );
-  }
+      <Button color="#3740FE" title="Logout" onPress={signOut} />
+    </View>
+  );
 }
 
+const styles = StyleSheet.create({
+  modalToggle: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#f2f2f2",
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  modalClose: {
+    marginTop: 40,
+    marginBottom: 0,
+  },
+  modalContent: {
+    flex: 1,
+  },
+  test: {
+    marginBottom: 20,
+  },
+});

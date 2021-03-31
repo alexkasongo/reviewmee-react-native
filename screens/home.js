@@ -9,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Button,
+  SafeAreaView,
 } from "react-native";
 import { globalStyles } from "../styles/global";
 import Card from "../shared/card";
@@ -85,20 +86,16 @@ export default function Home({ navigation }) {
         </TouchableWithoutFeedback>
       </Modal>
 
-      <TouchableOpacity onPress={onOpen}>
-        <Text>Open the modal</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
+      {/* <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
         <Text>Open stack Modal</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
-      <MaterialIcons
+      {/* <MaterialIcons
         name="add"
         size={24}
         style={styles.modalToggle}
         onPress={() => setModalOpen(true)}
-      />
+      /> */}
 
       <FlatList
         data={reviews}
@@ -113,11 +110,14 @@ export default function Home({ navigation }) {
         )}
       />
 
-      <Button color="#3740FE" title="Logout" onPress={signOut} />
+      <MaterialIcons
+        name="add"
+        size={24}
+        style={styles.modalToggle}
+        onPress={() => navigation.navigate("Modal")}
+      />
 
-      <Modalize ref={modalizeRef}>
-        <Text>Aleko look at you!!!</Text>
-      </Modalize>
+      <Button color="#3740FE" title="Logout" onPress={signOut} />
     </View>
   );
 }
