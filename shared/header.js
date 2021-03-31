@@ -12,12 +12,12 @@ export default function Header({ navigation, title }) {
   return (
     <View style={styles.header}>
       {/* icon for the menu */}
-      <MaterialIcons
+      {/* <MaterialIcons
         name="menu"
         size={28}
         onPress={openMenu}
         style={styles.icon}
-      />
+      /> */}
       <View style={styles.headerTitle}>
         <Image
           source={require("../assets/heart_logo.png")}

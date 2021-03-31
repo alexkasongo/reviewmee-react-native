@@ -5,14 +5,6 @@ import { categories } from "./dataArrays";
 import { getNumberOfRecipes } from "./MockDataAPI";
 
 export default function CategoriesScreen(props) {
-  // static navigationOptions = {
-  //   title: 'Categories'
-  // };
-
-  // constructor(props) {
-  //   super(props);
-  // }
-
   const onPressCategory = (item) => {
     const title = item.name;
     const category = item;
