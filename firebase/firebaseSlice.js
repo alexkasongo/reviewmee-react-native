@@ -1,11 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const firebaseSlice = createSlice({
-  name: 'firebase',
+  name: "firebase",
   initialState: {
     user: null,
     docs: [],
     docsSigned: [],
+    isLoading: false,
   },
   reducers: {
     setUser: (state, action) => {
@@ -15,14 +16,23 @@ export const firebaseSlice = createSlice({
       // immutable state based off those changes
       state.user = action.payload;
     },
+    loading: (state, action) => {
+      //   do something here: we have access to action.payload
+      state.isLoading = action.payload;
+    },
+    signout: (state, action) => {
+      //   do something here: we have access to ction.payload
+      // console.log(`userReducer.js - 11 - 🏝 LOGOUT`);
+      state.userInfo = null;
+    },
   },
 });
 
-export const { setUser } = firebaseSlice.actions;
+export const { setUser, loading, signout } = firebaseSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
-export const selectUser = state => state.firebase.user;
+export const selectUser = (state) => state.firebase.user;
 
 export default firebaseSlice.reducer;

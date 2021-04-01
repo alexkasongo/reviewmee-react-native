@@ -2,7 +2,7 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 // navigation
 import TabNavigator from "../routes/tabNavigator";
-import Login from "../screens/login";
+import Signin from "../screens/signin";
 import Signup from "../screens/signup";
 
 // redux
@@ -15,11 +15,14 @@ export default function DrawerNavigator() {
 
   return (
     <Drawer.Navigator>
-      {userInfo !== null && (
+      <Drawer.Screen name="Home" component={TabNavigator} />
+      <Drawer.Screen name="Signin" component={Signin} />
+      <Drawer.Screen name="Signup" component={Signup} />
+      {/* {userInfo !== null && (
         <Drawer.Screen name="Home" component={TabNavigator} />
-      )}
-      {userInfo === null && <Drawer.Screen name="Login" component={Login} />}
-      {userInfo === null && <Drawer.Screen name="Signup" component={Signup} />}
+        )} */}
+      {/* {userInfo === null && <Drawer.Screen name="Signin" component={Signin} />}
+      {userInfo === null && <Drawer.Screen name="Signup" component={Signup} />} */}
     </Drawer.Navigator>
   );
 }

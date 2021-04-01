@@ -1,144 +1,226 @@
-import React, { useState, useEffect, useRef } from "react";
+// ORIGINAL SIGNIN
+
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Text,
   View,
-  FlatList,
-  TouchableOpacity,
-  Modal,
+  TextInput,
+  Button,
+  Alert,
+  ActivityIndicator,
   TouchableWithoutFeedback,
   Keyboard,
-  Button,
-  SafeAreaView,
 } from "react-native";
-import { globalStyles } from "../styles/global";
-import Card from "../shared/card";
-import { MaterialIcons } from "@expo/vector-icons";
-import ReviewForm from "./reviewForm";
 import firebase from "../database/firebase";
+
+// form stuff
+import { globalStyles } from "../styles/global";
+import { Formik } from "formik";
+import * as yup from "yup";
+import FlatButton from "../shared/button";
+// form stuff end
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
-import { signout } from "../redux/reducers/userReducer";
+import {
+  signinUser,
+  loading,
+  success,
+  signout,
+} from "../redux/reducers/userReducer";
 // redux stuff end
 
-// ({destructuring - extracting only what we need})
-export default function Home({ navigation }) {
-  // run on component mount
-  useEffect(() => {
-    console.log(`login.js - 42 - 👀 check if user is logged in`);
+// a schema is a set of rules defined in an object
+const loginSchema = yup.object({
+  email: yup.string().required().min(4),
+  password: yup.string().required().min(4),
+});
+// schema end
 
-    // firebase.auth().onAuthStateChanged((user) => {
-    //   // this.user = user;
-
-    //   // if there's no user navigate to login
-    //   if (!this.user) {
-    //     navigation.navigate('Login')
-    //   }
-    // });
-  });
-
+export default function Login({ navigation }) {
+  const { isLoading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [reviews, setReviews] = useState([
-    { title: "Consent Contracts", rating: 2, body: "lorem ipsum", key: "1" },
-    { title: "Roommate Contracts", rating: 5, body: "lorem ipsum", key: "2" },
-    { title: "Custom Contracts", rating: 4, body: "lorem ipsum", key: "3" },
-    { title: "Friendship Contracts", rating: 3, body: "lorem ipsum", key: "4" },
-  ]);
+  // you can think of useEffect Hook as componentDidMount,
+  // componentDidUpdate, and componentWillUnmount combined.
+  useEffect(() => {
+    console.log(`login.js - 42 - 👀 Hopefully this works`);
+  });
 
-  // this function is passed as a prop in the review form
-  const addReview = (review) => {
-    // generate unique key
-    review.key = Math.random().toString();
-    setReviews((currentReviews) => {
-      return [review, ...currentReviews];
-    });
-    // close modal
-    setModalOpen(false);
-  };
-
-  const signOut = () => {
+  // login function
+  const login = (payload) => {
+    // start loading
+    dispatch(loading(true));
+    // console.log(`login.js - 58 - 🌱`, payload.email, payload.password);
     firebase
       .auth()
-      .signOut()
-      .then(() => {
-        dispatch(signout());
-        navigation.navigate("Login");
+      .signInWithEmailAndPassword(payload.email, payload.password)
+      .then((res) => {
+        console.log("✅  User logged-in successfully!");
+        const obj = {
+          displayName: res.user.displayName,
+          email: res.user.email,
+          emailVerified: res.user.emailVerified,
+          phoneNumber: res.user.phoneNumber,
+          photoURL: res.user.photoURL,
+          uid: res.user.uid,
+        };
+
+        dispatch(signinUser(obj));
+
+        // stop loading
+        dispatch(loading(false));
+
+        // navigate to home and clear form
+        // dispatch(success(true));
       })
-      .catch((error) => this.setState({ errorMessage: error.message }));
+      .then(() => {
+        navigation.navigate("Profile");
+      })
+      .catch((error) => {
+        // stop loading
+        dispatch(loading(false));
+
+        console.log(`login.js - 54 - 🍎`, error.message);
+        // if error
+        // dispatch(isError(true));
+        // error message
+        // dispatch(errorMessage(error));
+      });
+  };
+  // login function end
+
+  const obj = {
+    Name: "Akash Mittal",
+    Startup: "StudyWise",
+    Description: "Kids Education App",
+    Link: "https://play.google.com/store/apps/details?id=com.studywise",
   };
 
-  return (
-    <View style={globalStyles.container}>
-      <Modal visible={modalOpen} animationType="slide">
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.modalContent}>
-            <MaterialIcons
-              name="close"
-              size={24}
-              style={{ ...styles.modalToggle, ...styles.modalClose }}
-              onPress={() => setModalOpen(false)}
-            />
-            <ReviewForm addReview={addReview} />
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
-
-      {/* <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
-        <Text>Open stack Modal</Text>
-      </TouchableOpacity> */}
-
-      {/* <MaterialIcons
-        name="add"
-        size={24}
-        style={styles.modalToggle}
-        onPress={() => setModalOpen(true)}
-      /> */}
-
-      <FlatList
-        data={reviews}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("ReviewDetails", item)}
+  // component
+  if (isLoading) {
+    return (
+      <View style={styles.preloader}>
+        <ActivityIndicator size="large" color="#9E9E9E" />
+      </View>
+    );
+  } else {
+    return (
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={globalStyles.containerCenter}>
+          {/* <View> */}
+          {/* how to display object */}
+          {/* {userInfo !== null &&
+              Object.keys(userInfo).map((itemKey) => {
+                return (
+                  <Text key={itemKey}>
+                    {itemKey === "Link" ? (
+                      <Text>{userInfo[itemKey]}</Text>
+                    ) : (
+                      obj[itemKey]
+                    )}
+                  </Text>
+                );
+              })} */}
+          {/* </View> */}
+          <Formik
+            initialValues={{
+              email: "",
+              password: "",
+            }}
+            validationSchema={loginSchema}
+            onSubmit={(values, actions) => {
+              actions.resetForm();
+              login(values);
+            }}
           >
-            <Card>
-              <Text style={globalStyles.titleText}>{item.title}</Text>
-            </Card>
-          </TouchableOpacity>
-        )}
-      />
+            {/* if validation fails, yup passes errors in props.errors below */}
+            {(props) => (
+              <View>
+                {/* Conditional rendering */}
+                {/* {userInfo !== null && userInfo.map((res) => <Text>{res}</Text>)} */}
 
-      <MaterialIcons
-        name="add"
-        size={24}
-        style={styles.modalToggle}
-        onPress={() => navigation.navigate("Modal")}
-      />
-
-      <Button color="#3740FE" title="Logout" onPress={signOut} />
-    </View>
-  );
+                <TextInput
+                  style={globalStyles.input}
+                  placeholder="Email"
+                  onChangeText={props.handleChange("email")}
+                  value={props.values.email}
+                  onBlur={props.handleBlur("email")}
+                />
+                <Text style={globalStyles.errorText}>
+                  {props.touched.email && props.errors.email}
+                </Text>
+                <TextInput
+                  style={globalStyles.input}
+                  placeholder="Password"
+                  onChangeText={props.handleChange("password")}
+                  value={props.values.password}
+                  onBlur={props.handleBlur("password")}
+                  secureTextEntry
+                />
+                <Text style={globalStyles.errorText}>
+                  {props.touched.password && props.errors.password}
+                </Text>
+                <FlatButton text="Signin" onPress={props.handleSubmit} />
+                {/* <Button title="logout" onPress={() => dispatch(signout())} /> */}
+                <Text
+                  style={styles.loginText}
+                  onPress={() => navigation.navigate("Signup")}
+                >
+                  Don't have account? Click here to signup
+                </Text>
+              </View>
+            )}
+          </Formik>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
+  // }
 }
 
 const styles = StyleSheet.create({
-  modalToggle: {
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: "#f2f2f2",
-    padding: 10,
-    borderRadius: 10,
+  inputStyle: {
+    width: "100%",
+    marginBottom: 15,
+    paddingBottom: 15,
     alignSelf: "center",
+    borderColor: "#ccc",
+    borderBottomWidth: 1,
   },
-  modalClose: {
-    marginTop: 40,
-    marginBottom: 0,
+  loginText: {
+    color: "#3740FE",
+    marginTop: 25,
+    textAlign: "center",
   },
-  modalContent: {
-    flex: 1,
-  },
-  test: {
-    marginBottom: 20,
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
   },
 });
+
+// database/firebaseDb.js
+
+// import firebase from "firebase/app";
+// import * as firebase from "firebase";
+
+// const firebaseConfig = {
+//   apiKey: process.env.REACT_APP_API_KEY,
+//   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+//   databaseURL: process.env.REACT_APP_DATABASE_URL,
+//   projectId: process.env.REACT_APP_PROJECT_ID,
+//   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+//   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+//   appId: process.env.REACT_APP_APP_ID,
+// };
+
+// firebase.initializeApp(firebaseConfig);
+
+// export default firebase;

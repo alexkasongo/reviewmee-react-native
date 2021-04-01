@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import firebase from "../database/firebase";
+// import firebase from "../database/firebase";
 
 // form stuff
 import { globalStyles } from "../styles/global";

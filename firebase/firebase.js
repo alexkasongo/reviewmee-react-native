@@ -6,13 +6,12 @@ import "firebase/storage";
 import { mergeAnnotations } from "../components/MergeAnnotations/MergeAnnotations";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_DATABASE_URL,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID,
+  apiKey: "AIzaSyA6D4YPfnPY9NymQBh_WSUrFphR27qx9Eg",
+  authDomain: "consentmee.firebaseapp.com",
+  projectId: "consentmee",
+  storageBucket: "consentmee.appspot.com",
+  messagingSenderId: "341422949639",
+  appId: "1:341422949639:web:b0b3cf4e9279c0394fb1a2",
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

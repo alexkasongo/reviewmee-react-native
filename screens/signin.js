@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import firebase from "../database/firebase";
+import { auth, signInWithGoogle } from "../firebase/firebase";
 
 // form stuff
 import { globalStyles } from "../styles/global";
@@ -21,12 +21,7 @@ import FlatButton from "../shared/button";
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
-import {
-  signinUser,
-  loading,
-  success,
-  signout,
-} from "../redux/reducers/userReducer";
+import { loading } from "../firebase/firebaseSlice";
 // redux stuff end
 
 // a schema is a set of rules defined in an object
@@ -36,42 +31,21 @@ const loginSchema = yup.object({
 });
 // schema end
 
-export default function Login({ navigation }) {
-  const { isLoading } = useSelector((state) => state.user);
+const Signin = ({ navigation }) => {
+  const { isLoading } = useSelector((state) => state.firebase);
   const dispatch = useDispatch();
+  const [error, setError] = useState(null);
 
-  // you can think of useEffect Hook as componentDidMount,
-  // componentDidUpdate, and componentWillUnmount combined.
-  useEffect(() => {
-    console.log(`login.js - 42 - 👀 Hopefully this works`);
-  });
-
-  // login function
-  const login = (payload) => {
+  const signInWithEmailAndPasswordHandler = (email, password) => {
     // start loading
     dispatch(loading(true));
-    // console.log(`login.js - 58 - 🌱`, payload.email, payload.password);
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(payload.email, payload.password)
+    auth
+      .signInWithEmailAndPassword(email, password)
       .then((res) => {
         console.log("✅  User logged-in successfully!");
-        const obj = {
-          displayName: res.user.displayName,
-          email: res.user.email,
-          emailVerified: res.user.emailVerified,
-          phoneNumber: res.user.phoneNumber,
-          photoURL: res.user.photoURL,
-          uid: res.user.uid,
-        };
-
-        dispatch(signinUser(obj));
 
         // stop loading
         dispatch(loading(false));
-
-        // navigate to home and clear form
-        // dispatch(success(true));
       })
       .then(() => {
         navigation.navigate("Profile");
@@ -79,24 +53,11 @@ export default function Login({ navigation }) {
       .catch((error) => {
         // stop loading
         dispatch(loading(false));
-
-        console.log(`login.js - 54 - 🍎`, error.message);
-        // if error
-        // dispatch(isError(true));
-        // error message
-        // dispatch(errorMessage(error));
+        setError("Error signing in with password and email!");
+        console.error("Error signing in with password and email", error);
       });
   };
-  // login function end
 
-  const obj = {
-    Name: "Akash Mittal",
-    Startup: "StudyWise",
-    Description: "Kids Education App",
-    Link: "https://play.google.com/store/apps/details?id=com.studywise",
-  };
-
-  // component
   if (isLoading) {
     return (
       <View style={styles.preloader}>
@@ -107,21 +68,6 @@ export default function Login({ navigation }) {
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={globalStyles.containerCenter}>
-          {/* <View> */}
-          {/* how to display object */}
-          {/* {userInfo !== null &&
-              Object.keys(userInfo).map((itemKey) => {
-                return (
-                  <Text key={itemKey}>
-                    {itemKey === "Link" ? (
-                      <Text>{userInfo[itemKey]}</Text>
-                    ) : (
-                      obj[itemKey]
-                    )}
-                  </Text>
-                );
-              })} */}
-          {/* </View> */}
           <Formik
             initialValues={{
               email: "",
@@ -130,15 +76,12 @@ export default function Login({ navigation }) {
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
               actions.resetForm();
-              login(values);
+              signInWithEmailAndPasswordHandler(values.email, values.password);
             }}
           >
-            {/* if validation fails, yup passes errors in props.errors below */}
             {(props) => (
               <View>
-                {/* Conditional rendering */}
-                {/* {userInfo !== null && userInfo.map((res) => <Text>{res}</Text>)} */}
-
+                {/* {error !== null && <Text>{error}</Text>} */}
                 <TextInput
                   style={globalStyles.input}
                   placeholder="Email"
@@ -160,6 +103,11 @@ export default function Login({ navigation }) {
                 <Text style={globalStyles.errorText}>
                   {props.touched.password && props.errors.password}
                 </Text>
+                {/* <Button
+                onClick={signInWithGoogle}
+                title="Sign in with Google"
+                color="red"
+              /> */}
                 <FlatButton text="Signin" onPress={props.handleSubmit} />
                 {/* <Button title="logout" onPress={() => dispatch(signout())} /> */}
                 <Text
@@ -175,8 +123,8 @@ export default function Login({ navigation }) {
       </TouchableWithoutFeedback>
     );
   }
-  // }
-}
+};
+export default Signin;
 
 const styles = StyleSheet.create({
   inputStyle: {

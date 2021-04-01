@@ -8,7 +8,7 @@ import InfoText from "./InfoText";
 
 import { useDispatch } from "react-redux";
 import { signout } from "../../redux/reducers/userReducer";
-import firebase from "../../database/firebase";
+// import firebase from "../../database/firebase";
 
 const styles = StyleSheet.create({
   scroll: {
