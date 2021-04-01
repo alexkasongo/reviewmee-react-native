@@ -19,42 +19,6 @@ import PlaygroundOptions from "../screens/playground/Options";
 
 const Stack = createStackNavigator();
 
-// const Home = CategoriesScreen
-
-// const screenOptionStyle = {
-//   headerStyle: {
-//     backgroundColor: "#9AC4F8",
-//   },
-//   headerTintColor: "white",
-//   headerBackTitle: " ",
-//   headerShown: false,
-// };
-
-// const MainStackNavigator = ({ navigation }) => {
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         headerStyle: {
-//           backgroundColor: "#9AC4F8",
-//         },
-//         headerTintColor: "white",
-//         headerBackTitle: " ",
-//       }}
-//     >
-//       <Stack.Screen
-//         name="Home"
-//         component={Home}
-//         options={{
-//           headerTitle: (props) => (
-//             <Header navigation={navigation} title="ConsentMee" />
-//           ),
-//           // headerBackground: () => <HeaderImage />,
-//         }}
-//       />
-//       <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
-//     </Stack.Navigator>
-//   );
-// };
 const MainStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator

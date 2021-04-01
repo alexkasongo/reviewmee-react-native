@@ -4,12 +4,12 @@
 import * as firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBHfgkBIO3wtx__IpVua5R-56T2DAqMzLY",
-  authDomain: "constentmee.firebaseapp.com",
-  projectId: "constentmee",
-  storageBucket: "constentmee.appspot.com",
-  messagingSenderId: "255894554269",
-  appId: "1:255894554269:web:20f7dbdd06eb93827b7674",
+  apiKey: "AIzaSyA6D4YPfnPY9NymQBh_WSUrFphR27qx9Eg",
+  authDomain: "consentmee.firebaseapp.com",
+  projectId: "consentmee",
+  storageBucket: "consentmee.appspot.com",
+  messagingSenderId: "341422949639",
+  appId: "1:341422949639:web:b0b3cf4e9279c0394fb1a2",
 };
 
 firebase.initializeApp(firebaseConfig);
