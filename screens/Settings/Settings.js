@@ -6,9 +6,11 @@ import BaseIcon from "./Icon";
 import Chevron from "./Chevron";
 import InfoText from "./InfoText";
 
+import { auth } from "../../firebase/firebase";
+
 import { useDispatch } from "react-redux";
-import { signout } from "../../redux/reducers/userReducer";
-// import firebase from "../../database/firebase";
+import { setUser } from "../../firebase/firebaseSlice";
+import { resetSignee } from "../../components/Assign/AssignSlice";
 
 const styles = StyleSheet.create({
   scroll: {
@@ -38,11 +40,11 @@ export default function Settings(props) {
 
   // logout user
   const signOut = () => {
-    firebase
-      .auth()
+    auth
       .signOut()
       .then(() => {
-        dispatch(signout());
+        dispatch(setUser(null));
+        dispatch(resetSignee());
         navigation.navigate("Login");
       })
       .catch((error) => {

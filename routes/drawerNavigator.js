@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 // navigation
 import TabNavigator from "../routes/tabNavigator";
@@ -7,22 +7,30 @@ import Signup from "../screens/signup";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
+import { auth, generateUserDocument } from "../firebase/firebase";
+import { setUser, selectUser } from "../firebase/firebaseSlice";
 
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator() {
-  const { userInfo } = useSelector((state) => state.user);
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const user = await generateUserDocument(userAuth);
+        const { uid, displayName, email, photoURL } = user;
+        dispatch(setUser({ uid, displayName, email, photoURL }));
+      }
+    });
+  }, [dispatch]);
 
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={TabNavigator} />
-      <Drawer.Screen name="Signin" component={Signin} />
-      <Drawer.Screen name="Signup" component={Signup} />
-      {/* {userInfo !== null && (
-        <Drawer.Screen name="Home" component={TabNavigator} />
-        )} */}
-      {/* {userInfo === null && <Drawer.Screen name="Signin" component={Signin} />}
-      {userInfo === null && <Drawer.Screen name="Signup" component={Signup} />} */}
+      {user !== null && <Drawer.Screen name="Home" component={TabNavigator} />}
+      {user === null && <Drawer.Screen name="Signin" component={Signin} />}
+      {user === null && <Drawer.Screen name="Signup" component={Signup} />}
     </Drawer.Navigator>
   );
 }
