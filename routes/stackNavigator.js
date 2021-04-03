@@ -6,14 +6,14 @@ import {
 } from "@react-navigation/stack";
 
 // import Home from "../screens/home";
-import CategoriesScreen from "../screens/Categories/CategoriesScreen";
+import CategoriesScreen from "../screens/categories/CategoriesScreen";
 import Header from "../shared/header";
 import HeaderImage from "../shared/headerImage";
 import ReviewDetails from "../screens/reviewDetails";
 import About from "../screens/about";
 import Profile from "../screens/profile";
-import Settings from "../screens/Settings";
-import SettingsOptions from "../screens/Settings/Options";
+import Settings from "../screens/settings";
+import SettingsOptions from "../screens/settings/Options";
 import Playground from "../screens/playground/Playground";
 import PlaygroundOptions from "../screens/playground/Options";
 

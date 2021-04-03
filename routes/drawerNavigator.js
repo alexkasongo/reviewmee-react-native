@@ -17,10 +17,20 @@ export default function DrawerNavigator() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const user = await generateUserDocument(userAuth);
-        const { uid, displayName, email, photoURL } = user;
+    auth.onAuthStateChanged(async (res) => {
+      if (res) {
+        console.log(`drawerNavigator.js - 22 - 🏝`, user);
+        // const user = await generateUserDocument(userAuth);
+        const { uid, displayName, email, photoURL } = res;
+        // dispatch(setUser({ uid, displayName, email, photoURL }));
+        console.log(
+          `drawerNavigator.js - 25 - 🍎`,
+          uid,
+          displayName,
+          email,
+          photoURL
+        );
+
         dispatch(setUser({ uid, displayName, email, photoURL }));
       }
     });
@@ -28,9 +38,12 @@ export default function DrawerNavigator() {
 
   return (
     <Drawer.Navigator>
-      {user !== null && <Drawer.Screen name="Home" component={TabNavigator} />}
+      <Drawer.Screen name="Home" component={TabNavigator} />
+      <Drawer.Screen name="Signin" component={Signin} />
+      <Drawer.Screen name="Signup" component={Signup} />
+      {/* {user !== null && <Drawer.Screen name="Home" component={TabNavigator} />}
       {user === null && <Drawer.Screen name="Signin" component={Signin} />}
-      {user === null && <Drawer.Screen name="Signup" component={Signup} />}
+      {user === null && <Drawer.Screen name="Signup" component={Signup} />} */}
     </Drawer.Navigator>
   );
 }

@@ -21,6 +21,7 @@ import FlatButton from "../shared/button";
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
+import { selectUser } from "../firebase/firebaseSlice";
 import { loading } from "../firebase/firebaseSlice";
 // redux stuff end
 
@@ -30,11 +31,16 @@ const loginSchema = yup.object({
   password: yup.string().required().min(4),
 });
 // schema end
-
-const Signin = ({ navigation }) => {
+export default function Signin({ navigation }) {
   const { isLoading } = useSelector((state) => state.firebase);
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
+
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    console.log(`Signin.js - 39 - 🌎`, user);
+  });
 
   const signInWithEmailAndPasswordHandler = (email, password) => {
     // start loading
@@ -123,8 +129,7 @@ const Signin = ({ navigation }) => {
       </TouchableWithoutFeedback>
     );
   }
-};
-export default Signin;
+}
 
 const styles = StyleSheet.create({
   inputStyle: {

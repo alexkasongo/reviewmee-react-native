@@ -5,7 +5,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MainStackNavigator } from "./stackNavigator";
 import { ProfileStackNavigator } from "./stackNavigator";
 import { SettingsStackScreen } from "./stackNavigator";
-import Profile from "../screens/profile";
 import { PlaygroundStackScreen } from "./stackNavigator";
 
 const Tab = createBottomTabNavigator();

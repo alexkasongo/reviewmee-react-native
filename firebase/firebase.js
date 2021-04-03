@@ -3,7 +3,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
 
-import { mergeAnnotations } from "../components/MergeAnnotations/MergeAnnotations";
+// import { mergeAnnotations } from "../components/MergeAnnotations/MergeAnnotations";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA6D4YPfnPY9NymQBh_WSUrFphR27qx9Eg",
@@ -109,7 +109,7 @@ export const updateDocumentToSign = async (docId, email, xfdfSigned) => {
               signedTime: time,
             });
 
-            mergeAnnotations(docRef, xfdfArray);
+            // mergeAnnotations(docRef, xfdfArray);
           }
         }
       } else {

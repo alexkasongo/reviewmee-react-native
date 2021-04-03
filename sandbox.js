@@ -49,46 +49,46 @@ export default function Login({ navigation }) {
   });
 
   // login function
-  const login = (payload) => {
-    // start loading
-    dispatch(loading(true));
-    // console.log(`login.js - 58 - 🌱`, payload.email, payload.password);
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(payload.email, payload.password)
-      .then((res) => {
-        console.log("✅  User logged-in successfully!");
-        const obj = {
-          displayName: res.user.displayName,
-          email: res.user.email,
-          emailVerified: res.user.emailVerified,
-          phoneNumber: res.user.phoneNumber,
-          photoURL: res.user.photoURL,
-          uid: res.user.uid,
-        };
+  // const login = (payload) => {
+  //   // start loading
+  //   dispatch(loading(true));
+  //   // console.log(`login.js - 58 - 🌱`, payload.email, payload.password);
+  //   firebase
+  //     .auth()
+  //     .signInWithEmailAndPassword(payload.email, payload.password)
+  //     .then((res) => {
+  //       console.log("✅  User logged-in successfully!");
+  //       const obj = {
+  //         displayName: res.user.displayName,
+  //         email: res.user.email,
+  //         emailVerified: res.user.emailVerified,
+  //         phoneNumber: res.user.phoneNumber,
+  //         photoURL: res.user.photoURL,
+  //         uid: res.user.uid,
+  //       };
 
-        dispatch(signinUser(obj));
+  //       dispatch(signinUser(obj));
 
-        // stop loading
-        dispatch(loading(false));
+  //       // stop loading
+  //       dispatch(loading(false));
 
-        // navigate to home and clear form
-        // dispatch(success(true));
-      })
-      .then(() => {
-        navigation.navigate("Profile");
-      })
-      .catch((error) => {
-        // stop loading
-        dispatch(loading(false));
+  //       // navigate to home and clear form
+  //       // dispatch(success(true));
+  //     })
+  //     .then(() => {
+  //       navigation.navigate("Profile");
+  //     })
+  //     .catch((error) => {
+  //       // stop loading
+  //       dispatch(loading(false));
 
-        console.log(`login.js - 54 - 🍎`, error.message);
-        // if error
-        // dispatch(isError(true));
-        // error message
-        // dispatch(errorMessage(error));
-      });
-  };
+  //       console.log(`login.js - 54 - 🍎`, error.message);
+  //       // if error
+  //       // dispatch(isError(true));
+  //       // error message
+  //       // dispatch(errorMessage(error));
+  //     });
+  // };
   // login function end
 
   const obj = {

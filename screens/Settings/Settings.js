@@ -10,7 +10,7 @@ import { auth } from "../../firebase/firebase";
 
 import { useDispatch } from "react-redux";
 import { setUser } from "../../firebase/firebaseSlice";
-import { resetSignee } from "../../components/Assign/AssignSlice";
+// import { resetSignee } from "../../components/Assign/AssignSlice";
 
 const styles = StyleSheet.create({
   scroll: {
@@ -44,8 +44,8 @@ export default function Settings(props) {
       .signOut()
       .then(() => {
         dispatch(setUser(null));
-        dispatch(resetSignee());
-        navigation.navigate("Login");
+        // dispatch(resetSignee());
+        props.navigation.navigate("Signin");
       })
       .catch((error) => {
         console.log(`home.js - 70 - 🥶`, error);
