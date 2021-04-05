@@ -94,19 +94,19 @@ const ProfileStackNavigator = () => {
   );
 };
 
-function SettingsStackScreen() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="Options" component={SettingsOptions} />
-    </Stack.Navigator>
-  );
-}
+// function SettingsStackScreen() {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen name="Settings" component={Settings} />
+//       <Stack.Screen name="Options" component={SettingsOptions} />
+//     </Stack.Navigator>
+//   );
+// }
 
 function PlaygroundStackScreen() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Settings" component={Playground} />
+      <Stack.Screen name="Playground" component={Playground} />
       <Stack.Screen name="Options" component={PlaygroundOptions} />
     </Stack.Navigator>
   );
@@ -115,6 +115,6 @@ function PlaygroundStackScreen() {
 export {
   MainStackNavigator,
   ProfileStackNavigator,
-  SettingsStackScreen,
+  // SettingsStackScreen,
   PlaygroundStackScreen,
 };

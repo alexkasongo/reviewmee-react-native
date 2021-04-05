@@ -47,7 +47,7 @@ const BottomTabNavigator = () => {
     >
       <Tab.Screen name="Home" component={MainStackNavigator} />
       <Tab.Screen name="Profile" component={ProfileStackNavigator} />
-      <Tab.Screen name="Settings" component={SettingsStackScreen} />
+      {/* <Tab.Screen name="Settings" component={SettingsStackScreen} /> */}
       <Tab.Screen name="Playground" component={PlaygroundStackScreen} />
     </Tab.Navigator>
   );

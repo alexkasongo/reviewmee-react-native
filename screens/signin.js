@@ -31,6 +31,8 @@ const loginSchema = yup.object({
   password: yup.string().required().min(4),
 });
 // schema end
+
+// Function Export begins here
 export default function Signin({ navigation }) {
   const { isLoading } = useSelector((state) => state.firebase);
   const dispatch = useDispatch();
@@ -39,7 +41,7 @@ export default function Signin({ navigation }) {
   // const user = useSelector(selectUser);
 
   useEffect(() => {
-    console.log(`Signin.js - 39 - 🥶`, navigation.navigate("Playground"));
+    console.log(`Signin.js - 39 - 🥶`, navigation);
   });
 
   const signInWithEmailAndPasswordHandler = (email, password) => {
