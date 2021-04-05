@@ -24,7 +24,7 @@ export default function DrawerNavigator() {
         const { uid, displayName, email, photoURL } = res;
         // dispatch(setUser({ uid, displayName, email, photoURL }));
         console.log(
-          `drawerNavigator.js - 25 - 🍎`,
+          `drawerNavigator.js - 25 - 🍎 doing this just to push up code`,
           uid,
           displayName,
           email,
