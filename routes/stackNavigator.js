@@ -30,7 +30,7 @@ const MainStackNavigator = ({ navigation }) => {
           ...TransitionPresets.ModalPresentationIOS,
         };
       }}
-      mode="modal"
+      // mode="modal"
       // headerMode="none"
     >
       {/* <Stack.Screen name="Home" component={Home} /> */}

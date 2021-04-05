@@ -130,7 +130,7 @@ export default function Login({ navigation }) {
                 <FlatButton text="Signup" onPress={props.handleSubmit} />
                 <Text
                   style={styles.loginText}
-                  onPress={() => navigation.navigate("Login")}
+                  onPress={() => navigation.navigate("Signin")}
                 >
                   Already Registered? Click here to login
                 </Text>

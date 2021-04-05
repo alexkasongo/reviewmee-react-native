@@ -15,9 +15,19 @@ import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 
 import profileStyles from "./ProfileStyle";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setUser, selectUser } from "../../firebase/firebaseSlice";
+
 const styles = StyleSheet.create({ ...profileStyles });
 
 export default function Profile(props) {
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    console.log(`login.js - 42 - 🌎Hopefully this works`, user);
+    // setpostsMasonry(props.posts);
+  });
+
   const initialState = {
     tabs: {
       index: 0,
@@ -32,11 +42,6 @@ export default function Profile(props) {
 
   // State
   const [tabs, setTabs] = useState(initialState.tabs);
-
-  useEffect(() => {
-    // console.log(`login.js - 42 - 🌎Hopefully this works`, props.posts);
-    // setpostsMasonry(props.posts);
-  });
 
   const handleIndexChange = (index) => {
     setTabs({

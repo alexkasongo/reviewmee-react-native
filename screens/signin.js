@@ -21,7 +21,7 @@ import FlatButton from "../shared/button";
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
-import { selectUser } from "../firebase/firebaseSlice";
+import { selectUser, setUser } from "../firebase/firebaseSlice";
 import { loading } from "../firebase/firebaseSlice";
 // redux stuff end
 
@@ -36,10 +36,10 @@ export default function Signin({ navigation }) {
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
 
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
 
   useEffect(() => {
-    console.log(`Signin.js - 39 - 🌎`, user);
+    console.log(`Signin.js - 39 - 🥶`, navigation.navigate("Playground"));
   });
 
   const signInWithEmailAndPasswordHandler = (email, password) => {
@@ -50,12 +50,23 @@ export default function Signin({ navigation }) {
       .then((res) => {
         console.log("✅  User logged-in successfully!");
 
+        const obj = {
+          displayName: res.user.displayName,
+          email: res.user.email,
+          emailVerified: res.user.emailVerified,
+          phoneNumber: res.user.phoneNumber,
+          photoURL: res.user.photoURL,
+          uid: res.user.uid,
+        };
+
+        dispatch(setUser(obj));
+
         // stop loading
         dispatch(loading(false));
+        navigation.navigate("About");
       })
-      .then(() => {
-        navigation.navigate("Profile");
-      })
+      // .then(() => {
+      // })
       .catch((error) => {
         // stop loading
         dispatch(loading(false));
