@@ -38,12 +38,12 @@ export default function DrawerNavigator() {
 
   return (
     <Drawer.Navigator>
-      {/* <Drawer.Screen name="Home" component={TabNavigator} />
+      <Drawer.Screen name="Home" component={TabNavigator} />
       <Drawer.Screen name="Signin" component={Signin} />
-      <Drawer.Screen name="Signup" component={Signup} /> */}
-      {user !== null && <Drawer.Screen name="Home" component={TabNavigator} />}
+      <Drawer.Screen name="Signup" component={Signup} />
+      {/* {user !== null && <Drawer.Screen name="Home" component={TabNavigator} />}
       {user === null && <Drawer.Screen name="Signin" component={Signin} />}
-      {user === null && <Drawer.Screen name="Signup" component={Signup} />}
+      {user === null && <Drawer.Screen name="Signup" component={Signup} />} */}
     </Drawer.Navigator>
   );
 }

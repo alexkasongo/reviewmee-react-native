@@ -41,7 +41,7 @@ export default function Signin({ navigation }) {
   // const user = useSelector(selectUser);
 
   useEffect(() => {
-    console.log(`Signin.js - 39 - 🥶`, navigation);
+    // console.log(`Signin.js - 39 - 🥶`, navigation);
   });
 
   const signInWithEmailAndPasswordHandler = (email, password) => {
@@ -65,10 +65,10 @@ export default function Signin({ navigation }) {
 
         // stop loading
         dispatch(loading(false));
-        navigation.navigate("About");
       })
-      // .then(() => {
-      // })
+      .then(() => {
+        navigation.navigate("ProfileStackNavigator");
+      })
       .catch((error) => {
         // stop loading
         dispatch(loading(false));
@@ -131,7 +131,7 @@ export default function Signin({ navigation }) {
                 {/* <Button title="logout" onPress={() => dispatch(signout())} /> */}
                 <Text
                   style={styles.loginText}
-                  onPress={() => navigation.navigate("Signup")}
+                  onPress={() => navigation.navigate("ProfileStackNavigator")}
                 >
                   Don't have account? Click here to signup
                 </Text>

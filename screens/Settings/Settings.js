@@ -59,7 +59,7 @@ export default function Settings(props) {
       age: "29",
       wife: "Rebecca Holt",
     };
-    props.navigation.navigate("Options", data);
+    props.navigation.navigate("SettingsOptions", data);
   };
 
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);

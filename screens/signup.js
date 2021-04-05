@@ -60,7 +60,7 @@ export default function Login({ navigation }) {
         dispatch(signinUser(obj));
         // stop loading
         dispatch(loading(false));
-        navigation.navigate("Home");
+        navigation.navigate("ProfileStackNavigator");
       })
       .catch((error) => {
         // stop loading

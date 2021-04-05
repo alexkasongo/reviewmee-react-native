@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const Options = (props) => {
+const SettingsOptions = (props) => {
   // get params from props
   const params = props.route.params;
 
@@ -14,4 +14,4 @@ const Options = (props) => {
   );
 };
 
-export default Options;
+export default SettingsOptions;
