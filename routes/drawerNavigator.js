@@ -13,8 +13,8 @@ import { setUser, selectUser } from "../firebase/firebaseSlice";
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator() {
-  const user = useSelector(selectUser);
-  // const dispatch = useDispatch();
+  // const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   auth.onAuthStateChanged(async (res) => {
@@ -32,6 +32,19 @@ export default function DrawerNavigator() {
   //       );
 
   //       dispatch(setUser({ uid, displayName, email, photoURL }));
+  //     }
+  //   });
+  // }, [dispatch]);
+
+  // let user = null;
+
+  // useEffect(() => {
+  //   auth.onAuthStateChanged(async (res) => {
+  //     if (res) {
+  //       console.log(`drawerNavigator.js - 22 - 🏝`, res);
+  //       user = res;
+  //     } else {
+  //       user = null;
   //     }
   //   });
   // }, [dispatch]);

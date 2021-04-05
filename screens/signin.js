@@ -131,7 +131,7 @@ export default function Signin({ navigation }) {
                 {/* <Button title="logout" onPress={() => dispatch(signout())} /> */}
                 <Text
                   style={styles.loginText}
-                  onPress={() => navigation.navigate("ProfileStackNavigator")}
+                  onPress={() => navigation.navigate("Signup")}
                 >
                   Don't have account? Click here to signup
                 </Text>
