@@ -19,18 +19,7 @@ export default function DrawerNavigator() {
   useEffect(() => {
     auth.onAuthStateChanged(async (res) => {
       if (res) {
-        // console.log(`drawerNavigator.js - 22 - 🏝 user LOGGED IN`);
-        // const user = await generateUserDocument(userAuth);
-        // const { uid, displayName, email, photoURL } = res;
-        // dispatch(setUser({ uid, displayName, email, photoURL }));
-        // console.log(
-        //   `drawerNavigator.js - 25 - 🍎 doing this just to push up code`,
-        //   uid,
-        //   displayName,
-        //   email,
-        //   photoURL
-        // );
-        // dispatch(setUser({ uid, displayName, email, photoURL }));
+        // user is logged, you can perform some action here
       } else {
         dispatch(setUser(null));
       }
@@ -46,7 +35,6 @@ export default function DrawerNavigator() {
           <Drawer.Screen name="Signup" component={Signup} />
         </>
       ) : (
-        // <Drawer.Screen name="Signup" component={Signup} />
         // User is signed in
         <Drawer.Screen name="Home" component={TabNavigator} />
       )}
