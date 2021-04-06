@@ -20,7 +20,7 @@ import { setUser, selectUser } from "../../firebase/firebaseSlice";
 
 const styles = StyleSheet.create({ ...profileStyles });
 
-export default function Profile(props) {
+export default function UserProfile(props) {
   const user = useSelector(selectUser);
 
   useEffect(() => {

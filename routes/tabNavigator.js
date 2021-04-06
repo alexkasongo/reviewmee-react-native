@@ -21,6 +21,7 @@ const HomeIcon = ({ focused, tintColor }) => (
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
+      initialRouteName="ProfileStackNavigator"
       screenOptions={({ route }) => ({
         tabBarIcon: (props) => <HomeIcon {...props} />,
       })}

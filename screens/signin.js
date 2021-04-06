@@ -66,9 +66,9 @@ export default function Signin({ navigation }) {
         // stop loading
         dispatch(loading(false));
       })
-      .then(() => {
-        navigation.navigate("ProfileStackNavigator");
-      })
+      // .then(() => {
+      //   navigation.navigate("ProfileStackNavigator");
+      // })
       .catch((error) => {
         // stop loading
         dispatch(loading(false));

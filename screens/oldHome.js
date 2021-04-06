@@ -23,7 +23,7 @@ import { signout } from "../redux/reducers/userReducer";
 // redux stuff end
 
 // ({destructuring - extracting only what we need})
-export default function Home({ navigation }) {
+export default function OldHome({ navigation }) {
   // run on component mount
   useEffect(() => {
     console.log(`login.js - 42 - 👀 check if user is logged in`);
