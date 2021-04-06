@@ -24,7 +24,6 @@ export default function UserProfile(props) {
   const user = useSelector(selectUser);
 
   useEffect(() => {
-    console.log(`login.js - 42 - 🌎Hopefully this works`, user);
     // setpostsMasonry(props.posts);
   });
 
