@@ -47,7 +47,7 @@ const MainStackNavigator = ({ navigation }) => {
       <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
       <Stack.Screen
         name="Modal"
-        component={Modal}
+        component={Playground}
         options={{
           headerShown: false,
         }}
@@ -62,16 +62,6 @@ const Modal = () => (
     <Text>Aleko Modal 🌎</Text>
   </View>
 );
-
-// const Home = ({ navigation }) => (
-//   <View style={{ padding: 50 }}>
-//     <Button
-//       onPress={() => navigation.navigate("Modal")}
-//       title="Activate Modal!!!"
-//     />
-//   </View>
-// );
-
 // dummy test screens end
 
 const ProfileStackNavigator = () => {
