@@ -8,7 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-// import firebase from "../database/firebase";
+import { auth, signInWithGoogle } from "../firebase/firebase";
 
 // form stuff
 import { globalStyles } from "../styles/global";
@@ -19,7 +19,8 @@ import FlatButton from "../shared/button";
 
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
-import { signinUser, loading } from "../redux/reducers/userReducer";
+import { setUser } from "../firebase/firebaseSlice";
+import { loading } from "../firebase/firebaseSlice";
 // redux stuff end
 
 // a schema is a set of rules defined in an object
@@ -32,7 +33,7 @@ const loginSchema = yup.object({
 
 export default function Login({ navigation }) {
   // talk to redux
-  const { isLoading } = useSelector((state) => state.user);
+  const { isLoading } = useSelector((state) => state.firebase);
   const dispatch = useDispatch();
   // talk to redux end
 
@@ -40,8 +41,7 @@ export default function Login({ navigation }) {
   const signup = (payload) => {
     // start loading
     dispatch(loading(true));
-    firebase
-      .auth()
+    auth
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then((res) => {
         res.user.updateProfile({
@@ -57,7 +57,7 @@ export default function Login({ navigation }) {
           uid: res.user.uid,
         };
         console.log("✅", obj);
-        dispatch(signinUser(obj));
+        dispatch(setUser(obj));
         // stop loading
         dispatch(loading(false));
         navigation.navigate("ProfileStackNavigator");
