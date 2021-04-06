@@ -47,7 +47,7 @@ export default function Login({ navigation }) {
         res.user.updateProfile({
           displayName: payload.name,
         });
-        console.log("User registered successfully!");
+        console.log("🥰 User registered successfully!");
         const obj = {
           displayName: payload.name,
           email: res.user.email,
@@ -60,12 +60,11 @@ export default function Login({ navigation }) {
         dispatch(setUser(obj));
         // stop loading
         dispatch(loading(false));
-        navigation.navigate("ProfileStackNavigator");
       })
       .catch((error) => {
         // stop loading
         dispatch(loading(false));
-        console.log(`login.js - 54 - 🍎`, error.message);
+        console.log(`login.js - 54 - 🤬`, error.message);
       });
   };
   // login function end
