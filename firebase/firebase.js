@@ -59,32 +59,46 @@ const getUserDocument = async (uid) => {
   }
 };
 
-export const addDocumentToSign = async (uid, email, docRef, emails) => {
-  if (!uid) return;
-  const signed = false;
-  const xfdf = [];
-  const signedBy = [];
-  const requestedTime = new Date();
-  const signedTime = "";
-  firestore
-    .collection("documentsToSign")
-    .add({
-      uid,
-      email,
-      docRef,
-      emails,
-      xfdf,
-      signedBy,
-      signed,
-      requestedTime,
-      signedTime,
-    })
-    .then(function (docRef) {
-      console.log("Document written with ID: ", docRef.id);
-    })
-    .catch(function (error) {
-      console.error("Error adding document: ", error);
-    });
+export const aleko = () => {
+  console.log(`firebase.js - 63 - variable you are here<<<>>>>`);
+};
+
+export const addDocumentToSign = () => {
+  // export const addDocumentToSign = (uid, email, docRef, emails) => {
+  console.log(
+    `firebase.js - 63 - 🍎 >>You are here<<`,
+    uid,
+    email,
+    docRef,
+    emails
+  );
+  // if user doesn't exist stop
+  // if (!uid) return;
+  // // if user exists continue
+  // const signed = false;
+  // // const xfdf = [];
+  // const signedBy = [];
+  // const requestedTime = new Date();
+  // const signedTime = "";
+  // firestore
+  //   .collection("documentsToSign")
+  //   .add({
+  //     uid,
+  //     email,
+  //     docRef,
+  //     emails,
+  //     // xfdf,
+  //     signedBy,
+  //     signed,
+  //     requestedTime,
+  //     signedTime,
+  //   })
+  //   .then(function (docRef) {
+  //     console.log("Document written with ID: ", docRef.id);
+  //   })
+  //   .catch(function (error) {
+  //     console.error("Error adding document: ", error);
+  //   });
 };
 
 export const updateDocumentToSign = async (docId, email, xfdfSigned) => {

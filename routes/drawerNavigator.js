@@ -9,6 +9,7 @@ import Signup from "../screens/signup";
 import { useSelector, useDispatch } from "react-redux";
 import { auth, generateUserDocument } from "../firebase/firebase";
 import { setUser, selectUser } from "../firebase/firebaseSlice";
+// redux end
 
 const Drawer = createDrawerNavigator();
 
@@ -17,6 +18,7 @@ export default function DrawerNavigator() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(`drawerNavigator.js - 23 - 🩳`, user);
     auth.onAuthStateChanged(async (res) => {
       if (res) {
         // user is logged, you can perform some action here
