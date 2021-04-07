@@ -20,7 +20,7 @@ export default function Playground() {
   const data = { name: "Aleko", age: 29 };
 
   useEffect(() => {
-    console.log(`drawerNavigator.js - 23 - 👘`, user);
+    console.log(`drawerNavigator.js - 23 - 👘 Playground open`);
   }, [dispatch]);
 
   async function execute(data) {
