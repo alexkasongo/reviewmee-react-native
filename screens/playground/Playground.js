@@ -38,6 +38,35 @@ export default function Playground() {
     // create unique doc code using file name
     addDocumentToSign(user.uid, user.email, uri, docRef);
   }
+
+  // add document to sign #############################################
+  // const uploadForSigning = async () => {
+  //   // upload the PDF with fields as AcroForm
+  //   const storageRef = storage.ref();
+  //   const referenceString = `docToSign/${uid}${Date.now()}.pdf`;
+  //   const docRef = storageRef.child(referenceString);
+  //   const { docViewer, annotManager } = instance;
+  //   const doc = docViewer.getDocument();
+  //   const xfdfString = await annotManager.exportAnnotations({
+  //     widgets: true,
+  //     fields: true,
+  //   });
+  //   const data = await doc.getFileData({ xfdfString });
+  //   const arr = new Uint8Array(data);
+  //   const blob = new Blob([arr], { type: "application/pdf" });
+  //   docRef.put(blob).then(function (snapshot) {
+  //     console.log("Uploaded the blob");
+  //   });
+
+  //   // create an entry in the database
+  //   const emails = assignees.map((assignee) => {
+  //     return assignee.email;
+  //   });
+  //   await addDocumentToSign(uid, email, referenceString, emails);
+  //   dispatch(resetSignee());
+  //   navigate("/");
+  // };
+  // add document to sign end #############################################
   return (
     <View style={styles.container}>
       <Button title="Sign" onPress={() => execute(data)} />
