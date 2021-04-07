@@ -26,14 +26,17 @@ export default function Playground() {
   async function execute(data) {
     const html = `<h1> hello ${data.name} Please Sign below if you consent to riding bikes </h1>`;
     const { uri } = await Print.printToFileAsync({ html });
+
+    const docRef = "To be created";
     // open sharing options here
     // Sharing.shareAsync(uri);
 
     // email signee contract
-    console.log(`Playground.js - 16 - >>> 🌱 PFD <<<`, uri);
+    // console.log(`Playground.js - 16 - >>> 🌱 PFD <<<`, uri);
 
-    // aleko();
-    addDocumentToSign(user.uid, user.email, user.uid, user.email);
+    // doc should have unique ref
+    // create unique doc code using file name
+    addDocumentToSign(user.uid, user.email, uri, docRef);
   }
   return (
     <View style={styles.container}>
