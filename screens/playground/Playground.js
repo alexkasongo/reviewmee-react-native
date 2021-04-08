@@ -4,6 +4,8 @@ import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system"; // yarn remove package
 // import Pdf from "react-native-pdf";
+import base64topdf from "base64topdf";
+// const base64Pdf = require("base64topdf");
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -13,6 +15,8 @@ import { setUser, selectUser } from "../../firebase/firebaseSlice";
 // from firebase
 import { storage, addDocumentToSign } from "../../firebase/firebase";
 import { aleko } from "../../firebase/firebase";
+
+const convertor = base64topdf;
 
 export default function Playground() {
   // get user data
@@ -29,10 +33,12 @@ export default function Playground() {
     const html = `<h1> hello ${data.name} Please Sign below if you consent to riding bikes </h1>`;
     const { uri, base64 } = await Print.printToFileAsync({
       html,
-      // base64: true,
+      base64: true,
     });
 
     const source = { uri: `data:application/pdf;base64,${base64}` };
+
+    let decodedBase64 = convertor.base64Decode(`${base64}`, "TestPdfName");
 
     // const fullPdf = Pdf
 
@@ -48,10 +54,11 @@ export default function Playground() {
 
     // email signee contract
     console.log(`Playground.js - 16 - >>> 🌱 PFD <<<`, {
-      uri,
+      // uri,
       // fileBase64,
       // base64,
-      source,
+      // source,
+      // decodedBase64,
     });
 
     // doc should have unique ref
@@ -60,22 +67,22 @@ export default function Playground() {
 
     // Testing the storage functionality
     // ########################
-    storage
-      // .ref("docToSign/" + user.uid + logoFileExt)
-      .ref(`docToSign/${user.uid}${Date.now()}.pdf`)
-      .put(source)
-      .then((fileData) => {
-        let fullPath = fileData.metadata.fullPath;
-        return firebase.storage().ref(fullPath).getDownloadURL();
-      })
-      .then((URL) => {
-        pdfUrl = URL;
-        console.log(`Playground.js - 55 - 🍎 >>>PDF URL<<<`, pdfUrl);
-        return pdfUrl;
-      })
-      .catch((error) => {
-        console.log(`Playground.js - 82 - 👑`, error);
-      });
+    // storage
+    //   // .ref("docToSign/" + user.uid + logoFileExt)
+    //   .ref(`docToSign/${user.uid}${Date.now()}.pdf`)
+    //   .put(source)
+    //   .then((fileData) => {
+    //     let fullPath = fileData.metadata.fullPath;
+    //     return firebase.storage().ref(fullPath).getDownloadURL();
+    //   })
+    //   .then((URL) => {
+    //     pdfUrl = URL;
+    //     console.log(`Playground.js - 55 - 🍎 >>>PDF URL<<<`, pdfUrl);
+    //     return pdfUrl;
+    //   })
+    //   .catch((error) => {
+    //     console.log(`Playground.js - 82 - 👑`, error);
+    //   });
     // ########################
   }
 
