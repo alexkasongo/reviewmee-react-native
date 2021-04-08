@@ -39,7 +39,7 @@ export default function Playground() {
     addDocumentToSign(user.uid, user.email, uri, docRef);
   }
 
-  // add document to sign #############################################
+  // add document to sign to storage #############################################
   // const uploadForSigning = async () => {
   //   // upload the PDF with fields as AcroForm
   //   const storageRef = storage.ref();
