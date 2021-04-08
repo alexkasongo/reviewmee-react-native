@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
-import * as FileSystem from "expo-file-system";
+import * as FileSystem from "expo-file-system"; // yarn remove package
+// import Pdf from "react-native-pdf";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -28,8 +29,12 @@ export default function Playground() {
     const html = `<h1> hello ${data.name} Please Sign below if you consent to riding bikes </h1>`;
     const { uri, base64 } = await Print.printToFileAsync({
       html,
-      base64: true,
+      // base64: true,
     });
+
+    const source = { uri: `data:application/pdf;base64,${base64}` };
+
+    // const fullPdf = Pdf
 
     // let fileBase64 = await FileSystem.readAsStringAsync(fileUri.uri, {
     //   encoding: "base64",
@@ -45,7 +50,8 @@ export default function Playground() {
     console.log(`Playground.js - 16 - >>> 🌱 PFD <<<`, {
       uri,
       // fileBase64,
-      base64,
+      // base64,
+      source,
     });
 
     // doc should have unique ref
@@ -54,22 +60,22 @@ export default function Playground() {
 
     // Testing the storage functionality
     // ########################
-    // storage
-    //   // .ref("docToSign/" + user.uid + logoFileExt)
-    //   .ref(`docToSign/${user.uid}${Date.now()}.pdf`)
-    //   .put(uri)
-    //   .then((fileData) => {
-    //     let fullPath = fileData.metadata.fullPath;
-    //     return firebase.storage().ref(fullPath).getDownloadURL();
-    //   })
-    //   .then((URL) => {
-    //     pdfUrl = URL;
-    //     console.log(`Playground.js - 55 - 🍎 >>>PDF URL<<<`, pdfUrl);
-    //     return pdfUrl;
-    //   })
-    //   .catch((error) => {
-    //     console.log(`Playground.js - 82 - 👑`, error);
-    //   });
+    storage
+      // .ref("docToSign/" + user.uid + logoFileExt)
+      .ref(`docToSign/${user.uid}${Date.now()}.pdf`)
+      .put(source)
+      .then((fileData) => {
+        let fullPath = fileData.metadata.fullPath;
+        return firebase.storage().ref(fullPath).getDownloadURL();
+      })
+      .then((URL) => {
+        pdfUrl = URL;
+        console.log(`Playground.js - 55 - 🍎 >>>PDF URL<<<`, pdfUrl);
+        return pdfUrl;
+      })
+      .catch((error) => {
+        console.log(`Playground.js - 82 - 👑`, error);
+      });
     // ########################
   }
 
@@ -103,6 +109,24 @@ export default function Playground() {
   return (
     <View style={styles.container}>
       <Button title="Sign" onPress={() => execute(data)} />
+      {/* <View style={styles.container}>
+        <Pdf
+          source={source}
+          onLoadComplete={(numberOfPages, filePath) => {
+            console.log(`number of pages: ${numberOfPages}`);
+          }}
+          onPageChanged={(page, numberOfPages) => {
+            console.log(`current page: ${page}`);
+          }}
+          onError={(error) => {
+            console.log(error);
+          }}
+          onPressLink={(uri) => {
+            console.log(`Link presse: ${uri}`);
+          }}
+          style={styles.pdf}
+        />
+      </View> */}
     </View>
   );
 }
@@ -113,5 +137,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  pdf: {
+    flex: 1,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   },
 });
