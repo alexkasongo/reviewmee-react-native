@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
+import * as FileSystem from "expo-file-system";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -25,16 +26,27 @@ export default function Playground() {
 
   async function execute(data) {
     const html = `<h1> hello ${data.name} Please Sign below if you consent to riding bikes </h1>`;
-    const { uri } = await Print.printToFileAsync({ html });
+    const { uri, base64 } = await Print.printToFileAsync({
+      html,
+      base64: true,
+    });
 
-    const referenceString = `docToSign/${uri}${Date.now()}.pdf`;
+    // let fileBase64 = await FileSystem.readAsStringAsync(fileUri.uri, {
+    //   encoding: "base64",
+    // });
+
+    // const referenceString = `docToSign/${uri}${Date.now()}.pdf`;
     // open sharing options here
     // Sharing.shareAsync(uri);
 
     // console.log(`Playground.js - 34 - >>>STRING<<<`, referenceString);
 
     // email signee contract
-    // console.log(`Playground.js - 16 - >>> 🌱 PFD <<<`, uri);
+    console.log(`Playground.js - 16 - >>> 🌱 PFD <<<`, {
+      uri,
+      // fileBase64,
+      base64,
+    });
 
     // doc should have unique ref
     // create unique doc code using file name
@@ -42,22 +54,22 @@ export default function Playground() {
 
     // Testing the storage functionality
     // ########################
-    storage
-      // .ref("docToSign/" + user.uid + logoFileExt)
-      .ref(`docToSign/${user.uid}${Date.now()}.pdf`)
-      .put(uri)
-      .then((fileData) => {
-        let fullPath = fileData.metadata.fullPath;
-        return firebase.storage().ref(fullPath).getDownloadURL();
-      })
-      .then((URL) => {
-        pdfUrl = URL;
-        console.log(`Playground.js - 55 - 🍎 >>>PDF URL<<<`, pdfUrl);
-        return pdfUrl;
-      })
-      .catch((error) => {
-        console.log(`Playground.js - 82 - 👑`, error);
-      });
+    // storage
+    //   // .ref("docToSign/" + user.uid + logoFileExt)
+    //   .ref(`docToSign/${user.uid}${Date.now()}.pdf`)
+    //   .put(uri)
+    //   .then((fileData) => {
+    //     let fullPath = fileData.metadata.fullPath;
+    //     return firebase.storage().ref(fullPath).getDownloadURL();
+    //   })
+    //   .then((URL) => {
+    //     pdfUrl = URL;
+    //     console.log(`Playground.js - 55 - 🍎 >>>PDF URL<<<`, pdfUrl);
+    //     return pdfUrl;
+    //   })
+    //   .catch((error) => {
+    //     console.log(`Playground.js - 82 - 👑`, error);
+    //   });
     // ########################
   }
 
