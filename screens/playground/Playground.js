@@ -101,27 +101,15 @@ export default function Playground() {
     // navigate("/");
   };
   // add document to sign end #############################################
+
+  const source = {
+    uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
+    cache: true,
+  };
+
   return (
     <View style={styles.container}>
       <Button title="Sign" onPress={() => execute(data)} />
-      {/* <View style={styles.container}>
-        <Pdf
-          source={source}
-          onLoadComplete={(numberOfPages, filePath) => {
-            console.log(`number of pages: ${numberOfPages}`);
-          }}
-          onPageChanged={(page, numberOfPages) => {
-            console.log(`current page: ${page}`);
-          }}
-          onError={(error) => {
-            console.log(error);
-          }}
-          onPressLink={(uri) => {
-            console.log(`Link presse: ${uri}`);
-          }}
-          style={styles.pdf}
-        />
-      </View> */}
     </View>
   );
 }
