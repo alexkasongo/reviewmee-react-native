@@ -31,7 +31,11 @@ export default function Playground() {
       base64: true,
     });
 
-    const source = { uri: `data:application/pdf;base64,${base64}` };
+    // const base64Data = base64;
+    const base64Response = await fetch(`data:application/pdf;base64,${base64}`);
+    const blob = await base64Response;
+
+    const source = `data:application/pdf;base64,${base64}`;
 
     // const fullPdf = Pdf
 
@@ -45,8 +49,9 @@ export default function Playground() {
 
     // email signee contract
     console.log(`Playground.js - 16 - >>> 🌱 PFD <<<`, {
-      uri,
+      // uri,
       // source,
+      blob,
     });
 
     // doc should have unique ref
