@@ -32,7 +32,9 @@ export default function Playground() {
     });
 
     // const base64Data = base64;
-    const base64Response = await fetch(`data:application/pdf;base64,${base64}`);
+    const base64Response = await fetch(
+      "https://jsonplaceholder.typicode.com/todos/1"
+    ).then((response) => response.json());
     const blob = await base64Response;
 
     const source = `data:application/pdf;base64,${base64}`;
