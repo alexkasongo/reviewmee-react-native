@@ -3,9 +3,6 @@ import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system"; // yarn remove package
-// import Pdf from "react-native-pdf";
-import base64topdf from "base64topdf";
-// const base64Pdf = require("base64topdf");
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -15,8 +12,6 @@ import { setUser, selectUser } from "../../firebase/firebaseSlice";
 // from firebase
 import { storage, addDocumentToSign } from "../../firebase/firebase";
 import { aleko } from "../../firebase/firebase";
-
-const convertor = base64topdf;
 
 export default function Playground() {
   // get user data
@@ -38,8 +33,6 @@ export default function Playground() {
 
     const source = { uri: `data:application/pdf;base64,${base64}` };
 
-    let decodedBase64 = convertor.base64Decode(`${base64}`, "TestPdfName");
-
     // const fullPdf = Pdf
 
     // let fileBase64 = await FileSystem.readAsStringAsync(fileUri.uri, {
@@ -50,15 +43,10 @@ export default function Playground() {
     // open sharing options here
     // Sharing.shareAsync(uri);
 
-    // console.log(`Playground.js - 34 - >>>STRING<<<`, referenceString);
-
     // email signee contract
     console.log(`Playground.js - 16 - >>> 🌱 PFD <<<`, {
-      // uri,
-      // fileBase64,
-      // base64,
+      uri,
       // source,
-      // decodedBase64,
     });
 
     // doc should have unique ref
