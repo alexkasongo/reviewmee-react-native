@@ -52,8 +52,8 @@ export default function Playground() {
     // email signee contract
     console.log(`Playground.js - 16 - >>> 🌱 PFD <<<`, {
       // uri,
-      // source,
-      blob,
+      source,
+      // blob,
     });
 
     // doc should have unique ref
