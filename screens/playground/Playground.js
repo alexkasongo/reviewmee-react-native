@@ -31,58 +31,23 @@ export default function Playground() {
       base64: true,
     });
 
-    const source = base64;
-    // const source = `data:application/pdf;base64,${base64}`;
+    // Convert image path to blob react native
+    const uploadPdf = async (imageUri) => {
+      const response = await fetch(imageUri);
+      const blob = await response.blob();
 
-    // const fullPdf = Pdf
+      const storageRef = storage.ref();
+      storageRef
+        .child(`docToSign/${user.uid}${Date.now()}.pdf`)
+        .put(blob)
+        .then(function (snapshot) {
+          console.log("PDF blob created and upload successfuly Aleko 😊");
+        });
+    };
 
-    // let fileBase64 = await FileSystem.readAsStringAsync(fileUri.uri, {
-    //   encoding: "base64",
-    // });
-
-    // const referenceString = `docToSign/${uri}${Date.now()}.pdf`;
-    // open sharing options here
+    uploadPdf(uri);
     // Sharing.shareAsync(uri);
-
-    // email signee contract
-
-    var url = `data:image/png;base64, ${base64}`;
-
-    fetch(url)
-      .then((res) => res.blob())
-      .then(console.log(`Playground.js - 54 - 🍎`, url));
-    // const storageRef = storage.ref();
-    // storageRef
-    //   .child(`docToSign/${user.uid}${Date.now()}.pdf`)
-    //   .putString(base64, "base64", { contentType: "application/pdf" })
-    //   .then(function (snapshot) {
-    //     console.log("🌦", snapshot);
-    //   });
-
-    // console.log(`Playground.js - 59 - 🍎`, blob);
   }
-
-  // add document to sign to storage #############################################
-  const uploadForSigning = async (test) => {
-    // upload the PDF with fields as AcroForm
-    const storageRef = storage.ref();
-    // const referenceString = `docToSign/${user.uid}${Date.now()}.pdf`; // we could create this in the execute function call
-    // const docRef = storageRef.child(referenceString);
-
-    // docRef.putString(source, "base64").then(function (snapshot) {
-    //   console.log("Uploaded the blob");
-    // });
-
-    storageRef
-      .child(`docToSign/${user.uid}${Date.now()}.pdf`)
-      .putString(test, "base64", { contentType: "application/pdf" })
-      .then(function (snapshot) {
-        console.log("🌦", snapshot);
-      });
-
-    // console.log(`Playground.js - 99 - 🌎`, test);
-  };
-  // add document to sign end #############################################
 
   const source = {
     uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",

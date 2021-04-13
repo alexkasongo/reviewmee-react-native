@@ -9,6 +9,16 @@ import DrawerNavigator from "./routes/drawerNavigator";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 
+import { decode, encode } from "base-64";
+
+if (!global.btoa) {
+  global.btoa = encode;
+}
+
+if (!global.atob) {
+  global.atob = decode;
+}
+
 export default function App() {
   // Load fonts before rendering running the rest of the code below
   const [fontsLoaded] = useFonts({
