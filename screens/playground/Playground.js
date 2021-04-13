@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system"; // yarn remove package
+import trialContract from "../../contracts/trialContract";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -25,28 +26,29 @@ export default function Playground() {
   }, [dispatch]);
 
   async function execute(data) {
-    const html = `<h1> hello ${data.name} Please Sign below if you consent to riding bikes </h1>`;
+    const html = `${trialContract}`;
     const { uri, base64 } = await Print.printToFileAsync({
       html,
       base64: true,
     });
 
     // Convert image path to blob react native
-    const uploadPdf = async (imageUri) => {
-      const response = await fetch(imageUri);
-      const blob = await response.blob();
+    // const uploadPdf = async (imageUri) => {
+    //   const response = await fetch(imageUri);
+    //   const blob = await response.blob();
 
-      const storageRef = storage.ref();
-      storageRef
-        .child(`docToSign/${user.uid}${Date.now()}.pdf`)
-        .put(blob)
-        .then(function (snapshot) {
-          console.log("PDF blob created and upload successfuly Aleko 😊");
-        });
-    };
+    //   const storageRef = storage.ref();
+    //   storageRef
+    //     .child(`docToSign/${user.uid}${Date.now()}.pdf`)
+    //     .put(blob)
+    //     .then(function (snapshot) {
+    //       console.log("PDF blob created and upload successfuly Aleko 😊");
+    //     });
+    // };
 
-    uploadPdf(uri);
-    // Sharing.shareAsync(uri);
+    // uploadPdf(uri);
+
+    Sharing.shareAsync(uri);
   }
 
   const source = {
