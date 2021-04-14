@@ -49,34 +49,15 @@ export default function Playground() {
           return storage.ref(fullPath).getDownloadURL();
         })
         .then((downloadURL) => {
-          // create an entry in the database
           let pdfUrl = downloadURL;
           console.log(
             "PDF blob created and upload successfuly Aleko 😊",
             pdfUrl
           );
-          return pdfUrl;
+          // create an entry in the database
+          addDocumentToSign(user.uid, user.email, "consentContract", pdfUrl);
         });
       // ##########################################
-
-      // Upload
-      // const storageRef = storage.ref();
-      // storageRef
-      //   .child(`docToSign/${user.uid}${Date.now()}.pdf`)
-      //   .put(blob)
-      //   .then((fileData) => {
-      //     let fullPath = fileData.metadata.fullPath;
-      //     return storage.ref(fullPath).getDownloadURL();
-      //   })
-      //   .then((downloadURL) => {
-      //     // create an entry in the database
-      //     let pdfUrl = downloadURL;
-      //     console.log(
-      //       "PDF blob created and upload successfuly Aleko 😊",
-      //       pdfUrl
-      //     );
-      //     return pdfUrl;
-      //   });
     };
 
     uploadPdf(uri);

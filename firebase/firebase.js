@@ -24,10 +24,12 @@ export const storage = firebase.storage();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
+// Signin with Google
 export const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
 };
 
+// Generate user document
 export const generateUserDocument = async (user, additionalData) => {
   if (!user) return;
   const userRef = firestore.doc(`users/${user.uid}`);
@@ -48,6 +50,7 @@ export const generateUserDocument = async (user, additionalData) => {
   return getUserDocument(user.uid);
 };
 
+// Get user document
 const getUserDocument = async (uid) => {
   if (!uid) return null;
   try {
@@ -61,6 +64,7 @@ const getUserDocument = async (uid) => {
   }
 };
 
+// Add document to sign
 export const addDocumentToSign = (uid, email, doc, docRef) => {
   console.log(`firebase.js - 63 - 🍎 >>You are here<<`, {
     uid,
@@ -69,32 +73,33 @@ export const addDocumentToSign = (uid, email, doc, docRef) => {
     docRef,
   });
   // if user doesn't exist stop
-  // if (!uid) return;
-  // // if user exists continue
-  // const signed = false;
-  // const signedBy = [];
-  // const requestedTime = new Date();
-  // const signedTime = "";
-  // // const emails = emails
-  // firestore
-  //   .collection("documentsToSign")
-  //   .add({
-  //     uid,
-  //     email,
-  //     docRef,
-  //     signedBy,
-  //     signed,
-  //     requestedTime,
-  //     signedTime,
-  //   })
-  //   .then(function (docRef) {
-  //     console.log("💯 Document written with ID: ", docRef.id);
-  //   })
-  //   .catch(function (error) {
-  //     console.error("🥶 Error adding document: ", error);
-  //   });
+  if (!uid) return;
+  // if user exists continue
+  const signed = false;
+  const signedBy = [];
+  const requestedTime = new Date();
+  const signedTime = "";
+  // const emails = emails
+  firestore
+    .collection("documentsToSign")
+    .add({
+      uid,
+      email,
+      doc,
+      docRef,
+      signedBy,
+      signed,
+      requestedTime,
+      signedTime,
+    })
+    .then(function (docRef) {
+      console.log("💯 Document written with ID: ", docRef.id);
+    })
+    .catch(function (error) {
+      console.error("🥶 Error adding document: ", error);
+    });
 };
-
+// Update document to sign
 export const updateDocumentToSign = async (docId, email, xfdfSigned) => {
   const documentRef = firestore.collection("documentsToSign").doc(docId);
   documentRef
@@ -129,6 +134,7 @@ export const updateDocumentToSign = async (docId, email, xfdfSigned) => {
     });
 };
 
+// Search for document to sign
 export const searchForDocumentToSign = async (email) => {
   const documentsRef = firestore.collection("documentsToSign");
   const query = documentsRef
@@ -169,6 +175,7 @@ export const searchForDocumentToSign = async (email) => {
   return docIds;
 };
 
+// Search for signed document
 export const searchForDocumentsSigned = async (email) => {
   const documentsRef = firestore.collection("documentsToSign");
 
