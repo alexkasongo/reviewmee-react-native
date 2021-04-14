@@ -18,7 +18,7 @@ export default function DrawerNavigator() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`drawerNavigator.js - 23 - 🩳`, user);
+    // console.log(`drawerNavigator.js - 23 - 🩳`, user);
     auth.onAuthStateChanged(async (res) => {
       if (res) {
         // user is logged, you can perform some action here
