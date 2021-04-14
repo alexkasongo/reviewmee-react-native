@@ -30,25 +30,27 @@ export default function Playground() {
     const { uri, base64 } = await Print.printToFileAsync({
       html,
       base64: true,
+      // width: 2480,
+      // height: 3508,
     });
 
     // Convert image path to blob react native
-    // const uploadPdf = async (imageUri) => {
-    //   const response = await fetch(imageUri);
-    //   const blob = await response.blob();
+    const uploadPdf = async (imageUri) => {
+      const response = await fetch(imageUri);
+      const blob = await response.blob();
 
-    //   const storageRef = storage.ref();
-    //   storageRef
-    //     .child(`docToSign/${user.uid}${Date.now()}.pdf`)
-    //     .put(blob)
-    //     .then(function (snapshot) {
-    //       console.log("PDF blob created and upload successfuly Aleko 😊");
-    //     });
-    // };
+      const storageRef = storage.ref();
+      storageRef
+        .child(`docToSign/${user.uid}${Date.now()}.pdf`)
+        .put(blob)
+        .then(function (snapshot) {
+          console.log("PDF blob created and upload successfuly Aleko 😊");
+        });
+    };
 
-    // uploadPdf(uri);
+    uploadPdf(uri);
 
-    Sharing.shareAsync(uri);
+    // Sharing.shareAsync(uri);
   }
 
   const source = {
