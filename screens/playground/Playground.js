@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system"; // yarn remove package
+import PDFReader from "rn-pdf-reader-js";
 import { trialContract } from "../../contracts/trialContract";
 
 // redux
@@ -11,8 +12,11 @@ import { setUser, selectUser } from "../../firebase/firebaseSlice";
 // redux end
 
 // from firebase
-import { storage, addDocumentToSign } from "../../firebase/firebase";
-import { aleko } from "../../firebase/firebase";
+import {
+  storage,
+  addDocumentToSign,
+  getUserDocument,
+} from "../../firebase/firebase";
 
 export default function Playground() {
   // get user data
@@ -20,7 +24,8 @@ export default function Playground() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`drawerNavigator.js - 23 - 👘 Playground open`, user);
+    getUserDocument(user.uid);
+    console.log(`drawerNavigator.js - 23 - 👘 Playground open`);
   }, [dispatch]);
 
   async function execute() {
@@ -71,9 +76,23 @@ export default function Playground() {
   };
 
   return (
-    <View style={styles.container}>
-      <Button title="Sign" onPress={() => execute()} />
-    </View>
+    // <View style={styles.container}>
+    //   <View>
+    //     <PDFReader
+    //       source={{
+    //         uri:
+    //           "https://firebasestorage.googleapis.com/v0/b/consentmee.appspot.com/o/docToSign%2FcbjWQXo0D4dMRhiBZcfA49bQbpI31618384371294.pdf?alt=media&token=0b0f311d-5224-4726-b7cf-79662e194165",
+    //       }}
+    //     />
+    //   </View>
+    //   {/* <Button title="Sign" onPress={() => execute()} /> */}
+    // </View>
+
+    <PDFReader
+      source={{
+        uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
+      }}
+    />
   );
 }
 
