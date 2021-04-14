@@ -8,11 +8,16 @@ import { trialContract } from "../../contracts/trialContract";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, selectUser } from "../../firebase/firebaseSlice";
+import {
+  setUser,
+  selectUser,
+  setUserDocs,
+  selectUserDocs,
+} from "../../firebase/firebaseSlice";
 // redux end
 
 // from firebase
-import { storage, addDocumentToSign } from "../../firebase/firebase";
+import { storage, addDocumentToSign, firestore } from "../../firebase/firebase";
 
 export default function Playground() {
   // get user data
@@ -20,6 +25,22 @@ export default function Playground() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // Get user documents and set state
+    const getUserDocument = async (uid) => {
+      if (!uid) return null;
+      try {
+        const userDocument = await firestore.doc(`users/${uid}`).get();
+        console.log(`Playground.js - 36 - 🌎`, userDocument.data());
+        return {
+          uid,
+          ...userDocument.data(),
+        };
+      } catch (error) {
+        console.error("Error fetching user", error);
+      }
+    };
+    getUserDocument(user.uid);
+
     console.log(`drawerNavigator.js - 23 - 👘 Playground open`);
   }, [dispatch]);
 
