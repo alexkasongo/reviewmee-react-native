@@ -19,13 +19,11 @@ export default function Playground() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  const data = { name: "Aleko", age: 29 };
-
   useEffect(() => {
-    console.log(`drawerNavigator.js - 23 - 👘 Playground open`);
+    console.log(`drawerNavigator.js - 23 - 👘 Playground open`, user);
   }, [dispatch]);
 
-  async function execute(data) {
+  async function execute() {
     const html = `${trialContract.html}`;
     const { uri, base64 } = await Print.printToFileAsync({
       html,
@@ -34,18 +32,51 @@ export default function Playground() {
       // height: 3508,
     });
 
-    // Convert image path to blob react native
+    // upload the PDF
     const uploadPdf = async (imageUri) => {
+      // Convert image path to blob react native
       const response = await fetch(imageUri);
       const blob = await response.blob();
 
+      // ##########################################
       const storageRef = storage.ref();
-      storageRef
-        .child(`docToSign/${user.uid}${Date.now()}.pdf`)
+      const referenceString = `docToSign/${user.uid}${Date.now()}.pdf`;
+      const docRef = storageRef.child(referenceString);
+      docRef
         .put(blob)
-        .then(function (snapshot) {
-          console.log("PDF blob created and upload successfuly Aleko 😊");
+        .then((fileData) => {
+          let fullPath = fileData.metadata.fullPath;
+          return storage.ref(fullPath).getDownloadURL();
+        })
+        .then((downloadURL) => {
+          // create an entry in the database
+          let pdfUrl = downloadURL;
+          console.log(
+            "PDF blob created and upload successfuly Aleko 😊",
+            pdfUrl
+          );
+          return pdfUrl;
         });
+      // ##########################################
+
+      // Upload
+      // const storageRef = storage.ref();
+      // storageRef
+      //   .child(`docToSign/${user.uid}${Date.now()}.pdf`)
+      //   .put(blob)
+      //   .then((fileData) => {
+      //     let fullPath = fileData.metadata.fullPath;
+      //     return storage.ref(fullPath).getDownloadURL();
+      //   })
+      //   .then((downloadURL) => {
+      //     // create an entry in the database
+      //     let pdfUrl = downloadURL;
+      //     console.log(
+      //       "PDF blob created and upload successfuly Aleko 😊",
+      //       pdfUrl
+      //     );
+      //     return pdfUrl;
+      //   });
     };
 
     uploadPdf(uri);
@@ -60,7 +91,7 @@ export default function Playground() {
 
   return (
     <View style={styles.container}>
-      <Button title="Sign" onPress={() => execute(data)} />
+      <Button title="Sign" onPress={() => execute()} />
     </View>
   );
 }
