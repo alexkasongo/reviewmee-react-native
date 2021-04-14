@@ -12,11 +12,7 @@ import { setUser, selectUser } from "../../firebase/firebaseSlice";
 // redux end
 
 // from firebase
-import {
-  storage,
-  addDocumentToSign,
-  getUserDocument,
-} from "../../firebase/firebase";
+import { storage, addDocumentToSign } from "../../firebase/firebase";
 
 export default function Playground() {
   // get user data
@@ -24,7 +20,6 @@ export default function Playground() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getUserDocument(user.uid);
     console.log(`drawerNavigator.js - 23 - 👘 Playground open`);
   }, [dispatch]);
 
