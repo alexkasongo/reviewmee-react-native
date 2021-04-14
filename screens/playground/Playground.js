@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system"; // yarn remove package
-import trialContract from "../../contracts/trialContract";
+import { trialContract } from "../../contracts/trialContract";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -26,7 +26,7 @@ export default function Playground() {
   }, [dispatch]);
 
   async function execute(data) {
-    const html = `${trialContract}`;
+    const html = `${trialContract.html}`;
     const { uri, base64 } = await Print.printToFileAsync({
       html,
       base64: true,
