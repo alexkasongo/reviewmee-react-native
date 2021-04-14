@@ -26,7 +26,7 @@ export default function Playground() {
   }, [dispatch]);
 
   async function execute(data) {
-    const html = `${trialContract.}`;
+    const html = `${trialContract}`;
     const { uri, base64 } = await Print.printToFileAsync({
       html,
       base64: true,
