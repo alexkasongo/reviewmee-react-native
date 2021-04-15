@@ -22,7 +22,7 @@
     "base64topdf": "^1.1.8",
     "expo": "~40.0.0",
     "expo-app-loading": "^1.0.1",
-    "expo-file-system": "^10.0.0",
+    "expo-file-system": "~9.3.0",
     "expo-font": "~8.4.0",
     "expo-print": "~9.2.0",
     "expo-sharing": "~8.5.0",

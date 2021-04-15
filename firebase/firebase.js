@@ -146,6 +146,7 @@ export const searchForDocumentToSign = async (email) => {
 
   const docIds = [];
   const docIdSigned = [];
+  console.log(`firebase.js - 152 - 😍`, documentsRef);
 
   await querySigned
     .get()
@@ -162,8 +163,6 @@ export const searchForDocumentToSign = async (email) => {
   await query
     .get()
     .then(function (querySnapshot) {
-      console.log(`firebase.js - 152 - 😍`);
-
       querySnapshot.forEach(function (doc) {
         const { docRef, email, requestedTime } = doc.data();
         const docId = doc.id;
