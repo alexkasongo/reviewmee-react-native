@@ -68,7 +68,9 @@ export default function UserProfile(props) {
             showsHorizontalScrollIndicator={false}
             style={styles.scroll}
           >
-            <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate("Settings")}
+            >
               <View style={RecipeCard.container}>
                 <Image style={RecipeCard.photo} source={{ uri: item.image }} />
                 <Text style={RecipeCard.title}>{item.user.name}</Text>
@@ -83,7 +85,33 @@ export default function UserProfile(props) {
   );
 
   const SecondRoute = () => (
-    <View style={[styles.scene, { backgroundColor: "#673ab7" }]} />
+    <View style={[styles.scene]}>
+      {/* <Text>Hello Aleko 😊</Text> */}
+      <FlatList
+        vertical
+        showsVerticalScrollIndicator={false}
+        numColumns={2}
+        removeClippedSubviews={false}
+        // contentContainerStyle={[styles.container]}
+        data={props.posts}
+        renderItem={({ item }) => (
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            style={styles.scroll}
+          >
+            <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
+              <View style={RecipeCard.container}>
+                <Image style={RecipeCard.photo} source={{ uri: item.image }} />
+                <Text style={RecipeCard.title}>{item.user.name}</Text>
+                <Text style={RecipeCard.category}>{item.user.email}</Text>
+              </View>
+            </TouchableOpacity>
+          </ScrollView>
+        )}
+        // keyExtractor={(item) => item.id}
+      />
+    </View>
   );
   const ThirdRoute = () => (
     <View style={[styles.scene, { backgroundColor: "#ff4081" }]} />

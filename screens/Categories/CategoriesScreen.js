@@ -26,15 +26,11 @@ export default function CategoriesScreen(props) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
+  // on mount do this
   useEffect(() => {
     searchForDocumentToSign(user.email).then((res) => {
-      // console.log(`CategoriesScreen.js - 31 - 🔥`, res);
       dispatch(setUserDocs(res));
     });
-    //   .then((res) => {
-    //   console.log(`CategoriesScreen.js - 31 - ✅`, res);
-    // });
-    // console.log(`drawerNavigator.js - 23 - 👀 categories screen`);
   }, [dispatch]);
 
   const onPressCategory = (item) => {

@@ -1,10 +1,20 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Dimensions,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system"; // yarn remove package
 import PDFReader from "rn-pdf-reader-js";
 import { trialContract } from "../../contracts/trialContract";
+import { globalStyles } from "../../styles/global";
+import Card from "../../shared/card";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -26,7 +36,7 @@ export default function Playground() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`drawerNavigator.js - 23 - 👘 Playground open`, userDocs);
+    // console.log(`drawerNavigator.js - 23 - 👘 Playground open`, userDocs);
   }, [dispatch]);
 
   async function execute() {
@@ -78,14 +88,19 @@ export default function Playground() {
 
   return (
     <View style={styles.container}>
-      {/* <View> */}
-      {/* <PDFReader
-          source={{
-            uri:
-              "https://firebasestorage.googleapis.com/v0/b/consentmee.appspot.com/o/docToSign%2FcbjWQXo0D4dMRhiBZcfA49bQbpI31618384371294.pdf?alt=media&token=0b0f311d-5224-4726-b7cf-79662e194165",
-          }}
-        />
-      </View> */}
+      <FlatList
+        data={userDocs}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ReviewDetails", item)}
+          >
+            <Card>
+              <Text style={globalStyles.titleText}>{item.email}</Text>
+            </Card>
+          </TouchableOpacity>
+        )}
+        keyExtractor={(item) => item.docId}
+      />
       <Button title="Sign" onPress={() => execute()} />
     </View>
 
