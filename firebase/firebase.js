@@ -146,7 +146,7 @@ export const searchForDocumentToSign = async (email) => {
 
   const docIds = [];
   const docIdSigned = [];
-  // console.log(`firebase.js - 152 - 😍`, query);
+  // console.log(`firebase.js - 152 - 😍`, documentsRef);
 
   await querySigned
     .get()
@@ -163,13 +163,17 @@ export const searchForDocumentToSign = async (email) => {
   await query
     .get()
     .then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        const { docRef, email, requestedTime } = doc.data();
-        const docId = doc.id;
-        if (!docIdSigned.includes(docId)) {
-          docIds.push({ docRef, email, requestedTime, docId });
-        }
+      // console.log(`firebase.js - 167 - 👛`, querySnapshot);
+      querySnapshot.forEach((doc) => {
+        console.log(`firebase.js - 168 - 🏝`, doc);
       });
+      // querySnapshot.forEach(function (doc) {
+      //   const { docRef, email, requestedTime } = doc.data();
+      //   const docId = doc.id;
+      //   if (!docIdSigned.includes(docId)) {
+      //     docIds.push({ docRef, email, requestedTime, docId });
+      //   }
+      // });
     })
     .catch(function (error) {
       console.log("Error getting documents: ", error);

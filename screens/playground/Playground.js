@@ -76,23 +76,23 @@ export default function Playground() {
   };
 
   return (
-    // <View style={styles.container}>
-    //   <View>
-    //     <PDFReader
-    //       source={{
-    //         uri:
-    //           "https://firebasestorage.googleapis.com/v0/b/consentmee.appspot.com/o/docToSign%2FcbjWQXo0D4dMRhiBZcfA49bQbpI31618384371294.pdf?alt=media&token=0b0f311d-5224-4726-b7cf-79662e194165",
-    //       }}
-    //     />
-    //   </View>
-    //   {/* <Button title="Sign" onPress={() => execute()} /> */}
-    // </View>
+    <View style={styles.container}>
+      {/* <View> */}
+      {/* <PDFReader
+          source={{
+            uri:
+              "https://firebasestorage.googleapis.com/v0/b/consentmee.appspot.com/o/docToSign%2FcbjWQXo0D4dMRhiBZcfA49bQbpI31618384371294.pdf?alt=media&token=0b0f311d-5224-4726-b7cf-79662e194165",
+          }}
+        />
+      </View> */}
+      <Button title="Sign" onPress={() => execute()} />
+    </View>
 
-    <PDFReader
-      source={{
-        uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
-      }}
-    />
+    // <PDFReader
+    //   source={{
+    //     uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
+    //   }}
+    // />
   );
 }
 
