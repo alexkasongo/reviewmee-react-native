@@ -36,7 +36,7 @@ export default function Playground() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // console.log(`drawerNavigator.js - 23 - 👘 Playground open`, userDocs);
+    // console.log(`drawerNavigator.js - 23 - 👘 Playground open`, user);
   }, [dispatch]);
 
   async function execute() {
@@ -71,7 +71,13 @@ export default function Playground() {
             pdfUrl
           );
           // create an entry in the database
-          addDocumentToSign(user.uid, user.email, "consentContract", pdfUrl);
+          addDocumentToSign(
+            user.uid,
+            user.email,
+            "consentContract",
+            pdfUrl,
+            user.photoURL
+          );
         });
       // ##########################################
     };

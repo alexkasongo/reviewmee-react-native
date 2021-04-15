@@ -65,13 +65,7 @@ const getUserDocument = async (uid) => {
 };
 
 // Add document to sign
-export const addDocumentToSign = (uid, email, doc, docRef) => {
-  console.log(`firebase.js - 63 - 🍎 >>You are here<<`, {
-    uid,
-    email,
-    doc,
-    docRef,
-  });
+export const addDocumentToSign = (uid, email, doc, docRef, photo) => {
   // if user doesn't exist stop
   if (!uid) return;
   // if user exists continue
@@ -79,11 +73,13 @@ export const addDocumentToSign = (uid, email, doc, docRef) => {
   const signedBy = [];
   const requestedTime = new Date();
   const signedTime = "";
+  const photoURL = photo || "https://via.placeholder.com/250";
   // const emails = emails
   firestore
     .collection("documentsToSign")
     .add({
       uid,
+      photoURL,
       email,
       doc,
       docRef,
@@ -146,19 +142,6 @@ export const searchForDocumentToSign = async (email) => {
 
   const docIds = [];
   const docIdSigned = [];
-  // console.log(
-  //   `firebase.js - 152 - 😍`,
-  //   await documentsRef
-  //     .get()
-  //     .then((res) => {
-  //       return res;
-  //     })
-  //     .then((res) => {
-  //       res.forEach((doc) => {
-  //         console.log(`firebase.js - 155 - 🌱`, doc);
-  //       });
-  //     })
-  // );
 
   await querySigned
     .get()
@@ -175,11 +158,11 @@ export const searchForDocumentToSign = async (email) => {
   await query
     .get()
     .then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        const { docRef, email, requestedTime } = doc.data();
-        const docId = doc.id;
+      querySnapshot.forEach(function (document) {
+        const { docRef, email, requestedTime, doc, photoURL } = document.data();
+        const docId = document.id;
         if (!docIdSigned.includes(docId)) {
-          docIds.push({ docRef, email, requestedTime, docId });
+          docIds.push({ docRef, email, requestedTime, docId, doc, photoURL });
         }
       });
     })

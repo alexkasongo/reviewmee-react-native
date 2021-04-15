@@ -16,7 +16,12 @@ import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 import profileStyles from "./ProfileStyle";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, selectUser, setUserDocs } from "../../firebase/firebaseSlice";
+import {
+  setUser,
+  selectUser,
+  setUserDocs,
+  selectUserDocs,
+} from "../../firebase/firebaseSlice";
 
 // from firebase
 import { searchForDocumentToSign } from "../../firebase/firebase";
@@ -26,6 +31,7 @@ const styles = StyleSheet.create({ ...profileStyles });
 export default function UserProfile(props) {
   // get user data
   const user = useSelector(selectUser);
+  const userDocs = useSelector(selectUserDocs);
   const dispatch = useDispatch();
 
   // on mount do this
@@ -33,6 +39,7 @@ export default function UserProfile(props) {
     searchForDocumentToSign(user.email).then((res) => {
       dispatch(setUserDocs(res));
     });
+    console.log(`Profile.js - 42 - 👀`, userDocs);
   }, [dispatch]);
 
   const initialState = {
@@ -101,23 +108,28 @@ export default function UserProfile(props) {
         numColumns={2}
         removeClippedSubviews={false}
         // contentContainerStyle={[styles.container]}
-        data={props.posts}
+        data={userDocs}
         renderItem={({ item }) => (
           <ScrollView
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             style={styles.scroll}
           >
-            <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate("Settings")}
+            >
               <View style={RecipeCard.container}>
-                {/* <Image style={RecipeCard.photo} source={{ uri: item.image }} /> */}
-                <Text style={RecipeCard.title}>{item.user.name}</Text>
-                <Text style={RecipeCard.category}>{item.user.email}</Text>
+                <Image
+                  style={RecipeCard.photo}
+                  source={{ uri: item.photoURL }}
+                />
+                <Text style={RecipeCard.title}>{item.doc}</Text>
+                <Text style={RecipeCard.category}>{item.email}</Text>
               </View>
             </TouchableOpacity>
           </ScrollView>
         )}
-        // keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.docId}
       />
     </View>
   );
