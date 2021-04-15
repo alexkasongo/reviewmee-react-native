@@ -27,7 +27,10 @@ export default function CategoriesScreen(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    searchForDocumentToSign(user.email);
+    searchForDocumentToSign(user.email).then((res) => {
+      // console.log(`CategoriesScreen.js - 31 - 🔥`, res);
+      dispatch(setUserDocs(res));
+    });
     //   .then((res) => {
     //   console.log(`CategoriesScreen.js - 31 - ✅`, res);
     // });

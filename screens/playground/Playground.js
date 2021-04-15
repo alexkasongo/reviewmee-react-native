@@ -22,10 +22,11 @@ import { storage, addDocumentToSign } from "../../firebase/firebase";
 export default function Playground() {
   // get user data
   const user = useSelector(selectUser);
+  const userDocs = useSelector(selectUserDocs);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // console.log(`drawerNavigator.js - 23 - 👘 Playground open`);
+    console.log(`drawerNavigator.js - 23 - 👘 Playground open`, userDocs);
   }, [dispatch]);
 
   async function execute() {
