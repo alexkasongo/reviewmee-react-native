@@ -146,7 +146,7 @@ export const searchForDocumentToSign = async (email) => {
 
   const docIds = [];
   const docIdSigned = [];
-  console.log(`firebase.js - 152 - 😍`, documentsRef);
+  // console.log(`firebase.js - 152 - 😍`, query);
 
   await querySigned
     .get()
