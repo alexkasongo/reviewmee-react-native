@@ -139,14 +139,26 @@ export const searchForDocumentToSign = async (email) => {
   console.log(`firebase.js - 139 - 🥶`, email);
   const documentsRef = firestore.collection("documentsToSign");
   const query = documentsRef
-    .where("emails", "array-contains", email)
+    .where("email", "==", email)
     .where("signed", "==", false);
 
   const querySigned = documentsRef.where("signedBy", "array-contains", email);
 
   const docIds = [];
   const docIdSigned = [];
-  // console.log(`firebase.js - 152 - 😍`, documentsRef);
+  // console.log(
+  //   `firebase.js - 152 - 😍`,
+  //   await documentsRef
+  //     .get()
+  //     .then((res) => {
+  //       return res;
+  //     })
+  //     .then((res) => {
+  //       res.forEach((doc) => {
+  //         console.log(`firebase.js - 155 - 🌱`, doc);
+  //       });
+  //     })
+  // );
 
   await querySigned
     .get()
@@ -163,21 +175,18 @@ export const searchForDocumentToSign = async (email) => {
   await query
     .get()
     .then(function (querySnapshot) {
-      // console.log(`firebase.js - 167 - 👛`, querySnapshot);
-      querySnapshot.forEach((doc) => {
-        console.log(`firebase.js - 168 - 🏝`, doc);
+      querySnapshot.forEach(function (doc) {
+        const { docRef, email, requestedTime } = doc.data();
+        const docId = doc.id;
+        if (!docIdSigned.includes(docId)) {
+          docIds.push({ docRef, email, requestedTime, docId });
+        }
       });
-      // querySnapshot.forEach(function (doc) {
-      //   const { docRef, email, requestedTime } = doc.data();
-      //   const docId = doc.id;
-      //   if (!docIdSigned.includes(docId)) {
-      //     docIds.push({ docRef, email, requestedTime, docId });
-      //   }
-      // });
     })
     .catch(function (error) {
       console.log("Error getting documents: ", error);
     });
+  // console.log(`firebase.js - 189 - 🍎`, docIds);
   return docIds;
 };
 
