@@ -16,16 +16,24 @@ import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 import profileStyles from "./ProfileStyle";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setUser, selectUser } from "../../firebase/firebaseSlice";
+import { setUser, selectUser, setUserDocs } from "../../firebase/firebaseSlice";
+
+// from firebase
+import { searchForDocumentToSign } from "../../firebase/firebase";
 
 const styles = StyleSheet.create({ ...profileStyles });
 
 export default function UserProfile(props) {
+  // get user data
   const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
+  // on mount do this
   useEffect(() => {
-    // setpostsMasonry(props.posts);
-  });
+    searchForDocumentToSign(user.email).then((res) => {
+      dispatch(setUserDocs(res));
+    });
+  }, [dispatch]);
 
   const initialState = {
     tabs: {
@@ -102,7 +110,7 @@ export default function UserProfile(props) {
           >
             <TouchableOpacity onPress={() => props.navigation.navigate("Home")}>
               <View style={RecipeCard.container}>
-                <Image style={RecipeCard.photo} source={{ uri: item.image }} />
+                {/* <Image style={RecipeCard.photo} source={{ uri: item.image }} /> */}
                 <Text style={RecipeCard.title}>{item.user.name}</Text>
                 <Text style={RecipeCard.category}>{item.user.email}</Text>
               </View>
