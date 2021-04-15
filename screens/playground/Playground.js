@@ -93,28 +93,28 @@ export default function Playground() {
   };
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={userDocs}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("ReviewDetails", item)}
-          >
-            <Card>
-              <Text style={globalStyles.titleText}>{item.email}</Text>
-            </Card>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.docId}
-      />
-      <Button title="Sign" onPress={() => execute()} />
-    </View>
+    // <View style={styles.container}>
+    //   <FlatList
+    //     data={userDocs}
+    //     renderItem={({ item }) => (
+    //       <TouchableOpacity
+    //         onPress={() => navigation.navigate("ReviewDetails", item)}
+    //       >
+    //         <Card>
+    //           <Text style={globalStyles.titleText}>{item.email}</Text>
+    //         </Card>
+    //       </TouchableOpacity>
+    //     )}
+    //     keyExtractor={(item) => item.docId}
+    //   />
+    //   <Button title="Sign" onPress={() => execute()} />
+    // </View>
 
-    // <PDFReader
-    //   source={{
-    //     uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
-    //   }}
-    // />
+    <PDFReader
+      source={{
+        uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
+      }}
+    />
   );
 }
 
