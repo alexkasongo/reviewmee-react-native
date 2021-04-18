@@ -14,12 +14,13 @@ import {
 } from "../../firebase/firebaseSlice";
 // redux end
 
-// from firebase
+// firebase
 import {
   storage,
   addDocumentToSign,
   searchForDocumentToSign,
 } from "../../firebase/firebase";
+// firebase end
 
 export default function CategoriesScreen(props) {
   // get user data
