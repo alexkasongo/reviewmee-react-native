@@ -6,20 +6,11 @@ import { getNumberOfRecipes } from "./MockDataAPI";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setUser,
-  selectUser,
-  setUserDocs,
-  selectUserDocs,
-} from "../../firebase/firebaseSlice";
+import { selectUser, setUserDocs } from "../../firebase/firebaseSlice";
 // redux end
 
 // firebase
-import {
-  storage,
-  addDocumentToSign,
-  searchForDocumentToSign,
-} from "../../firebase/firebase";
+import { searchForDocumentToSign } from "../../firebase/firebase";
 // firebase end
 
 export default function CategoriesScreen(props) {
