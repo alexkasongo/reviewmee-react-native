@@ -25,14 +25,14 @@ const MainStackNavigator = ({ navigation }) => {
   return (
     <Stack.Navigator
       initialRouteName="CategoriesScreen"
-      screenOptions={({ route }) => {
-        return {
-          gestureEnabled: true,
-          cardOverlayEnabled: true,
-          ...TransitionPresets.ModalPresentationIOS,
-        };
-      }}
-      mode="card"
+      // screenOptions={({ route }) => {
+      //   return {
+      //     gestureEnabled: true,
+      //     cardOverlayEnabled: true,
+      //     ...TransitionPresets.ModalPresentationIOS,
+      //   };
+      // }}
+      // mode="card"
       // headerMode="none"
     >
       {/* <Stack.Screen name="Home" component={Home} /> */}
@@ -55,10 +55,11 @@ const MainStackNavigator = ({ navigation }) => {
         }}
       /> */}
       <Stack.Screen
-        name="ContractsScreen"
+        name="Contracts"
         component={ContractsScreen}
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerBackTitleVisible: false,
         }}
       />
     </Stack.Navigator>

@@ -28,7 +28,7 @@ export default function CategoriesScreen(props) {
   const onPressCategory = (item) => {
     const title = item.name;
     const category = item;
-    props.navigation.navigate("ContractsScreen", { category, title });
+    props.navigation.navigate("Contracts", { category, title });
   };
 
   const renderCategory = ({ item }) => (

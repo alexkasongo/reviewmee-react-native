@@ -34,10 +34,10 @@ export default function ContractsScreen(props) {
   const renderCategory = ({ item }) => (
     <TouchableOpacity onPress={() => onPressCategory(item)}>
       <View style={styles.categoriesItemContainer}>
-        <Image
+        {/* <Image
           style={styles.categoriesPhoto}
           source={{ uri: item.photo_url }}
-        />
+        /> */}
         <Text style={styles.categoriesName}>{item.name}</Text>
         <Text style={styles.categoriesInfo}>
           {getNumberOfRecipes(item.id)} contracts
