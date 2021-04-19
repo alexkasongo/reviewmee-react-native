@@ -14,6 +14,7 @@ import About from "../screens/about";
 import Profile from "../screens/profile";
 import Settings from "../screens/settings";
 import SettingsOptions from "../screens/settings/Options";
+import Viewer from "../screens/viever/Viewer";
 import Playground from "../screens/playground/Playground";
 import PlaygroundOptions from "../screens/playground/Options";
 
@@ -101,10 +102,18 @@ const PlaygroundStackScreen = () => {
     </Stack.Navigator>
   );
 };
+const ViewerStackScreen = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Viewer" component={Viewer} />
+    </Stack.Navigator>
+  );
+};
 
 export {
   MainStackNavigator,
   ProfileStackNavigator,
   SettingsStackScreen,
   PlaygroundStackScreen,
+  ViewerStackScreen,
 };
