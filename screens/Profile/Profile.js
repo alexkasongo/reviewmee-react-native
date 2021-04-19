@@ -39,7 +39,7 @@ export default function UserProfile(props) {
     searchForDocumentToSign(user.email).then((res) => {
       dispatch(setUserDocs(res));
     });
-    console.log(`Profile.js - 42 - 👀`, userDocs);
+    // console.log(`Profile.js - 42 - 👀`, userDocs);
   }, [dispatch]);
 
   const initialState = {
@@ -116,7 +116,7 @@ export default function UserProfile(props) {
             style={styles.scroll}
           >
             <TouchableOpacity
-              onPress={() => props.navigation.navigate("Settings")}
+              onPress={() => props.navigation.navigate("Viewer")}
             >
               <View style={RecipeCard.container}>
                 <Image

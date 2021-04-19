@@ -7,6 +7,7 @@ import {
 
 // import Home from "../screens/home";
 import CategoriesScreen from "../screens/categories/CategoriesScreen";
+import ContractsScreen from "../screens/contracts/ContractsScreen";
 import Header from "../shared/header";
 import HeaderImage from "../shared/headerImage";
 import ReviewDetails from "../screens/reviewDetails";
@@ -35,6 +36,15 @@ const MainStackNavigator = ({ navigation }) => {
       // headerMode="none"
     >
       {/* <Stack.Screen name="Home" component={Home} /> */}
+      <Stack.Screen name="ContractsScreen" component={ContractsScreen} />
+      <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
+      <Stack.Screen
+        name="Modal"
+        component={Playground}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="CategoriesScreen"
         component={CategoriesScreen}
@@ -43,14 +53,6 @@ const MainStackNavigator = ({ navigation }) => {
             <Header navigation={navigation} title="ConsentMee" />
           ),
           // headerBackground: () => <HeaderImage />,
-        }}
-      />
-      <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
-      <Stack.Screen
-        name="Modal"
-        component={Playground}
-        options={{
-          headerShown: false,
         }}
       />
     </Stack.Navigator>
@@ -81,6 +83,13 @@ const ProfileStackNavigator = () => {
     >
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen
+        name="Viewer"
+        component={Viewer}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };
@@ -102,18 +111,10 @@ const PlaygroundStackScreen = () => {
     </Stack.Navigator>
   );
 };
-const ViewerStackScreen = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Viewer" component={Viewer} />
-    </Stack.Navigator>
-  );
-};
 
 export {
   MainStackNavigator,
   ProfileStackNavigator,
   SettingsStackScreen,
   PlaygroundStackScreen,
-  ViewerStackScreen,
 };
