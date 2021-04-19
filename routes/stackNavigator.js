@@ -32,19 +32,10 @@ const MainStackNavigator = ({ navigation }) => {
           ...TransitionPresets.ModalPresentationIOS,
         };
       }}
-      // mode="modal"
+      mode="card"
       // headerMode="none"
     >
       {/* <Stack.Screen name="Home" component={Home} /> */}
-      <Stack.Screen name="ContractsScreen" component={ContractsScreen} />
-      <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
-      <Stack.Screen
-        name="Modal"
-        component={Playground}
-        options={{
-          headerShown: false,
-        }}
-      />
       <Stack.Screen
         name="CategoriesScreen"
         component={CategoriesScreen}
@@ -53,6 +44,21 @@ const MainStackNavigator = ({ navigation }) => {
             <Header navigation={navigation} title="ConsentMee" />
           ),
           // headerBackground: () => <HeaderImage />,
+        }}
+      />
+      {/* <Stack.Screen name="ReviewDetails" component={ReviewDetails} /> */}
+      {/* <Stack.Screen
+        name="Modal"
+        component={Playground}
+        options={{
+          headerShown: false,
+        }}
+      /> */}
+      <Stack.Screen
+        name="ContractsScreen"
+        component={ContractsScreen}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

@@ -1,26 +1,23 @@
 export const categories = [
   {
     id: 3,
-    name: "Consent",
-    photo_url: "https://thebridgesweburn.com/wp-content/uploads/2016/12/80.jpg",
+    name: "Sex - Quicky",
+    photo_url: "https://via.placeholder.com/200",
   },
   {
     id: 1,
-    name: "Roommate",
-    photo_url:
-      "https://www.collegiateparent.com/wp-content/uploads/2020/06/shutterstock_1016244073.jpg",
+    name: "Sex - Toys",
+    photo_url: "https://via.placeholder.com/200",
   },
   {
     id: 2,
-    name: "Friedship",
-    photo_url:
-      "https://atlantadailyworld.com/wp-content/uploads/sites/5/2013/09/living_single_cast.jpg",
+    name: "Sex - Bdsm",
+    photo_url: "https://via.placeholder.com/200",
   },
   {
     id: 4,
-    name: "Custom",
-    photo_url:
-      "https://mentorphiledotcom.files.wordpress.com/2019/01/contract.jpg",
+    name: "Sex - Threesome",
+    photo_url: "https://via.placeholder.com/200",
   },
   // {
   //   id: 0,
