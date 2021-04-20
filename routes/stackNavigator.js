@@ -7,7 +7,10 @@ import {
 
 // import Home from "../screens/home";
 import CategoriesScreen from "../screens/categories/CategoriesScreen";
+// contracts
 import ContractsScreen from "../screens/contracts/ContractsScreen";
+import ContractToSign from "../screens/contracts/contractToSign";
+// contracts end
 import Header from "../shared/header";
 import HeaderImage from "../shared/headerImage";
 import ReviewDetails from "../screens/reviewDetails";
@@ -46,17 +49,17 @@ const MainStackNavigator = ({ navigation }) => {
           // headerBackground: () => <HeaderImage />,
         }}
       />
-      {/* <Stack.Screen name="ReviewDetails" component={ReviewDetails} /> */}
-      {/* <Stack.Screen
-        name="Modal"
-        component={Playground}
-        options={{
-          headerShown: false,
-        }}
-      /> */}
       <Stack.Screen
         name="Contracts"
         component={ContractsScreen}
+        options={{
+          headerShown: true,
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="Sign"
+        component={ContractToSign}
         options={{
           headerShown: true,
           headerBackTitleVisible: false,

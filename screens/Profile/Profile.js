@@ -163,13 +163,9 @@ export default function UserProfile(props) {
       labels.push(index === props.navigationState.index ? "black" : "gray");
     });
 
-    console.log(`Profile.js - 61 - 🌦`, labels);
-
     const currentIndex = parseInt(route.key) - 1;
 
     const color = labels[currentIndex];
-    // console.log(`Profile.js - 157 - 🍎`, currentIndex);
-    // console.log(`Profile.js - 157 - 🌿`, color);
 
     return (
       <View style={styles.tabRow}>
