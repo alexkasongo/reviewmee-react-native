@@ -39,7 +39,7 @@ export default function UserProfile(props) {
     searchForDocumentToSign(user.email).then((res) => {
       dispatch(setUserDocs(res));
     });
-    // console.log(`Profile.js - 42 - 👀`, userDocs);
+    // console.log(`Profile.js - 42 - 👀`, props);
   }, [dispatch]);
 
   const initialState = {
@@ -58,6 +58,9 @@ export default function UserProfile(props) {
   const [tabs, setTabs] = useState(initialState.tabs);
 
   const handleIndexChange = (index) => {
+    //  set the index here to use for changing color/opacity
+    setIndex(index);
+
     setTabs({
       tabs: {
         ...initialState.tabs,
@@ -160,15 +163,20 @@ export default function UserProfile(props) {
       labels.push(index === props.navigationState.index ? "black" : "gray");
     });
 
+    console.log(`Profile.js - 61 - 🌦`, labels);
+
     const currentIndex = parseInt(route.key) - 1;
+
     const color = labels[currentIndex];
+    // console.log(`Profile.js - 157 - 🍎`, currentIndex);
+    // console.log(`Profile.js - 157 - 🌿`, color);
 
     return (
       <View style={styles.tabRow}>
-        <Animated.Text style={[styles.tabLabelNumber, { color }]}>
+        <Animated.Text style={([styles.tabLabelNumber], { color })}>
           {route.count}
         </Animated.Text>
-        <Animated.Text style={[styles.tabLabelText, { color }]}>
+        <Animated.Text style={([styles.tabLabelText], { color })}>
           {route.title}
         </Animated.Text>
       </View>
@@ -178,15 +186,15 @@ export default function UserProfile(props) {
   // render scene fix
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    { key: "first", title: "Consents", count: 12 },
-    { key: "second", title: "Signed", count: 8 },
-    { key: "third", title: "Pending", count: 4 },
+    { key: "1", title: "Consents", count: 12 },
+    { key: "2", title: "Signed", count: 8 },
+    { key: "3", title: "Pending", count: 4 },
   ]);
 
   const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
-    third: ThirdRoute,
+    1: FirstRoute,
+    2: SecondRoute,
+    3: ThirdRoute,
   });
 
   const renderContactHeader = () => {
