@@ -137,7 +137,9 @@ export default function UserProfile(props) {
     </View>
   );
   const ThirdRoute = () => (
-    <View style={[styles.scene, { backgroundColor: "#ff4081" }]} />
+    <View style={[styles.scene, { backgroundColor: "#ff4081" }]}>
+      <Text>Work in progress</Text>
+    </View>
   );
 
   const initialLayout = { width: Dimensions.get("window").width };
