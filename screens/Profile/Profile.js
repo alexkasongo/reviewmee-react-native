@@ -259,15 +259,12 @@ const RECIPE_ITEM_MARGIN = 10;
 
 // 2 photos per width
 const RecipeCard = StyleSheet.create({
-  main: {
-    flex: 1,
-    backgroundColor: "green",
-    // paddingRight: 10,
-  },
   container: {
     flex: 1,
     alignItems: "center",
-    marginLeft: RECIPE_ITEM_MARGIN,
+    // marginLeft: RECIPE_ITEM_MARGIN,
+    marginRight: 5,
+    marginLeft: 5,
     marginTop: 20,
     width:
       (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) /
@@ -276,6 +273,7 @@ const RecipeCard = StyleSheet.create({
     borderColor: "#cccccc",
     borderWidth: 0.5,
     borderRadius: 15,
+    // paddingRight: 10,
   },
   photo: {
     width:

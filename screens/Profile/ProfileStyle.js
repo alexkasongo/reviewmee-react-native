@@ -3,6 +3,7 @@ import { Dimensions } from "react-native";
 export default {
   cardContainer: {
     flex: 1,
+    backgroundColor: "#fff",
   },
   container: {
     flex: 1,
@@ -112,7 +113,7 @@ export default {
     flex: 1,
     marginTop: 20,
     alignItems: "center",
-    backgroundColor: "red",
+    // backgroundColor: "#fff",
   },
   // settings modal
   settingsModal: {
