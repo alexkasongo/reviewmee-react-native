@@ -89,10 +89,15 @@ export default function UserProfile(props) {
             <TouchableOpacity
               onPress={() => props.navigation.navigate("Settings")}
             >
-              <View style={RecipeCard.container}>
-                <Image style={RecipeCard.photo} source={{ uri: item.image }} />
-                <Text style={RecipeCard.title}>{item.user.name}</Text>
-                <Text style={RecipeCard.category}>{item.user.email}</Text>
+              <View style={RecipeCard.main}>
+                <View style={RecipeCard.container}>
+                  <Image
+                    style={RecipeCard.photo}
+                    source={{ uri: item.image }}
+                  />
+                  <Text style={RecipeCard.title}>{item.user.name}</Text>
+                  <Text style={RecipeCard.category}>{item.user.email}</Text>
+                </View>
               </View>
             </TouchableOpacity>
           </ScrollView>
@@ -225,18 +230,18 @@ export default function UserProfile(props) {
   };
 
   return (
-    <View style={[styles.container]}>
-      <View style={styles.cardContainer}>
-        {renderContactHeader()}
-        <TabView
-          style={[styles.tabContainer]}
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          renderTabBar={renderTabBar}
-          onIndexChange={handleIndexChange}
-        />
-      </View>
+    // <View style={[styles.container]}>
+    <View style={styles.cardContainer}>
+      {renderContactHeader()}
+      <TabView
+        style={[styles.tabContainer]}
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        renderTabBar={renderTabBar}
+        onIndexChange={handleIndexChange}
+      />
     </View>
+    // </View>
   );
 }
 
@@ -250,13 +255,17 @@ const SCREEN_WIDTH = width < height ? width : height;
 const recipeNumColums = 2;
 // item size
 const RECIPE_ITEM_HEIGHT = 150;
-const RECIPE_ITEM_MARGIN = 20;
+const RECIPE_ITEM_MARGIN = 10;
 
 // 2 photos per width
 const RecipeCard = StyleSheet.create({
+  main: {
+    flex: 1,
+    backgroundColor: "green",
+    // paddingRight: 10,
+  },
   container: {
     flex: 1,
-    justifyContent: "space-between",
     alignItems: "center",
     marginLeft: RECIPE_ITEM_MARGIN,
     marginTop: 20,

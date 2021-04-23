@@ -27,9 +27,12 @@ const ContractToSign = ({ navigation }) => {
 
   const style = `.m-signature-pad--footer
     .button {
-      background-color: red;
+      background-color: gray;
       color: #FFF;
-    }`;
+    }
+    .m-signature-pad {
+  box-shadow: none;
+}`;
   return (
     <View>
       <Modal visible={modalOpen} animationType="slide">
@@ -107,6 +110,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     flex: 1,
+    padding: 10,
   },
 });
 

@@ -111,6 +111,8 @@ export default {
   scene: {
     flex: 1,
     marginTop: 20,
+    alignItems: "center",
+    backgroundColor: "red",
   },
   // settings modal
   settingsModal: {
