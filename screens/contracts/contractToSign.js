@@ -1,17 +1,27 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Modal,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import Signature from "react-native-signature-canvas";
 
-const ContractToSign = () => {
+const ContractToSign = ({ navigation }) => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [signature, setSign] = useState(null);
 
   const handleSignature = (signature) => {
-    console.log(signature);
+    console.log("🌎", signature);
     setSign(signature);
   };
 
   const handleEmpty = () => {
-    console.log("Empty");
+    console.log("Empty 🦴");
     setSign(null);
   };
 
@@ -21,23 +31,42 @@ const ContractToSign = () => {
       color: #FFF;
     }`;
   return (
-    <View style={{ flex: 1 }}>
-      <View style={styles.preview}>
-        {signature ? (
-          <Image
-            resizeMode={"contain"}
-            style={{ width: "100%", height: "100%" }}
-            source={{ uri: signature }}
-          />
-        ) : null}
-      </View>
-      <Signature
-        onOK={handleSignature}
-        onEmpty={handleEmpty}
-        descriptionText="Sign"
-        clearText="Clear"
-        confirmText="Save"
-        webStyle={style}
+    <View>
+      <Modal visible={modalOpen} animationType="slide">
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.modalContent}>
+            <MaterialIcons
+              name="close"
+              size={24}
+              style={{ ...styles.modalToggle, ...styles.modalClose }}
+              onPress={() => setModalOpen(false)}
+            />
+            {/* <View style={styles.preview}>
+              {signature ? (
+                <Image
+                  resizeMode={"contain"}
+                  style={{ width: "100%", height: "100%" }}
+                  source={{ uri: signature }}
+                />
+              ) : null}
+            </View> */}
+            <Signature
+              onOK={handleSignature}
+              onEmpty={handleEmpty}
+              descriptionText="Sign"
+              clearText="Clear"
+              confirmText="Save"
+              webStyle={style}
+            />
+          </View>
+        </TouchableWithoutFeedback>
+      </Modal>
+
+      <MaterialIcons
+        name="add"
+        size={24}
+        style={styles.modalToggle}
+        onPress={() => setModalOpen(true)}
       />
     </View>
   );
@@ -63,6 +92,21 @@ const styles = StyleSheet.create({
     width: 120,
     textAlign: "center",
     marginTop: 10,
+  },
+  modalToggle: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#f2f2f2",
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  modalClose: {
+    marginTop: 40,
+    marginBottom: 10,
+  },
+  modalContent: {
+    flex: 1,
   },
 });
 
