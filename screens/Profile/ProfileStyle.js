@@ -115,7 +115,7 @@ export default {
     alignItems: "center",
     // backgroundColor: "#fff",
   },
-  // settings modal
+  // settings for modal
   settingsModal: {
     margin: 10,
     backgroundColor: "red",
