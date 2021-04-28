@@ -129,11 +129,8 @@ const ContractToSign = ({ navigation }) => {
 
             <Text style={styles.name}>{contactData.name}</Text>
           </View>
-          <TouchableOpacity
-            style={styles.shareButton}
-            onPress={() => setModalOpen(true)}
-          >
-            <Text style={styles.shareButtonText}>Sign</Text>
+          <TouchableOpacity style={styles.shareButton}>
+            <Text style={styles.shareButtonText}>Send</Text>
           </TouchableOpacity>
 
           {/* <Button title="sign" onPress={() => setModalOpen(true)} /> */}
