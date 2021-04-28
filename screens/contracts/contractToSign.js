@@ -13,13 +13,17 @@ import { MaterialIcons } from "@expo/vector-icons";
 import Signature from "react-native-signature-canvas";
 
 // state
-import { useDispatch } from "react-redux";
-import { setContract } from "../../contracts/contractSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectSignedContract,
+  setContract,
+} from "../../contracts/contractSlice";
 
 // state end
 
 const ContractToSign = ({ navigation }) => {
   // state
+  const signedContract = useSelector(selectSignedContract);
   const dispatch = useDispatch();
   // state end
 
@@ -60,15 +64,6 @@ const ContractToSign = ({ navigation }) => {
               style={{ ...styles.modalToggle, ...styles.modalClose }}
               onPress={() => setModalOpen(false)}
             />
-            {/* <View style={styles.preview}>
-              {signature ? (
-                <Image
-                  resizeMode={"contain"}
-                  style={{ width: "100%", height: "100%" }}
-                  source={{ uri: signature }}
-                />
-              ) : null}
-            </View> */}
             <Signature
               onOK={handleSignature}
               onEmpty={handleEmpty}
@@ -87,6 +82,17 @@ const ContractToSign = ({ navigation }) => {
         style={styles.modalToggle}
         onPress={() => setModalOpen(true)}
       /> */}
+
+      <View style={styles.preview}>
+        {signature ? (
+          <Image
+            resizeMode={"contain"}
+            style={{ width: "100%", height: "100%" }}
+            source={{ uri: signedContract }}
+          />
+        ) : null}
+      </View>
+
       <Button title="sign" onPress={() => setModalOpen(true)} />
     </View>
   );
