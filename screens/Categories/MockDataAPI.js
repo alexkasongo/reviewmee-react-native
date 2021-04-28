@@ -1,4 +1,4 @@
-import { recipes, categories, ingredients } from "./dataArrays";
+import { contracts, categories, ingredients } from "./dataArrays";
 
 export function getCategoryById(categoryId) {
   let category;
@@ -40,32 +40,32 @@ export function getCategoryName(categoryId) {
   return name;
 }
 
-export function getRecipes(categoryId) {
-  const recipesArray = [];
-  recipes.map((data) => {
+export function getContracts(categoryId) {
+  const ContractsArray = [];
+  contracts.map((data) => {
     if (data.categoryId == categoryId) {
-      recipesArray.push(data);
+      ContractsArray.push(data);
     }
   });
-  return recipesArray;
+  return ContractsArray;
 }
 
 // modifica
-export function getRecipesByIngredient(ingredientId) {
-  const recipesArray = [];
-  recipes.map((data) => {
+export function getContractsByIngredient(ingredientId) {
+  const ContractsArray = [];
+  contracts.map((data) => {
     data.ingredients.map((index) => {
       if (index[0] == ingredientId) {
-        recipesArray.push(data);
+        ContractsArray.push(data);
       }
     });
   });
-  return recipesArray;
+  return ContractsArray;
 }
 
-export function getNumberOfRecipes(categoryId) {
+export function getNumberOfContracts(categoryId) {
   let count = 0;
-  recipes.map((data) => {
+  contracts.map((data) => {
     if (data.categoryId == categoryId) {
       count++;
     }
@@ -86,44 +86,44 @@ export function getAllIngredients(idArray) {
 }
 
 // functions for search
-export function getRecipesByIngredientName(ingredientName) {
+export function getContractsByIngredientName(ingredientName) {
   const nameUpper = ingredientName.toUpperCase();
-  const recipesArray = [];
+  const ContractsArray = [];
   ingredients.map((data) => {
     if (data.name.toUpperCase().includes(nameUpper)) {
       // data.name.yoUpperCase() == nameUpper
-      const recipes = getRecipesByIngredient(data.ingredientId);
-      const unique = [...new Set(recipes)];
+      const contracts = getContractsByIngredient(data.ingredientId);
+      const unique = [...new Set(contracts)];
       unique.map((item) => {
-        recipesArray.push(item);
+        ContractsArray.push(item);
       });
     }
   });
-  const uniqueArray = [...new Set(recipesArray)];
+  const uniqueArray = [...new Set(ContractsArray)];
   return uniqueArray;
 }
 
-export function getRecipesByCategoryName(categoryName) {
+export function getContractsByCategoryName(categoryName) {
   const nameUpper = categoryName.toUpperCase();
-  const recipesArray = [];
+  const ContractsArray = [];
   categories.map((data) => {
     if (data.name.toUpperCase().includes(nameUpper)) {
-      const recipes = getRecipes(data.id); // return a vector of recipes
-      recipes.map((item) => {
-        recipesArray.push(item);
+      const contracts = getContracts(data.id); // return a vector of contracts
+      contracts.map((item) => {
+        ContractsArray.push(item);
       });
     }
   });
-  return recipesArray;
+  return ContractsArray;
 }
 
-export function getRecipesByRecipeName(recipeName) {
+export function getContractsByRecipeName(recipeName) {
   const nameUpper = recipeName.toUpperCase();
-  const recipesArray = [];
-  recipes.map((data) => {
+  const ContractsArray = [];
+  contracts.map((data) => {
     if (data.title.toUpperCase().includes(nameUpper)) {
-      recipesArray.push(data);
+      ContractsArray.push(data);
     }
   });
-  return recipesArray;
+  return ContractsArray;
 }

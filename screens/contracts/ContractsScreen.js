@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { FlatList, Text, View, Image, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { categories } from "./dataArrays";
-import { getNumberOfRecipes } from "./MockDataAPI";
+import { getNumberOfContracts } from "./MockDataAPI";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -36,7 +36,7 @@ export default function ContractsScreen(props) {
       <View style={styles.categoriesItemContainer}>
         <Text style={styles.categoriesName}>{item.name}</Text>
         <Text style={styles.categoriesInfo}>
-          {getNumberOfRecipes(item.id)} contracts
+          {getNumberOfContracts(item.id)} contracts
         </Text>
         <Image
           style={styles.categoriesPhoto}

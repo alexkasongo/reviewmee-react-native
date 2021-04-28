@@ -19,15 +19,9 @@ export const categories = [
     name: "Sex - Threesome",
     photo_url: "https://via.placeholder.com/200",
   },
-  // {
-  //   id: 0,
-  //   name: "Pizza",
-  //   photo_url:
-  //     "https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg",
-  // },
 ];
 
-export const recipes = [
+export const contracts = [
   {
     recipeId: 122,
     categoryId: 3,
@@ -59,7 +53,7 @@ export const recipes = [
     photosArray: [
       "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-how-to-make-a-smoothie-horizontal-1542310071.png?crop=0.803xw:0.923xh;0.116xw,0.00510xh&resize=768:*",
       "https://www.vitamix.com/media/other/images/xVitamix-Triple-Berry-Smoothie-square-crop__1.jpg.pagespeed.ic.OgTC3ILD3R.jpg",
-      "http://images.media-allrecipes.com/userphotos/960x960/3798204.jpg",
+      "http://images.media-allcontracts.com/userphotos/960x960/3798204.jpg",
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrzui8MM6W66I29VZwVvcjpGv99JW3O1owgupc3KwB65rhAyrZ",
     ],
     time: "10",
@@ -173,7 +167,7 @@ export const recipes = [
     photosArray: [
       "http://d2814mmsvlryp1.cloudfront.net/wp-content/uploads/2014/04/WGC-Fish-Tacos-copy-2.jpg",
       "https://thecozyapron.com/wp-content/uploads/2018/03/baja-fish-tacos_thecozyapron_1.jpg",
-      "https://www.simplyrecipes.com/wp-content/uploads/2017/06/2017-07-22-FishTacos-6.jpg",
+      "https://www.simplycontracts.com/wp-content/uploads/2017/06/2017-07-22-FishTacos-6.jpg",
     ],
     time: "35",
     ingredients: [
@@ -696,6 +690,6 @@ export const ingredients = [
     ingredientId: 61,
     name: "Greek Yogurt",
     photo_url:
-      "http://images.media-allrecipes.com/userphotos/960x960/3758635.jpg",
+      "http://images.media-allcontracts.com/userphotos/960x960/3758635.jpg",
   },
 ];

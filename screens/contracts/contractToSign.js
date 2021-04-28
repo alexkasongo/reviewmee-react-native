@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import Signature from "react-native-signature-canvas";
+import contactData from "../profile/contact.json";
 
 // state
 import { useDispatch, useSelector } from "react-redux";
@@ -122,11 +123,11 @@ const ContractToSign = ({ navigation }) => {
             <Image
               style={styles.avatar}
               source={{
-                uri: "https://bootdey.com/img/Content/avatar/avatar1.png",
+                uri: contactData.avatar,
               }}
             />
 
-            <Text style={styles.name}>Johan Doe</Text>
+            <Text style={styles.name}>{contactData.name}</Text>
           </View>
           <TouchableOpacity
             style={styles.shareButton}
@@ -150,6 +151,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 15,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: "#00BFFF",
   },
   previewText: {
     color: "#FFF",
@@ -221,9 +225,9 @@ const styles = StyleSheet.create({
   avatar: {
     width: 80,
     height: 80,
-    borderRadius: 35,
-    borderWidth: 4,
-    borderColor: "#00BFFF",
+    borderRadius: 50,
+    // borderWidth: 4,
+    // borderColor: "#00BFFF",
   },
   profile: {
     flexDirection: "row",

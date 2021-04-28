@@ -8,7 +8,7 @@ export const contractSlice = createSlice({
   },
   reducers: {
     setContract: (state, action) => {
-      console.log(`contractSlice.js - 11 - You are here 🌱`, action.payload);
+      // console.log(`contractSlice.js - 11 - You are here 🌱`, action.payload);
       state.contract = action.payload;
     },
     loading: (state, action) => {
