@@ -86,9 +86,7 @@ export default function UserProfile(props) {
             showsHorizontalScrollIndicator={false}
             style={styles.scroll}
           >
-            <TouchableOpacity
-              onPress={() => props.navigation.navigate("Settings")}
-            >
+            <TouchableOpacity>
               <View style={ProfileCard.main}>
                 <View style={ProfileCard.container}>
                   <Image

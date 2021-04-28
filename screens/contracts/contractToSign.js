@@ -99,9 +99,9 @@ const ContractToSign = ({ navigation }) => {
             Nulla consequat massa quis enim.
           </Text>
 
-          <Text style={styles.tags}>
+          {/* <Text style={styles.tags}>
             Lorem, ipsum, dolor, sit, amet, consectetuer, adipiscing, elit.
-          </Text>
+          </Text> */}
 
           {/* signature preview */}
           <TouchableOpacity onPress={() => setModalOpen(true)}>
