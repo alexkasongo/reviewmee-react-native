@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Modal,
+  Button,
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
@@ -65,12 +66,13 @@ const ContractToSign = ({ navigation }) => {
         </TouchableWithoutFeedback>
       </Modal>
 
-      <MaterialIcons
+      {/* <MaterialIcons
         name="add"
         size={24}
         style={styles.modalToggle}
         onPress={() => setModalOpen(true)}
-      />
+      /> */}
+      <Button title="sign" onPress={() => setModalOpen(true)} />
     </View>
   );
 };
