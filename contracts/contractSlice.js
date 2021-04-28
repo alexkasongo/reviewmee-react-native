@@ -7,10 +7,8 @@ export const contractSlice = createSlice({
     isLoading: false,
   },
   reducers: {
-    setUser: (state, action) => {
-      state.user = action.payload;
-    },
     setContract: (state, action) => {
+      console.log(`contractSlice.js - 11 - You are here 🌱`, action.payload);
       state.contract = action.payload;
     },
     loading: (state, action) => {
@@ -20,7 +18,7 @@ export const contractSlice = createSlice({
   },
 });
 
-export const { setUser, loading, signout, setUserDocs } = contractSlice.actions;
+export const { setContract, loading } = contractSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

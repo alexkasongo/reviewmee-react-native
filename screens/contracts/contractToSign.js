@@ -12,18 +12,30 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import Signature from "react-native-signature-canvas";
 
+// state
+import { useDispatch } from "react-redux";
+import { setContract } from "../../contracts/contractSlice";
+
+// state end
+
 const ContractToSign = ({ navigation }) => {
+  // state
+  const dispatch = useDispatch();
+  // state end
+
   const [modalOpen, setModalOpen] = useState(false);
   const [signature, setSign] = useState(null);
 
   const handleSignature = (signature) => {
-    console.log("🌎", signature);
+    // console.log(`contractToSign.js - 30 - 🥶`, signature);
     setSign(signature);
+    dispatch(setContract(signature));
   };
 
   const handleEmpty = () => {
     console.log("Empty 🦴");
     setSign(null);
+    dispatch(setContract(null));
   };
 
   const style = `.m-signature-pad--footer
