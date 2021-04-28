@@ -28,8 +28,11 @@ const ContractToSign = ({ navigation }) => {
 
   const handleSignature = (signature) => {
     // console.log(`contractToSign.js - 30 - 🥶`, signature);
-    setSign(signature);
-    dispatch(setContract(signature));
+    if (signature !== null) {
+      setSign(signature);
+      dispatch(setContract(signature));
+      setModalOpen(false);
+    }
   };
 
   const handleEmpty = () => {
