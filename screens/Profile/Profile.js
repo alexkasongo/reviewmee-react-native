@@ -89,14 +89,14 @@ export default function UserProfile(props) {
             <TouchableOpacity
               onPress={() => props.navigation.navigate("Settings")}
             >
-              <View style={RecipeCard.main}>
-                <View style={RecipeCard.container}>
+              <View style={ProfileCard.main}>
+                <View style={ProfileCard.container}>
                   <Image
-                    style={RecipeCard.photo}
+                    style={ProfileCard.photo}
                     source={{ uri: item.image }}
                   />
-                  <Text style={RecipeCard.title}>{item.user.name}</Text>
-                  <Text style={RecipeCard.category}>{item.user.email}</Text>
+                  <Text style={ProfileCard.title}>{item.user.name}</Text>
+                  <Text style={ProfileCard.category}>{item.user.email}</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -126,13 +126,13 @@ export default function UserProfile(props) {
             <TouchableOpacity
               onPress={() => props.navigation.navigate("Viewer")}
             >
-              <View style={RecipeCard.container}>
+              <View style={ProfileCard.container}>
                 <Image
-                  style={RecipeCard.photo}
+                  style={ProfileCard.photo}
                   source={{ uri: item.photoURL }}
                 />
-                <Text style={RecipeCard.title}>{item.doc}</Text>
-                <Text style={RecipeCard.category}>{item.email}</Text>
+                <Text style={ProfileCard.title}>{item.doc}</Text>
+                <Text style={ProfileCard.category}>{item.email}</Text>
               </View>
             </TouchableOpacity>
           </ScrollView>
@@ -258,7 +258,7 @@ const RECIPE_ITEM_HEIGHT = 150;
 const RECIPE_ITEM_MARGIN = 10;
 
 // 2 photos per width
-const RecipeCard = StyleSheet.create({
+const ProfileCard = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
