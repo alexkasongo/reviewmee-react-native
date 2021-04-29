@@ -122,7 +122,7 @@ export default function UserProfile(props) {
             style={styles.scroll}
           >
             <TouchableOpacity
-              onPress={() => props.navigation.navigate("Viewer")}
+              onPress={() => props.navigation.navigate("Playground")}
             >
               <View style={ProfileCard.container}>
                 <Image
