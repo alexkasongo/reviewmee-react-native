@@ -27,12 +27,6 @@ import {
 // state end
 
 // HTML contract
-const htmlContent = `
-    <h1>This HTML snippet is now rendered with native components !</h1>
-    <h2>Enjoy a webview-free and blazing fast application</h2>
-    <img src="https://i.imgur.com/dHLmxfO.jpg?2" />
-    <em style="textAlign: center;">Look at how happy this native cat is</em>
-`;
 // HTML contract end
 
 const ContractToSign = ({ navigation }) => {
@@ -45,7 +39,7 @@ const ContractToSign = ({ navigation }) => {
   const [signature, setSign] = useState(null);
 
   const handleSignature = (signature) => {
-    // console.log(`contractToSign.js - 30 - 🥶`, signature);
+    // console.log(`contractToSign.js - 30 - 🥶`, signedContract);
     if (signature !== null) {
       setSign(signature);
       dispatch(setContract(signature));
@@ -69,6 +63,13 @@ const ContractToSign = ({ navigation }) => {
   }`;
 
   const contentWidth = useWindowDimensions().width;
+
+  const htmlContent = `
+    <h1>This HTML snippet is now rendered with native components !</h1>
+    <h2>Enjoy a webview-free and blazing fast application</h2>
+    <img src="${signedContract}" />
+    <em style="textAlign: center;">Look at how happy this native cat is</em>
+`;
 
   return (
     // <ScrollView>
@@ -179,17 +180,17 @@ const ContractToSign = ({ navigation }) => {
       <HTML source={{ html: htmlContent }} contentWidth={contentWidth} />
 
       {/* signature preview */}
-      <TouchableOpacity onPress={() => setModalOpen(true)}>
+      {/* <TouchableOpacity onPress={() => setModalOpen(true)}>
         <View style={styles.preview}>
           {signature ? (
             <Image
               resizeMode={"contain"}
               style={{ width: "100%", height: "100%" }}
-              source={{ uri: signedContract }}
+              source={{ uri: signedContract.co }}
             />
           ) : null}
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       {/* signature preview end */}
 
       <Button title="sign" onPress={() => setModalOpen(true)} />
