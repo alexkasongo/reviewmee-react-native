@@ -4,8 +4,6 @@ import {
   Text,
   View,
   TextInput,
-  Button,
-  Alert,
   ActivityIndicator,
   TouchableWithoutFeedback,
   Keyboard,

@@ -20,6 +20,7 @@ import Settings from "../screens/settings";
 import SettingsOptions from "../screens/settings/Options";
 import Viewer from "../screens/viever/Viewer";
 import Playground from "../screens/playground/Playground";
+import Assign from "../shared/Assign/Assign";
 import PlaygroundOptions from "../screens/playground/Options";
 
 const Stack = createStackNavigator();
@@ -117,8 +118,9 @@ const SettingsStackScreen = () => {
 const PlaygroundStackScreen = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Playground" component={Playground} />
-      <Stack.Screen name="PlaygroundOptions" component={PlaygroundOptions} />
+      <Stack.Screen name="Assign" component={Assign} />
+      {/* <Stack.Screen name="Playground" component={Playground} />
+      <Stack.Screen name="PlaygroundOptions" component={PlaygroundOptions} /> */}
     </Stack.Navigator>
   );
 };

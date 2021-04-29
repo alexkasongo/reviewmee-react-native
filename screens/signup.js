@@ -24,7 +24,7 @@ import { loading } from "../firebase/firebaseSlice";
 // redux stuff end
 
 // a schema is a set of rules defined in an object
-const loginSchema = yup.object({
+const signupSchema = yup.object({
   name: yup.string().required().min(3),
   email: yup.string().required().min(4),
   password: yup.string().required().min(4),
@@ -86,7 +86,7 @@ export default function Login({ navigation }) {
               email: "",
               password: "",
             }}
-            validationSchema={loginSchema}
+            validationSchema={signupSchema}
             onSubmit={(values, actions) => {
               actions.resetForm();
               signup(values);
