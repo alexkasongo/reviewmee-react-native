@@ -17,20 +17,28 @@ import { MaterialIcons } from "@expo/vector-icons";
 import Signature from "react-native-signature-canvas";
 import contactData from "../profile/contact.json";
 
+// Create pdf
+import * as Print from "expo-print";
+import * as Sharing from "expo-sharing";
+// Create pdf end
+
 // state
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectSignedContract,
   setContract,
 } from "../../contracts/contractSlice";
-
+import { selectUser } from "../../firebase/firebaseSlice";
 // state end
 
-// HTML contract
-// HTML contract end
+// Firebase
+import { storage, addDocumentToSign } from "../../firebase/firebase";
+// Firebase end
 
 const ContractToSign = ({ navigation }) => {
   // state
+  // get user data
+  const user = useSelector(selectUser);
   const signedContract = useSelector(selectSignedContract);
   const dispatch = useDispatch();
   // state end
@@ -64,12 +72,60 @@ const ContractToSign = ({ navigation }) => {
 
   const contentWidth = useWindowDimensions().width;
 
+  // HTML contract
   const htmlContent = `
-    <h1>This HTML snippet is now rendered with native components !</h1>
-    <h2>Enjoy a webview-free and blazing fast application</h2>
-    <img src="${signedContract}" />
-    <em style="textAlign: center;">Look at how happy this native cat is</em>
-`;
+  <h1>This HTML snippet is now rendered with native components !</h1>
+  <h2>Enjoy a webview-free and blazing fast application</h2>
+  <img src="${signedContract}" />
+  <em style="textAlign: center;">Look at how happy this native cat is</em>
+  `;
+  // HTML contract end
+
+  // Create pdf ##########################################
+  async function execute() {
+    const html = `${htmlContent}`;
+    // const html = `${trialContract.html}`;
+    const { uri, base64 } = await Print.printToFileAsync({
+      html,
+      base64: true,
+    });
+
+    // upload the PDF
+    const uploadPdf = async (imageUri) => {
+      // Convert image path to blob react native
+      const response = await fetch(imageUri);
+      const blob = await response.blob();
+
+      const storageRef = storage.ref();
+      const referenceString = `docToSign/${user.uid}${Date.now()}.pdf`;
+      const docRef = storageRef.child(referenceString);
+      docRef
+        .put(blob)
+        .then((fileData) => {
+          let fullPath = fileData.metadata.fullPath;
+          return storage.ref(fullPath).getDownloadURL();
+        })
+        .then((downloadURL) => {
+          let pdfUrl = downloadURL;
+          console.log(
+            "PDF blob created and upload successfuly Aleko 😊",
+            pdfUrl
+          );
+          // create an entry in the database
+          addDocumentToSign(
+            user.uid,
+            user.email,
+            "consentContract",
+            pdfUrl,
+            user.photoURL
+          );
+        });
+    };
+
+    uploadPdf(uri);
+    // Sharing.shareAsync(uri);
+  }
+  // Create pdf end ##########################################
 
   return (
     // <ScrollView>
@@ -194,6 +250,8 @@ const ContractToSign = ({ navigation }) => {
       {/* signature preview end */}
 
       <Button title="sign" onPress={() => setModalOpen(true)} />
+
+      <Button title="Send" onPress={() => execute()} />
     </ScrollView>
   );
 };
