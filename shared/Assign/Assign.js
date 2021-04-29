@@ -4,9 +4,12 @@ import {
   Text,
   View,
   TextInput,
-  Button,
-  Alert,
   ActivityIndicator,
+  TouchableOpacity,
+  Image,
+  Alert,
+  ScrollView,
+  FlatList,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
@@ -27,12 +30,78 @@ const signupSchema = yup.object({
 });
 // schema end
 
+// dummy data
+const dummyData = [
+  {
+    id: 1,
+    name: "Mark Doe",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar7.png",
+  },
+  {
+    id: 2,
+    name: "Clark Man",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar6.png",
+  },
+  {
+    id: 3,
+    name: "Jaden Boor",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar5.png",
+  },
+  {
+    id: 4,
+    name: "Srick Tree",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar4.png",
+  },
+  {
+    id: 5,
+    name: "Erick Doe",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar3.png",
+  },
+  {
+    id: 6,
+    name: "Francis Doe",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar2.png",
+  },
+  {
+    id: 8,
+    name: "Matilde Doe",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar1.png",
+  },
+  {
+    id: 9,
+    name: "John Doe",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar4.png",
+  },
+  {
+    id: 10,
+    name: "Fermod Doe",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar7.png",
+  },
+  {
+    id: 11,
+    name: "Danny Doe",
+    status: "active",
+    image: "https://bootdey.com/img/Content/avatar/avatar1.png",
+  },
+];
+// dummy data end
+
 const Assign = ({ navigate }) => {
   // const [email, setEmail] = useState("");
   // const [displayName, setDisplayName] = useState("");
   // const [showToast, setShowToast] = useState(false);
   // const assignees = useSelector(selectAssignees);
   // const dispatch = useDispatch();
+  const [calls, setCalls] = useState(dummyData);
 
   // const prepare = () => {
   //   if (assignees.length > 0) {
@@ -52,6 +121,31 @@ const Assign = ({ navigate }) => {
   //     setDisplayName("");
   //   }
   // };
+
+  const renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity>
+        <View style={styles.row}>
+          <Image source={{ uri: item.image }} style={styles.pic} />
+          <View>
+            <View style={styles.nameContainer}>
+              <Text
+                style={styles.nameTxt}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              >
+                {item.name}
+              </Text>
+              <Text style={styles.mblTxt}>Mobile</Text>
+            </View>
+            <View style={styles.msgContainer}>
+              <Text style={styles.msgTxt}>{item.status}</Text>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -138,7 +232,7 @@ const Assign = ({ navigate }) => {
         </Container>
       </Box> */}
 
-      <View style={globalStyles.containerCenter}>
+      <View style={globalStyles.container}>
         <Formik
           initialValues={{
             name: "",
@@ -154,6 +248,9 @@ const Assign = ({ navigate }) => {
           {/* if validation fails, yup passes errors in props.errors below */}
           {(props) => (
             <View>
+              <View style={styles.header}>
+                <Text style={styles.headerTitle}>Who needs to sign?</Text>
+              </View>
               <TextInput
                 style={globalStyles.input}
                 placeholder="name"
@@ -177,16 +274,24 @@ const Assign = ({ navigate }) => {
               <Text style={globalStyles.errorText}>
                 {props.touched.password && props.errors.password}
               </Text>
-              <FlatButton text="Signup" onPress={props.handleSubmit} />
-              <Text
-                style={styles.loginText}
-                onPress={() => navigation.navigate("Signin")}
-              >
-                Already Registered? Click here to login
-              </Text>
+              <FlatButton text="Add user" onPress={props.handleSubmit} />
             </View>
           )}
         </Formik>
+        <View style={{ flex: 1, marginTop: 30 }}>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            // extraData={calls}
+            data={calls}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
+            renderItem={renderItem}
+          />
+        </View>
+        <View style={{ marginTop: 30 }}>
+          <FlatButton text="Continue" />
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -218,4 +323,57 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#fff",
   },
+  header: {
+    padding: 30,
+    marginBottom: 30,
+    alignItems: "center",
+    backgroundColor: "#00BFFF",
+  },
+  headerTitle: {
+    fontSize: 30,
+    color: "#FFFFFF",
+    marginTop: 10,
+  },
+  // contact list
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#DCDCDC",
+    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    padding: 10,
+  },
+  pic: {
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+  },
+  nameContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: 280,
+  },
+  nameTxt: {
+    marginLeft: 15,
+    fontWeight: "600",
+    color: "#222",
+    fontSize: 18,
+    width: 170,
+  },
+  mblTxt: {
+    fontWeight: "200",
+    color: "#777",
+    fontSize: 13,
+  },
+  msgContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  msgTxt: {
+    fontWeight: "400",
+    color: "#008B8B",
+    fontSize: 12,
+    marginLeft: 15,
+  },
+  // contact list end
 });
