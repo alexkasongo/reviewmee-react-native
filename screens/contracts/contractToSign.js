@@ -10,7 +10,9 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   ScrollView,
+  useWindowDimensions,
 } from "react-native";
+import HTML from "react-native-render-html";
 import { MaterialIcons } from "@expo/vector-icons";
 import Signature from "react-native-signature-canvas";
 import contactData from "../profile/contact.json";
@@ -23,6 +25,15 @@ import {
 } from "../../contracts/contractSlice";
 
 // state end
+
+// HTML contract
+const htmlContent = `
+    <h1>This HTML snippet is now rendered with native components !</h1>
+    <h2>Enjoy a webview-free and blazing fast application</h2>
+    <img src="https://i.imgur.com/dHLmxfO.jpg?2" />
+    <em style="textAlign: center;">Look at how happy this native cat is</em>
+`;
+// HTML contract end
 
 const ContractToSign = ({ navigation }) => {
   // state
@@ -49,93 +60,100 @@ const ContractToSign = ({ navigation }) => {
   };
 
   const style = `.m-signature-pad--footer
-    .button {
-      background-color: gray;
-      color: #FFF;
-    }
-    .m-signature-pad {
-  box-shadow: none;
-}`;
+      .button {
+        background-color: gray;
+        color: #FFF;
+      }
+      .m-signature-pad {
+    box-shadow: none;
+  }`;
+
+  const contentWidth = useWindowDimensions().width;
+
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View>
-          <Modal visible={modalOpen} animationType="slide">
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-              <View style={styles.modalContent}>
-                <MaterialIcons
-                  name="close"
-                  size={24}
-                  style={{ ...styles.modalToggle, ...styles.modalClose }}
-                  onPress={() => setModalOpen(false)}
-                />
-                <Signature
-                  onOK={handleSignature}
-                  onEmpty={handleEmpty}
-                  descriptionText="Sign"
-                  clearText="Clear"
-                  confirmText="Save"
-                  webStyle={style}
-                />
-              </View>
-            </TouchableWithoutFeedback>
-          </Modal>
-        </View>
+    // <ScrollView>
+    //   <View style={styles.container}>
+    //     <View>
+    //       <Modal visible={modalOpen} animationType="slide">
+    //         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    //           <View style={styles.modalContent}>
+    //             <MaterialIcons
+    //               name="close"
+    //               size={24}
+    //               style={{ ...styles.modalToggle, ...styles.modalClose }}
+    //               onPress={() => setModalOpen(false)}
+    //             />
+    //             <Signature
+    //               onOK={handleSignature}
+    //               onEmpty={handleEmpty}
+    //               descriptionText="Sign"
+    //               clearText="Clear"
+    //               confirmText="Save"
+    //               webStyle={style}
+    //             />
+    //           </View>
+    //         </TouchableWithoutFeedback>
+    //       </Modal>
+    //     </View>
 
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Contract Name</Text>
-        </View>
+    //     <View style={styles.header}>
+    //       <Text style={styles.headerTitle}>Contract Name</Text>
+    //     </View>
 
-        <View style={styles.postContent}>
-          <Text style={styles.postTitle}>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-          </Text>
+    //     <View style={styles.postContent}>
+    //       <Text style={styles.postTitle}>
+    //         Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+    //       </Text>
 
-          <Text style={styles.postDescription}>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-            Nulla consequat massa quis enim.
-          </Text>
+    //       <Text style={styles.postDescription}>
+    //         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+    //         commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+    //         penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    //         Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+    //         Nulla consequat massa quis enim.
+    //       </Text>
 
-          {/* <Text style={styles.tags}>
-            Lorem, ipsum, dolor, sit, amet, consectetuer, adipiscing, elit.
-          </Text> */}
+    //       {/* <Text style={styles.tags}>
+    //         Lorem, ipsum, dolor, sit, amet, consectetuer, adipiscing, elit.
+    //       </Text> */}
 
-          {/* signature preview */}
-          <TouchableOpacity onPress={() => setModalOpen(true)}>
-            <View style={styles.preview}>
-              {signature ? (
-                <Image
-                  resizeMode={"contain"}
-                  style={{ width: "100%", height: "100%" }}
-                  source={{ uri: signedContract }}
-                />
-              ) : null}
-            </View>
-          </TouchableOpacity>
-          {/* signature preview end */}
+    //       {/* signature preview */}
+    //       <TouchableOpacity onPress={() => setModalOpen(true)}>
+    //         <View style={styles.preview}>
+    //           {signature ? (
+    //             <Image
+    //               resizeMode={"contain"}
+    //               style={{ width: "100%", height: "100%" }}
+    //               source={{ uri: signedContract }}
+    //             />
+    //           ) : null}
+    //         </View>
+    //       </TouchableOpacity>
+    //       {/* signature preview end */}
 
-          <Text style={styles.date}>2017-11-27 13:03:01</Text>
+    //       <Text style={styles.date}>2017-11-27 13:03:01</Text>
 
-          <View style={styles.profile}>
-            <Image
-              style={styles.avatar}
-              source={{
-                uri: contactData.avatar,
-              }}
-            />
+    //       <View style={styles.profile}>
+    //         <Image
+    //           style={styles.avatar}
+    //           source={{
+    //             uri: contactData.avatar,
+    //           }}
+    //         />
 
-            <Text style={styles.name}>{contactData.name}</Text>
-          </View>
-          <TouchableOpacity style={styles.shareButton}>
-            <Text style={styles.shareButtonText}>Send</Text>
-          </TouchableOpacity>
+    //         <Text style={styles.name}>{contactData.name}</Text>
+    //       </View>
+    //       <TouchableOpacity style={styles.shareButton}>
+    //         <Text style={styles.shareButtonText}>Send</Text>
+    //       </TouchableOpacity>
 
-          {/* <Button title="sign" onPress={() => setModalOpen(true)} /> */}
-        </View>
-      </View>
+    //       {/* <Button title="sign" onPress={() => setModalOpen(true)} /> */}
+    //     </View>
+    //   </View>
+    // </ScrollView>
+
+    <ScrollView style={{ flex: 1 }}>
+      <HTML source={{ html: htmlContent }} contentWidth={contentWidth} />
     </ScrollView>
   );
 };
