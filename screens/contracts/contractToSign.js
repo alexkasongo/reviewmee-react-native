@@ -153,7 +153,46 @@ const ContractToSign = ({ navigation }) => {
     // </ScrollView>
 
     <ScrollView style={{ flex: 1 }}>
+      <View>
+        <Modal visible={modalOpen} animationType="slide">
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.modalContent}>
+              <MaterialIcons
+                name="close"
+                size={24}
+                style={{ ...styles.modalToggle, ...styles.modalClose }}
+                onPress={() => setModalOpen(false)}
+              />
+              <Signature
+                onOK={handleSignature}
+                onEmpty={handleEmpty}
+                descriptionText="Sign"
+                clearText="Clear"
+                confirmText="Save"
+                webStyle={style}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
+      </View>
+
       <HTML source={{ html: htmlContent }} contentWidth={contentWidth} />
+
+      {/* signature preview */}
+      <TouchableOpacity onPress={() => setModalOpen(true)}>
+        <View style={styles.preview}>
+          {signature ? (
+            <Image
+              resizeMode={"contain"}
+              style={{ width: "100%", height: "100%" }}
+              source={{ uri: signedContract }}
+            />
+          ) : null}
+        </View>
+      </TouchableOpacity>
+      {/* signature preview end */}
+
+      <Button title="sign" onPress={() => setModalOpen(true)} />
     </ScrollView>
   );
 };

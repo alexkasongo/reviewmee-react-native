@@ -7,7 +7,10 @@ import {
   Dimensions,
   FlatList,
   TouchableOpacity,
+  ScrollView,
+  useWindowDimensions,
 } from "react-native";
+import HTML from "react-native-render-html";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import * as FileSystem from "expo-file-system"; // yarn remove package
@@ -29,7 +32,18 @@ import {
 // from firebase
 import { storage, addDocumentToSign } from "../../firebase/firebase";
 
+// HTML RENDERER
+const htmlContent = `
+    <h1>This HTML snippet is now rendered with native components !</h1>
+    <h2>Enjoy a webview-free and blazing fast application</h2>
+    <img src="https://i.imgur.com/dHLmxfO.jpg?2" />
+    <em style="textAlign: center;">Look at how happy this native cat is</em>
+`;
+// HTML RENDERER end
+
 export default function Playground() {
+  const contentWidth = useWindowDimensions().width;
+
   // get user data
   const user = useSelector(selectUser);
   const userDocs = useSelector(selectUserDocs);
@@ -40,7 +54,8 @@ export default function Playground() {
   }, [dispatch]);
 
   async function execute() {
-    const html = `${trialContract.html}`;
+    const html = `${htmlContent}`;
+    // const html = `${trialContract.html}`;
     const { uri, base64 } = await Print.printToFileAsync({
       html,
       base64: true,
@@ -93,28 +108,33 @@ export default function Playground() {
   };
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={userDocs}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("ReviewDetails", item)}
-          >
-            <Card>
-              <Text style={globalStyles.titleText}>{item.email}</Text>
-            </Card>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item.docId}
-      />
-      <Button title="Sign" onPress={() => execute()} />
-    </View>
+    // <View style={styles.container}>
+    //   <FlatList
+    //     data={userDocs}
+    //     renderItem={({ item }) => (
+    //       <TouchableOpacity
+    //         onPress={() => navigation.navigate("ReviewDetails", item)}
+    //       >
+    //         <Card>
+    //           <Text style={globalStyles.titleText}>{item.email}</Text>
+    //         </Card>
+    //       </TouchableOpacity>
+    //     )}
+    //     keyExtractor={(item) => item.docId}
+    //   />
+    //   <Button title="Sign" onPress={() => execute()} />
+    // </View>
 
     // <PDFReader
     //   source={{
     //     uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
     //   }}
     // />
+
+    <ScrollView style={{ flex: 1 }}>
+      <HTML source={{ html: htmlContent }} contentWidth={contentWidth} />
+      <Button title="Sign" onPress={() => execute()} />
+    </ScrollView>
   );
 }
 
