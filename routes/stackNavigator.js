@@ -100,6 +100,7 @@ const ProfileStackNavigator = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen name="Playground" component={Playground} />
     </Stack.Navigator>
   );
 };
