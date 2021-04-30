@@ -38,7 +38,7 @@ const Assign = ({ navigate }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // console.log(`Profile.js - 42 - 👀`, assignees);
+    console.log(`Profile.js - 42 - 👀`, assignees);
   }, [dispatch]);
 
   // const prepare = () => {
@@ -181,8 +181,15 @@ const Assign = ({ navigate }) => {
           }}
           validationSchema={assignSchema}
           onSubmit={(values, actions) => {
-            addUser(values.name, values.email);
-            actions.resetForm();
+            addUser(values.name.toLowerCase(), values.email.toLowerCase());
+            actions.resetForm({
+              touched: {
+                // the type of `values` inferred to be Blog
+                name: false,
+                email: false,
+              },
+              // you can also set the other form states here
+            });
           }}
         >
           {/* if validation fails, yup passes errors in props.errors below */}
@@ -211,9 +218,6 @@ const Assign = ({ navigate }) => {
               <Text style={globalStyles.errorText}>
                 {props.touched.email && props.errors.email}
               </Text>
-              <Text style={globalStyles.errorText}>
-                {props.touched.password && props.errors.password}
-              </Text>
               <FlatButton text="Add user" onPress={props.handleSubmit} />
             </View>
           )}
@@ -228,9 +232,11 @@ const Assign = ({ navigate }) => {
             renderItem={renderItem}
           />
         </View>
-        <View style={{ marginTop: 30 }}>
-          <FlatButton text="Continue" />
-        </View>
+        {assignees.length > 0 && (
+          <View style={{ marginTop: 30 }}>
+            <FlatButton text="Continue" />
+          </View>
+        )}
       </View>
     </TouchableWithoutFeedback>
   );
