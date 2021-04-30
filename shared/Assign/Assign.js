@@ -327,7 +327,8 @@ const styles = StyleSheet.create({
     padding: 30,
     marginBottom: 30,
     alignItems: "center",
-    backgroundColor: "#00BFFF",
+    backgroundColor: "#3b5998",
+    borderRadius: 8,
   },
   headerTitle: {
     fontSize: 30,
