@@ -3,26 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const AssignSlice = createSlice({
   name: "assign",
   initialState: {
-    signees: [
-      {
-        key: 1,
-        name: "Mark Doe",
-        email: "mark@yahoo.com",
-        image: "https://bootdey.com/img/Content/avatar/avatar7.png",
-      },
-      {
-        key: 2,
-        name: "Clark Man",
-        email: "clark@yahoo.com",
-        image: "https://bootdey.com/img/Content/avatar/avatar6.png",
-      },
-      {
-        key: 3,
-        name: "Jaden Boor",
-        email: "jaden@yahoo.com",
-        image: "https://bootdey.com/img/Content/avatar/avatar5.png",
-      },
-    ],
+    signees: [],
   },
   reducers: {
     addSignee: (state, action) => {
@@ -32,6 +13,7 @@ export const AssignSlice = createSlice({
           key: action.payload.key,
           name: action.payload.name,
           email: action.payload.email,
+          image: action.payload.image,
         },
       ];
     },

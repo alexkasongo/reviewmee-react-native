@@ -9,7 +9,7 @@ export default configureStore({
     user: userReducer,
     firebase: firebaseReducer,
     contract: contractReducer,
-    assign: contractReducer,
+    assign: AssignSliceReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

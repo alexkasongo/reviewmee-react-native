@@ -25,22 +25,21 @@ import FlatButton from "../button";
 
 // a schema is a set of rules defined in an object
 const assignSchema = yup.object({
-  displayName: yup.string().required().min(3),
+  name: yup.string().required().min(3),
   email: yup.string().required().min(4),
 });
 // schema end
 
 const Assign = ({ navigate }) => {
-  useEffect(() => {
-    console.log(`Profile.js - 42 - 👀`, assignees);
-  }, []);
-
   // const [email, setEmail] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [showToast, setShowToast] = useState(false);
   const assignees = useSelector(selectAssignees);
   const dispatch = useDispatch();
-  const [calls, setCalls] = useState();
+
+  useEffect(() => {
+    // console.log(`Profile.js - 42 - 👀`, assignees);
+  }, [dispatch]);
 
   // const prepare = () => {
   //   if (assignees.length > 0) {
@@ -51,75 +50,12 @@ const Assign = ({ navigate }) => {
   //     setTimeout(() => setShowToast(false), 1000);
   //   }
   // };
-
-  const dummyData = [
-    {
-      key: 1,
-      name: "Mark Doe",
-      email: "mark@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar7.png",
-    },
-    {
-      key: 2,
-      name: "Clark Man",
-      email: "clark@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar6.png",
-    },
-    {
-      key: 3,
-      name: "Jaden Boor",
-      email: "jaden@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar5.png",
-    },
-    {
-      key: 4,
-      name: "Srick Tree",
-      email: "srick@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar4.png",
-    },
-    {
-      key: 5,
-      name: "Erick Doe",
-      email: "erick@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar3.png",
-    },
-    {
-      key: 6,
-      name: "Francis Doe",
-      email: "francis@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar2.png",
-    },
-    {
-      key: 8,
-      name: "Matilde Doe",
-      email: "matilda@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar1.png",
-    },
-    {
-      key: 9,
-      name: "John Doe",
-      email: "john@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar4.png",
-    },
-    {
-      key: 10,
-      name: "Fermod Doe",
-      email: "fermod@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar7.png",
-    },
-    {
-      key: 11,
-      name: "Danny Doe",
-      email: "danny@yahoo.com",
-      image: "https://bootdey.com/img/Content/avatar/avatar1.png",
-    },
-  ];
-
   const addUser = (name, email) => {
-    console.log(`Assign.js - 117 - 🌦`, name, email);
     const key = `${new Date().getTime()}${email}`;
+    const image = "https://via.placeholder.com/150";
     if (name !== "" && email !== "") {
-      dispatch(addSignee({ key, name, email }));
+      dispatch(addSignee({ key, name, email, image }));
+      Keyboard.dismiss();
       // setEmail("");
       // setDisplayName("");
     }
@@ -245,8 +181,8 @@ const Assign = ({ navigate }) => {
           }}
           validationSchema={assignSchema}
           onSubmit={(values, actions) => {
+            addUser(values.name, values.email);
             actions.resetForm();
-            addUser(values.displayName, values.email);
           }}
         >
           {/* if validation fails, yup passes errors in props.errors below */}
@@ -258,9 +194,9 @@ const Assign = ({ navigate }) => {
               <TextInput
                 style={globalStyles.input}
                 placeholder="Enter recipient's name"
-                onChangeText={props.handleChange("displayName")}
-                value={props.values.displayName}
-                onBlur={props.handleBlur("displayName")}
+                onChangeText={props.handleChange("name")}
+                value={props.values.name}
+                onBlur={props.handleBlur("name")}
               />
               <Text style={globalStyles.errorText}>
                 {props.touched.name && props.errors.name}
