@@ -190,7 +190,7 @@ const Assign = ({ navigate }) => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={globalStyles.container}>
+      <View style={{ flex: 1, paddingBottom: 20 }}>
         <Formik
           initialValues={{
             displayName: "",

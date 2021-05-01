@@ -17,6 +17,10 @@ import { MaterialIcons } from "@expo/vector-icons";
 import Signature from "react-native-signature-canvas";
 import contactData from "../profile/contact.json";
 
+// Assing user component
+import Assign from "../../shared/Assign/Assign";
+// Assing user component end
+
 // Create pdf
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
@@ -45,6 +49,7 @@ const ContractToSign = ({ navigation }) => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [signature, setSign] = useState(null);
+  const [signModal, setSignModal] = useState(false);
 
   const handleSignature = (signature) => {
     // console.log(`contractToSign.js - 30 - 🥶`, signedContract);
@@ -213,22 +218,34 @@ const ContractToSign = ({ navigation }) => {
       <View>
         <Modal visible={modalOpen} animationType="slide">
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.modalContent}>
-              <MaterialIcons
-                name="close"
-                size={24}
-                style={{ ...styles.modalToggle, ...styles.modalClose }}
-                onPress={() => setModalOpen(false)}
-              />
-              <Signature
-                onOK={handleSignature}
-                onEmpty={handleEmpty}
-                descriptionText="Sign"
-                clearText="Clear"
-                confirmText="Save"
-                webStyle={style}
-              />
-            </View>
+            {signModal === true ? (
+              <View style={styles.modalContent}>
+                <MaterialIcons
+                  name="close"
+                  size={24}
+                  style={{ ...styles.modalToggle, ...styles.modalClose }}
+                  onPress={() => setModalOpen(false)}
+                />
+                <Signature
+                  onOK={handleSignature}
+                  onEmpty={handleEmpty}
+                  descriptionText="Sign"
+                  clearText="Clear"
+                  confirmText="Save"
+                  webStyle={style}
+                />
+              </View>
+            ) : (
+              <View style={styles.modalContent}>
+                <MaterialIcons
+                  name="close"
+                  size={24}
+                  style={{ ...styles.modalToggle, ...styles.modalClose }}
+                  onPress={() => setModalOpen(false)}
+                />
+                <Assign />
+              </View>
+            )}
           </TouchableWithoutFeedback>
         </Modal>
       </View>
@@ -249,9 +266,21 @@ const ContractToSign = ({ navigation }) => {
       </TouchableOpacity> */}
       {/* signature preview end */}
 
-      <Button title="sign" onPress={() => setModalOpen(true)} />
+      <Button
+        title="sign"
+        onPress={() => {
+          setModalOpen(true);
+          setSignModal(true);
+        }}
+      />
 
-      <Button title="Send" onPress={() => execute()} />
+      <Button
+        title="Add recipient"
+        onPress={() => {
+          setModalOpen(true);
+          setSignModal(false);
+        }}
+      />
     </ScrollView>
   );
 };
