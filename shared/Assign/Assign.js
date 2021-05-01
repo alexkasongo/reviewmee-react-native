@@ -8,11 +8,11 @@ import {
   TouchableOpacity,
   Image,
   Alert,
-  ScrollView,
   FlatList,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { addSignee, selectAssignees } from "./AssignSlice";
 import { globalStyles } from "../../styles/global";
@@ -38,7 +38,7 @@ const Assign = ({ navigate }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`Profile.js - 42 - 👀`, assignees);
+    // console.log(`Profile.js - 42 - 👀`, assignees);
   }, [dispatch]);
 
   // const prepare = () => {
@@ -60,6 +60,13 @@ const Assign = ({ navigate }) => {
       // setDisplayName("");
     }
   };
+
+  // remove recipient
+  const removeRecipient = () => {
+    // const assigneesCopy = assignees;
+    console.log(`Assign.js - 66 - 🏝 recipient removed`);
+  };
+  // remove recipient end
 
   // ###################################
   // <Box padding={3}>
@@ -148,10 +155,10 @@ const Assign = ({ navigate }) => {
 
   const renderItem = ({ item }) => {
     return (
-      <TouchableOpacity>
+      <TouchableWithoutFeedback>
         <View style={styles.row}>
-          <Image source={{ uri: item.image }} style={styles.pic} />
-          <View>
+          <View style={styles.colOne}>
+            <Image source={{ uri: item.image }} style={styles.pic} />
             <View style={styles.nameContainer}>
               <Text
                 style={styles.nameTxt}
@@ -160,14 +167,16 @@ const Assign = ({ navigate }) => {
               >
                 {item.name}
               </Text>
-              <Text style={styles.mblTxt}>Mobile</Text>
-            </View>
-            <View style={styles.msgContainer}>
+              {/* <Text style={styles.mblTxt}>Mobile</Text> */}
               <Text style={styles.emailTxt}>{item.email}</Text>
             </View>
           </View>
+          <View style={styles.msgContainer}></View>
+          <TouchableOpacity onPress={removeRecipient} style={styles.touch}>
+            <MaterialIcons name="close" size={24} style={styles.mblTxt} />
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     );
   };
 
@@ -284,10 +293,14 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
     borderColor: "#DCDCDC",
     backgroundColor: "#fff",
     borderBottomWidth: 1,
     padding: 10,
+  },
+  colOne: {
+    flexDirection: "row",
   },
   pic: {
     borderRadius: 30,
@@ -295,9 +308,10 @@ const styles = StyleSheet.create({
     height: 60,
   },
   nameContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: 280,
+    flexDirection: "column",
+    // justifyContent: "space-between",
+    // width: 280,
+    // backgroundColor: "red",
   },
   nameTxt: {
     marginLeft: 15,
@@ -309,7 +323,9 @@ const styles = StyleSheet.create({
   mblTxt: {
     fontWeight: "200",
     color: "#777",
-    fontSize: 13,
+    // fontSize: 13,
+    // backgroundColor: "red",
+    // padding: 10,
   },
   msgContainer: {
     flexDirection: "row",
@@ -320,6 +336,10 @@ const styles = StyleSheet.create({
     color: "#008B8B",
     fontSize: 14,
     marginLeft: 15,
+  },
+  touch: {
+    // backgroundColor: "green",
+    padding: 10,
   },
   // contact list end
 });

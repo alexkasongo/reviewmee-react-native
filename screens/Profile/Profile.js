@@ -10,6 +10,7 @@ import {
   ScrollView,
   ImageBackground,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 
