@@ -17,6 +17,9 @@ export const AssignSlice = createSlice({
         },
       ];
     },
+    remvoveSignee: (state, action) => {
+      state.signees = action.payload;
+    },
     resetSignee: (state, action) => {
       console.log("resetSignee");
       state.signees = [];
@@ -24,7 +27,7 @@ export const AssignSlice = createSlice({
   },
 });
 
-export const { addSignee, resetSignee } = AssignSlice.actions;
+export const { addSignee, remvoveSignee, resetSignee } = AssignSlice.actions;
 
 export const selectAssignees = (state) => state.assign.signees;
 

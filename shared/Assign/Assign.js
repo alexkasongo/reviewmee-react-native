@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { addSignee, selectAssignees } from "./AssignSlice";
+import { addSignee, remvoveSignee, selectAssignees } from "./AssignSlice";
 import { globalStyles } from "../../styles/global";
 
 // form stuff
@@ -62,9 +62,14 @@ const Assign = ({ navigate }) => {
   };
 
   // remove recipient
-  const removeRecipient = (email) => {
-    // const assigneesCopy = assignees;
-    console.log(`Assign.js - 66 - 🏝 recipient removed`, email);
+  const removeRecipient = (key) => {
+    const items = assignees;
+    const valueToRemove = `${key}`;
+    const filteredItems = items.filter((item) => {
+      return item.key !== valueToRemove;
+    });
+    // console.log(`Assign.js - 69 - 🌿`, filteredItems);
+    dispatch(remvoveSignee(filteredItems));
   };
   // remove recipient end
 
@@ -173,7 +178,7 @@ const Assign = ({ navigate }) => {
           </View>
           <View style={styles.msgContainer}></View>
           <TouchableOpacity
-            onPress={() => removeRecipient(item.email)}
+            onPress={() => removeRecipient(item.key)}
             style={styles.touch}
           >
             <MaterialIcons name="close" size={24} style={styles.mblTxt} />
@@ -239,7 +244,7 @@ const Assign = ({ navigate }) => {
             showsVerticalScrollIndicator={false}
             data={assignees}
             keyExtractor={(item) => {
-              return item.key.toString();
+              return item.key;
             }}
             renderItem={renderItem}
           />
