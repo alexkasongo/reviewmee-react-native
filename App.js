@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import DrawerNavigator from "./routes/drawerNavigator";
+import TabNavigator from "./routes/tabNavigator";
 
 // we use the provider to get acces to the redux store
 // wrap everything that needs access to the store inside the provider
@@ -35,7 +36,7 @@ export default function App() {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <DrawerNavigator />
+          <TabNavigator />
         </NavigationContainer>
       </Provider>
     );

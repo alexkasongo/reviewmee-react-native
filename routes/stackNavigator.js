@@ -66,6 +66,7 @@ const MainStackNavigator = ({ navigation }) => {
           headerBackTitleVisible: false,
         }}
       />
+      <Stack.Screen name="Assign" component={Assign} />
     </Stack.Navigator>
   );
 };
