@@ -62,9 +62,9 @@ const Assign = ({ navigate }) => {
   };
 
   // remove recipient
-  const removeRecipient = () => {
+  const removeRecipient = (email) => {
     // const assigneesCopy = assignees;
-    console.log(`Assign.js - 66 - 🏝 recipient removed`);
+    console.log(`Assign.js - 66 - 🏝 recipient removed`, email);
   };
   // remove recipient end
 
@@ -172,7 +172,10 @@ const Assign = ({ navigate }) => {
             </View>
           </View>
           <View style={styles.msgContainer}></View>
-          <TouchableOpacity onPress={removeRecipient} style={styles.touch}>
+          <TouchableOpacity
+            onPress={() => removeRecipient(item.email)}
+            style={styles.touch}
+          >
             <MaterialIcons name="close" size={24} style={styles.mblTxt} />
           </TouchableOpacity>
         </View>
