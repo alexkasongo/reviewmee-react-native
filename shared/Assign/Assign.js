@@ -330,9 +330,6 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     flexDirection: "column",
-    // justifyContent: "space-between",
-    // width: 280,
-    // backgroundColor: "red",
   },
   nameTxt: {
     marginLeft: 15,
@@ -344,9 +341,6 @@ const styles = StyleSheet.create({
   mblTxt: {
     fontWeight: "200",
     color: "#777",
-    // fontSize: 13,
-    // backgroundColor: "red",
-    // padding: 10,
   },
   msgContainer: {
     flexDirection: "row",
@@ -359,7 +353,6 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   touch: {
-    // backgroundColor: "green",
     padding: 10,
   },
   // contact list end

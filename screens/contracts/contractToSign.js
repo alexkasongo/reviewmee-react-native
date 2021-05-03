@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   ScrollView,
   useWindowDimensions,
+  FlatList,
 } from "react-native";
 import HTML from "react-native-render-html";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -39,9 +40,22 @@ import { selectUser } from "../../firebase/firebaseSlice";
 import { storage, addDocumentToSign } from "../../firebase/firebase";
 // Firebase end
 
+// Assign slice
+import {
+  addSignee,
+  remvoveSignee,
+  selectAssignees,
+  addedStatus,
+  selectAddedStatus,
+} from "../../shared/Assign/AssignSlice";
+// Assign slice end
+
 const ContractToSign = ({ navigation }) => {
+  useEffect(() => {
+    console.log(`Profile.js - 42 - 👀`, { assignees });
+  }, []);
+
   // state
-  // get user data
   const user = useSelector(selectUser);
   const signedContract = useSelector(selectSignedContract);
   const dispatch = useDispatch();
@@ -50,6 +64,8 @@ const ContractToSign = ({ navigation }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [signature, setSign] = useState(null);
   const [signModal, setSignModal] = useState(false);
+
+  const assignees = useSelector(selectAssignees);
 
   const handleSignature = (signature) => {
     // console.log(`contractToSign.js - 30 - 🥶`, signedContract);
@@ -85,6 +101,38 @@ const ContractToSign = ({ navigation }) => {
   <em style="textAlign: center;">Look at how happy this native cat is</em>
   `;
   // HTML contract end
+
+  // Assignees
+  const renderItem = ({ item }) => {
+    return (
+      <TouchableWithoutFeedback>
+        <View style={styles.row}>
+          <View style={styles.colOne}>
+            <Image source={{ uri: item.image }} style={styles.pic} />
+            <View style={styles.nameContainer}>
+              <Text
+                style={styles.nameTxt}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              >
+                {item.name}
+              </Text>
+              {/* <Text style={styles.mblTxt}>Mobile</Text> */}
+              <Text style={styles.emailTxt}>{item.email}</Text>
+            </View>
+          </View>
+          <View style={styles.msgContainer}></View>
+          <TouchableOpacity
+            onPress={() => removeRecipient(item.key)}
+            style={styles.touch}
+          >
+            <MaterialIcons name="close" size={24} style={styles.mblTxt} />
+          </TouchableOpacity>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  };
+  // Assignees end
 
   // Create pdf ##########################################
   async function execute() {
@@ -133,87 +181,6 @@ const ContractToSign = ({ navigation }) => {
   // Create pdf end ##########################################
 
   return (
-    // <ScrollView>
-    //   <View style={styles.container}>
-    //     <View>
-    //       <Modal visible={modalOpen} animationType="slide">
-    //         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    //           <View style={styles.modalContent}>
-    //             <MaterialIcons
-    //               name="close"
-    //               size={24}
-    //               style={{ ...styles.modalToggle, ...styles.modalClose }}
-    //               onPress={() => setModalOpen(false)}
-    //             />
-    //             <Signature
-    //               onOK={handleSignature}
-    //               onEmpty={handleEmpty}
-    //               descriptionText="Sign"
-    //               clearText="Clear"
-    //               confirmText="Save"
-    //               webStyle={style}
-    //             />
-    //           </View>
-    //         </TouchableWithoutFeedback>
-    //       </Modal>
-    //     </View>
-
-    //     <View style={styles.header}>
-    //       <Text style={styles.headerTitle}>Contract Name</Text>
-    //     </View>
-
-    //     <View style={styles.postContent}>
-    //       <Text style={styles.postTitle}>
-    //         Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-    //       </Text>
-
-    //       <Text style={styles.postDescription}>
-    //         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-    //         commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-    //         penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-    //         Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-    //         Nulla consequat massa quis enim.
-    //       </Text>
-
-    //       {/* <Text style={styles.tags}>
-    //         Lorem, ipsum, dolor, sit, amet, consectetuer, adipiscing, elit.
-    //       </Text> */}
-
-    //       {/* signature preview */}
-    //       <TouchableOpacity onPress={() => setModalOpen(true)}>
-    //         <View style={styles.preview}>
-    //           {signature ? (
-    //             <Image
-    //               resizeMode={"contain"}
-    //               style={{ width: "100%", height: "100%" }}
-    //               source={{ uri: signedContract }}
-    //             />
-    //           ) : null}
-    //         </View>
-    //       </TouchableOpacity>
-    //       {/* signature preview end */}
-
-    //       <Text style={styles.date}>2017-11-27 13:03:01</Text>
-
-    //       <View style={styles.profile}>
-    //         <Image
-    //           style={styles.avatar}
-    //           source={{
-    //             uri: contactData.avatar,
-    //           }}
-    //         />
-
-    //         <Text style={styles.name}>{contactData.name}</Text>
-    //       </View>
-    //       <TouchableOpacity style={styles.shareButton}>
-    //         <Text style={styles.shareButtonText}>Send</Text>
-    //       </TouchableOpacity>
-
-    //       {/* <Button title="sign" onPress={() => setModalOpen(true)} /> */}
-    //     </View>
-    //   </View>
-    // </ScrollView>
-
     <ScrollView style={{ flex: 1 }}>
       <View>
         <Modal visible={modalOpen} animationType="slide">
@@ -252,20 +219,6 @@ const ContractToSign = ({ navigation }) => {
 
       <HTML source={{ html: htmlContent }} contentWidth={contentWidth} />
 
-      {/* signature preview */}
-      {/* <TouchableOpacity onPress={() => setModalOpen(true)}>
-        <View style={styles.preview}>
-          {signature ? (
-            <Image
-              resizeMode={"contain"}
-              style={{ width: "100%", height: "100%" }}
-              source={{ uri: signedContract.co }}
-            />
-          ) : null}
-        </View>
-      </TouchableOpacity> */}
-      {/* signature preview end */}
-
       <Button
         title="sign"
         onPress={() => {
@@ -281,6 +234,17 @@ const ContractToSign = ({ navigation }) => {
           setSignModal(false);
         }}
       />
+
+      <View style={{ flex: 1, marginTop: 30 }}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={assignees}
+          keyExtractor={(item) => {
+            return item.key;
+          }}
+          renderItem={renderItem}
+        />
+      </View>
     </ScrollView>
   );
 };
@@ -396,6 +360,88 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   // pdf end
+  // assgnees
+  inputStyle: {
+    width: "100%",
+    marginBottom: 15,
+    paddingBottom: 15,
+    alignSelf: "center",
+    borderColor: "#ccc",
+    borderBottomWidth: 1,
+  },
+  loginText: {
+    color: "#3740FE",
+    marginTop: 25,
+    textAlign: "center",
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  header: {
+    padding: 30,
+    marginBottom: 30,
+    alignItems: "center",
+    backgroundColor: "#3b5998",
+    borderRadius: 8,
+  },
+  headerTitle: {
+    fontSize: 30,
+    color: "#FFFFFF",
+    marginTop: 10,
+  },
+  // contact list
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderColor: "#DCDCDC",
+    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    padding: 10,
+  },
+  colOne: {
+    flexDirection: "row",
+  },
+  pic: {
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+  },
+  nameContainer: {
+    flexDirection: "column",
+  },
+  nameTxt: {
+    marginLeft: 15,
+    fontWeight: "600",
+    color: "#222",
+    fontSize: 18,
+    width: 170,
+  },
+  mblTxt: {
+    fontWeight: "200",
+    color: "#777",
+  },
+  msgContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  emailTxt: {
+    fontWeight: "400",
+    color: "#008B8B",
+    fontSize: 14,
+    marginLeft: 15,
+  },
+  touch: {
+    padding: 10,
+  },
+  // assgnees end
 });
 
 export default ContractToSign;
