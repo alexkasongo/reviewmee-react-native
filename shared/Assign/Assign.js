@@ -14,7 +14,13 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { addSignee, remvoveSignee, selectAssignees } from "./AssignSlice";
+import {
+  addSignee,
+  remvoveSignee,
+  selectAssignees,
+  addedStatus,
+  selectAddedStatus,
+} from "./AssignSlice";
 import { globalStyles } from "../../styles/global";
 
 // form stuff
@@ -35,21 +41,28 @@ const Assign = ({ navigate }) => {
   const [displayName, setDisplayName] = useState("");
   const [showToast, setShowToast] = useState(false);
   const assignees = useSelector(selectAssignees);
+  const assigneeAddedStatus = useSelector(selectAddedStatus);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // console.log(`Profile.js - 42 - 👀`, assignees);
-  }, [dispatch]);
+    console.log(`Profile.js - 42 - 👀`, { assigneeAddedStatus, assignees });
+  }, []);
 
-  // const prepare = () => {
-  //   if (assignees.length > 0) {
-  //     navigate(`Profile`);
-  //     // navigate(`prepareDocument`);
-  //   } else {
-  //     setShowToast(true);
-  //     setTimeout(() => setShowToast(false), 1000);
-  //   }
-  // };
+  // prepare doc
+  const prepare = () => {
+    if (assignees.length > 0) {
+      // navigate(`Profile`);
+      dispatch(addedStatus(true));
+      // navigate(`prepareDocument`);
+    }
+    // else {
+    //   setShowToast(true);
+    //   setTimeout(() => setShowToast(false), 1000);
+    // }
+    // console.log(`Assign.js - 53 - 🔥 we are here!!!`, assignees);
+  };
+  // prepare doc end
+
   const addUser = (name, email) => {
     const key = `${new Date().getTime()}${email}`;
     const image = "https://via.placeholder.com/150";
@@ -251,7 +264,7 @@ const Assign = ({ navigate }) => {
         </View>
         {assignees.length > 0 && (
           <View style={{ marginTop: 30 }}>
-            <FlatButton text="Continue" />
+            <FlatButton text="Continue" onPress={() => prepare()} />
           </View>
         )}
       </View>

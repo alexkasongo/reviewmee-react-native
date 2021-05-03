@@ -4,6 +4,7 @@ export const AssignSlice = createSlice({
   name: "assign",
   initialState: {
     signees: [],
+    signeesAdded: false,
   },
   reducers: {
     addSignee: (state, action) => {
@@ -17,6 +18,9 @@ export const AssignSlice = createSlice({
         },
       ];
     },
+    addedStatus: (state, action) => {
+      state.signeesAdded = action.payload;
+    },
     remvoveSignee: (state, action) => {
       state.signees = action.payload;
     },
@@ -27,8 +31,14 @@ export const AssignSlice = createSlice({
   },
 });
 
-export const { addSignee, remvoveSignee, resetSignee } = AssignSlice.actions;
+export const {
+  addSignee,
+  addedStatus,
+  remvoveSignee,
+  resetSignee,
+} = AssignSlice.actions;
 
 export const selectAssignees = (state) => state.assign.signees;
+export const selectAddedStatus = (state) => state.assign.signeesAdded;
 
 export default AssignSlice.reducer;

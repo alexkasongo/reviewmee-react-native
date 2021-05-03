@@ -40,7 +40,7 @@ export default function UserProfile(props) {
     searchForDocumentToSign(user.email).then((res) => {
       dispatch(setUserDocs(res));
     });
-    // console.log(`Profile.js - 42 - 👀`, props);
+    // console.log(`Profile.js - 42 - 👀`, user);
   }, [dispatch]);
 
   const initialState = {

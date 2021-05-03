@@ -36,7 +36,7 @@ export default function App() {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <TabNavigator />
+          <DrawerNavigator />
         </NavigationContainer>
       </Provider>
     );
