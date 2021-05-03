@@ -205,7 +205,7 @@ const Assign = ({ navigate }) => {
                 name: false,
                 email: false,
               },
-              // you can also set the other form states here
+              // we can also set the other form states here
             });
           }}
         >
