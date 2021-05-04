@@ -45,16 +45,12 @@ import {
   addSignee,
   remvoveSignee,
   selectAssignees,
-  addedStatus,
-  selectAddedStatus,
+  closeModal,
+  selectModalStatus,
 } from "../../shared/Assign/AssignSlice";
 // Assign slice end
 
 const ContractToSign = ({ navigation }) => {
-  useEffect(() => {
-    // console.log(`Profile.js - 42 - 👀`, { assignees });
-  }, []);
-
   // state
   const user = useSelector(selectUser);
   const signedContract = useSelector(selectSignedContract);
@@ -66,6 +62,15 @@ const ContractToSign = ({ navigation }) => {
   const [signModal, setSignModal] = useState(false);
 
   const assignees = useSelector(selectAssignees);
+  const modalStatus = useSelector(selectModalStatus);
+
+  // trigger useEffect only when modalStatus state changes to false
+  useEffect(() => {
+    if (modalStatus === false) {
+      console.log(`Profile.js - 42 - 👀`, { modalStatus });
+      setModalOpen(modalStatus);
+    }
+  }, [modalStatus]);
 
   const handleSignature = (signature) => {
     // console.log(`contractToSign.js - 30 - 🥶`, signedContract);
@@ -133,6 +138,7 @@ const ContractToSign = ({ navigation }) => {
           onPress={() => {
             setModalOpen(true);
             setSignModal(false);
+            dispatch(closeModal(true));
           }}
         />
       </View>

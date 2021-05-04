@@ -18,7 +18,7 @@ import {
   addSignee,
   remvoveSignee,
   selectAssignees,
-  addedStatus,
+  closeModal,
   selectAddedStatus,
 } from "./AssignSlice";
 import { globalStyles } from "../../styles/global";
@@ -41,7 +41,7 @@ const Assign = ({ navigate }) => {
   const [displayName, setDisplayName] = useState("");
   const [showToast, setShowToast] = useState(false);
   const assignees = useSelector(selectAssignees);
-  const assigneeAddedStatus = useSelector(selectAddedStatus);
+  // const assigneeAddedStatus = useSelector(selectAddedStatus);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,15 +51,8 @@ const Assign = ({ navigate }) => {
   // prepare doc
   const prepare = () => {
     if (assignees.length > 0) {
-      // navigate(`Profile`);
-      dispatch(addedStatus(true));
-      // navigate(`prepareDocument`);
+      dispatch(closeModal(false));
     }
-    // else {
-    //   setShowToast(true);
-    //   setTimeout(() => setShowToast(false), 1000);
-    // }
-    // console.log(`Assign.js - 53 - 🔥 we are here!!!`, assignees);
   };
   // prepare doc end
 
@@ -262,11 +255,11 @@ const Assign = ({ navigate }) => {
             renderItem={renderItem}
           />
         </View>
-        {/* {assignees.length > 0 && (
+        {assignees.length > 0 && (
           <View style={{ marginTop: 30 }}>
             <FlatButton text="Continue" onPress={() => prepare()} />
           </View>
-        )} */}
+        )}
       </View>
     </TouchableWithoutFeedback>
   );
