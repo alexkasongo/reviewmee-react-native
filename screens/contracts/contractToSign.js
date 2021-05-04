@@ -146,6 +146,10 @@ const ContractToSign = ({ navigation }) => {
             dispatch(closeModal(true));
           }}
         />
+
+        <View style={[styles.container, styles.horizontal]}>
+          {isLoading && <ActivityIndicator />}
+        </View>
       </View>
     );
   };
