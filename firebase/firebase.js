@@ -65,12 +65,20 @@ const getUserDocument = async (uid) => {
 };
 
 // Add document to sign
-export const addDocumentToSign = (uid, email, doc, docRef, photo) => {
+export const addDocumentToSign = (
+  uid,
+  email,
+  doc,
+  docRef,
+  photo,
+  assignees
+) => {
   // if user doesn't exist stop
   if (!uid) return;
   // if user exists continue
-  const signed = false;
-  const signedBy = [];
+  const signed = true;
+  const signedBy = [email];
+  const recipients = assignees;
   const requestedTime = new Date();
   const signedTime = "";
   const photoURL = photo || "https://via.placeholder.com/250";
@@ -84,6 +92,7 @@ export const addDocumentToSign = (uid, email, doc, docRef, photo) => {
       doc,
       docRef,
       signedBy,
+      recipients,
       signed,
       requestedTime,
       signedTime,

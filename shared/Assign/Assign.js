@@ -45,7 +45,7 @@ const Assign = ({ navigate }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`Profile.js - 42 - 👀`, { assigneeAddedStatus, assignees });
+    // console.log(`Profile.js - 42 - 👀`, { assigneeAddedStatus, assignees });
   }, []);
 
   // prepare doc

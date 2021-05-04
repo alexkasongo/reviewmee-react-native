@@ -52,7 +52,7 @@ import {
 
 const ContractToSign = ({ navigation }) => {
   useEffect(() => {
-    console.log(`Profile.js - 42 - 👀`, { assignees });
+    // console.log(`Profile.js - 42 - 👀`, { assignees });
   }, []);
 
   // state
@@ -82,6 +82,18 @@ const ContractToSign = ({ navigation }) => {
     dispatch(setContract(null));
   };
 
+  // remove recipient
+  const removeRecipient = (key) => {
+    const items = assignees;
+    const valueToRemove = `${key}`;
+    const filteredItems = items.filter((item) => {
+      return item.key !== valueToRemove;
+    });
+    // console.log(`Assign.js - 69 - 🌿`, filteredItems);
+    dispatch(remvoveSignee(filteredItems));
+  };
+  // remove recipient end
+
   const style = `.m-signature-pad--footer
       .button {
         background-color: gray;
@@ -101,6 +113,82 @@ const ContractToSign = ({ navigation }) => {
   <em style="textAlign: center;">Look at how happy this native cat is</em>
   `;
   // HTML contract end
+
+  // footer & header
+  const getHeader = () => {
+    return (
+      <View>
+        <View>
+          <Modal visible={modalOpen} animationType="slide">
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              {signModal === true ? (
+                <View style={styles.modalContent}>
+                  <MaterialIcons
+                    name="close"
+                    size={24}
+                    style={{ ...styles.modalToggle, ...styles.modalClose }}
+                    onPress={() => setModalOpen(false)}
+                  />
+                  <Signature
+                    onOK={handleSignature}
+                    onEmpty={handleEmpty}
+                    descriptionText="Sign"
+                    clearText="Clear"
+                    confirmText="Save"
+                    webStyle={style}
+                  />
+                </View>
+              ) : (
+                <View style={styles.modalContent}>
+                  <MaterialIcons
+                    name="close"
+                    size={24}
+                    style={{ ...styles.modalToggle, ...styles.modalClose }}
+                    onPress={() => setModalOpen(false)}
+                  />
+                  <Assign />
+                </View>
+              )}
+            </TouchableWithoutFeedback>
+          </Modal>
+        </View>
+
+        <HTML source={{ html: htmlContent }} contentWidth={contentWidth} />
+
+        <Button
+          title="sign"
+          onPress={() => {
+            setModalOpen(true);
+            setSignModal(true);
+          }}
+        />
+
+        <Button
+          title="Add recipient"
+          onPress={() => {
+            setModalOpen(true);
+            setSignModal(false);
+          }}
+        />
+      </View>
+    );
+  };
+
+  const getFooter = () => {
+    if (assignees.length > 0) {
+      return (
+        <Button
+          title="Send"
+          onPress={() => {
+            execute();
+          }}
+        />
+      );
+    }
+    return <Text>{"Add recipients to send..."}</Text>;
+  };
+
+  // footer & header end
 
   // Assignees
   const renderItem = ({ item }) => {
@@ -170,7 +258,8 @@ const ContractToSign = ({ navigation }) => {
             user.email,
             "consentContract",
             pdfUrl,
-            user.photoURL
+            user.photoURL,
+            assignees
           );
         });
     };
@@ -181,71 +270,30 @@ const ContractToSign = ({ navigation }) => {
   // Create pdf end ##########################################
 
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <View>
-        <Modal visible={modalOpen} animationType="slide">
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            {signModal === true ? (
-              <View style={styles.modalContent}>
-                <MaterialIcons
-                  name="close"
-                  size={24}
-                  style={{ ...styles.modalToggle, ...styles.modalClose }}
-                  onPress={() => setModalOpen(false)}
-                />
-                <Signature
-                  onOK={handleSignature}
-                  onEmpty={handleEmpty}
-                  descriptionText="Sign"
-                  clearText="Clear"
-                  confirmText="Save"
-                  webStyle={style}
-                />
-              </View>
-            ) : (
-              <View style={styles.modalContent}>
-                <MaterialIcons
-                  name="close"
-                  size={24}
-                  style={{ ...styles.modalToggle, ...styles.modalClose }}
-                  onPress={() => setModalOpen(false)}
-                />
-                <Assign />
-              </View>
-            )}
-          </TouchableWithoutFeedback>
-        </Modal>
-      </View>
+    // <ScrollView style={{ flex: 1 }}>
 
-      <HTML source={{ html: htmlContent }} contentWidth={contentWidth} />
-
-      <Button
-        title="sign"
-        onPress={() => {
-          setModalOpen(true);
-          setSignModal(true);
+    <View style={{ flex: 1, marginTop: 30 }}>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={assignees}
+        keyExtractor={(item) => {
+          return item.key;
         }}
+        renderItem={renderItem}
+        ListHeaderComponent={getHeader}
+        ListFooterComponent={getFooter}
       />
+    </View>
 
-      <Button
-        title="Add recipient"
-        onPress={() => {
-          setModalOpen(true);
-          setSignModal(false);
-        }}
-      />
-
-      <View style={{ flex: 1, marginTop: 30 }}>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={assignees}
-          keyExtractor={(item) => {
-            return item.key;
-          }}
-          renderItem={renderItem}
-        />
-      </View>
-    </ScrollView>
+    // {assignees.length > 0 && (
+    //   <Button
+    //     title="Send"
+    //     onPress={() => {
+    //       execute();
+    //     }}
+    //   />
+    // )}
+    // </ScrollView>
   );
 };
 
