@@ -12,11 +12,11 @@ import {
   ScrollView,
   useWindowDimensions,
   FlatList,
+  ActivityIndicator,
 } from "react-native";
 import HTML from "react-native-render-html";
 import { MaterialIcons } from "@expo/vector-icons";
 import Signature from "react-native-signature-canvas";
-import contactData from "../profile/contact.json";
 
 // Assing user component
 import Assign from "../../shared/Assign/Assign";
@@ -33,7 +33,11 @@ import {
   selectSignedContract,
   setContract,
 } from "../../contracts/contractSlice";
-import { selectUser } from "../../firebase/firebaseSlice";
+import {
+  selectUser,
+  setLoading,
+  selectLoading,
+} from "../../firebase/firebaseSlice";
 // state end
 
 // Firebase
@@ -53,6 +57,7 @@ import {
 const ContractToSign = ({ navigation }) => {
   // state
   const user = useSelector(selectUser);
+  const isLoading = useSelector(selectLoading);
   const signedContract = useSelector(selectSignedContract);
   const dispatch = useDispatch();
   // state end
@@ -195,8 +200,8 @@ const ContractToSign = ({ navigation }) => {
 
   // Create pdf ##########################################
   async function execute() {
+    dispatch(setLoading(true));
     const html = `${htmlContent}`;
-    // const html = `${trialContract.html}`;
     const { uri, base64 } = await Print.printToFileAsync({
       html,
       base64: true,
@@ -232,6 +237,9 @@ const ContractToSign = ({ navigation }) => {
             user.photoURL,
             assignees
           );
+        })
+        .then(() => {
+          dispatch(setLoading(false));
         });
     };
 

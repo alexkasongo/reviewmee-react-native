@@ -20,7 +20,7 @@ import FlatButton from "../shared/button";
 // redux stuff
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../firebase/firebaseSlice";
-import { loading } from "../firebase/firebaseSlice";
+import { setLoading } from "../firebase/firebaseSlice";
 // redux stuff end
 
 // a schema is a set of rules defined in an object
@@ -40,7 +40,7 @@ export default function Login({ navigation }) {
   // login function
   const signup = (payload) => {
     // start loading
-    dispatch(loading(true));
+    dispatch(setLoading(true));
     auth
       .createUserWithEmailAndPassword(payload.email, payload.password)
       .then((res) => {
@@ -59,11 +59,11 @@ export default function Login({ navigation }) {
         console.log("✅", obj);
         dispatch(setUser(obj));
         // stop loading
-        dispatch(loading(false));
+        dispatch(setLoading(false));
       })
       .catch((error) => {
         // stop loading
-        dispatch(loading(false));
+        dispatch(setLoading(false));
         console.log(`login.js - 54 - 🤬`, error.message);
       });
   };

@@ -20,7 +20,7 @@ export const firebaseSlice = createSlice({
     setUserDocs: (state, action) => {
       state.userDocs = action.payload;
     },
-    loading: (state, action) => {
+    setLoading: (state, action) => {
       //   do something here: we have access to action.payload
       state.isLoading = action.payload;
     },
@@ -32,12 +32,18 @@ export const firebaseSlice = createSlice({
   },
 });
 
-export const { setUser, loading, signout, setUserDocs } = firebaseSlice.actions;
+export const {
+  setUser,
+  setLoading,
+  signout,
+  setUserDocs,
+} = firebaseSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectUser = (state) => state.firebase.user;
 export const selectUserDocs = (state) => state.firebase.userDocs;
+export const selectLoading = (state) => state.firebase.isLoading;
 
 export default firebaseSlice.reducer;
