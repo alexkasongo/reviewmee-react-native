@@ -262,11 +262,11 @@ const Assign = ({ navigate }) => {
             renderItem={renderItem}
           />
         </View>
-        {assignees.length > 0 && (
+        {/* {assignees.length > 0 && (
           <View style={{ marginTop: 30 }}>
             <FlatButton text="Continue" onPress={() => prepare()} />
           </View>
-        )}
+        )} */}
       </View>
     </TouchableWithoutFeedback>
   );

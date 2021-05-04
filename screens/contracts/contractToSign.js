@@ -118,41 +118,6 @@ const ContractToSign = ({ navigation }) => {
   const getHeader = () => {
     return (
       <View>
-        <View>
-          <Modal visible={modalOpen} animationType="slide">
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-              {signModal === true ? (
-                <View style={styles.modalContent}>
-                  <MaterialIcons
-                    name="close"
-                    size={24}
-                    style={{ ...styles.modalToggle, ...styles.modalClose }}
-                    onPress={() => setModalOpen(false)}
-                  />
-                  <Signature
-                    onOK={handleSignature}
-                    onEmpty={handleEmpty}
-                    descriptionText="Sign"
-                    clearText="Clear"
-                    confirmText="Save"
-                    webStyle={style}
-                  />
-                </View>
-              ) : (
-                <View style={styles.modalContent}>
-                  <MaterialIcons
-                    name="close"
-                    size={24}
-                    style={{ ...styles.modalToggle, ...styles.modalClose }}
-                    onPress={() => setModalOpen(false)}
-                  />
-                  <Assign />
-                </View>
-              )}
-            </TouchableWithoutFeedback>
-          </Modal>
-        </View>
-
         <HTML source={{ html: htmlContent }} contentWidth={contentWidth} />
 
         <Button
@@ -270,30 +235,50 @@ const ContractToSign = ({ navigation }) => {
   // Create pdf end ##########################################
 
   return (
-    // <ScrollView style={{ flex: 1 }}>
-
-    // <View style={{ flex: 1, marginTop: 30 }}>
-    <FlatList
-      showsVerticalScrollIndicator={false}
-      data={assignees}
-      keyExtractor={(item) => {
-        return item.key;
-      }}
-      renderItem={renderItem}
-      ListHeaderComponent={getHeader}
-      ListFooterComponent={getFooter}
-    />
-    // </View>
-
-    // {assignees.length > 0 && (
-    //   <Button
-    //     title="Send"
-    //     onPress={() => {
-    //       execute();
-    //     }}
-    //   />
-    // )}
-    // </ScrollView>
+    <View>
+      <Modal visible={modalOpen} animationType="slide">
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          {signModal === true ? (
+            <View style={styles.modalContent}>
+              <MaterialIcons
+                name="close"
+                size={24}
+                style={{ ...styles.modalToggle, ...styles.modalClose }}
+                onPress={() => setModalOpen(false)}
+              />
+              <Signature
+                onOK={handleSignature}
+                onEmpty={handleEmpty}
+                descriptionText="Sign"
+                clearText="Clear"
+                confirmText="Save"
+                webStyle={style}
+              />
+            </View>
+          ) : (
+            <View style={styles.modalContent}>
+              <MaterialIcons
+                name="close"
+                size={24}
+                style={{ ...styles.modalToggle, ...styles.modalClose }}
+                onPress={() => setModalOpen(false)}
+              />
+              <Assign />
+            </View>
+          )}
+        </TouchableWithoutFeedback>
+      </Modal>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={assignees}
+        keyExtractor={(item) => {
+          return item.key;
+        }}
+        renderItem={renderItem}
+        ListHeaderComponent={getHeader}
+        ListFooterComponent={getFooter}
+      />
+    </View>
   );
 };
 
