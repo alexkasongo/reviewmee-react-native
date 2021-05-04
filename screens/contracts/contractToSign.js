@@ -272,18 +272,18 @@ const ContractToSign = ({ navigation }) => {
   return (
     // <ScrollView style={{ flex: 1 }}>
 
-    <View style={{ flex: 1, marginTop: 30 }}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={assignees}
-        keyExtractor={(item) => {
-          return item.key;
-        }}
-        renderItem={renderItem}
-        ListHeaderComponent={getHeader}
-        ListFooterComponent={getFooter}
-      />
-    </View>
+    // <View style={{ flex: 1, marginTop: 30 }}>
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      data={assignees}
+      keyExtractor={(item) => {
+        return item.key;
+      }}
+      renderItem={renderItem}
+      ListHeaderComponent={getHeader}
+      ListFooterComponent={getFooter}
+    />
+    // </View>
 
     // {assignees.length > 0 && (
     //   <Button
