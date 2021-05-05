@@ -118,7 +118,7 @@ const ContractToSign = ({ navigation }) => {
   // HTML contract
   const htmlContent = `
   <h1>This HTML snippet is now rendered with native components !</h1>
-  <h2>Enjoy a webview-free and blazing fast application</h2>
+  <h2>This can now be converted into a PDF</h2>
   <img src="${signedContract}" />
   <em style="textAlign: center;">Look at how happy this native cat is</em>
   `;
