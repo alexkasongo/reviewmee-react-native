@@ -14,6 +14,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
+import PDFReader from "rn-pdf-reader-js";
 
 import profileStyles from "./ProfileStyle";
 
@@ -62,6 +63,14 @@ export default function UserProfile(props) {
 
   // State
   const [tabs, setTabs] = useState(initialState.tabs);
+
+  const viewPdf = () => (
+    <PDFReader
+      source={{
+        uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
+      }}
+    />
+  );
 
   const handleIndexChange = (index) => {
     //  set the index here to use for changing color/opacity
