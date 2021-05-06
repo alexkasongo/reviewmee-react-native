@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import SignList from "./Lists/SignList";
-import SignedList from "./Lists/SignedList";
+// import SignList from "./Lists/SignList";
+// import SignedList from "./Lists/SignedList";
 // import { resetDocToView } from "./ViewDocument/ViewDocumentSlice";
-import { resetDocToSign } from "./SignDocument/SignDocumentSlice";
+// import { resetDocToSign } from "./SignDocument/SignDocumentSlice";
 import { Text, Button, View } from "react-native";
-import "gestalt/dist/gestalt.css";
+import { useDispatch } from "react-redux";
 
 const Pending = () => {
   const dispatch = useDispatch();
@@ -15,28 +14,25 @@ const Pending = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <View>
-        <Text>Sign Documents</Text>
+    <View>
+      <Text>Sign Documents</Text>
 
-        {/* <SignList /> */}
+      {/* <SignList /> */}
 
-        <Text>Prepare Document</Text>
+      <Text>Prepare Document</Text>
 
-        <Button
-          onClick={(event) => {
-            navigate(`/assignUsers`);
-          }}
-          text="Prepare Document for Signing"
-          color="blue"
-          inline
-        />
+      <Button
+        onPress={(event) => {
+          navigate(`contracToSign`);
+        }}
+        title="Prepare Document for Signing"
+        color="blue"
+      />
 
-        <Text>Review Signed Documents</Text>
+      <Text>Review Signed Documents</Text>
 
-        {/* <SignedList /> */}
-      </View>
-    </div>
+      {/* <SignedList /> */}
+    </View>
   );
 };
 export default Pending;

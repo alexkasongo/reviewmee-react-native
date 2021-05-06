@@ -24,6 +24,10 @@ import {
   selectUserDocs,
 } from "../../firebase/firebaseSlice";
 
+// components
+import Pending from "../../shared/Pending/pending";
+// components end
+
 // from firebase
 import { searchForDocumentToSign } from "../../firebase/firebase";
 
@@ -143,6 +147,7 @@ export default function UserProfile(props) {
   const ThirdRoute = () => (
     <View style={[styles.scene, { backgroundColor: "#ff4081" }]}>
       <Text>Work in progress</Text>
+      <Pending />
     </View>
   );
 
