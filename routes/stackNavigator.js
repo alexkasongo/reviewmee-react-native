@@ -102,6 +102,14 @@ const ProfileStackNavigator = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="Sign"
+        component={ContractToSign}
+        options={{
+          headerShown: true,
+          headerBackTitleVisible: false,
+        }}
+      />
       <Stack.Screen name="Playground" component={Playground} />
     </Stack.Navigator>
   );

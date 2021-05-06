@@ -3,6 +3,7 @@ import {
   Text,
   View,
   Image,
+  Button,
   Animated,
   FlatList,
   StyleSheet,
@@ -112,13 +113,12 @@ export default function UserProfile(props) {
 
   const SecondRoute = () => (
     <View style={[styles.scene]}>
-      {/* <Text>Hello Aleko 😊</Text> */}
-      <FlatList
+      <Text>Work in progress</Text>
+      {/* <FlatList
         vertical
         showsVerticalScrollIndicator={false}
         numColumns={2}
         removeClippedSubviews={false}
-        // contentContainerStyle={[styles.container]}
         data={userDocs}
         renderItem={({ item }) => (
           <ScrollView
@@ -141,13 +141,45 @@ export default function UserProfile(props) {
           </ScrollView>
         )}
         keyExtractor={(item) => item.docId}
-      />
+      /> */}
     </View>
   );
   const ThirdRoute = () => (
-    <View style={[styles.scene, { backgroundColor: "#ff4081" }]}>
-      <Text>Work in progress</Text>
-      <Pending />
+    <View style={[styles.scene]}>
+      <FlatList
+        vertical
+        showsVerticalScrollIndicator={false}
+        numColumns={2}
+        removeClippedSubviews={false}
+        data={userDocs}
+        renderItem={({ item }) => (
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            style={styles.scroll}
+          >
+            <View style={ProfileCard.container}>
+              <TouchableOpacity
+                onPress={() => props.navigation.navigate("Playground")}
+              >
+                <Image
+                  style={ProfileCard.photo}
+                  source={{ uri: item.photoURL }}
+                />
+              </TouchableOpacity>
+              <View style={[ProfileCard.btmContainer]}>
+                <Text style={ProfileCard.title}>{item.doc}</Text>
+                <Text style={ProfileCard.category}>{item.email}</Text>
+                <Button
+                  title="sign"
+                  onPress={() => props.navigation.navigate("Sign")}
+                />
+              </View>
+            </View>
+          </ScrollView>
+        )}
+        keyExtractor={(item) => item.docId}
+      />
     </View>
   );
 
@@ -258,7 +290,7 @@ const SCREEN_WIDTH = width < height ? width : height;
 
 const recipeNumColums = 2;
 // item size
-const RECIPE_ITEM_HEIGHT = 150;
+const CONTRACT_ITEM_HEIGHT = 125;
 const RECIPE_ITEM_MARGIN = 10;
 
 // 2 photos per width
@@ -273,7 +305,7 @@ const ProfileCard = StyleSheet.create({
     width:
       (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) /
       recipeNumColums,
-    height: RECIPE_ITEM_HEIGHT + 75,
+    height: CONTRACT_ITEM_HEIGHT + 100,
     borderColor: "#cccccc",
     borderWidth: 0.5,
     borderRadius: 15,
@@ -283,23 +315,32 @@ const ProfileCard = StyleSheet.create({
     width:
       (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) /
       recipeNumColums,
-    height: RECIPE_ITEM_HEIGHT,
+    height: CONTRACT_ITEM_HEIGHT,
     borderRadius: 15,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },
   title: {
-    flex: 1,
+    // flex: 1,
     fontSize: 17,
     fontWeight: "bold",
     textAlign: "center",
     color: "#444444",
-    marginTop: 3,
-    marginRight: 5,
-    marginLeft: 5,
+    // marginTop: 3,
+    // marginRight: 5,
+    // marginLeft: 5,
   },
   category: {
-    marginTop: 5,
-    marginBottom: 5,
+    // marginTop: 5,
+    // marginBottom: 5,
+  },
+  btmContainer: {
+    flex: 1,
+    // width: "100%",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingTop: 10,
+    paddingBottom: 10,
   },
 });
