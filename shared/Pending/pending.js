@@ -153,17 +153,25 @@ const PendingToSign = ({ navigation }) => {
   };
 
   const getFooter = () => {
-    if (assignees.length > 0) {
+    if (signature !== null) {
       return (
-        <Button
-          title="Send"
-          onPress={() => {
-            execute();
-          }}
-        />
+        <View>
+          <Button
+            title="Clear Signature"
+            onPress={() => {
+              handleEmpty();
+            }}
+          />
+          <Button
+            title="Send"
+            onPress={() => {
+              execute();
+            }}
+          />
+        </View>
       );
     }
-    return <Text>{"Add recipients to send..."}</Text>;
+    return <Text>{"Sign contract to send..."}</Text>;
   };
 
   // footer & header end
