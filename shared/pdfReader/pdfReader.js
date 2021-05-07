@@ -5,22 +5,24 @@ import PDFReader from "rn-pdf-reader-js";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser, selectUserDocs } from "../../firebase/firebaseSlice";
+import { selectCurrentPdf } from "../pdfReader/pdfReaderSlice";
 // redux end
 
 export default function Playground() {
   // get user data
   const user = useSelector(selectUser);
   const userDocs = useSelector(selectUserDocs);
+  const currentPdf = useSelector(selectCurrentPdf);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // console.log(`drawerNavigator.js - 23 - 👘 Playground open`, user);
-  }, [dispatch]);
+    console.log(`drawerNavigator.js - 23 - 👘 Playground open`, currentPdf);
+  }, [dispatch, currentPdf]);
 
   return (
     <PDFReader
       source={{
-        uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
+        uri: `${currentPdf}`,
       }}
     />
   );

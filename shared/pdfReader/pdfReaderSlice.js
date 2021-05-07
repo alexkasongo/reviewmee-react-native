@@ -15,6 +15,6 @@ export const PdfReaderSlice = createSlice({
 
 export const { setCurrentPdf } = PdfReaderSlice.actions;
 
-export const selectCurrentPdf = (state) => state.pdfViewer.signees;
+export const selectCurrentPdf = (state) => state.pdfReader.currentPdf;
 
 export default PdfReaderSlice.reducer;
