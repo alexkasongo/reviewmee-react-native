@@ -22,6 +22,7 @@ import Viewer from "../screens/viever/Viewer";
 import Playground from "../screens/playground/Playground";
 import Assign from "../shared/Assign/Assign";
 import PdfReader from "../shared/pdfReader/pdfReader";
+import PendingToSign from "../shared/Pending/pending";
 import PlaygroundOptions from "../screens/playground/Options";
 
 const Stack = createStackNavigator();
@@ -113,6 +114,7 @@ const ProfileStackNavigator = () => {
       />
       {/* <Stack.Screen name="Playground" component={Playground} /> */}
       <Stack.Screen name="PdfReader" component={PdfReader} />
+      <Stack.Screen name="PendingToSign" component={PendingToSign} />
     </Stack.Navigator>
   );
 };

@@ -192,7 +192,7 @@ export default function UserProfile(props) {
                 <Text style={ProfileCard.category}>{item.email}</Text>
                 <Button
                   title="sign"
-                  onPress={() => props.navigation.navigate("Sign")}
+                  onPress={() => props.navigation.navigate("PendingToSign")}
                 />
               </View>
             </View>
