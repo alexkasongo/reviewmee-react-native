@@ -72,6 +72,13 @@ export default function UserProfile(props) {
   const [tabs, setTabs] = useState(initialState.tabs);
   // State end
 
+  // open pdf viewer
+  const openPdfViewer = (pdfDocRef) => {
+    dispatch(setCurrentPdf(pdfDocRef)), setModalOpen(true);
+    props.navigation.navigate("PdfReader");
+  };
+  // open pdf viewer end
+
   const handleIndexChange = (index) => {
     //  set the index here to use for changing color/opacity
     setIndex(index);
