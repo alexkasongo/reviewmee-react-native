@@ -72,53 +72,6 @@ export default function UserProfile(props) {
   const [tabs, setTabs] = useState(initialState.tabs);
   // State end
 
-  // open pdf viewer
-  const openPdfViewer = (pdfDocRef) => {
-    dispatch(setCurrentPdf(pdfDocRef)), setModalOpen(true);
-    props.navigation.navigate("PdfReader");
-  };
-  // open pdf viewer end
-
-  const PdfViewer = () => (
-    // <View styles={[{ flex: 1 }]}>
-    //   {currentPdf !== "" ? (
-    //     <View styles={[{ flex: 1 }]}>
-    //       <Text>Working!!!!</Text>
-    //       <Text>{currentPdf}</Text>
-    //       <MaterialIcons
-    //         name="close"
-    //         size={24}
-    //         style={(styles.modalToggle, styles.modalClose)}
-    //         onPress={() => setModalOpen(false)}
-    //       />
-    //       <PDFReader
-    //         source={{
-    //           uri: `http://samples.leanpub.com/thereactnativebook-sample.pdf`,
-    //         }}
-    //       />
-    //     </View>
-    //   ) : (
-    //     <View styles={[{ flex: 1 }]}>
-    //       <Text>PDF not available</Text>
-    //       <Text>{currentPdf}</Text>
-    //       <MaterialIcons
-    //         name="close"
-    //         size={24}
-    //         style={(styles.modalToggle, styles.modalClose)}
-    //         onPress={() => setModalOpen(false)}
-    //       />
-    //     </View>
-    //   )}
-    // </View>
-
-    <PDFReader
-      source={{
-        uri: `${currentPdf}`,
-      }}
-      withPinchZoom="true"
-    />
-  );
-
   const handleIndexChange = (index) => {
     //  set the index here to use for changing color/opacity
     setIndex(index);
