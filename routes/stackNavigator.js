@@ -21,6 +21,7 @@ import SettingsOptions from "../screens/settings/Options";
 import Viewer from "../screens/viever/Viewer";
 import Playground from "../screens/playground/Playground";
 import Assign from "../shared/Assign/Assign";
+import PdfReader from "../shared/pdfReader/pdfReader";
 import PlaygroundOptions from "../screens/playground/Options";
 
 const Stack = createStackNavigator();
@@ -110,7 +111,8 @@ const ProfileStackNavigator = () => {
           headerBackTitleVisible: false,
         }}
       />
-      <Stack.Screen name="Playground" component={Playground} />
+      {/* <Stack.Screen name="Playground" component={Playground} /> */}
+      <Stack.Screen name="PdfReader" component={PdfReader} />
     </Stack.Navigator>
   );
 };

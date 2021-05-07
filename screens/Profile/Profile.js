@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
+  Modal,
   Image,
   Button,
-  Animated,
+  Keyboard,
   FlatList,
+  Animated,
   StyleSheet,
   Dimensions,
   ScrollView,
@@ -14,7 +16,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
-import PDFReader from "rn-pdf-reader-js";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import profileStyles from "./ProfileStyle";
 
@@ -25,6 +27,8 @@ import {
   setUserDocs,
   selectUserDocs,
 } from "../../firebase/firebaseSlice";
+
+import { setCurrentPdf } from "../../shared/pdfReader/pdfReaderSlice";
 
 // components
 import Pending from "../../shared/Pending/pending";
@@ -41,12 +45,14 @@ export default function UserProfile(props) {
   const userDocs = useSelector(selectUserDocs);
   const dispatch = useDispatch();
 
+  // const [currentPdf, setCurrentPdf] = useState("");
+
   // on mount do this
   useEffect(() => {
     searchForDocumentToSign(user.email).then((res) => {
       dispatch(setUserDocs(res));
     });
-    // console.log(`Profile.js - 42 - 👀`, user);
+    // console.log(`Profile.js - 42 - 👀`, currentPdf);
   }, [dispatch]);
 
   const initialState = {
@@ -62,13 +68,54 @@ export default function UserProfile(props) {
   };
 
   // State
+  const [modalOpen, setModalOpen] = useState(false);
   const [tabs, setTabs] = useState(initialState.tabs);
+  // State end
 
-  const viewPdf = () => (
+  // open pdf viewer
+  const openPdfViewer = (pdfDocRef) => {
+    dispatch(setCurrentPdf(pdfDocRef)), setModalOpen(true);
+    props.navigation.navigate("PdfReader");
+  };
+  // open pdf viewer end
+
+  const PdfViewer = () => (
+    // <View styles={[{ flex: 1 }]}>
+    //   {currentPdf !== "" ? (
+    //     <View styles={[{ flex: 1 }]}>
+    //       <Text>Working!!!!</Text>
+    //       <Text>{currentPdf}</Text>
+    //       <MaterialIcons
+    //         name="close"
+    //         size={24}
+    //         style={(styles.modalToggle, styles.modalClose)}
+    //         onPress={() => setModalOpen(false)}
+    //       />
+    //       <PDFReader
+    //         source={{
+    //           uri: `http://samples.leanpub.com/thereactnativebook-sample.pdf`,
+    //         }}
+    //       />
+    //     </View>
+    //   ) : (
+    //     <View styles={[{ flex: 1 }]}>
+    //       <Text>PDF not available</Text>
+    //       <Text>{currentPdf}</Text>
+    //       <MaterialIcons
+    //         name="close"
+    //         size={24}
+    //         style={(styles.modalToggle, styles.modalClose)}
+    //         onPress={() => setModalOpen(false)}
+    //       />
+    //     </View>
+    //   )}
+    // </View>
+
     <PDFReader
       source={{
-        uri: "http://samples.leanpub.com/thereactnativebook-sample.pdf",
+        uri: `${currentPdf}`,
       }}
+      withPinchZoom="true"
     />
   );
 
@@ -169,7 +216,11 @@ export default function UserProfile(props) {
           >
             <View style={ProfileCard.container}>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("Playground")}
+                onPress={() =>
+                  openPdfViewer(
+                    "http://samples.leanpub.com/thereactnativebook-sample.pdf"
+                  )
+                }
               >
                 <Image
                   style={ProfileCard.photo}
@@ -275,7 +326,6 @@ export default function UserProfile(props) {
   };
 
   return (
-    // <View style={[styles.container]}>
     <View style={styles.cardContainer}>
       {renderContactHeader()}
       <TabView
@@ -286,7 +336,6 @@ export default function UserProfile(props) {
         onIndexChange={handleIndexChange}
       />
     </View>
-    // </View>
   );
 }
 
@@ -351,5 +400,17 @@ const ProfileCard = StyleSheet.create({
     alignItems: "center",
     paddingTop: 10,
     paddingBottom: 10,
+  },
+  modalToggle: {
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#f2f2f2",
+    padding: 10,
+    borderRadius: 10,
+    alignSelf: "center",
+  },
+  modalClose: {
+    marginTop: 40,
+    marginBottom: 10,
   },
 });
