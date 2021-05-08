@@ -327,7 +327,6 @@ const ProfileCard = StyleSheet.create({
     borderColor: "#cccccc",
     borderWidth: 0.5,
     borderRadius: 15,
-    // paddingRight: 10,
   },
   photo: {
     width:
