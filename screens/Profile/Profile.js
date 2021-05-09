@@ -343,9 +343,6 @@ const ProfileCard = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     color: "#444444",
-    // marginTop: 3,
-    // marginRight: 5,
-    // marginLeft: 5,
   },
   category: {
     // marginTop: 5,
