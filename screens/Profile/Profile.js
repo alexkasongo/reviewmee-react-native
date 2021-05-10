@@ -346,7 +346,6 @@ const ProfileCard = StyleSheet.create({
   },
   category: {
     // marginTop: 5,
-    // marginBottom: 5,
   },
   btmContainer: {
     flex: 1,
