@@ -6,10 +6,10 @@ const SettingsOptions = (props) => {
   const params = props.route.params;
 
   return (
-    <View {...props}>
-      <Text>Name: {params.name}</Text>
-      <Text>Age: {params.age}</Text>
-      <Text>Wife: {params.wife}</Text>
+    <View {...props} style={{ flex: 1, padding: 10 }}>
+      <Text>{params.name}</Text>
+      <Text>{params.age}</Text>
+      <Text>{params.wife}</Text>
     </View>
   );
 };

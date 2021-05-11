@@ -55,9 +55,9 @@ export default function Settings(props) {
 
   const onPressSetting = () => {
     const data = {
-      name: "Aleko Love",
-      age: "29",
-      wife: "Rebecca Holt",
+      name: "Work",
+      age: "in",
+      wife: "progress",
     };
     props.navigation.navigate("SettingsOptions", data);
   };
