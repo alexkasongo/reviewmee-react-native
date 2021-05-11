@@ -52,10 +52,10 @@ const BottomTabNavigator = () => {
         component={ProfileStackNavigator}
       />
       <Tab.Screen name="SettingsStackScreen" component={SettingsStackScreen} />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="PlaygroundStackScreen"
         component={PlaygroundStackScreen}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };
