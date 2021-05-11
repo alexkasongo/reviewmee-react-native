@@ -48,7 +48,7 @@ export default function Signin({ navigation }) {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log("✅  User logged-in successfully!");
+        // console.log("✅  User logged-in successfully!");
 
         const obj = {
           displayName: res.user.displayName,

@@ -8,6 +8,7 @@ export const firebaseSlice = createSlice({
     docsSigned: [],
     isLoading: false,
     userDocs: null,
+    signedUserDocs: null,
   },
   reducers: {
     setUser: (state, action) => {
@@ -17,8 +18,11 @@ export const firebaseSlice = createSlice({
       // immutable state based off those changes
       state.user = action.payload;
     },
-    setUserDocs: (state, action) => {
+    setUnsignedUserDocs: (state, action) => {
       state.userDocs = action.payload;
+    },
+    setSignedUserDocs: (state, action) => {
+      state.signedUserDocs = action.payload;
     },
     setLoading: (state, action) => {
       //   do something here: we have access to action.payload
@@ -36,7 +40,8 @@ export const {
   setUser,
   setLoading,
   signout,
-  setUserDocs,
+  setUnsignedUserDocs,
+  setSignedUserDocs,
 } = firebaseSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
@@ -44,6 +49,7 @@ export const {
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectUser = (state) => state.firebase.user;
 export const selectUserDocs = (state) => state.firebase.userDocs;
+export const selectSignedUserDocs = (state) => state.firebase.signedUserDocs;
 export const selectLoading = (state) => state.firebase.isLoading;
 
 export default firebaseSlice.reducer;

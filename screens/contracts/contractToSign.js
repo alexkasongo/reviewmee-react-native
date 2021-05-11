@@ -117,10 +117,10 @@ const ContractToSign = ({ navigation }) => {
 
   // HTML contract
   const htmlContent = `
-  <h1>This HTML snippet is now rendered with native components !</h1>
-  <h2>This can now be converted into a PDF</h2>
+  <i>Here, we have a style set on the "i" tag with the "tagsStyles" prop.</i>
+  <p class="last-paragraph">Finally, this paragraph is styled through the classesStyles prop</p>
   <img src="${signedContract}" />
-  <em style="textAlign: center;">Look at how happy this native cat is</em>
+  <em style="textAlign: center;">Look at this beautiful signature</em>
   `;
   // HTML contract end
 
@@ -128,7 +128,20 @@ const ContractToSign = ({ navigation }) => {
   const getHeader = () => {
     return (
       <View>
-        <HTML source={{ html: htmlContent }} contentWidth={contentWidth} />
+        <HTML
+          source={{ html: htmlContent }}
+          contentWidth={contentWidth}
+          tagsStyles={{
+            i: { textAlign: "center", fontStyle: "italic", color: "grey" },
+          }}
+          classesStyles={{
+            "last-paragraph": {
+              textAlign: "right",
+              color: "teal",
+              fontWeight: "800",
+            },
+          }}
+        />
 
         <Button
           title="sign"
@@ -253,7 +266,7 @@ const ContractToSign = ({ navigation }) => {
   // Create pdf end ##########################################
 
   return (
-    <View>
+    <View style={styles.modalContent}>
       <Modal visible={modalOpen} animationType="slide">
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           {signModal === true ? (

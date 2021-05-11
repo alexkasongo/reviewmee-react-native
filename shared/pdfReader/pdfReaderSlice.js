@@ -7,7 +7,7 @@ export const PdfReaderSlice = createSlice({
   },
   reducers: {
     setCurrentPdf: (state, action) => {
-      console.log(`Assign.js - 54 - ✅ you clicked me`, action.payload);
+      // console.log(`Assign.js - 54 - ✅ you clicked me`, action.payload);
       state.currentPdf = action.payload;
     },
   },

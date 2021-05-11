@@ -178,7 +178,7 @@ export const searchForDocumentToSign = async (email) => {
     .catch(function (error) {
       console.log("Error getting documents: ", error);
     });
-  // console.log(`firebase.js - 189 - 🍎`, docIds);
+  console.log(`firebase.js - 189 - 🍎`, docIds);
   return docIds;
 };
 
@@ -196,9 +196,9 @@ export const searchForDocumentsSigned = async (email) => {
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        const { docRef, emails, signedTime } = doc.data();
+        const { docRef, emails, signedTime, signedBy, photoURL } = doc.data();
         const docId = doc.id;
-        docIds.push({ docRef, emails, signedTime, docId });
+        docIds.push({ docRef, emails, signedTime, docId, signedBy, photoURL });
       });
     })
     .catch(function (error) {

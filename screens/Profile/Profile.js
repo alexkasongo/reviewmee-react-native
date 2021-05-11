@@ -24,8 +24,10 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setUser,
   selectUser,
-  setUserDocs,
+  setUnsignedUserDocs,
+  setSignedUserDocs,
   selectUserDocs,
+  selectSignedUserDocs,
 } from "../../firebase/firebaseSlice";
 
 import { setCurrentPdf } from "../../shared/pdfReader/pdfReaderSlice";
@@ -35,7 +37,10 @@ import Pending from "../../shared/Pending/pending";
 // components end
 
 // from firebase
-import { searchForDocumentToSign } from "../../firebase/firebase";
+import {
+  searchForDocumentToSign,
+  searchForDocumentsSigned,
+} from "../../firebase/firebase";
 
 const styles = StyleSheet.create({ ...profileStyles });
 
@@ -43,6 +48,7 @@ export default function UserProfile(props) {
   // get user data
   const user = useSelector(selectUser);
   const userDocs = useSelector(selectUserDocs);
+  const signedUserDocs = useSelector(selectSignedUserDocs);
   const dispatch = useDispatch();
 
   // const [currentPdf, setCurrentPdf] = useState("");
@@ -50,8 +56,13 @@ export default function UserProfile(props) {
   // on mount do this
   useEffect(() => {
     searchForDocumentToSign(user.email).then((res) => {
-      dispatch(setUserDocs(res));
+      dispatch(setUnsignedUserDocs(res));
     });
+
+    searchForDocumentsSigned(user.email).then((res) => {
+      dispatch(setSignedUserDocs(res));
+    });
+
     // console.log(`Profile.js - 42 - 👀`, currentPdf);
   }, [dispatch]);
 
@@ -110,13 +121,19 @@ export default function UserProfile(props) {
           >
             <TouchableOpacity>
               <View style={ProfileCard.main}>
-                <View style={ProfileCard.container}>
-                  <Image
-                    style={ProfileCard.photo}
-                    source={{ uri: item.image }}
-                  />
-                  <Text style={ProfileCard.title}>{item.user.name}</Text>
-                  <Text style={ProfileCard.category}>{item.user.email}</Text>
+                <View style={ProfileCard.signedContainer}>
+                  <TouchableOpacity
+                    onPress={() => openPdfViewer(`${item.docRef}`)}
+                  >
+                    <Image
+                      style={ProfileCard.photo}
+                      source={{ uri: item.image }}
+                    />
+                  </TouchableOpacity>
+                  <View style={[ProfileCard.btmContainer]}>
+                    <Text style={ProfileCard.title}>Signed by:</Text>
+                    <Text style={ProfileCard.category}>{item.user.name}</Text>
+                  </View>
                 </View>
               </View>
             </TouchableOpacity>
@@ -129,35 +146,34 @@ export default function UserProfile(props) {
 
   const SecondRoute = () => (
     <View style={[styles.scene]}>
-      <Text>Work in progress</Text>
-      {/* <FlatList
+      <FlatList
         vertical
         showsVerticalScrollIndicator={false}
         numColumns={2}
         removeClippedSubviews={false}
-        data={userDocs}
+        data={signedUserDocs}
         renderItem={({ item }) => (
           <ScrollView
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             style={styles.scroll}
           >
-            <TouchableOpacity
-              onPress={() => props.navigation.navigate("Playground")}
-            >
-              <View style={ProfileCard.container}>
+            <View style={ProfileCard.signedContainer}>
+              <TouchableOpacity onPress={() => openPdfViewer(`${item.docRef}`)}>
                 <Image
                   style={ProfileCard.photo}
                   source={{ uri: item.photoURL }}
                 />
-                <Text style={ProfileCard.title}>{item.doc}</Text>
-                <Text style={ProfileCard.category}>{item.email}</Text>
+              </TouchableOpacity>
+              <View style={[ProfileCard.btmContainer]}>
+                <Text style={ProfileCard.title}>Signed by:</Text>
+                <Text style={ProfileCard.category}>{item.signedBy}</Text>
               </View>
-            </TouchableOpacity>
+            </View>
           </ScrollView>
         )}
         keyExtractor={(item) => item.docId}
-      /> */}
+      />
     </View>
   );
   const ThirdRoute = () => (
@@ -175,13 +191,7 @@ export default function UserProfile(props) {
             style={styles.scroll}
           >
             <View style={ProfileCard.container}>
-              <TouchableOpacity
-                onPress={() =>
-                  openPdfViewer(
-                    "http://samples.leanpub.com/thereactnativebook-sample.pdf"
-                  )
-                }
-              >
+              <TouchableOpacity onPress={() => openPdfViewer(`${item.docRef}`)}>
                 <Image
                   style={ProfileCard.photo}
                   source={{ uri: item.photoURL }}
@@ -324,6 +334,21 @@ const ProfileCard = StyleSheet.create({
       (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) /
       recipeNumColums,
     height: CONTRACT_ITEM_HEIGHT + 100,
+    borderColor: "#cccccc",
+    borderWidth: 0.5,
+    borderRadius: 15,
+  },
+  signedContainer: {
+    flex: 1,
+    alignItems: "center",
+    // marginLeft: RECIPE_ITEM_MARGIN,
+    marginRight: 5,
+    marginLeft: 5,
+    marginTop: 20,
+    width:
+      (SCREEN_WIDTH - (recipeNumColums + 1) * RECIPE_ITEM_MARGIN) /
+      recipeNumColums,
+    height: CONTRACT_ITEM_HEIGHT + 70,
     borderColor: "#cccccc",
     borderWidth: 0.5,
     borderRadius: 15,

@@ -19,7 +19,7 @@ export const AssignSlice = createSlice({
       ];
     },
     closeModal: (state, action) => {
-      console.log(`Assign.js - 54 - ✅ you clicked me`, action.payload);
+      // console.log(`Assign.js - 54 - ✅ you clicked me`, action.payload);
       state.modalStatus = action.payload;
     },
     remvoveSignee: (state, action) => {

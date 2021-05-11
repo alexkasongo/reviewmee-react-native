@@ -16,7 +16,7 @@ export default function Playground() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`drawerNavigator.js - 23 - 👘 Playground open`, currentPdf);
+    // console.log(`drawerNavigator.js - 23 - 👘 Playground open`, currentPdf);
   }, [dispatch, currentPdf]);
 
   return (

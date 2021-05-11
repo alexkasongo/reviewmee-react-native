@@ -6,7 +6,7 @@ import { getNumberOfContracts } from "./MockDataAPI";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { selectUser, setUserDocs } from "../../firebase/firebaseSlice";
+import { selectUser, setUnsignedUserDocs } from "../../firebase/firebaseSlice";
 // redux end
 
 // firebase
@@ -21,7 +21,7 @@ export default function CategoriesScreen(props) {
   // on mount do this
   useEffect(() => {
     searchForDocumentToSign(user.email).then((res) => {
-      dispatch(setUserDocs(res));
+      dispatch(setUnsignedUserDocs(res));
     });
   }, [dispatch]);
 
