@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 
 const SettingsOptions = (props) => {
-  // get params from props
+  // get params from props_
   const params = props.route.params;
 
   return (
