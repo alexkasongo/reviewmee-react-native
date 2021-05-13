@@ -178,7 +178,7 @@ export const searchForDocumentToSign = async (email) => {
     .catch(function (error) {
       console.log("Error getting documents: ", error);
     });
-  console.log(`firebase.js - 189 - 🍎`, docIds);
+  // console.log(`firebase.js - 189 - 🍎`, docIds);
   return docIds;
 };
 
