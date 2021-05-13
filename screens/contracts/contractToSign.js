@@ -121,98 +121,216 @@ const ContractToSign = ({ navigation }) => {
   }`;
 
   const contentWidth = useWindowDimensions().width;
+  const currentDateTime = new Date();
 
   // HTML contract
-  const htmlContent = `
-  <i>Here, we have a style set on the "i" tag with the "tagsStyles" prop.</i>
-  <p class="last-paragraph">Finally, this paragraph is styled through the classesStyles prop</p>
-  <img src="${signedContract}" />
-  <em style="textAlign: center;">Look at this beautiful signature</em>
-  `;
+  const htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+<title>Trial Contract</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<style type="text/css">
+    /* CLIENT-SPECIFIC STYLES */
+    body, table, td, a{-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
+    table, td{mso-table-lspace: 0pt; mso-table-rspace: 0pt;} /* Remove spacing between tables in Outlook 2007 and up */
+    img{-ms-interpolation-mode: bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
+
+    /* RESET STYLES */
+    img{border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none;}
+    table{border-collapse: collapse !important;}
+    body{height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important;}
+
+    /* iOS BLUE LINKS */
+    a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+    }
+
+    /* MOBILE STYLES */
+    @media screen and (max-width: 525px) {
+
+        /* ALLOWS FOR FLUID TABLES */
+        .wrapper {
+          width: 100% !important;
+            max-width: 100% !important;
+        }
+
+        /* ADJUSTS LAYOUT OF LOGO IMAGE */
+        .logo img {
+          margin: 0 auto !important;
+        }
+
+        /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
+        .mobile-hide {
+          display: none !important;
+        }
+
+        .img-max {
+          max-width: 100% !important;
+          width: 100% !important;
+          height: auto !important;
+        }
+
+        /* FULL-WIDTH TABLES */
+        .responsive-table {
+          width: 100% !important;
+        }
+
+        /* UTILITY CLASSES FOR ADJUSTING PADDING ON MOBILE */
+        .padding {
+          padding: 10px 5% 15px 5% !important;
+        }
+
+        .padding-meta {
+          padding: 30px 5% 0px 5% !important;
+          text-align: center;
+        }
+
+        .padding-copy {
+             padding: 10px 5% 10px 5% !important;
+          text-align: center;
+        }
+
+        .no-padding {
+          padding: 0 !important;
+        }
+
+        .section-padding {
+          padding: 50px 15px 50px 15px !important;
+        }
+
+        /* ADJUST BUTTONS ON MOBILE */
+        .mobile-button-container {
+            margin: 0 auto;
+            width: 100% !important;
+        }
+
+        .mobile-button {
+            padding: 15px !important;
+            border: 0 !important;
+            font-size: 14px !important;
+            display: block !important;
+        }
+
+    }
+
+    /* ANDROID CENTER FIX */
+    div[style*="margin: 14px 0;"] { margin: 0 !important; }
+</style>
+</head>
+<body style="margin: 0 !important; padding: 0 !important;">
+
+<!-- ONE COLUMN SECTION -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td bgcolor="#ffffff" align="center" style="padding: 15px;" class="section-padding">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
+            <tr>
+            <td align="center" valign="top" width="500">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px;" class="responsive-table">
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td>
+                                    <!-- COPY -->
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Hey Aleko,</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Cheers,<br><img style="width: 150px" src="${signedContract}" /></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff" align="center" style="padding: 20px 0px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
+            <tr>
+            <td align="center" valign="top" width="500">
+            <![endif]-->
+            <!-- UNSUBSCRIBE COPY -->
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="max-width: 500px;" class="responsive-table">
+                <tr>
+                    <td align="left" style="font-size: 12px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color:#666666;">
+                        1234 Main Street, Anywhere, MA 01234, USA
+                        <br>
+                        <a href="http://litmus.com" target="_blank" style="color: #666666; text-decoration: none;">${currentDateTime}</a>
+                        <span style="font-family: Arial, sans-serif; font-size: 12px; color: #444444;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                        <a href="http://litmus.com" target="_blank" style="color: #666666; text-decoration: none;">View this email in your browser</a>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>`;
 
   const htmlContract = `
-    <style type="text/css">
-    p.p1 {
-        margin: 0.0px 0.0px 12.0px 0.0px;
-        font: 11.0px Verdana;
-        color: #000000
-    }
-
-    p.p2 {
-        margin: 0.0px 0.0px 0.0px 0.0px;
-        font: 11.0px Verdana;
-        color: #000000
-    }
-
-    p.p3 {
-        margin: 0.0px 0.0px 0.0px 0.0px;
-        font: 11.0px Verdana;
-        color: #000000;
-        min-height: 13.0px
-    }
-
-    p.p4 {
-        margin: 0.0px 0.0px 0.0px 0.0px;
-        font: 12.0px Helvetica;
-        min-height: 14.0px
-    }
-
-    table.t1 {
-        border-collapse: collapse
-    }
-
-    td.td1 {
-        width: 53.0px;
-        height: 20.0px;
-        border-style: solid;
-        border-width: 1.0px 1.0px 1.0px 1.0px;
-        border-color: #000000 #000000 #000000 #000000;
-        padding: 4.0px 4.0px 4.0px 4.0px
-    }
-
-    td.td2 {
-        width: 451.0px;
-        height: 20.0px;
-        border-style: solid;
-        border-width: 1.0px 1.0px 1.0px 1.0px;
-        border-color: #000000 #000000 #000000 #000000;
-        padding: 4.0px 4.0px 4.0px 4.0px
-    }
-
-    td.td3 {
-        width: 8.0px;
-        height: 20.0px;
-        border-style: solid;
-        border-width: 1.0px 1.0px 1.0px 1.0px;
-        border-color: #000000 #000000 #000000 #000000;
-        padding: 4.0px 4.0px 4.0px 4.0px
-    }
-</style>
-<p class="p1">This scholarship contract is effective as of the date signed below. It represents an agreement between [Student] and [Institution]. The terms are considered binding unless an amendment is added and agreed upon by both parties.</p>
-<p class="p1"><strong>Scholarship Amount</strong></p>
-<p class="p1">The institution will provide the student with a scholarship equal to [Amount] for the current academic year. This amount will be applied equally to the fall and spring semesters. The student will receive this amount as a credit to the student&rsquo;s account at the beginning of each semester as long as the student is enrolled for a minimum of 12 credits at the institution.</p>
-<p class="p1"><strong>Academic Requirements</strong></p>
-<p class="p1">Failure on the Student&rsquo;s part to maintain a minimum of a 3.0 grade point average (GPA) for any given semester will result in being placed on probation in regards to this scholarship. While on probation, the Student will receive the scholarship funds as agreed upon. However, should the Student fail to maintain a cumulative 3.0 GPA in future semesters, the scholarship will be revoked. In this case, all funds already charged to the Student&rsquo;s account shall remain, but future payments will not be scheduled and this contract will be considered null and void.<span class="Apple-converted-space">&nbsp;</span></p>
-<p class="p1"><strong>Termination</strong></p>
-<p class="p1">This agreement shall be terminated should the Student withdraw or transfer from the Institution. The Student also has the ability to terminate this scholarship by providing written notice 14 days prior to the date of a new distribution of funds.<span class="Apple-converted-space">&nbsp;</span></p>
-<p class="p1"><strong>Compliance with Laws and Regulations</strong></p>
-<p class="p2">The Student is required to maintain compliance with all rules and regulations outlined by the Institution in the Student handbook. Failure to do so may result in the termination of the scholarship.<span class="Apple-converted-space">&nbsp;</span></p>
-<p class="p3"><br></p>
-<p class="p2">This contract is subject to all applicable local and state laws. Should one clause of the contract be determined unenforceable by a court of law, all other provisions shall remain in effect.</p>
-<p class="p3"><br></p>
-<p class="p3">Signature&nbsp;</p>
-<hr>
-<p><br></p>
-<p class="p3"><br></p>
-<p class="p3"><br></p>
-<p class="p3"><br></p>
+  <div class="container">
+    <p class="p1">This scholarship contract is effective as of the date signed below. It represents an agreement between [Student] and [Institution]. The terms are considered binding unless an amendment is added and agreed upon by both parties.</p>
+    <p class="p1"><strong>Scholarship Amount</strong></p>
+    <p class="p1">The institution will provide the student with a scholarship equal to [Amount] for the current academic year. This amount will be applied equally to the fall and spring semesters. The student will receive this amount as a credit to the student&rsquo;s account at the beginning of each semester as long as the student is enrolled for a minimum of 12 credits at the institution.</p>
+    <p class="p1"><strong>Academic Requirements</strong></p>
+    <p class="p1">Failure on the Student&rsquo;s part to maintain a minimum of a 3.0 grade point average (GPA) for any given semester will result in being placed on probation in regards to this scholarship. While on probation, the Student will receive the scholarship funds as agreed upon. However, should the Student fail to maintain a cumulative 3.0 GPA in future semesters, the scholarship will be revoked. In this case, all funds already charged to the Student&rsquo;s account shall remain, but future payments will not be scheduled and this contract will be considered null and void.<span class="Apple-converted-space">&nbsp;</span></p>
+    <p class="p1"><strong>Termination</strong></p>
+    <p class="p1">This agreement shall be terminated should the Student withdraw or transfer from the Institution. The Student also has the ability to terminate this scholarship by providing written notice 14 days prior to the date of a new distribution of funds.<span class="Apple-converted-space">&nbsp;</span></p>
+    <p class="p1"><strong>Compliance with Laws and Regulations</strong></p>
+    <p class="p2">The Student is required to maintain compliance with all rules and regulations outlined by the Institution in the Student handbook. Failure to do so may result in the termination of the scholarship.<span class="Apple-converted-space">&nbsp;</span></p>
+    <p class="p3"><br></p>
+    <p class="p2">This contract is subject to all applicable local and state laws. Should one clause of the contract be determined unenforceable by a court of law, all other provisions shall remain in effect.</p>
+    <p class="p3"><br></p>
+    <p class="p3">Signature&nbsp;</p>
+    <img class="signature" src="${signedContract}" />
+    <hr>
+  </div>
   `;
   // HTML contract end
 
   // footer & header
   const getHeader = () => {
     return (
-      <View>
+      <View style={{ backgroundColor: "#fff" }}>
         <HTML
           source={{ html: htmlContract }}
           contentWidth={contentWidth}
@@ -220,10 +338,16 @@ const ContractToSign = ({ navigation }) => {
             i: { textAlign: "center", fontStyle: "italic", color: "grey" },
           }}
           classesStyles={{
+            container: {
+              padding: 10,
+            },
             "last-paragraph": {
               textAlign: "right",
               color: "teal",
               fontWeight: "800",
+            },
+            signature: {
+              width: 200,
             },
           }}
         />
@@ -303,7 +427,7 @@ const ContractToSign = ({ navigation }) => {
   // Create pdf ##########################################
   async function execute() {
     dispatch(setLoading(true));
-    const html = `${htmlContract}`;
+    const html = `${htmlContent}`;
     const { uri, base64 } = await Print.printToFileAsync({
       html,
       base64: true,
