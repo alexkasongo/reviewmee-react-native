@@ -67,6 +67,7 @@ const getUserDocument = async (uid) => {
 // Add document to sign
 export const addDocumentToSign = (
   uid,
+  name,
   email,
   doc,
   docRef,
@@ -77,6 +78,7 @@ export const addDocumentToSign = (
   if (!uid) return;
   // if user exists continue
   const signed = true;
+  const signerName = [name];
   const signedBy = [email];
   const recipients = assignees;
   const requestedTime = new Date();
@@ -91,6 +93,7 @@ export const addDocumentToSign = (
       email,
       doc,
       docRef,
+      signerName,
       signedBy,
       recipients,
       signed,
@@ -196,9 +199,18 @@ export const searchForDocumentsSigned = async (email) => {
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        const { docRef, emails, signedTime, signedBy, photoURL } = doc.data();
+        const { docRef, emails, signedTime, signedBy, signerName, photoURL } =
+          doc.data();
         const docId = doc.id;
-        docIds.push({ docRef, emails, signedTime, docId, signedBy, photoURL });
+        docIds.push({
+          docRef,
+          emails,
+          signedTime,
+          docId,
+          signedBy,
+          signerName,
+          photoURL,
+        });
       });
     })
     .catch(function (error) {

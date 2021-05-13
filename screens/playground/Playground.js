@@ -73,6 +73,7 @@ export default function Playground() {
           // create an entry in the database
           addDocumentToSign(
             user.uid,
+            user.displayName,
             user.email,
             "consentContract",
             pdfUrl,

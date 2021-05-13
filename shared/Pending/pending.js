@@ -241,6 +241,7 @@ const PendingToSign = ({ navigation }) => {
           // create an entry in the database
           addDocumentToSign(
             user.uid,
+            user.displayName,
             user.email,
             "consentContract",
             pdfUrl,

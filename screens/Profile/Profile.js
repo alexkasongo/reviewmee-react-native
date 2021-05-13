@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -51,7 +52,12 @@ export default function UserProfile(props) {
   const signedUserDocs = useSelector(selectSignedUserDocs);
   const dispatch = useDispatch();
 
-  // const [currentPdf, setCurrentPdf] = useState("");
+  // only runs if the screen is currently focused.
+  useFocusEffect(
+    React.useCallback(() => {
+      // console.log(`Profile.js - 58 - 🌿`);
+    }, [])
+  );
 
   // on mount do this
   useEffect(() => {
@@ -62,8 +68,6 @@ export default function UserProfile(props) {
     searchForDocumentsSigned(user.email).then((res) => {
       dispatch(setSignedUserDocs(res));
     });
-
-    // console.log(`Profile.js - 42 - 👀`, currentPdf);
   }, [dispatch]);
 
   const initialState = {
@@ -167,7 +171,7 @@ export default function UserProfile(props) {
               </TouchableOpacity>
               <View style={[ProfileCard.btmContainer]}>
                 <Text style={ProfileCard.title}>Signed by:</Text>
-                <Text style={ProfileCard.category}>{item.signedBy}</Text>
+                <Text style={ProfileCard.category}>{item.signerName}</Text>
               </View>
             </View>
           </ScrollView>
@@ -228,29 +232,31 @@ export default function UserProfile(props) {
     );
   };
 
-  const renderLabel = (props) => ({ route }) => {
-    const routes = props.navigationState.routes;
+  const renderLabel =
+    (props) =>
+    ({ route }) => {
+      const routes = props.navigationState.routes;
 
-    let labels = [];
-    routes.forEach((e, index) => {
-      labels.push(index === props.navigationState.index ? "black" : "gray");
-    });
+      let labels = [];
+      routes.forEach((e, index) => {
+        labels.push(index === props.navigationState.index ? "black" : "gray");
+      });
 
-    const currentIndex = parseInt(route.key) - 1;
+      const currentIndex = parseInt(route.key) - 1;
 
-    const color = labels[currentIndex];
+      const color = labels[currentIndex];
 
-    return (
-      <View style={styles.tabRow}>
-        <Animated.Text style={([styles.tabLabelNumber], { color })}>
-          {route.count}
-        </Animated.Text>
-        <Animated.Text style={([styles.tabLabelText], { color })}>
-          {route.title}
-        </Animated.Text>
-      </View>
-    );
-  };
+      return (
+        <View style={styles.tabRow}>
+          <Animated.Text style={([styles.tabLabelNumber], { color })}>
+            {route.count}
+          </Animated.Text>
+          <Animated.Text style={([styles.tabLabelText], { color })}>
+            {route.title}
+          </Animated.Text>
+        </View>
+      );
+    };
 
   // render scene fix here
   const [index, setIndex] = useState(0);

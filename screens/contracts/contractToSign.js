@@ -37,11 +37,18 @@ import {
   selectUser,
   setLoading,
   selectLoading,
+  setUnsignedUserDocs,
+  setSignedUserDocs,
 } from "../../firebase/firebaseSlice";
 // state end
 
 // Firebase
-import { storage, addDocumentToSign } from "../../firebase/firebase";
+import {
+  storage,
+  addDocumentToSign,
+  searchForDocumentToSign,
+  searchForDocumentsSigned,
+} from "../../firebase/firebase";
 // Firebase end
 
 // Assign slice
@@ -248,6 +255,7 @@ const ContractToSign = ({ navigation }) => {
           // create an entry in the database
           addDocumentToSign(
             user.uid,
+            user.displayName,
             user.email,
             "consentContract",
             pdfUrl,
@@ -257,6 +265,12 @@ const ContractToSign = ({ navigation }) => {
         })
         .then(() => {
           dispatch(setLoading(false));
+          searchForDocumentToSign(user.email).then((res) => {
+            dispatch(setUnsignedUserDocs(res));
+          });
+          searchForDocumentsSigned(user.email).then((res) => {
+            dispatch(setSignedUserDocs(res));
+          });
         });
     };
 

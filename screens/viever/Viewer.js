@@ -73,6 +73,7 @@ export default function Viewer() {
           // create an entry in the database
           addDocumentToSign(
             user.uid,
+            user.displayName,
             user.email,
             "consentContract",
             pdfUrl,
