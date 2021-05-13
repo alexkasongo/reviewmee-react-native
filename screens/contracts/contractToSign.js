@@ -124,187 +124,111 @@ const ContractToSign = ({ navigation }) => {
   const currentDateTime = new Date();
 
   // HTML contract
-  const htmlContent = `<!DOCTYPE html>
+  const htmlContent = `
+    <!DOCTYPE html>
 <html>
 <head>
-<title>Trial Contract</title>
+<title>Consent Contract</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <style type="text/css">
     /* CLIENT-SPECIFIC STYLES */
     body, table, td, a{-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
-    table, td{mso-table-lspace: 0pt; mso-table-rspace: 0pt;} /* Remove spacing between tables in Outlook 2007 and up */
-    img{-ms-interpolation-mode: bicubic;} /* Allow smoother rendering of resized image in Internet Explorer */
-
+    
     /* RESET STYLES */
     img{border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none;}
-    table{border-collapse: collapse !important;}
     body{height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important;}
-
-    /* iOS BLUE LINKS */
-    a[x-apple-data-detectors] {
-        color: inherit !important;
-        text-decoration: none !important;
-        font-size: inherit !important;
-        font-family: inherit !important;
-        font-weight: inherit !important;
-        line-height: inherit !important;
+  
+  .container {
+    max-width: 500px;
+    margin: auto;
+  }
+  .signature {
+    width: 100px
+  }
+  .copy {
+    padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;
+  }
+  .copyTitle {
+    padding: 20px 0 0 0; font-size: 60px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;
+  }
+  .dateTimeCopy {
+     font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;
+  }
+  @media print {
+    .other-pages{
+      page-break-before: always;
     }
-
-    /* MOBILE STYLES */
-    @media screen and (max-width: 525px) {
-
-        /* ALLOWS FOR FLUID TABLES */
-        .wrapper {
-          width: 100% !important;
-            max-width: 100% !important;
-        }
-
-        /* ADJUSTS LAYOUT OF LOGO IMAGE */
-        .logo img {
-          margin: 0 auto !important;
-        }
-
-        /* USE THESE CLASSES TO HIDE CONTENT ON MOBILE */
-        .mobile-hide {
-          display: none !important;
-        }
-
-        .img-max {
-          max-width: 100% !important;
-          width: 100% !important;
-          height: auto !important;
-        }
-
-        /* FULL-WIDTH TABLES */
-        .responsive-table {
-          width: 100% !important;
-        }
-
-        /* UTILITY CLASSES FOR ADJUSTING PADDING ON MOBILE */
-        .padding {
-          padding: 10px 5% 15px 5% !important;
-        }
-
-        .padding-meta {
-          padding: 30px 5% 0px 5% !important;
-          text-align: center;
-        }
-
-        .padding-copy {
-             padding: 10px 5% 10px 5% !important;
-          text-align: center;
-        }
-
-        .no-padding {
-          padding: 0 !important;
-        }
-
-        .section-padding {
-          padding: 50px 15px 50px 15px !important;
-        }
-
-        /* ADJUST BUTTONS ON MOBILE */
-        .mobile-button-container {
-            margin: 0 auto;
-            width: 100% !important;
-        }
-
-        .mobile-button {
-            padding: 15px !important;
-            border: 0 !important;
-            font-size: 14px !important;
-            display: block !important;
-        }
-
-    }
-
-    /* ANDROID CENTER FIX */
-    div[style*="margin: 14px 0;"] { margin: 0 !important; }
+  }
+  @page {
+    margin: 20px;
+    page-break-before: always;
+  }
 </style>
 </head>
-<body style="margin: 0 !important; padding: 0 !important;">
+<body>
 
-<!-- ONE COLUMN SECTION -->
-<table border="0" cellpadding="0" cellspacing="0" width="100%">
-    <tr>
-        <td bgcolor="#ffffff" align="center" style="padding: 15px;" class="section-padding">
-            <!--[if (gte mso 9)|(IE)]>
-            <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
-            <tr>
-            <td align="center" valign="top" width="500">
-            <![endif]-->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px;" class="responsive-table">
-                <tr>
-                    <td>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td>
-                                    <!-- COPY -->
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                        <tr>
-                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Hey Aleko,</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left" style="padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">Cheers,<br><img style="width: 150px" src="${signedContract}" /></td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-            <!--[if (gte mso 9)|(IE)]>
-            </td>
-            </tr>
-            </table>
-            <![endif]-->
-        </td>
-    </tr>
-    <tr>
-        <td bgcolor="#ffffff" align="center" style="padding: 20px 0px;">
-            <!--[if (gte mso 9)|(IE)]>
-            <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
-            <tr>
-            <td align="center" valign="top" width="500">
-            <![endif]-->
-            <!-- UNSUBSCRIBE COPY -->
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="max-width: 500px;" class="responsive-table">
-                <tr>
-                    <td align="left" style="font-size: 12px; line-height: 18px; font-family: Helvetica, Arial, sans-serif; color:#666666;">
-                        1234 Main Street, Anywhere, MA 01234, USA
-                        <br>
-                        <a href="http://litmus.com" target="_blank" style="color: #666666; text-decoration: none;">${currentDateTime}</a>
-                        <span style="font-family: Arial, sans-serif; font-size: 12px; color: #444444;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                        <a href="http://litmus.com" target="_blank" style="color: #666666; text-decoration: none;">View this email in your browser</a>
-                    </td>
-                </tr>
-            </table>
-            <!--[if (gte mso 9)|(IE)]>
-            </td>
-            </tr>
-            </table>
-            <![endif]-->
-        </td>
-    </tr>
-</table>
+  <div class="container" >
+    <h1 class="copyTitle">Hey Aleko,</h1>
+    
+    <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.
+      <br>
+      <br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Cheers,</p>
+    <img class="signature" src="${signedContract}" alt="">
+      <br>
+    <p class="dateTimeCopy">${currentDateTime}</p>
+  </div>
+
+  <div class="container other-pages" >
+    <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.
+      <br>
+      <br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Cheers,</p>
+    <img class="signature" src="${signedContract}" alt="">
+      <br>
+    <p class="dateTimeCopy">${currentDateTime}</p>
+  </div>
+
+  <div class="container other-pages" >
+    <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Cheers,</p>
+    <img class="signature" src="${signedContract}" alt="">
+      <br>
+    <p class="dateTimeCopy">${currentDateTime}</p>
+  </div>
+
 
 </body>
-</html>`;
+</html>
+  `;
 
   const htmlContract = `
   <div class="container">
@@ -379,12 +303,20 @@ const ContractToSign = ({ navigation }) => {
   const getFooter = () => {
     if (assignees.length > 0) {
       return (
-        <Button
-          title="Send"
-          onPress={() => {
-            execute();
-          }}
-        />
+        <View>
+          <Button
+            title="Send"
+            onPress={() => {
+              execute();
+            }}
+          />
+          <Button
+            title="Share"
+            onPress={() => {
+              share();
+            }}
+          />
+        </View>
       );
     }
     return <Text>{"Add recipients to send..."}</Text>;
@@ -480,6 +412,18 @@ const ContractToSign = ({ navigation }) => {
     // Sharing.shareAsync(uri);
   }
   // Create pdf end ##########################################
+  // Share pdf ##########################################
+  async function share() {
+    dispatch(setLoading(true));
+    const html = `${htmlContent}`;
+    const { uri, base64 } = await Print.printToFileAsync({
+      html,
+      base64: true,
+    });
+    dispatch(setLoading(false));
+    Sharing.shareAsync(uri);
+  }
+  // Share pdf end ##########################################
 
   return (
     <View style={styles.modalContent}>
