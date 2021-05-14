@@ -275,21 +275,40 @@ const ContractToSign = ({ navigation }) => {
 
   const htmlContract = `
   <div class="container">
-    <p class="p1">This scholarship contract is effective as of the date signed below. It represents an agreement between [Student] and [Institution]. The terms are considered binding unless an amendment is added and agreed upon by both parties.</p>
-    <p class="p1"><strong>Scholarship Amount</strong></p>
-    <p class="p1">The institution will provide the student with a scholarship equal to [Amount] for the current academic year. This amount will be applied equally to the fall and spring semesters. The student will receive this amount as a credit to the student&rsquo;s account at the beginning of each semester as long as the student is enrolled for a minimum of 12 credits at the institution.</p>
-    <p class="p1"><strong>Academic Requirements</strong></p>
-    <p class="p1">Failure on the Student&rsquo;s part to maintain a minimum of a 3.0 grade point average (GPA) for any given semester will result in being placed on probation in regards to this scholarship. While on probation, the Student will receive the scholarship funds as agreed upon. However, should the Student fail to maintain a cumulative 3.0 GPA in future semesters, the scholarship will be revoked. In this case, all funds already charged to the Student&rsquo;s account shall remain, but future payments will not be scheduled and this contract will be considered null and void.<span class="Apple-converted-space">&nbsp;</span></p>
-    <p class="p1"><strong>Termination</strong></p>
-    <p class="p1">This agreement shall be terminated should the Student withdraw or transfer from the Institution. The Student also has the ability to terminate this scholarship by providing written notice 14 days prior to the date of a new distribution of funds.<span class="Apple-converted-space">&nbsp;</span></p>
-    <p class="p1"><strong>Compliance with Laws and Regulations</strong></p>
-    <p class="p2">The Student is required to maintain compliance with all rules and regulations outlined by the Institution in the Student handbook. Failure to do so may result in the termination of the scholarship.<span class="Apple-converted-space">&nbsp;</span></p>
-    <p class="p3"><br></p>
-    <p class="p2">This contract is subject to all applicable local and state laws. Should one clause of the contract be determined unenforceable by a court of law, all other provisions shall remain in effect.</p>
-    <p class="p3"><br></p>
-    <p class="p3">Signature&nbsp;</p>
-    ${signatureImg}
-    <hr>
+    <div class="container" >
+        <div class="content" >
+          <div class="top">
+            <section>
+            <h1 class="copyTitle">Hey Aleko,</h1>
+          </section>
+          
+          <section>
+            <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+          <br>
+          <br>
+        Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+          <br>
+          <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.
+          <br>
+          <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+          <br>
+          <br>
+        </p>
+          </section>
+          </div>
+          
+        
+          <footer>
+            <p class="copy other-pages">Cheers,</p>
+            <img class="signature" src="${signedContract}" alt="">
+          <br>
+        <p class="dateTimeCopy">${currentDateTime}</p>
+          </footer>
+        
+        </div>
+      </div>
   </div>
   `;
   // HTML contract end
@@ -316,29 +335,17 @@ const ContractToSign = ({ navigation }) => {
             signature: {
               width: 200,
             },
+            copyTitle: {
+              fontSize: 22,
+              color: "#666666",
+            },
+            copy: {
+              fontSize: 16,
+              lineHeight: 25,
+              color: "#666666",
+            },
           }}
         />
-
-        {/* <Button
-          title="sign"
-          onPress={() => {
-            setModalOpen(true);
-            setSignModal(true);
-          }}
-        />
-
-        <Button
-          title="Add recipient"
-          onPress={() => {
-            setModalOpen(true);
-            setSignModal(false);
-            dispatch(closeModal(true));
-          }}
-        />
-
-        <View style={[styles.container, styles.horizontal]}>
-          {isLoading && <ActivityIndicator />}
-        </View> */}
       </View>
     );
   };
