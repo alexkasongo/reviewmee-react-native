@@ -198,7 +198,7 @@ const ContractToSign = ({ navigation }) => {
           
         
           <footer>
-            <p class="copy other-pages">Cheers,</p>
+            <p class="copy other-pages">Signature:</p>
             <img class="signature" src="${signedContract}" alt="">
           <br>
         <p class="dateTimeCopy">${currentDateTime}</p>
@@ -206,59 +206,6 @@ const ContractToSign = ({ navigation }) => {
         
         </div>
       </div>
-      <div class="container" >
-        <div class="content" >
-          <div class="top">
-            <section>
-            <h1 class="copyTitle">Hey Aleko,</h1>
-          </section>
-          
-          <section>
-            <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-          <br>
-          <br>
-        Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-          <br>
-          <br>
-        </p>
-          </section>
-          </div>
-          
-        
-          <footer>
-            <p class="copy other-pages">Cheers,</p>
-            <img class="signature" src="${signedContract}" alt="">
-          <br>
-        <p class="dateTimeCopy">${currentDateTime}</p>
-          </footer>
-        
-        </div>
-      </div>
-      <div class="container" >
-        <div class="content" >
-          <div class="top">
-            <section>
-            <h1 class="copyTitle">Hey Aleko,</h1>
-          </section>
-          
-          <section>
-            <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-        </p>
-          </section>
-          </div>
-          
-        
-          <footer>
-            <p class="copy other-pages">Cheers,</p>
-            <img class="signature" src="${signedContract}" alt="">
-          <br>
-        <p class="dateTimeCopy">${currentDateTime}</p>
-          </footer>
-        
-        </div>
-      </div>
-      
-
     </body>
     </html>
   `;
@@ -275,40 +222,23 @@ const ContractToSign = ({ navigation }) => {
 
   const htmlContract = `
   <div class="container">
-    <div class="container" >
-        <div class="content" >
-          <div class="top">
-            <section>
-            <h1 class="copyTitle">Hey Aleko,</h1>
-          </section>
-          
-          <section>
-            <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-          <br>
-          <br>
-        Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-          <br>
-          <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.
-          <br>
-          <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-          <br>
-          <br>
-        </p>
-          </section>
-          </div>
-          
-        
-          <footer>
-            <p class="copy other-pages">Cheers,</p>
-            <img class="signature" src="${signedContract}" alt="">
-          <br>
-        <p class="dateTimeCopy">${currentDateTime}</p>
-          </footer>
-        
-        </div>
-      </div>
+    <section>
+      <h1 class="copyTitle">Hey Aleko,</h1>
+    </section>
+    
+    <section>
+      <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</p>
+      <p class="copy">Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</p>
+      <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.</p>
+      <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</p>
+    </section>
+  
+    <footer>
+      <p class="copy other-pages">Signature:</p>
+      ${signatureImg}
+      <hr/>
+      <p class="copy">${currentDateTime}</p>
+    </footer>
   </div>
   `;
   // HTML contract end
@@ -433,6 +363,9 @@ const ContractToSign = ({ navigation }) => {
           searchForDocumentsSigned(user.email).then((res) => {
             dispatch(setSignedUserDocs(res));
           });
+        })
+        .then(() => {
+          navigation.navigate("CategoriesScreen");
         });
     };
 
