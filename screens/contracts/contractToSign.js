@@ -143,6 +143,7 @@ const ContractToSign = ({ navigation }) => {
   .container {
     max-width: 500px;
     margin: auto;
+    height: 792px;
   }
   .signature {
     width: 100px
@@ -151,7 +152,7 @@ const ContractToSign = ({ navigation }) => {
     padding: 20px 0 0 0; font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;
   }
   .copyTitle {
-    padding: 20px 0 0 0; font-size: 60px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;
+    padding: 0 0 0 0; font-size: 18px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;
   }
   .dateTimeCopy {
      font-size: 14px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;
@@ -161,70 +162,102 @@ const ContractToSign = ({ navigation }) => {
       page-break-before: always;
     }
   }
-  @page {
-    margin: 20px;
-    page-break-before: always;
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 792px;
   }
 </style>
 </head>
 <body>
 
   <div class="container" >
-    <h1 class="copyTitle">Hey Aleko,</h1>
+    <div class="content" >
+      <div class="top">
+        <section>
+        <h1 class="copyTitle">Hey Aleko,</h1>
+      </section>
+      
+      <section>
+        <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.
+      <br>
+      <br>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <br>
+      <br>
+    </p>
+      </section>
+      </div>
+      
     
-    <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+      <footer>
+        <p class="copy other-pages">Cheers,</p>
+        <img class="signature" src="${signedContract}" alt="">
+      <br>
+    <p class="dateTimeCopy">${currentDateTime}</p>
+      </footer>
+    
+    </div>
+  </div>
+  <div class="container" >
+    <div class="content" >
+      <div class="top">
+        <section>
+        <h1 class="copyTitle">Hey Aleko,</h1>
+      </section>
+      
+      <section>
+        <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
       <br>
       <br>
     Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
       <br>
       <br>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.
-      <br>
-      <br>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-      <br>
-      <br>
-    Cheers,</p>
-    <img class="signature" src="${signedContract}" alt="">
-      <br>
-    <p class="dateTimeCopy">${currentDateTime}</p>
-  </div>
-
-  <div class="container other-pages" >
-    <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-      <br>
-      <br>
-    Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-      <br>
-      <br>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.
-      <br>
-      <br>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-      <br>
-      <br>
-    Cheers,</p>
-    <img class="signature" src="${signedContract}" alt="">
+    </p>
+      </section>
+      </div>
+      
+    
+      <footer>
+        <p class="copy other-pages">Cheers,</p>
+        <img class="signature" src="${signedContract}" alt="">
       <br>
     <p class="dateTimeCopy">${currentDateTime}</p>
+      </footer>
+    
+    </div>
   </div>
-
-  <div class="container other-pages" >
-    <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-      <br>
-      <br>
-    Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-      <br>
-      <br>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-      <br>
-      <br>
-    Cheers,</p>
-    <img class="signature" src="${signedContract}" alt="">
+  <div class="container" >
+    <div class="content" >
+      <div class="top">
+        <section>
+        <h1 class="copyTitle">Hey Aleko,</h1>
+      </section>
+      
+      <section>
+        <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
+    </p>
+      </section>
+      </div>
+      
+    
+      <footer>
+        <p class="copy other-pages">Cheers,</p>
+        <img class="signature" src="${signedContract}" alt="">
       <br>
     <p class="dateTimeCopy">${currentDateTime}</p>
+      </footer>
+    
+    </div>
   </div>
-
+  
 
 </body>
 </html>
