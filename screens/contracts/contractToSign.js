@@ -266,10 +266,10 @@ const ContractToSign = ({ navigation }) => {
   let signatureImg = ``;
 
   if (signedContract !== null) {
-    console.log(`contractToSign.js - 267 - 🔥 not null`);
+    // console.log(`contractToSign.js - 267 - 🔥 not null`);
     signatureImg = `<img class="signature" src="${signedContract}" />`;
   } else {
-    console.log(`contractToSign.js - 269 - 😳 null`);
+    // console.log(`contractToSign.js - 269 - 😳 null`);
     signatureImg = ``;
   }
 
@@ -319,7 +319,7 @@ const ContractToSign = ({ navigation }) => {
           }}
         />
 
-        <Button
+        {/* <Button
           title="sign"
           onPress={() => {
             setModalOpen(true);
@@ -338,31 +338,9 @@ const ContractToSign = ({ navigation }) => {
 
         <View style={[styles.container, styles.horizontal]}>
           {isLoading && <ActivityIndicator />}
-        </View>
+        </View> */}
       </View>
     );
-  };
-
-  const getFooter = () => {
-    if (assignees.length > 0) {
-      return (
-        <View>
-          <Button
-            title="Send"
-            onPress={() => {
-              execute();
-            }}
-          />
-          <Button
-            title="Share"
-            onPress={() => {
-              share();
-            }}
-          />
-        </View>
-      );
-    }
-    return <Text>{"Add recipients to send..."}</Text>;
   };
 
   // footer & header end
@@ -510,8 +488,56 @@ const ContractToSign = ({ navigation }) => {
         }}
         renderItem={renderItem}
         ListHeaderComponent={getHeader}
-        ListFooterComponent={getFooter}
+        // ListFooterComponent={getFooter}
       />
+      <View>
+        {signature !== null ? (
+          <Button
+            title="update signature"
+            onPress={() => {
+              setModalOpen(true);
+              setSignModal(true);
+            }}
+          />
+        ) : (
+          <Button
+            title="sign"
+            onPress={() => {
+              setModalOpen(true);
+              setSignModal(true);
+            }}
+          />
+        )}
+
+        <Button
+          title="Add recipient"
+          onPress={() => {
+            setModalOpen(true);
+            setSignModal(false);
+            dispatch(closeModal(true));
+          }}
+        />
+
+        <View style={[styles.container, styles.horizontal]}>
+          {isLoading && <ActivityIndicator />}
+        </View>
+        {assignees.length > 0 && (
+          <View>
+            <Button
+              title="Send"
+              onPress={() => {
+                execute();
+              }}
+            />
+            {/* <Button
+              title="Share"
+              onPress={() => {
+                share();
+              }}
+            /> */}
+          </View>
+        )}
+      </View>
     </View>
   );
 };
@@ -554,7 +580,10 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     flex: 1,
-    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 20,
+    backgroundColor: "white",
   },
   // pdf
   container: {
