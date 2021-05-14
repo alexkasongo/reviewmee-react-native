@@ -22,12 +22,6 @@ export const categories = [
     photo_url:
       "https://mentorphiledotcom.files.wordpress.com/2019/01/contract.jpg",
   },
-  // {
-  //   id: 0,
-  //   name: "Pizza",
-  //   photo_url:
-  //     "https://amp.businessinsider.com/images/5c084bf7bde70f4ea53f0436-750-563.jpg",
-  // },
 ];
 
 export const contracts = [

@@ -1,5 +1,12 @@
 import React, { useEffect } from "react";
-import { FlatList, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  FlatList,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import styles from "./styles";
 import { categories } from "./dataArrays";
 import { getNumberOfContracts } from "./MockDataAPI";
@@ -12,6 +19,7 @@ import { selectUser, setUnsignedUserDocs } from "../../firebase/firebaseSlice";
 // firebase
 import { searchForDocumentToSign } from "../../firebase/firebase";
 // firebase end
+const { width } = Dimensions.get("window");
 
 export default function CategoriesScreen(props) {
   // get user data
@@ -52,6 +60,17 @@ export default function CategoriesScreen(props) {
         data={categories}
         renderItem={renderCategory}
         keyExtractor={(item) => `${item.id}`}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        decelerationRate={0}
+        snapToInterval={width - 60}
+        snapToAlignment={"center"}
+        contentInset={{
+          top: 0,
+          left: 30,
+          bottom: 0,
+          right: 30,
+        }}
       />
     </View>
   );

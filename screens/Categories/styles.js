@@ -1,14 +1,25 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   categoriesItemContainer: {
-    flex: 1,
-    margin: 10,
+    // flex: 1,
+    // margin: 10,
+    // justifyContent: "center",
+    // alignItems: "center",
+    // height: 215,
+    // borderColor: "#cccccc",
+    // borderWidth: 0.5,
+    // borderRadius: 20,
+    // width: Dimensions.get("window").width,
+
     justifyContent: "center",
-    alignItems: "center",
+    marginTop: 10,
+    backgroundColor: "blue",
+    width: width - 80,
+    margin: 10,
     height: 215,
-    borderColor: "#cccccc",
-    borderWidth: 0.5,
     borderRadius: 20,
   },
   categoriesPhoto: {
