@@ -15,11 +15,14 @@ const styles = StyleSheet.create({
     // width: Dimensions.get("window").width,
 
     justifyContent: "center",
+    alignItems: "center",
     marginTop: 10,
-    backgroundColor: "blue",
+    // backgroundColor: "blue",
     width: width - 80,
     margin: 10,
     height: 215,
+    borderColor: "#cccccc",
+    borderWidth: 0.5,
     borderRadius: 20,
   },
   categoriesPhoto: {
