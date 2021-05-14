@@ -79,7 +79,7 @@ const ContractToSign = ({ navigation }) => {
   // trigger useEffect only when modalStatus state changes to false
   useEffect(() => {
     if (modalStatus === false) {
-      console.log(`Profile.js - 42 - 👀`, { modalStatus });
+      // console.log(`Profile.js - 42 - 👀`, { signedContract });
       setModalOpen(modalStatus);
     }
   }, [modalStatus]);
@@ -263,6 +263,16 @@ const ContractToSign = ({ navigation }) => {
     </html>
   `;
 
+  let signatureImg = ``;
+
+  if (signedContract !== null) {
+    console.log(`contractToSign.js - 267 - 🔥 not null`);
+    signatureImg = `<img class="signature" src="${signedContract}" />`;
+  } else {
+    console.log(`contractToSign.js - 269 - 😳 null`);
+    signatureImg = ``;
+  }
+
   const htmlContract = `
   <div class="container">
     <p class="p1">This scholarship contract is effective as of the date signed below. It represents an agreement between [Student] and [Institution]. The terms are considered binding unless an amendment is added and agreed upon by both parties.</p>
@@ -278,7 +288,7 @@ const ContractToSign = ({ navigation }) => {
     <p class="p2">This contract is subject to all applicable local and state laws. Should one clause of the contract be determined unenforceable by a court of law, all other provisions shall remain in effect.</p>
     <p class="p3"><br></p>
     <p class="p3">Signature&nbsp;</p>
-    <img class="signature" src="${signedContract}" />
+    ${signatureImg}
     <hr>
   </div>
   `;
