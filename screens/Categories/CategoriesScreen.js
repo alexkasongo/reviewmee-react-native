@@ -63,13 +63,13 @@ export default function CategoriesScreen(props) {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         decelerationRate={0}
-        snapToInterval={width}
+        snapToInterval={width - 30}
         snapToAlignment={"center"}
         contentInset={{
           top: 0,
-          left: 10,
+          left: 5,
           bottom: 0,
-          right: 10,
+          right: 5,
         }}
       />
     </View>
