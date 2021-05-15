@@ -9,7 +9,6 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  ScrollView,
   useWindowDimensions,
   FlatList,
   ActivityIndicator,
@@ -172,38 +171,44 @@ const ContractToSign = ({ navigation }) => {
     </head>
     <body>
 
-      <div class="container" >
-        <div class="content" >
+      <div class="container">
+        <div class="content">
           <div class="top">
             <section>
-            <h1 class="copyTitle">Hey Aleko,</h1>
-          </section>
-          
-          <section>
-            <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-          <br>
-          <br>
-        Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-          <br>
-          <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.
-          <br>
-          <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.
-          <br>
-          <br>
-        </p>
-          </section>
+              <h1 class="copyTitle">Sexual Consent Contract</h1>
+            </section>
+
+            <section>
+              <p class="copy">I, <span class="copyBold">${user.displayName} (${user.email})</span>, hereby declare under penalty of perjury that I am over 18 years old.<span class="Apple-converted-space">&nbsp;</span></p>
+              <p class="copy">I further declare that this agreement is of my own free will and that neither I nor anyone near or dear to me has been threatened with harm or embarrassment.<span class="Apple-converted-space">&nbsp;</span></p>
+              <p class="copy">Both parties agree that this is a private agreement not to be disclosed to third parties except in case of accusation of sexual misconduct by the agreeing party. If he/she shows or makes public this agreement without accusation of sexual misconduct, it is agreed that he/she will be liable for damages for invasion of privacy.<span class="Apple-converted-space">&nbsp;</span></p>
+              <p class="copy">By signing I agree to engage in all or some of the following consensual acts.<span class="Apple-converted-space">&nbsp;</span></p>
+              <ul class="ul1">
+                  <li class="copy">Sexual fondling and kissing<span class="Apple-converted-space">&nbsp;</span></li>
+                  <li class="copy">Oral copulation (mutual)<span class="Apple-converted-space">&nbsp;</span></li>
+                  <li class="copy">Oral copulation (unilateral)<span class="Apple-converted-space">&nbsp;</span></li>
+                  <li class="copy">Sexual intercourse with an FDA approved condom at all times<span class="Apple-converted-space">&nbsp;</span></li>
+              </ul>
+              <p class="copy">I further declare that I am at this time not under the influence of alcohol, drugs or medication and agree to engage in consensual sex with: <span class="s2"><br></span></p>
+            </section>
           </div>
-          
-        
+          <footer></footer> 
+        </div>
+      </div>
+      <div class="container">
+        <div class="content">
+          <div class="top">
+            <section>
+              <p class="copy">At this time I do not intend to change my mind before the sex act or acts are over. However, if I do, it is further understood that when I say the words &ldquo;CODE RED&rdquo; my partner agrees to STOP INSTANTLY! <span class="s2"><br></span></p>
+            </section>
+          </div>
+
           <footer>
-            <p class="copy other-pages">Signature:</p>
+            <p class="copy">Signed:</p>
             <img class="signature" src="${signedContract}" alt="">
-          <br>
-        <p class="dateTimeCopy">${currentDateTime}</p>
-          </footer>
-        
+            <hr/>
+            <p class="copy">Date: ${currentDateTime}</p>
+          </footer> 
         </div>
       </div>
     </body>
@@ -221,32 +226,40 @@ const ContractToSign = ({ navigation }) => {
   }
 
   const htmlContract = `
-  <div class="container">
-    <section>
-      <h1 class="copyTitle">Hey Aleko,</h1>
-    </section>
-    
-    <section>
-      <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</p>
-      <p class="copy">Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</p>
-      <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est. Aenean at mollis ipsum.</p>
-      <p class="copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius, leo a ullamcorper feugiat, ante purus sodales justo, a faucibus libero lacus a est.</p>
-    </section>
-  
-    <footer>
-      <p class="copy other-pages">Signature:</p>
-      ${signatureImg}
-      <hr/>
-      <p class="copy">${currentDateTime}</p>
-    </footer>
-  </div>
+    <div class="container">
+      <section>
+        <h1 class="copyTitle">Sexual Consent Contract</h1>
+      </section>
+
+      <section>
+        <p class="copy">I, <span class="copyBold">${user.displayName} (${user.email})</span>, hereby declare under penalty of perjury that I am over 18 years old.<span class="Apple-converted-space">&nbsp;</span></p>
+        <p class="copy">I further declare that this agreement is of my own free will and that neither I nor anyone near or dear to me has been threatened with harm or embarrassment.<span class="Apple-converted-space">&nbsp;</span></p>
+        <p class="copy">Both parties agree that this is a private agreement not to be disclosed to third parties except in case of accusation of sexual misconduct by the agreeing party. If he/she shows or makes public this agreement without accusation of sexual misconduct, it is agreed that he/she will be liable for damages for invasion of privacy.<span class="Apple-converted-space">&nbsp;</span></p>
+        <p class="copy">By signing I agree to engage in all or some of the following consensual acts.<span class="Apple-converted-space">&nbsp;</span></p>
+        <ul class="ul1">
+            <li class="copy">Sexual fondling and kissing<span class="Apple-converted-space">&nbsp;</span></li>
+            <li class="copy">Oral copulation (mutual)<span class="Apple-converted-space">&nbsp;</span></li>
+            <li class="copy">Oral copulation (unilateral)<span class="Apple-converted-space">&nbsp;</span></li>
+            <li class="copy">Sexual intercourse with an FDA approved condom at all times<span class="Apple-converted-space">&nbsp;</span></li>
+        </ul>
+        <p class="copy">I further declare that I am at this time not under the influence of alcohol, drugs or medication and agree to engage in consensual sex with: <span class="s2"><br></span></p>
+        <p class="copy">At this time I do not intend to change my mind before the sex act or acts are over. However, if I do, it is further understood that when I say the words &ldquo;CODE RED&rdquo; my partner agrees to STOP INSTANTLY! <span class="s2"><br></span></p>
+      </section>
+
+      <footer>
+        <p class="copy">Signed:</p>
+        ${signatureImg}
+        <hr/>
+        <p class="copy">Date: ${currentDateTime}</p>
+      </footer> 
+    </div>
   `;
   // HTML contract end
 
   // footer & header
   const getHeader = () => {
     return (
-      <View style={{ backgroundColor: "#fff" }}>
+      <View>
         <HTML
           source={{ html: htmlContract }}
           contentWidth={contentWidth}
@@ -274,12 +287,17 @@ const ContractToSign = ({ navigation }) => {
               lineHeight: 25,
               color: "#666666",
             },
+            copyBold: {
+              fontSize: 16,
+              lineHeight: 25,
+              color: "#666666",
+              fontWeight: "bold",
+            },
           }}
         />
       </View>
     );
   };
-
   // footer & header end
 
   // Assignees
@@ -421,6 +439,11 @@ const ContractToSign = ({ navigation }) => {
         </TouchableWithoutFeedback>
       </Modal>
       <FlatList
+        style={{
+          borderBottomLeftRadius: 20,
+          borderBottomRightRadius: 20,
+          marginBottom: 10,
+        }}
         showsVerticalScrollIndicator={false}
         data={assignees}
         keyExtractor={(item) => {
@@ -430,7 +453,7 @@ const ContractToSign = ({ navigation }) => {
         ListHeaderComponent={getHeader}
         // ListFooterComponent={getFooter}
       />
-      <View>
+      <View style={{ backgroundColor: "#3b5998", borderRadius: 20 }}>
         {signature !== null ? (
           <Button
             title="update signature"
@@ -469,12 +492,12 @@ const ContractToSign = ({ navigation }) => {
                 execute();
               }}
             />
-            {/* <Button
+            <Button
               title="Share"
               onPress={() => {
                 share();
               }}
-            /> */}
+            />
           </View>
         )}
       </View>
