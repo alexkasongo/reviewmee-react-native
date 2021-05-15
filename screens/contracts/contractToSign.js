@@ -456,6 +456,7 @@ const ContractToSign = ({ navigation }) => {
       <View style={{ backgroundColor: "#3b5998", borderRadius: 20 }}>
         {signature !== null ? (
           <Button
+            color="white"
             title="update signature"
             onPress={() => {
               setModalOpen(true);
@@ -464,6 +465,7 @@ const ContractToSign = ({ navigation }) => {
           />
         ) : (
           <Button
+            color="white"
             title="sign"
             onPress={() => {
               setModalOpen(true);
@@ -473,6 +475,7 @@ const ContractToSign = ({ navigation }) => {
         )}
 
         <Button
+          color="white"
           title="Add recipient"
           onPress={() => {
             setModalOpen(true);
@@ -487,17 +490,18 @@ const ContractToSign = ({ navigation }) => {
         {assignees.length > 0 && (
           <View>
             <Button
+              color="white"
               title="Send"
               onPress={() => {
                 execute();
               }}
             />
-            <Button
+            {/* <Button
               title="Share"
               onPress={() => {
                 share();
               }}
-            />
+            /> */}
           </View>
         )}
       </View>
