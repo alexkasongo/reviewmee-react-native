@@ -13,6 +13,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from "react-native";
+import * as Haptics from "expo-haptics";
 import HTML from "react-native-render-html";
 import { MaterialIcons } from "@expo/vector-icons";
 import Signature from "react-native-signature-canvas";
@@ -324,7 +325,7 @@ const ContractToSign = ({ navigation }) => {
             onPress={() => removeRecipient(item.key)}
             style={styles.touch}
           >
-            <MaterialIcons name="close" size={24} style={styles.mblTxt} />
+            <MaterialIcons name="close" size={24} style={styles.closeBtn} />
           </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
@@ -453,30 +454,32 @@ const ContractToSign = ({ navigation }) => {
         ListHeaderComponent={getHeader}
         // ListFooterComponent={getFooter}
       />
-      <View style={{ backgroundColor: "#3b5998", borderRadius: 20 }}>
+      <View style={styles.signatureTools}>
         {signature !== null ? (
-          <Button
-            color="white"
-            title="update signature"
+          <MaterialIcons
+            name="create"
+            size={34}
+            style={styles.mblTxt}
             onPress={() => {
               setModalOpen(true);
               setSignModal(true);
             }}
           />
         ) : (
-          <Button
-            color="white"
-            title="sign"
+          <MaterialIcons
+            name="create"
+            size={34}
+            style={styles.mblTxt}
             onPress={() => {
               setModalOpen(true);
               setSignModal(true);
             }}
           />
         )}
-
-        <Button
-          color="white"
-          title="Add recipient"
+        <MaterialIcons
+          name="person-add"
+          size={34}
+          style={styles.mblTxt}
           onPress={() => {
             setModalOpen(true);
             setSignModal(false);
@@ -484,26 +487,29 @@ const ContractToSign = ({ navigation }) => {
           }}
         />
 
-        <View style={[styles.container, styles.horizontal]}>
+        {/* <View style={[styles.container, styles.horizontal]}>
           {isLoading && <ActivityIndicator />}
-        </View>
+        </View> */}
         {assignees.length > 0 && (
-          <View>
-            <Button
-              color="white"
-              title="Send"
-              onPress={() => {
-                execute();
-              }}
-            />
-            {/* <Button
-              title="Share"
-              onPress={() => {
-                share();
-              }}
-            /> */}
-          </View>
+          <MaterialIcons
+            name="send"
+            size={34}
+            style={styles.mblTxt}
+            onPress={() => {
+              execute();
+            }}
+          />
         )}
+        {/* {assignees.length > 0 && signature !== null && (
+          <MaterialIcons
+            name="share"
+            size={34}
+            style={styles.mblTxt}
+            onPress={() => {
+              share();
+            }}
+          />
+        )} */}
       </View>
     </View>
   );
@@ -659,6 +665,23 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     marginTop: 10,
   },
+  signatureTools: {
+    backgroundColor: "#3b5998",
+    borderRadius: 20,
+    height: 100,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.34,
+    shadowRadius: 6.27,
+
+    elevation: 10,
+  },
   // contact list
   row: {
     flexDirection: "row",
@@ -689,7 +712,11 @@ const styles = StyleSheet.create({
   },
   mblTxt: {
     fontWeight: "200",
-    color: "#777",
+    color: "#fff",
+  },
+  closeBtn: {
+    fontWeight: "200",
+    color: "#666666",
   },
   msgContainer: {
     flexDirection: "row",
