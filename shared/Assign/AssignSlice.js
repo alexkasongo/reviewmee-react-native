@@ -4,6 +4,7 @@ export const AssignSlice = createSlice({
   name: "assign",
   initialState: {
     signees: [],
+    signeesName: [],
     modalStatus: false,
   },
   reducers: {
@@ -17,6 +18,7 @@ export const AssignSlice = createSlice({
           image: action.payload.image,
         },
       ];
+      state.signeesName.push(action.payload.name);
     },
     closeModal: (state, action) => {
       // console.log(`Assign.js - 54 - ✅ you clicked me`, action.payload);
@@ -24,6 +26,7 @@ export const AssignSlice = createSlice({
     },
     removeSignee: (state, action) => {
       state.signees = action.payload;
+      state.signeesName = [];
     },
     resetSignee: (state, action) => {
       console.log("resetSignee");
@@ -36,6 +39,7 @@ export const { addSignee, closeModal, removeSignee, resetSignee } =
   AssignSlice.actions;
 
 export const selectAssignees = (state) => state.assign.signees;
+export const selectAssigneesName = (state) => state.assign.signeesName;
 export const selectModalStatus = (state) => state.assign.modalStatus;
 
 export default AssignSlice.reducer;

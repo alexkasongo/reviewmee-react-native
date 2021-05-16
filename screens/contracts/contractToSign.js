@@ -57,6 +57,7 @@ import {
   addSignee,
   removeSignee,
   selectAssignees,
+  selectAssigneesName,
   closeModal,
   selectModalStatus,
 } from "../../shared/Assign/AssignSlice";
@@ -74,14 +75,10 @@ const ContractToSign = ({ navigation }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [signature, setSign] = useState(null);
   const [signModal, setSignModal] = useState(false);
-  const [assigneeName, setAssigneName] = useState([]);
-  const [assigneeEmail, setAssigneEmail] = useState([
-    "tom@jerry.com",
-    "jerry@tom.com",
-  ]);
   // state end
 
   const assignees = useSelector(selectAssignees);
+  const assigneesName = useSelector(selectAssigneesName);
   const modalStatus = useSelector(selectModalStatus);
 
   // trigger useEffect only when modalStatus state changes to false
@@ -258,7 +255,7 @@ const ContractToSign = ({ navigation }) => {
             <li class="copy">Oral copulation (unilateral)<span class="Apple-converted-space">&nbsp;</span></li>
             <li class="copy">Sexual intercourse with an FDA approved condom at all times<span class="Apple-converted-space">&nbsp;</span></li>
         </ul>
-        <p class="copy">I further declare that I am at this time not under the influence of alcohol, drugs or medication and agree to engage in consensual sex with: <span class="copyBold">${assigneeName}<br></span></p>
+        <p class="copy">I further declare that I am at this time not under the influence of alcohol, drugs or medication and agree to engage in consensual sex with: <span class="copyBold">${assigneesName}<br></span></p>
         <p class="copy">At this time I do not intend to change my mind before the sex act or acts are over. However, if I do, it is further understood that when I say the words &ldquo;CODE RED&rdquo; my partner agrees to STOP INSTANTLY! <span class="s2"><br></span></p>
       </section>
     </div>
@@ -338,7 +335,7 @@ const ContractToSign = ({ navigation }) => {
   // footer & header end
 
   // Assignees
-  const renderItem = ({ item }) => {
+  const renderAddAssignee = ({ item }) => {
     return (
       <TouchableWithoutFeedback>
         <View style={styles.row}>
@@ -495,7 +492,7 @@ const ContractToSign = ({ navigation }) => {
         keyExtractor={(item) => {
           return item.key;
         }}
-        renderItem={renderItem}
+        renderItem={renderAddAssignee}
         ListHeaderComponent={getHeader}
         // ListFooterComponent={getFooter}
       />
