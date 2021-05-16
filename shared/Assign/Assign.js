@@ -16,7 +16,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addSignee,
-  remvoveSignee,
+  removeSignee,
   selectAssignees,
   closeModal,
   selectAddedStatus,
@@ -75,7 +75,7 @@ const Assign = ({ navigate }) => {
       return item.key !== valueToRemove;
     });
     // console.log(`Assign.js - 69 - 🌿`, filteredItems);
-    dispatch(remvoveSignee(filteredItems));
+    dispatch(removeSignee(filteredItems));
   };
   // remove recipient end
 

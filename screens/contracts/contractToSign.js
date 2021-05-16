@@ -31,7 +31,7 @@ import * as Sharing from "expo-sharing";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectSignedContract,
-  setContract,
+  setSignature,
 } from "../../contracts/contractSlice";
 import {
   selectUser,
@@ -54,7 +54,7 @@ import {
 // Assign slice
 import {
   addSignee,
-  remvoveSignee,
+  removeSignee,
   selectAssignees,
   closeModal,
   selectModalStatus,
@@ -88,7 +88,7 @@ const ContractToSign = ({ navigation }) => {
     // console.log(`contractToSign.js - 30 - 🥶`, signedContract);
     if (signature !== null) {
       setSign(signature);
-      dispatch(setContract(signature));
+      dispatch(setSignature(signature));
       setModalOpen(false);
     }
   };
@@ -96,7 +96,7 @@ const ContractToSign = ({ navigation }) => {
   const handleEmpty = () => {
     console.log("Empty 🦴");
     setSign(null);
-    dispatch(setContract(null));
+    dispatch(setSignature(null));
   };
 
   // remove recipient
@@ -107,7 +107,7 @@ const ContractToSign = ({ navigation }) => {
       return item.key !== valueToRemove;
     });
     // console.log(`Assign.js - 69 - 🌿`, filteredItems);
-    dispatch(remvoveSignee(filteredItems));
+    dispatch(removeSignee(filteredItems));
   };
   // remove recipient end
 
@@ -375,7 +375,16 @@ const ContractToSign = ({ navigation }) => {
           );
         })
         .then(() => {
+          // stop loading
           dispatch(setLoading(false));
+          // give user successful haptic feedback
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+          // remove signature
+          setSign(null);
+          dispatch(setSignature(null));
+          // remove user
+          dispatch(removeSignee([]));
+          // load newly created pdf from firebase
           searchForDocumentToSign(user.email).then((res) => {
             dispatch(setUnsignedUserDocs(res));
           });
@@ -454,62 +463,58 @@ const ContractToSign = ({ navigation }) => {
         ListHeaderComponent={getHeader}
         // ListFooterComponent={getFooter}
       />
-      <View style={styles.signatureTools}>
-        {signature !== null ? (
-          <MaterialIcons
-            name="create"
-            size={34}
-            style={styles.mblTxt}
-            onPress={() => {
-              setModalOpen(true);
-              setSignModal(true);
-            }}
-          />
+      <View style={styles.indicator}>
+        {isLoading ? (
+          <ActivityIndicator />
         ) : (
-          <MaterialIcons
-            name="create"
-            size={34}
-            style={styles.mblTxt}
-            onPress={() => {
-              setModalOpen(true);
-              setSignModal(true);
-            }}
-          />
+          <View style={styles.signatureTools}>
+            {signature !== null ? (
+              <MaterialIcons
+                name="create"
+                size={34}
+                style={styles.mblTxt}
+                onPress={() => {
+                  setModalOpen(true);
+                  setSignModal(true);
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                }}
+              />
+            ) : (
+              <MaterialIcons
+                name="create"
+                size={34}
+                style={styles.mblTxt}
+                onPress={() => {
+                  setModalOpen(true);
+                  setSignModal(true);
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                }}
+              />
+            )}
+            <MaterialIcons
+              name="person-add"
+              size={34}
+              style={styles.mblTxt}
+              onPress={() => {
+                setModalOpen(true);
+                setSignModal(false);
+                dispatch(closeModal(true));
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              }}
+            />
+            {assignees.length > 0 && (
+              <MaterialIcons
+                name="send"
+                size={34}
+                style={styles.mblTxt}
+                onPress={() => {
+                  execute();
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                }}
+              />
+            )}
+          </View>
         )}
-        <MaterialIcons
-          name="person-add"
-          size={34}
-          style={styles.mblTxt}
-          onPress={() => {
-            setModalOpen(true);
-            setSignModal(false);
-            dispatch(closeModal(true));
-          }}
-        />
-
-        {/* <View style={[styles.container, styles.horizontal]}>
-          {isLoading && <ActivityIndicator />}
-        </View> */}
-        {assignees.length > 0 && (
-          <MaterialIcons
-            name="send"
-            size={34}
-            style={styles.mblTxt}
-            onPress={() => {
-              execute();
-            }}
-          />
-        )}
-        {/* {assignees.length > 0 && signature !== null && (
-          <MaterialIcons
-            name="share"
-            size={34}
-            style={styles.mblTxt}
-            onPress={() => {
-              share();
-            }}
-          />
-        )} */}
       </View>
     </View>
   );
@@ -665,7 +670,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     marginTop: 10,
   },
-  signatureTools: {
+  indicator: {
     backgroundColor: "#3b5998",
     borderRadius: 20,
     height: 100,
@@ -681,6 +686,12 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
 
     elevation: 10,
+  },
+  signatureTools: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    width: "100%",
   },
   // contact list
   row: {

@@ -29,7 +29,7 @@ import * as Print from "expo-print";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectSignedContract,
-  setContract,
+  setSignature,
 } from "../../contracts/contractSlice";
 import {
   selectUser,
@@ -45,7 +45,7 @@ import { storage, addDocumentToSign } from "../../firebase/firebase";
 // Assign slice
 import {
   addSignee,
-  remvoveSignee,
+  removeSignee,
   selectAssignees,
   closeModal,
   selectModalStatus,
@@ -79,7 +79,7 @@ const PendingToSign = ({ navigation }) => {
     // console.log(`PendingToSign.js - 30 - 🥶`, signedContract);
     if (signature !== null) {
       setSign(signature);
-      dispatch(setContract(signature));
+      dispatch(setSignature(signature));
       setModalOpen(false);
     }
   };
@@ -87,7 +87,7 @@ const PendingToSign = ({ navigation }) => {
   const handleEmpty = () => {
     console.log("Empty 🦴");
     setSign(null);
-    dispatch(setContract(null));
+    dispatch(setSignature(null));
   };
 
   // remove recipient
@@ -98,7 +98,7 @@ const PendingToSign = ({ navigation }) => {
       return item.key !== valueToRemove;
     });
     // console.log(`Assign.js - 69 - 🌿`, filteredItems);
-    dispatch(remvoveSignee(filteredItems));
+    dispatch(removeSignee(filteredItems));
   };
   // remove recipient end
 

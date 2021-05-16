@@ -22,7 +22,7 @@ export const AssignSlice = createSlice({
       // console.log(`Assign.js - 54 - ✅ you clicked me`, action.payload);
       state.modalStatus = action.payload;
     },
-    remvoveSignee: (state, action) => {
+    removeSignee: (state, action) => {
       state.signees = action.payload;
     },
     resetSignee: (state, action) => {
@@ -32,12 +32,8 @@ export const AssignSlice = createSlice({
   },
 });
 
-export const {
-  addSignee,
-  closeModal,
-  remvoveSignee,
-  resetSignee,
-} = AssignSlice.actions;
+export const { addSignee, closeModal, removeSignee, resetSignee } =
+  AssignSlice.actions;
 
 export const selectAssignees = (state) => state.assign.signees;
 export const selectModalStatus = (state) => state.assign.modalStatus;
