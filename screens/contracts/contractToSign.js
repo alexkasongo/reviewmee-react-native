@@ -12,6 +12,7 @@ import {
   useWindowDimensions,
   FlatList,
   ActivityIndicator,
+  Dimensions,
 } from "react-native";
 import * as Haptics from "expo-haptics";
 import HTML from "react-native-render-html";
@@ -61,17 +62,24 @@ import {
 } from "../../shared/Assign/AssignSlice";
 // Assign slice end
 
+const { windowWidth } = Dimensions.get("window");
+
 const ContractToSign = ({ navigation }) => {
   // state
   const user = useSelector(selectUser);
   const isLoading = useSelector(selectLoading);
   const signedContract = useSelector(selectSignedContract);
   const dispatch = useDispatch();
-  // state end
 
   const [modalOpen, setModalOpen] = useState(false);
   const [signature, setSign] = useState(null);
   const [signModal, setSignModal] = useState(false);
+  const [assigneeName, setAssigneName] = useState([]);
+  const [assigneeEmail, setAssigneEmail] = useState([
+    "tom@jerry.com",
+    "jerry@tom.com",
+  ]);
+  // state end
 
   const assignees = useSelector(selectAssignees);
   const modalStatus = useSelector(selectModalStatus);
@@ -216,15 +224,22 @@ const ContractToSign = ({ navigation }) => {
     </html>
   `;
 
-  let signatureImg = ``;
+  // let signatureImg = ``;
 
-  if (signedContract !== null) {
-    // console.log(`contractToSign.js - 267 - 🔥 not null`);
-    signatureImg = `<img class="signature" src="${signedContract}" />`;
-  } else {
-    // console.log(`contractToSign.js - 269 - 😳 null`);
-    signatureImg = ``;
-  }
+  // if (signedContract !== null) {
+  //   // console.log(`contractToSign.js - 267 - 🔥 not null`);
+  //   signatureImg = (
+  //     <Image
+  //       style={styles.tinyLogo}
+  //       source={{
+  //         uri: `${signedContract}`,
+  //       }}
+  //     />
+  //   );
+  // } else {
+  //   // console.log(`contractToSign.js - 269 - 😳 null`);
+  //   signatureImg = ``;
+  // }
 
   const htmlContract = `
     <div class="container">
@@ -243,16 +258,9 @@ const ContractToSign = ({ navigation }) => {
             <li class="copy">Oral copulation (unilateral)<span class="Apple-converted-space">&nbsp;</span></li>
             <li class="copy">Sexual intercourse with an FDA approved condom at all times<span class="Apple-converted-space">&nbsp;</span></li>
         </ul>
-        <p class="copy">I further declare that I am at this time not under the influence of alcohol, drugs or medication and agree to engage in consensual sex with: <span class="s2"><br></span></p>
+        <p class="copy">I further declare that I am at this time not under the influence of alcohol, drugs or medication and agree to engage in consensual sex with: <span class="copyBold">${assigneeName}<br></span></p>
         <p class="copy">At this time I do not intend to change my mind before the sex act or acts are over. However, if I do, it is further understood that when I say the words &ldquo;CODE RED&rdquo; my partner agrees to STOP INSTANTLY! <span class="s2"><br></span></p>
       </section>
-
-      <footer>
-        <p class="copy">Signed:</p>
-        ${signatureImg}
-        <hr/>
-        <p class="copy">Date: ${currentDateTime}</p>
-      </footer> 
     </div>
   `;
   // HTML contract end
@@ -296,6 +304,34 @@ const ContractToSign = ({ navigation }) => {
             },
           }}
         />
+        <TouchableOpacity
+          onPress={() => {
+            setModalOpen(true);
+            setSignModal(true);
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          }}
+        >
+          <View
+            style={[
+              styles.signatureImgContainer,
+              { padding: 10, paddingBottom: 80 },
+            ]}
+          >
+            <Text style={styles.copy}>Signature:</Text>
+            {signedContract !== null ? (
+              <Image
+                style={styles.signatureImg}
+                source={{
+                  uri: `${signedContract}`,
+                }}
+              />
+            ) : (
+              <View></View>
+            )}
+            {/* <hr /> */}
+            {/* <p class="copy">Date: ${currentDateTime}</p> */}
+          </View>
+        </TouchableOpacity>
       </View>
     );
   };
@@ -316,7 +352,6 @@ const ContractToSign = ({ navigation }) => {
               >
                 {item.name}
               </Text>
-              {/* <Text style={styles.mblTxt}>Mobile</Text> */}
               <Text style={styles.emailTxt}>{item.email}</Text>
             </View>
           </View>
@@ -429,6 +464,7 @@ const ContractToSign = ({ navigation }) => {
               <Signature
                 onOK={handleSignature}
                 onEmpty={handleEmpty}
+                onClear={handleEmpty}
                 descriptionText="Sign"
                 clearText="Clear"
                 confirmText="Save"
@@ -693,6 +729,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     width: "100%",
   },
+  signatureImgContainer: {
+    borderColor: "#cccccc",
+    borderWidth: 0.5,
+    borderRadius: 20,
+    padding: 20,
+  },
+  signatureImg: {
+    width: windowWidth,
+    height: 200,
+  },
   // contact list
   row: {
     flexDirection: "row",
@@ -743,6 +789,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   // assgnees end
+  // copy
+  copyTitle: {
+    fontSize: 22,
+    color: "#666666",
+  },
+  copy: {
+    fontSize: 16,
+    lineHeight: 25,
+    color: "#666666",
+  },
+  // copy end
 });
 
 export default ContractToSign;
