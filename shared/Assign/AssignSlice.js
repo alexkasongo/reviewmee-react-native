@@ -21,12 +21,15 @@ export const AssignSlice = createSlice({
       state.signeesName.push(action.payload.name);
     },
     closeModal: (state, action) => {
-      // console.log(`Assign.js - 54 - ✅ you clicked me`, action.payload);
+      // console.log(`Assign.js - 54 - ✅ you clicked me`);
       state.modalStatus = action.payload;
     },
     removeSignee: (state, action) => {
+      console.log(`AssignSlice.js - 28 - 💄`, action.payload);
       state.signees = action.payload;
-      state.signeesName = [];
+      state.signeesName
+        .splice(0, state.signeesName.length)
+        .push(action.payload.name);
     },
     resetSignee: (state, action) => {
       console.log("resetSignee");
