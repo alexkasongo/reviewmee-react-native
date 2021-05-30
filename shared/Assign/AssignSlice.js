@@ -21,7 +21,7 @@ export const AssignSlice = createSlice({
       state.signeesName.push(action.payload.name);
     },
     closeModal: (state, action) => {
-      // console.log(`Assign.js - 54 - ✅ `);
+      // console.log(`Assign.js - 54 - ✅ you clicked me`);
       state.modalStatus = action.payload;
     },
     removeSignee: (state, action) => {
