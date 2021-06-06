@@ -111,7 +111,7 @@ const ContractToSign = ({ navigation }) => {
     const filteredItems = items.filter((item) => {
       return item.key !== valueToRemove;
     });
-    // console.log(`Assign.js - 69 - 🌿`, filteredItems);
+    // console.log(`Assign.js - 69 - 🌿`);
     dispatch(removeSignee(filteredItems));
   };
   // remove recipient end
