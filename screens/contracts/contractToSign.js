@@ -43,7 +43,7 @@ import {
 } from "../../firebase/firebaseSlice";
 // state end
 
-// Firebase
+// Firebase start
 import {
   storage,
   addDocumentToSign,
