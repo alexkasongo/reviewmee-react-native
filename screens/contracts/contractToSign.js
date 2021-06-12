@@ -52,7 +52,7 @@ import {
 } from "../../firebase/firebase";
 // Firebase end
 
-// Assign slice 
+// Assign slice start 
 import {
   addSignee,
   removeSignee,
