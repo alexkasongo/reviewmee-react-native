@@ -31,7 +31,7 @@ export default function ReviewForm({ addReview }) {
           // add the review here using the addReview() prop
           actions.resetForm();
           addReview(values);
-          // console.log(`reviewForm.js - 23 - 🍎`, values);
+          // console.log(`reviewForm.js - 23 - 🍎`);
         }}
       >
         {/* if validation fails, yup passes errors in props.errors below */}
