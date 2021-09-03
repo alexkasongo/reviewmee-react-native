@@ -73,11 +73,11 @@ export default function UserProfile(props) {
   const initialState = {
     tabs: {
       index: 0,
-      routes: [
-        { key: "1", title: "Consents", count: 12 },
-        { key: "2", title: "Signed", count: 10 },
-        { key: "3", title: "Pending", count: 4 },
-      ],
+      // routes: [
+      //   { key: "1", title: "Consents", count: 12 },
+      //   { key: "2", title: "Signed", count: 10 },
+      //   { key: "3", title: "Pending", count: 4 },
+      // ],
     },
     postsMasonry: {},
   };

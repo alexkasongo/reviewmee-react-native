@@ -144,7 +144,7 @@ export const updateDocumentToSign = async (docId, email, xfdfSigned) => {
 
 // Search for document to sign
 export const searchForDocumentToSign = async (email) => {
-  console.log(`firebase.js - 139 - 🥶`, email);
+  // console.log(`firebase.js - 139 - 🥶`, email);
   const documentsRef = firestore.collection("documentsToSign");
   const query = documentsRef
     .where("email", "==", email)
