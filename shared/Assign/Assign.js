@@ -58,8 +58,8 @@ const Assign = ({ navigate }) => {
 
   const addUser = (name, email) => {
     const key = `${new Date().getTime()}${email}`;
-    const image = "https://picsum.photos/200/300"
-    // const image = "https://via.placeholder.com/150";
+    // const image = "https://picsum.photos/200/300"
+    const image = "https://via.placeholder.com/150";
     if (name !== "" && email !== "") {
       dispatch(addSignee({ key, name, email, image }));
       Keyboard.dismiss();
