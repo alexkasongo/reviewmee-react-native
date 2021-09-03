@@ -46,7 +46,7 @@ import {
 const styles = StyleSheet.create({ ...profileStyles });
 
 export default function UserProfile(props) {
-  // get user data
+  // get user data 
   const user = useSelector(selectUser);
   const userDocs = useSelector(selectUserDocs);
   const signedUserDocs = useSelector(selectSignedUserDocs);
