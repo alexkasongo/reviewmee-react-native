@@ -85,27 +85,30 @@ export const addDocumentToSign = (
   const signedTime = "";
   const photoURL = photo || "https://via.placeholder.com/250";
   // const emails = emails
-  firestore
-    .collection("documentsToSign")
-    .add({
-      uid,
-      photoURL,
-      email,
-      doc,
-      docRef,
-      signerName,
-      signedBy,
-      recipients,
-      signed,
-      requestedTime,
-      signedTime,
-    })
-    .then(function (docRef) {
-      console.log("💯 Document written with ID: ", docRef.id);
-    })
-    .catch(function (error) {
-      console.error("🥶 Error adding document: ", error);
-    });
+
+  console.log(`firebase.js - 89 - 😳`, photo);
+
+  // firestore
+  //   .collection("documentsToSign")
+  //   .add({
+  //     uid,
+  //     photoURL,
+  //     email,
+  //     doc,
+  //     docRef,
+  //     signerName,
+  //     signedBy,
+  //     recipients,
+  //     signed,
+  //     requestedTime,
+  //     signedTime,
+  //   })
+  //   .then(function (docRef) {
+  //     console.log("💯 Document written with ID: ", docRef.id);
+  //   })
+  //   .catch(function (error) {
+  //     console.error("🥶 Error adding document: ", error);
+  //   });
 };
 // Update document to sign
 export const updateDocumentToSign = async (docId, email, xfdfSigned) => {
