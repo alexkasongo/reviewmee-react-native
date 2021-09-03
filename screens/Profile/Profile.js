@@ -107,44 +107,80 @@ export default function UserProfile(props) {
   };
 
   // renderscene fix
+  // const FirstRoute = () => (
+  //   <View style={[styles.scene]}>
+  //     {/* <Text>Hello Aleko 😊</Text> */}
+  //     <FlatList
+  //       vertical
+  //       showsVerticalScrollIndicator={false}
+  //       numColumns={2}
+  //       removeClippedSubviews={false}
+  //       // contentContainerStyle={[styles.container]}
+  //       data={props.posts}
+  //       renderItem={({ item }) => (
+  //         <ScrollView
+  //           showsVerticalScrollIndicator={false}
+  //           showsHorizontalScrollIndicator={false}
+  //           style={styles.scroll}
+  //         >
+  //           <TouchableOpacity>
+  //             <View style={ProfileCard.main}>
+  //               <View style={ProfileCard.signedContainer}>
+  //                 <TouchableOpacity
+  //                   onPress={() => console.log(`Profile.js - 130 - ✅`, item)}
+  //                   // onPress={() => openPdfViewer(`${item.docRef}`)}
+  //                 >
+  //                   <Image
+  //                     style={ProfileCard.photo}
+  //                     source={{ uri: item.image }}
+  //                   />
+  //                 </TouchableOpacity>
+  //                 <View style={[ProfileCard.btmContainer]}>
+  //                   <Text style={ProfileCard.title}>Signed by:</Text>
+  //                   <Text style={ProfileCard.category}>{item.user.name}</Text>
+  //                 </View>
+  //               </View>
+  //             </View>
+  //           </TouchableOpacity>
+  //         </ScrollView>
+  //       )}
+  //       // keyExtractor={(item) => item.id}
+  //     />
+  //   </View>
+  // );
+
   const FirstRoute = () => (
     <View style={[styles.scene]}>
-      {/* <Text>Hello Aleko 😊</Text> */}
       <FlatList
         vertical
         showsVerticalScrollIndicator={false}
         numColumns={2}
         removeClippedSubviews={false}
-        // contentContainerStyle={[styles.container]}
-        data={props.posts}
+        data={signedUserDocs}
         renderItem={({ item }) => (
           <ScrollView
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             style={styles.scroll}
           >
-            <TouchableOpacity>
-              <View style={ProfileCard.main}>
-                <View style={ProfileCard.signedContainer}>
-                  <TouchableOpacity
-                    onPress={() => console.log(`Profile.js - 130 - ✅`, item)}
-                    // onPress={() => openPdfViewer(`${item.docRef}`)}
-                  >
-                    <Image
-                      style={ProfileCard.photo}
-                      source={{ uri: item.image }}
-                    />
-                  </TouchableOpacity>
-                  <View style={[ProfileCard.btmContainer]}>
-                    <Text style={ProfileCard.title}>Signed by:</Text>
-                    <Text style={ProfileCard.category}>{item.user.name}</Text>
-                  </View>
-                </View>
+            <View style={ProfileCard.signedContainer}>
+              <TouchableOpacity 
+              onPress={() => console.log(`Profile.js - 168 - 🏖`, item)}
+              // onPress={() => openPdfViewer(`${item.docRef}`)}
+              >
+                <Image
+                  style={ProfileCard.photo}
+                  source={{ uri: item.photoURL }}
+                />
+              </TouchableOpacity>
+              <View style={[ProfileCard.btmContainer]}>
+                <Text style={ProfileCard.title}>Signed by:</Text>
+                <Text style={ProfileCard.category}>{item.signerName}</Text>
               </View>
-            </TouchableOpacity>
+            </View>
           </ScrollView>
         )}
-        // keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.docId}
       />
     </View>
   );
@@ -184,6 +220,7 @@ export default function UserProfile(props) {
       />
     </View>
   );
+
   const ThirdRoute = () => (
     <View style={[styles.scene]}>
       <FlatList
