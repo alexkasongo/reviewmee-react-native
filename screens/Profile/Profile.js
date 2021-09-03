@@ -106,7 +106,7 @@ export default function UserProfile(props) {
     });
   };
 
-  // renderscene fix
+  // renderscene fix - updated this to have same logic as Secondroute
   // const FirstRoute = () => (
   //   <View style={[styles.scene]}>
   //     {/* <Text>Hello Aleko 😊</Text> */}
@@ -147,8 +147,9 @@ export default function UserProfile(props) {
   //       // keyExtractor={(item) => item.id}
   //     />
   //   </View>
-  // );
+  // ); 
 
+  // First route 
   const FirstRoute = () => (
     <View style={[styles.scene]}>
       <FlatList
@@ -184,7 +185,8 @@ export default function UserProfile(props) {
       />
     </View>
   );
-
+  
+  // Second route
   const SecondRoute = () => (
     <View style={[styles.scene]}>
       <FlatList
@@ -220,7 +222,8 @@ export default function UserProfile(props) {
       />
     </View>
   );
-
+  
+  // Third Route
   const ThirdRoute = () => (
     <View style={[styles.scene]}>
       <FlatList
