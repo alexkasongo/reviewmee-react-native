@@ -60,6 +60,10 @@ export default function CategoriesScreen(props) {
         data={categories}
         renderItem={renderCategory}
         keyExtractor={(item) => `${item.id}`}
+        style={{
+          // remove this when you add more categories
+          height: "100%", 
+        }}
         // horizontal={true}
         // showsHorizontalScrollIndicator={false}
         // decelerationRate={0}
