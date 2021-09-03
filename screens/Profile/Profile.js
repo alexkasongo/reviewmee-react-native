@@ -127,7 +127,8 @@ export default function UserProfile(props) {
               <View style={ProfileCard.main}>
                 <View style={ProfileCard.signedContainer}>
                   <TouchableOpacity
-                    onPress={() => openPdfViewer(`${item.docRef}`)}
+                    onPress={() => console.log(`Profile.js - 130 - ✅`, item)}
+                    // onPress={() => openPdfViewer(`${item.docRef}`)}
                   >
                     <Image
                       style={ProfileCard.photo}
@@ -163,7 +164,10 @@ export default function UserProfile(props) {
             style={styles.scroll}
           >
             <View style={ProfileCard.signedContainer}>
-              <TouchableOpacity onPress={() => openPdfViewer(`${item.docRef}`)}>
+              <TouchableOpacity 
+              onPress={() => console.log(`Profile.js - 168 - 🏖`, item)}
+              // onPress={() => openPdfViewer(`${item.docRef}`)}
+              >
                 <Image
                   style={ProfileCard.photo}
                   source={{ uri: item.photoURL }}
