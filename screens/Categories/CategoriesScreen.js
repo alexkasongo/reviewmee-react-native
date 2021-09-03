@@ -60,6 +60,22 @@ export default function CategoriesScreen(props) {
         data={categories}
         renderItem={renderCategory}
         keyExtractor={(item) => `${item.id}`}
+        // horizontal={true}
+        // showsHorizontalScrollIndicator={false}
+        // decelerationRate={0}
+        // snapToInterval={width - 30}
+        // snapToAlignment={"center"}
+        // contentInset={{
+        //   top: 0,
+        //   left: 5,
+        //   bottom: 0,
+        //   right: 5,
+        // }}
+      />
+      {/* <FlatList
+        data={categories}
+        renderItem={renderCategory}
+        keyExtractor={(item) => `${item.id}`}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         decelerationRate={0}
@@ -71,7 +87,7 @@ export default function CategoriesScreen(props) {
           bottom: 0,
           right: 5,
         }}
-      />
+      /> */}
     </View>
   );
 }
