@@ -81,11 +81,11 @@ const ContractToSign = ({ navigation }) => {
   const assigneesName = useSelector(selectAssigneesName);
   const modalStatus = useSelector(selectModalStatus);
 
-  // trigger useEffect only when modalStatus state changes to false
+  // trigger useEffect only when modalStatus state changes to false 
   useEffect(() => {
     console.log(`contractToSign.js - 86 - 🙏🏾`, user);
     if (modalStatus === false) {
-      // console.log(`Profile.js - 42  👀`, { signedContract });
+      // console.log(`.js - 42  👀`, { signedContract });
       setModalOpen(modalStatus);
     }
   }, [modalStatus]);
