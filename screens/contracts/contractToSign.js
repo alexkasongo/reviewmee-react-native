@@ -85,7 +85,6 @@ const ContractToSign = ({ navigation }) => {
   useEffect(() => {
     console.log(`contractToSign.js - 86 - 🙏🏾`, user);
     if (modalStatus === false) {
-      // console.log(`Profile.js - 42  👀`, { signedContract });
       setModalOpen(modalStatus);
     }
   }, [modalStatus]);
@@ -97,7 +96,7 @@ const ContractToSign = ({ navigation }) => {
       dispatch(setSignature(signature));
       setModalOpen(false);
     }
-  };
+  };d
 
   const handleEmpty = () => {
     console.log("Empty 🦴");
