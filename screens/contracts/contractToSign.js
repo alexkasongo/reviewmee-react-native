@@ -84,6 +84,7 @@ const ContractToSign = ({ navigation }) => {
   // trigger useEffect only when modalStatus state changes to false
   useEffect(() => {
     console.log(`contractToSign.js - 86 - 🙏🏾`, user);
+    console.log(`contractToSign.js - 30 - 😊 you've reached right here`, modalOpen);
     if (modalStatus === false) {
       setModalOpen(modalStatus);
     }
@@ -96,7 +97,7 @@ const ContractToSign = ({ navigation }) => {
       dispatch(setSignature(signature));
       setModalOpen(false);
     }
-  };d
+  };
 
   const handleEmpty = () => {
     console.log("Empty 🦴");
@@ -221,7 +222,7 @@ const ContractToSign = ({ navigation }) => {
     </html>
   `;
 
-  // let signatureImg = ``;
+  // let signatureImg = ``; this can go
 
   // if (signedContract !== null) {
   //   // console.log(`contractToSign.js - 267 - 🔥 not null`);
