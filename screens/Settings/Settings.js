@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, Switch, StyleSheet, Text, View } from "react-native";
+import { ScrollView, Switch, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Avatar, ListItem, Badge } from "react-native-elements";
 
 import BaseIcon from "./Icon";
@@ -62,6 +62,16 @@ export default function Settings(props) {
     props.navigation.navigate("SettingsOptions", data);
   };
 
+  const onPressAvatar = () => {
+    console.log(`Settings.js - 66 - you just slapped me 🍑`);
+    const data = {
+      name: "Update User details",
+      age: "in",
+      wife: "progress",
+    };
+    props.navigation.navigate("SettingsOptions", data);
+  }
+
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   const {
@@ -75,9 +85,9 @@ export default function Settings(props) {
       showsHorizontalScrollIndicator={false}
       style={styles.scroll}
     >
-      <View style={styles.userRow}>
+      <TouchableOpacity style={styles.userRow} onPress={() => onPressAvatar()}>
         <View style={styles.userImage}>
-          <Avatar rounded size="large" source={{ uri: avatar }} />
+          <Avatar rounded size="large" source={{ uri: avatar }}/>
         </View>
         <View>
           <Text style={{ fontSize: 16 }}>{name}</Text>
@@ -90,7 +100,7 @@ export default function Settings(props) {
             {firstEmail.email}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
       <InfoText text="Account" />
       <View>
         <ListItem containerStyle={styles.listItemContainer}>
