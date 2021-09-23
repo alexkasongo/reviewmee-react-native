@@ -85,7 +85,7 @@ export default function Settings(props) {
       showsHorizontalScrollIndicator={false}
       style={styles.scroll}
     >
-      <TouchableOpacity style={styles.userRow} onPress={() => onPressAvatar()}>
+      <TouchableOpacity style={styles.userRow} >
         <View style={styles.userImage}>
           <Avatar rounded size="large" source={{ uri: avatar }}/>
         </View>
