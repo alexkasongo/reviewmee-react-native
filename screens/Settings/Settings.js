@@ -10,7 +10,7 @@ import { auth } from "../../firebase/firebase";
 
 import { useDispatch } from "react-redux";
 import { setUser } from "../../firebase/firebaseSlice";
-// import { resetSignee } from "../../components/Assign/AssignSlice";
+
 
 const styles = StyleSheet.create({
   scroll: {
