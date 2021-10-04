@@ -13,7 +13,6 @@ import {
   ScrollView,
   ImageBackground,
   TouchableOpacity,
-  TouchableWithoutFeedback,
 } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
