@@ -9,11 +9,6 @@ export const categories = [
   //   name: "Sex - Toys",
   //   photo_url: "https://via.placeholder.com/200",
   // },
-  // {
-  //   id: 2,
-  //   name: "Sex - Bdsm",
-  //   photo_url: "https://via.placeholder.com/200",
-  // },
 ];
 
 export const contracts = [
