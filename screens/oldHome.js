@@ -9,7 +9,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Button,
-  SafeAreaView,
 } from "react-native";
 import { globalStyles } from "../styles/global";
 import Card from "../shared/card";
