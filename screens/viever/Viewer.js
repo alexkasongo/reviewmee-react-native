@@ -94,6 +94,7 @@ export default function Viewer() {
   };
 
   return (
+    // NOTE decide on whether to keep code or not
     // <View style={styles.container}>
     //   <FlatList
     //     data={userDocs}
