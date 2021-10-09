@@ -117,6 +117,7 @@ export default function Signin({ navigation }) {
                 <Text style={globalStyles.errorText}>
                   {props.touched.password && props.errors.password}
                 </Text>
+                {/* NOTE custom button */}
                 {/* <Button
                 onClick={signInWithGoogle}
                 title="Sign in with Google"
