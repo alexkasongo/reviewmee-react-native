@@ -89,10 +89,11 @@ export default function OldHome({ navigation }) {
         </TouchableWithoutFeedback>
       </Modal>
 
+      {/* NOTE what is this */}
       {/* <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
         <Text>Open stack Modal</Text>
       </TouchableOpacity> */}
-
+      
       {/* <MaterialIcons
         name="add"
         size={24}
