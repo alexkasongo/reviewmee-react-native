@@ -113,7 +113,6 @@ export default {
     flex: 1,
     marginTop: 20,
     alignItems: "center",
-    // backgroundColor: "#fff",
   },
   // settings modal
   settingsModal: {
