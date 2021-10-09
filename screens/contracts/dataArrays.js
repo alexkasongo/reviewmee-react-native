@@ -4,11 +4,6 @@ export const categories = [
     name: "Sex - Quicky",
     photo_url: "https://via.placeholder.com/200",
   },
-  // {
-  //   id: 1,
-  //   name: "Sex - Toys",
-  //   photo_url: "https://via.placeholder.com/200",
-  // },
 ];
 
 export const contracts = [
