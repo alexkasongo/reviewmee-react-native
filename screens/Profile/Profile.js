@@ -105,7 +105,7 @@ export default function UserProfile(props) {
       },
     });
   };
-
+  // NOTE decide on whether to keep this code 
   // renderscene fix - updated this to have same logic as Secondroute
   // const FirstRoute = () => (
   //   <View style={[styles.scene]}>
