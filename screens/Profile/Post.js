@@ -32,6 +32,7 @@ const Post = ({
   );
 };
 
+// ???
 // Post.propTypes = {
 //   containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.number]),
 //   image: PropTypes.string,
