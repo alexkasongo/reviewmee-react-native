@@ -72,6 +72,7 @@ export default function UserProfile(props) {
   const initialState = {
     tabs: {
       index: 0,
+      // initial routes state, no longer in use
       // routes: [
       //   { key: "1", title: "Consents", count: 12 },
       //   { key: "2", title: "Signed", count: 10 },
