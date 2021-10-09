@@ -27,6 +27,7 @@ export default function OldHome({ navigation }) {
   useEffect(() => {
     console.log(`login.js - 42 - 👀 check if user is logged in`);
 
+    // NOTE what is this???
     // firebase.auth().onAuthStateChanged((user) => {
     //   // this.user = user;
 
