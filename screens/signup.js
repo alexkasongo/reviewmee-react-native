@@ -38,7 +38,7 @@ export default function Login({ navigation }) {
 
   // login function
   const signup = (payload) => {
-    // start loadin
+    // start loading
     dispatch(setLoading(true));
     auth
       .createUserWithEmailAndPassword(payload.email, payload.password)
