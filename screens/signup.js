@@ -36,7 +36,7 @@ export default function Login({ navigation }) {
   const dispatch = useDispatch();
   // talk to redux end
 
-  // login function
+  // login in function
   const signup = (payload) => {
     // start loading
     dispatch(setLoading(true));
